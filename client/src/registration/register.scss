@@ -1,0 +1,92 @@
+*{
+    margin:0;
+    padding: 0;
+    list-style:none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    
+}
+body{
+    background-image: url("http://yesofcorsa.com/wp-content/uploads/2015/10/4758_god_of_war.jpg");
+}
+
+@mixin flex($justify-content,$align-items) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+@mixin flexj($justify-content) {
+    display: flex;
+    justify-content:$justify-content;
+}
+@mixin flexa($align-items) {
+    display: flex;
+    align-items:$align-items;
+}
+@mixin font($font-size,$color) {
+    font-size: $font-size;
+    color:$color;
+}
+@mixin size($width,$height,$background-color) {
+    width: $width;
+    height: $height;
+    background-color: $background-color;   
+}
+
+.form{
+    @include size(400px,550px,#505c5ccc);
+    @include flex(center, center);
+    flex-direction: column;
+    margin:50px auto;
+    border-radius: 8px;
+    &__register{
+        margin-top:20px;
+        @include font(20px,#fff); 
+        border: none ;
+        border-bottom: 1px solid transparent;
+        @include size(100%,30px,transparent);
+        z-index: 1; 
+        padding-left:10px;
+        &:focus,&:valid{
+        outline: none;
+        border-bottom: 1px solid #0bb3e6;
+        }
+        &:focus+label,&:valid+label{
+            top:-50px;
+            @include font(17px,#0bb3e6); 
+        }   
+    }
+    &__label{
+        display: block;
+        position: relative;
+         @include font(20px,#fff);
+         transition: 0.5s;
+         z-index: 2;
+         top: -30px;
+         left: -155px;
+    }
+    &__label.email{
+        left: -170px;  
+     }
+     &__label.age{
+        left: -177px;  
+     }
+     &__label.bday{
+        left: -158px;  
+     }
+     &__label.balance{
+        left: -160px;  
+     }
+     &__submit{
+     @include size(150px,40px,#0bb3e6);
+     @include font(16px,#fff);
+       border-radius: 8px;
+       border: none;
+       outline: none;
+       letter-spacing: 3px;
+       font-weight: 600;
+
+     }
+    
+}
