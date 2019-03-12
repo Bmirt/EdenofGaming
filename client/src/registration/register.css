@@ -14,7 +14,7 @@ body {
 
 .form {
   width: 400px;
-  height: 550px;
+  height: 600px;
   background-color: #505c5ccc;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -66,23 +66,27 @@ body {
   transition: 0.5s;
   z-index: 2;
   top: -30px;
-  left: -155px;
+  left: -150px;
+}
+
+.form__label.repeatpassword {
+  left: -121px;
 }
 
 .form__label.email {
-  left: -170px;
+  left: -165px;
 }
 
 .form__label.age {
-  left: -177px;
+  left: -173px;
 }
 
 .form__label.bday {
-  left: -158px;
+  left: -154px;
 }
 
 .form__label.balance {
-  left: -160px;
+  left: -157px;
 }
 
 .form__submit {
@@ -96,5 +100,9 @@ body {
   outline: none;
   letter-spacing: 3px;
   font-weight: 600;
+}
+
+form.login {
+  height: 300px;
 }
 /*# sourceMappingURL=register.css.map */

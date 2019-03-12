@@ -35,7 +35,7 @@ body{
 }
 
 .form{
-    @include size(400px,550px,#505c5ccc);
+    @include size(400px,600px,#505c5ccc);
     @include flex(center, center);
     flex-direction: column;
     margin:50px auto;
@@ -64,20 +64,24 @@ body{
          transition: 0.5s;
          z-index: 2;
          top: -30px;
-         left: -155px;
+         left: -150px;
+    }
+    &__label.repeatpassword{
+        left: -121px;  
     }
     &__label.email{
-        left: -170px;  
+        left: -165px;  
      }
      &__label.age{
-        left: -177px;  
+        left: -173px;  
      }
      &__label.bday{
-        left: -158px;  
+        left: -154px;  
      }
      &__label.balance{
-        left: -160px;  
+        left: -157px;  
      }
+     
      &__submit{
      @include size(150px,40px,#0bb3e6);
      @include font(16px,#fff);
@@ -89,4 +93,7 @@ body{
 
      }
     
+}
+form.login{
+    height: 300px;
 }
