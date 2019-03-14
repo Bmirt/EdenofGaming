@@ -128,6 +128,7 @@ body {
   color: #fff;
   position: relative;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .header__top__wrapper--user--login--text {
@@ -266,6 +267,12 @@ body {
 
 .header__bottom__nav--list:hover .header__bottom__nav--list--nav {
   display: block;
+}
+
+.footer {
+  width: 100%;
+  height: 400px;
+  background-color: red;
 }
 
 .form {
