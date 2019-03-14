@@ -1,40 +1,6 @@
-*{
-    margin:0;
-    padding: 0;
-    list-style:none;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-size: 1em;
-    
-}
-body{
-    background-image: url("http://yesofcorsa.com/wp-content/uploads/2015/10/4758_god_of_war.jpg");
-}
-
-@mixin flex($justify-content,$align-items) {
-    display: flex;
-    justify-content: $justify-content;
-    align-items: $align-items;
-}
-@mixin flexj($justify-content) {
-    display: flex;
-    justify-content:$justify-content;
-}
-@mixin flexa($align-items) {
-    display: flex;
-    align-items:$align-items;
-}
-@mixin font($font-size,$color) {
-    font-size: $font-size;
-    color:$color;
-}
-@mixin size($width,$height,$background-color) {
-    width: $width;
-    height: $height;
-    background-color: $background-color;   
-}
 
 .form{
+   font-family: "Concolas";
     @include size(400px,600px,#505c5ccc);
     @include flex(center, center);
     flex-direction: column;
@@ -84,7 +50,7 @@ body{
      
      &__submit{
      @include size(150px,40px,#0bb3e6);
-     @include font(16px,#fff);
+     @include font(1.6rem,#fff);
        border-radius: 8px;
        border: none;
        outline: none;

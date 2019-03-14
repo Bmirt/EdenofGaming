@@ -1,0 +1,22 @@
+@mixin flex($justify-content,$align-items) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+@mixin flexj($justify-content) {
+    display: flex;
+    justify-content:$justify-content;
+}
+@mixin flexa($align-items) {
+    display: flex;
+    align-items:$align-items;
+}
+@mixin font($font-size,$color) {
+    font-size: $font-size;
+    color:$color;
+}
+@mixin size($width,$height,$background-color) {
+    width: $width;
+    height: $height;
+    background-color: $background-color;   
+}
