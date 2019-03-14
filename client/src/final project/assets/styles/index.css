@@ -57,48 +57,10 @@ body {
           justify-content: space-between;
 }
 
-.header__top__wrapper--social {
-  width: 200px;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.header__top__wrapper--social--networks {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 34px;
-  height: 34px;
-  background-color: #222;
-  border-radius: 50%;
-}
-
-.header__top__wrapper--social--networks .awesome {
-  font-size: 1.8rem;
-  color: #fff;
-}
-
-.header__top__wrapper--social--networks:hover {
-  background-color: #fff;
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
-.header__top__wrapper--social--networks:hover .awesome {
-  color: #222;
+.header__top__wrapper--logo--image {
+  display: block;
+  width: 130px;
+  margin-top: -10px;
 }
 
 .header__top__wrapper--user {
