@@ -32,7 +32,7 @@ router.post("/", (req, res, next) => {
     developer: req.body.developer,
     image: req.body.image,
     genre: req.body.genre,
-    trailer: req.body.players,
+    trailer: req.body.trailer,
     release: req.body.release,
     platforms: req.body.platforms,
     price: req.body.price
