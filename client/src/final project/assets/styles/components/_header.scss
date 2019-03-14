@@ -1,35 +1,25 @@
 .header{
     @include size(100%,120px,#222);
-    display: flex;
+    @include flexa(center);
     flex-direction: column;
-    align-items: center; 
     &__top{
-        width: calc(100% - 600px);
+        width: calc(100% - 200px);
         height: 80px;
-        display: flex;
-        align-items: center;
+        @include flexa(center);
         &__wrapper{
             width: 100%;
             height: 40px;
-            display: flex;
-            justify-content: space-between;
+            @include flexj(space-between);
             &--social{
                 width: 200px;
                 height: 100%;
-                display: flex;
-                    align-items: center;
-                    justify-content: space-around;
+                @include flex(space-around,center);
                 &--networks{
-                    width: 34px;
-                    height: 34px;
-                    background-color: #222; 
+                    @include flex(center,center);
+                    @include size(34px,34px,#222);
                     border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
                     .awesome{
-                        font-size: 18px;
-                        color:#fff;
+                        @include font(1.8rem,#fff);
                     } 
                 }
                 &--networks:hover{
@@ -44,8 +34,7 @@
                 width: 400px;
                 height: 100%;
                 position: relative;
-                display: flex;
-                justify-content: space-between;
+                @include flexj(space-between);
                 &--search{
                     outline: none;
                     border: none;
@@ -53,25 +42,22 @@
                     border-radius: 4px;
                     height:100% ;
                     width: 60%;
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 600;
                     display: block;
                 }
                 &--search::placeholder{
-                    font-size: 18px;
+                    font-size: 1.8rem;
+                    font-family: 'Orbitron', sans-serif;
+                    opacity: 1;
                 }
                 &--login{
-                    width: 120px;
-                    height: 100%;
-                    background: rgb(25, 166, 231);
+                    @include size(120px,100%,#19a6e7);
+                    @include flex(space-evenly,center);
                     border-radius: 4px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-evenly;
                     color:#fff;
                     position: relative;
                     cursor: pointer;
-                   
                     &--text{
                         font-size: 2rem;
                     }
@@ -80,61 +66,89 @@
         }
     }
     &__bottom{
-        width: calc(100% - 600px);
+        @include flexj(center);
+        width: calc(100% - 200);
         height: 50%;
-       display: flex;
-       justify-content: center;
         &__nav{
             display: flex;
             font-size:1.8rem;
-            widows: 100%;
             height: 51px;
-            background-color: brown;
             &--list{
                     color: #fff;
                     display: flex;
                     padding: 14.5px 24px;
-                    background-color: red;
+                    background: #232526;  
+                    background: linear-gradient(to top, #414345, #232526); 
                     position: relative;
                     cursor: pointer;
                     font-weight: 600;
                     white-space: nowrap;
+                    &:hover{
+                        background: linear-gradient(to bottom, #4C4E50, #383A3B);
+                       transition: 0.5 ease-in-out;
+                    }
                     &--nav{
                         position: absolute;
-                        width: 800px;
-                        height: 300px;
-                        background-color: yellow;
+                        @include size(900px,auto,#1f1f1f);
                         display: none;
                         top:51px;
-                        
-                        
+                        cursor: default;
+                        &--wrapper{
+                            position: absolute;
+                            width: 660px;
+                            height: 200px;;
+                            left:222px;
+                            cursor: default;
+                              @include flexj(space-around);
+                           &--game{
+                            //    display: none;
+                               width: 250px;
+                               height: 200px;
+                               background-image: url("https://via.placeholder.com/300");
+                           }
+                        }
+                       &--nav{
+                           height: 100%;
+                           width: 200px;
+                           &--list{
+                            @include size(100%,50px,#31353e);
+                            @include flex(space-between,center);
+                            @include font(1.2rem,#fff);
+                              position: relative;
+                              &:hover{
+                                  transition: 0.7s ease-in-out;
+                                  }
+                                  &:hover &--line{
+                                    background-color: #fff;
+                                    transition: 0.5s;
+                                }
+                               &--line{
+                                width: 40px;
+                                height: 2px;
+                                background-color: #31353e;
+                               }
+                           }
+                       }
                       }
                       &:hover .nav--first{
-                        left:-80px;
+                        left:-39px;
                     }
                       &:hover .nav--second{
-                          left:-100px;
+                          right: -587px;
                       }
                       &:hover .nav--third{
-                        left:-100px;
+                        left:-313px;
                        }
                          &:hover .nav--fourth{
-                        left:-400px;
+                        left:-494px;
                         }
                         &:hover .nav--fifth{
-                            left:-400px;
+                            left:-662px;
                             }
-                      &:hover{
-                          background-color: blue;
-                          transition: ease-in-out 0.5s;
-                      }
                     &:hover &--nav{
                     display: block;
                 }
-                
-             
-                
-            }
+            } 
         }
-    }
+    }  
 }
