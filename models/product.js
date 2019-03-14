@@ -5,17 +5,18 @@ const productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
-      },
-    developer: String, 
-    publisher: String,
+      }, 
+    image: String,
     genre: String,
-    players: String,
+    developer: String,  
     release: Number,
     platforms: String,
     price: {
         type: Number,
         required: true
-      }
+      },
+    trailer: String,
+
 })
 
 module.exports = mongoose.model('Product', productSchema)
