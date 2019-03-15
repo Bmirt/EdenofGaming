@@ -30,9 +30,9 @@ router.post("/", (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     developer: req.body.developer,
-    publisher: req.body.publisher,
+    image: req.body.image,
     genre: req.body.genre,
-    players: req.body.players,
+    trailer: req.body.trailer,
     release: req.body.release,
     platforms: req.body.platforms,
     price: req.body.price
