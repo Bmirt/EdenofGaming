@@ -1,0 +1,144 @@
+.main{
+    width: calc(100% - 200px);
+    height: auto;
+    // background-color: yellow;
+    &__top{
+        margin:100px 0;
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        // background-color: red;
+        &__slider{
+            width: calc(100% - 29px);
+            height: 500px;
+            position: relative;
+            
+            &__image{
+                width:100%;
+                height: 500px;
+                transition: 1.2s;
+                background-image: url("https://i.pinimg.com/originals/32/4c/e2/324ce26a7f7a880483bf7bc12574d6f0.jpg");
+                opacity: 0.3;
+                border-radius: 8px ;
+            }
+            &__image.active{
+                z-index: 1;
+                opacity: 1;
+                background-position-x:center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            &__image.firstimage{
+                position: absolute; 
+            }
+            &__image.secondimage{
+                background-image: url("https://c.wallhere.com/photos/5e/71/armor_clouds_giant_sunset_warrior_video_games_artwork_fantasy_art-27590.jpg!d");
+
+                position: absolute;
+              }
+              &__image.thirdimage{
+                background-image: url("https://gameranx.com/wp-content/uploads/2017/03/Gwent-The-Witcher-Card-Game-1080P-Wallpaper.jpg");
+                position: absolute;
+              }
+              &__image.fourthimage{
+                background-image: url("https://stmed.net/sites/default/files/pc-gaming-hd-wallpapers-33488-2835517.jpg");
+                position: absolute;
+              }
+              &__image.fifthimage{
+                  position: absolute;
+                  background-image: url("https://stmed.net/sites/default/files/hellgate%3A-london-hd-wallpapers-33229-5837648.jpg");
+              }
+        }
+        #prev{
+            left:50px;  
+        }
+        #next{
+            right:50px;
+        }
+        .both{
+            position: absolute;
+            top :230px;
+            z-index: 2;
+            background: transparent;
+            border: none;
+            outline: none;  
+            cursor: pointer!important;
+            &:hover .bothkey{
+                color:#19a6e7b6;
+                transition: 0.7s;
+            }  
+        }
+        .bothkey{
+            font-size: 70px;
+            color:#02010e8a;  
+        }
+    }
+    &__middle{
+     width:100% ;
+     height: auto;
+    //  background-color: gray;
+     display: flex;
+     justify-content: center;
+    
+     &__wrapper{
+         width:calc(100% - 100px);
+         background-color: rgba(13, 21, 31, 0.521);
+         border-radius: 8px;
+         height: auto;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-evenly;
+         &__image{
+             width:270px;
+             height: 350px;
+             background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
+             margin:50px 0 80px;
+             background-position: center;
+             background-size: 100%;
+             border-radius: 8px 8px 0 0;
+             position: relative;
+             cursor: pointer;
+             &:hover{
+                background-size: 120%;
+               transition: 0.5s ease-in-out; 
+               border-radius: 8px 8px 0 0;
+            }
+        &:before{
+            content: "Halo 4";
+            width: 100%;
+            height: 50px;
+            background-color: #000;
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            color:#fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+             &:hover:after{
+                    content: "FOR MORE CLICK HERE";
+                    text-align: center;
+                    width:100%;
+                    height: 100%;;
+                    background-color: #0c0c0ce0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    font-size: 25px;
+                    border-radius: 8px 8px 0 0;
+                    color: #fff;  
+             }
+         }
+     }
+    }
+}
+
+
+
+ 
