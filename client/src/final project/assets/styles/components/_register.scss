@@ -1,10 +1,9 @@
-
 .form{
    font-family: "Concolas";
     @include size(400px,600px,#505c5ccc);
     @include flex(center, center);
     flex-direction: column;
-    margin:50px auto;
+    margin:50px 0;
     border-radius: 8px;
     &__register{
         margin-top:20px;
@@ -56,10 +55,21 @@
        outline: none;
        letter-spacing: 3px;
        font-weight: 600;
-
-     }
-    
+       cursor: pointer;
+     }  
 }
 form.login{
-    height: 300px;
+    height: 350px;
+    position: relative;
+    .register{
+        @include font(1.7rem,#fff);
+        position: absolute;
+        bottom:8%;
+        left:auto;
+        padding: 5px;
+        &:hover{
+            color:#720a0aab;
+            transition: 0.5s;
+        }
+    }
 }

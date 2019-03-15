@@ -74,15 +74,14 @@ body {
 }
 
 .header__top__wrapper--user {
-  width: 400px;
+  width: 500px;
   height: 100%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .header__top__wrapper--user--search {
@@ -91,7 +90,7 @@ body {
   padding-left: 0.8em;
   border-radius: 4px;
   height: 100%;
-  width: 60%;
+  width: 200px;
   font-size: 1.6rem;
   font-weight: 600;
   display: block;
@@ -136,13 +135,16 @@ body {
           align-items: center;
   border-radius: 4px;
   color: #fff;
-  position: relative;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .header__top__wrapper--user--login--text {
   font-size: 2rem;
+}
+
+.header__top__wrapper--user--login.register {
+  background-color: black;
 }
 
 .header__bottom {
@@ -508,7 +510,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 50px auto;
+  margin: 50px 0;
   border-radius: 8px;
 }
 
@@ -579,9 +581,26 @@ body {
   outline: none;
   letter-spacing: 3px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 form.login {
-  height: 300px;
+  height: 350px;
+  position: relative;
+}
+
+form.login .register {
+  font-size: 1.7rem;
+  color: #fff;
+  position: absolute;
+  bottom: 8%;
+  left: auto;
+  padding: 5px;
+}
+
+form.login .register:hover {
+  color: #720a0aab;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 /*# sourceMappingURL=index.css.map */
