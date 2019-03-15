@@ -14,7 +14,7 @@
               &--image{
                   display: block;
                   width: 130px;
-                  margin-top:-10px;
+                  margin-top:-0.5em;
               }
             
             }
@@ -27,13 +27,14 @@
                 &--search{
                     outline: none;
                     border: none;
-                    padding-left: 8px;
+                    padding-left: 0.8em;
                     border-radius: 4px;
                     height:100% ;
                     width: 60%;
                     font-size: 1.6rem;
                     font-weight: 600;
                     display: block;
+                    
                 }
                 &--search::placeholder{
                     font-size: 1.8rem;
@@ -41,7 +42,7 @@
                     opacity: 1;
                 }
                 &--login{
-                    @include size(120px,100%,#19a6e7);
+                    @include size(120px,100%,#27a8e4);
                     @include flex(space-evenly,center);
                     border-radius: 4px;
                     color:#fff;
@@ -57,7 +58,7 @@
     }
     &__bottom{
         @include flexj(center);
-        width: calc(100% - 200);
+        width: calc(100% - 200px);
         height: 50%;
         &__nav{
             display: flex;
@@ -73,6 +74,7 @@
                     cursor: pointer;
                     font-weight: 600;
                     white-space: nowrap;
+                    z-index: 6;
                     &:hover{
                         background: linear-gradient(to bottom, #4C4E50, #383A3B);
                        transition: 0.5 ease-in-out;
@@ -88,7 +90,7 @@
                             width: 660px;
                             height: 200px;;
                             left:222px;
-                            cursor: default;
+                           
                               @include flexj(space-around);
                            &--game{
                             //    display: none;
@@ -121,7 +123,7 @@
                        }
                       }
                       &:hover .nav--first{
-                        left:-39px;
+                        left:-40px;
                     }
                       &:hover .nav--second{
                           right: -587px;
@@ -136,8 +138,13 @@
                             left:-662px;
                             }
                     &:hover &--nav{
-                    display: block;
+                    display:  block;
+                    animation:headernavigation 0.6s linear forwards; 
                 }
+                @keyframes headernavigation {
+                    0%{ opacity: 1;transform: translatex(30px) }
+                    100% { opacity: 1;transform: translatex(0) }
+              }
             } 
         }
     }  

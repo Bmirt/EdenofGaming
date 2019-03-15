@@ -17,6 +17,16 @@ body {
   background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
   background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
   font-family: 'Orbitron', sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .header {
@@ -60,7 +70,7 @@ body {
 .header__top__wrapper--logo--image {
   display: block;
   width: 130px;
-  margin-top: -10px;
+  margin-top: -0.5em;
 }
 
 .header__top__wrapper--user {
@@ -78,7 +88,7 @@ body {
 .header__top__wrapper--user--search {
   outline: none;
   border: none;
-  padding-left: 8px;
+  padding-left: 0.8em;
   border-radius: 4px;
   height: 100%;
   width: 60%;
@@ -114,7 +124,7 @@ body {
 .header__top__wrapper--user--login {
   width: 120px;
   height: 100%;
-  background-color: #19a6e7;
+  background-color: #27a8e4;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -142,7 +152,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: calc(100% - 200);
+  width: calc(100% - 200px);
   height: 50%;
 }
 
@@ -167,6 +177,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   white-space: nowrap;
+  z-index: 6;
 }
 
 .header__bottom__nav--list:hover {
@@ -191,7 +202,6 @@ body {
   width: 660px;
   height: 200px;
   left: 222px;
-  cursor: default;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -246,7 +256,7 @@ body {
 }
 
 .header__bottom__nav--list:hover .nav--first {
-  left: -39px;
+  left: -40px;
 }
 
 .header__bottom__nav--list:hover .nav--second {
@@ -267,6 +277,211 @@ body {
 
 .header__bottom__nav--list:hover .header__bottom__nav--list--nav {
   display: block;
+  -webkit-animation: headernavigation 0.6s linear forwards;
+          animation: headernavigation 0.6s linear forwards;
+}
+
+@-webkit-keyframes headernavigation {
+  0% {
+    opacity: 1;
+    -webkit-transform: translatex(30px);
+            transform: translatex(30px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translatex(0);
+            transform: translatex(0);
+  }
+}
+
+@keyframes headernavigation {
+  0% {
+    opacity: 1;
+    -webkit-transform: translatex(30px);
+            transform: translatex(30px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translatex(0);
+            transform: translatex(0);
+  }
+}
+
+.main {
+  width: calc(100% - 200px);
+  height: auto;
+}
+
+.main__top {
+  margin: 100px 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main__top__slider {
+  width: calc(100% - 29px);
+  height: 500px;
+  position: relative;
+}
+
+.main__top__slider__image {
+  width: 100%;
+  height: 500px;
+  -webkit-transition: 1.2s;
+  transition: 1.2s;
+  background-image: url("https://i.pinimg.com/originals/32/4c/e2/324ce26a7f7a880483bf7bc12574d6f0.jpg");
+  opacity: 0.3;
+  border-radius: 8px;
+}
+
+.main__top__slider__image.active {
+  z-index: 1;
+  opacity: 1;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.main__top__slider__image.firstimage {
+  position: absolute;
+}
+
+.main__top__slider__image.secondimage {
+  background-image: url("https://c.wallhere.com/photos/5e/71/armor_clouds_giant_sunset_warrior_video_games_artwork_fantasy_art-27590.jpg!d");
+  position: absolute;
+}
+
+.main__top__slider__image.thirdimage {
+  background-image: url("https://gameranx.com/wp-content/uploads/2017/03/Gwent-The-Witcher-Card-Game-1080P-Wallpaper.jpg");
+  position: absolute;
+}
+
+.main__top__slider__image.fourthimage {
+  background-image: url("https://stmed.net/sites/default/files/pc-gaming-hd-wallpapers-33488-2835517.jpg");
+  position: absolute;
+}
+
+.main__top__slider__image.fifthimage {
+  position: absolute;
+  background-image: url("https://stmed.net/sites/default/files/hellgate%3A-london-hd-wallpapers-33229-5837648.jpg");
+}
+
+.main__top #prev {
+  left: 50px;
+}
+
+.main__top #next {
+  right: 50px;
+}
+
+.main__top .both {
+  position: absolute;
+  top: 230px;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer !important;
+}
+
+.main__top .both:hover .bothkey {
+  color: #19a6e7b6;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.main__top .bothkey {
+  font-size: 70px;
+  color: #02010e8a;
+}
+
+.main__middle {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main__middle__wrapper {
+  width: calc(100% - 100px);
+  background-color: rgba(13, 21, 31, 0.521);
+  border-radius: 8px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.main__middle__wrapper__image {
+  width: 270px;
+  height: 350px;
+  background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
+  margin: 50px 0 80px;
+  background-position: center;
+  background-size: 100%;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.main__middle__wrapper__image:hover {
+  background-size: 120%;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  border-radius: 8px 8px 0 0;
+}
+
+.main__middle__wrapper__image:before {
+  content: "Halo 4";
+  width: 100%;
+  height: 50px;
+  background-color: #000;
+  position: absolute;
+  bottom: -50px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.main__middle__wrapper__image:hover:after {
+  content: "FOR MORE CLICK HERE";
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #0c0c0ce0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  font-size: 25px;
+  border-radius: 8px 8px 0 0;
+  color: #fff;
 }
 
 .footer {
