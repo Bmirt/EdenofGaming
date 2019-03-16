@@ -17,27 +17,49 @@
                   margin-top:-0.5em;
               }
             }
-            &--user{
-                width: 500px;
+            &__search{
+                width: 250px;
                 height: 100%;
-                position: relative;
-                @include flexj(space-around);
-                &--search{
+                display: flex;
+                margin-left: auto;
+                &--content{
                     outline: none;
-                    border: none;
+                    border: 2px solid transparent;
                     padding-left: 0.8em;
-                    border-radius: 4px;
+                    border-radius: 4px  0 0 4px;
                     height:100% ;
                     width: 200px;
                     font-size: 1.6rem;
                     font-weight: 600;
                     display: block;
+                    margin-left: auto;
+                    
+                    &:focus{
+                        border:2px solid rgba(8, 119, 184, 0.726);
+                    }
                 }
-                &--search::placeholder{
+                &--content::placeholder{
                     font-size: 1.8rem;
                     font-family: 'Orbitron', sans-serif;
                     opacity: 1;
                 }
+                &--button{
+                  width: 50px;
+                  height: 100%;
+                  border: none;
+                  outline: none;
+                  background-color: #fff;
+                  border-radius: 0 4px 4px 0;
+                  cursor: pointer;
+                  .awesome{
+                      font-size: 30px;
+                  }
+                }
+            }
+            &--user{
+                width: 300px;
+                height: 100%;
+                @include flexj(space-evenly);
                 &--login{
                     @include size(120px,100%,#27a8e4);
                     @include flex(space-evenly,center);
@@ -51,6 +73,7 @@
                 }
                 &--login.register{
                     background-color: black;
+                    width: 150px;
                 }
             }
         }
@@ -104,18 +127,35 @@
                             @include size(100%,50px,#31353e);
                             @include flex(space-between,center);
                             @include font(1.2rem,#fff);
-                              position: relative;
+                            position: relative;
                               &:hover{
                                   transition: 0.7s ease-in-out;
-                                  }
-                                  &:hover &--line{
-                                    background-color: #fff;
-                                    transition: 0.5s;
-                                }
+                              }
                                &--line{
-                                width: 40px;
-                                height: 2px;
-                                background-color: #31353e;
+                                @include flex(center,center);
+                                @include size(100%,50px,#31353e);
+                                font-size: 1.4rem;
+                                position: relative;
+                                cursor: pointer;
+                                &:hover:after{
+                                    opacity: 1;
+                                    transition: 0.7s ease-in-out;
+                                }
+                                &:after{
+                                    content: "";                                    width: 100%;
+                                    border-bottom: solid 1px #fff;
+                                    position: absolute;
+                                    top: 50%;
+                                    z-index: 1;
+                                    opacity: 0;
+                                }
+                                &--text{
+                                    background-color: #31353e; 
+                                    z-index: 2;
+                                    padding: 0 1.5em 0 1.5em;
+                                    color: #fff;
+                                    position: relative;
+                                }
                                }
                            }
                        }
@@ -140,8 +180,8 @@
                     animation:headernavigation 0.6s linear forwards; 
                 }
                 @keyframes headernavigation {
-                    0%{ opacity: 1;transform: translatex(30px) }
-                    100% { opacity: 1;transform: translatex(0) }
+                    0%{ transform: translatex(30px) }
+                    100% {transform: translatex(0) }
               }
             } 
         }

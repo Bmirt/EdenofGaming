@@ -14,7 +14,6 @@
             width: calc(100% - 29px);
             height: 500px;
             position: relative;
-            
             &__image{
                 width:100%;
                 height: 500px;
@@ -81,10 +80,9 @@
     //  background-color: gray;
      display: flex;
      justify-content: center;
-    
      &__wrapper{
          width:calc(100% - 100px);
-         background-color: rgba(13, 21, 31, 0.521);
+         background-color: #0d151f85;
          border-radius: 8px;
          height: auto;
          display: flex;
@@ -119,7 +117,6 @@
             font-weight: 600;
             letter-spacing: 1px;
         }
-
              &:hover:after{
                     content: "FOR MORE CLICK HERE";
                     text-align: center;
@@ -136,7 +133,7 @@
              }
          }
      }
-    }
+  }
 }
 
 
