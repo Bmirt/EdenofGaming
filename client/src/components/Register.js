@@ -6,7 +6,8 @@ class Register extends React.Component {
     name: "",
     email: "",
     password: "",
-    password2:""
+    password2: "",
+    errors: {}
   };
   onHandleChange = e => {
     this.setState({
@@ -16,20 +17,20 @@ class Register extends React.Component {
 
   onHandleSubmit = e => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/users/register', {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
-    })
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(function (error) {
-      console.log(JSON.stringify(error));
-    });
+    axios
+      .post("http://localhost:5000/api/users/register", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        password2: this.state.password2
+      })
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err => this.setState({ errors: err.response.data }));
   };
 
   render() {
+    const { errors } = this.state;
     return (
       <React.Fragment>
         <form className="form">
@@ -44,6 +45,7 @@ class Register extends React.Component {
           <label htmlFor="name" className="form__label">
             Username
           </label>
+          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
 
           <input
             onChange={this.onHandleChange}
@@ -56,6 +58,9 @@ class Register extends React.Component {
           <label htmlFor="password" className="form__label password">
             Password
           </label>
+          {errors.password && (
+            <div style={{ color: "red" }}>{errors.password}</div>
+          )}
 
           <input
             onChange={this.onHandleChange}
@@ -68,6 +73,9 @@ class Register extends React.Component {
           <label htmlFor="password" className="form__label repeatpassword">
             Repeat Password
           </label>
+          {errors.password2 && (
+            <div style={{ color: "red" }}>{errors.password2}</div>
+          )}
 
           <input
             onChange={this.onHandleChange}
@@ -80,6 +88,7 @@ class Register extends React.Component {
           <label htmlFor="email" className="form__label email">
             Email{" "}
           </label>
+          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
 
           {/* <input
             type="text"
