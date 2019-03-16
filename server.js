@@ -2,14 +2,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const cors = require("cors");
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const products = require("./routes/api/products");
 
-
 const app = express();
+
+// cors middleware
+app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +38,6 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 app.use("/api/products", products);
-
 
 app.get("/", (req, res) => {
   res.send("Hello World");

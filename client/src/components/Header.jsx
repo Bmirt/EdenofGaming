@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./eagle.png";
+import logo from "../final project/assets/images/eagle.png";
 import user from "../final project/assets/images/user.png";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
@@ -27,11 +27,13 @@ class Header extends React.Component {
                 />
                 <div className="header__top__wrapper--user--login">
                   <img src={user} width="30px;" alt="" />
-                  <Link
-                    to={"/login"}
-                    className="header__top__wrapper--user--login--text"
-                  >
+                  <Link to={"/login"} className="header__top__wrapper--user--login--text">
                     Log In
+                  </Link>
+                </div>
+                <div className="header__top__wrapper--user--login register">
+                  <Link to={"/register"} className="header__top__wrapper--user--login--text ">
+                    Register
                   </Link>
                 </div>
               </div>
@@ -58,13 +60,13 @@ class Header extends React.Component {
               <SubNavigationItem title="OTHER" />
             </NavigationItem>
 
-          <NavigationItem title="Coming Soon">
+            <NavigationItem title="Coming Soon">
               <SubNavigationItem title="MOST PREORDERED" />
               <SubNavigationItem title="MOST LIKED" />
               <SubNavigationItem title="MOST VIEWD" />
               <SubNavigationItem title="AWARD VINING" />
             </NavigationItem>
-            
+
             <NavigationItem title="Best Sellers">
               <SubNavigationItem title="THIS WEEK" />
               <SubNavigationItem title="THIS MONTH" />

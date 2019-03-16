@@ -1,5 +1,4 @@
 import React from "react";
-import SubNavigationItem from "./SubNavigationItem";
 
 class NavigationItem extends React.Component {
   render() {
