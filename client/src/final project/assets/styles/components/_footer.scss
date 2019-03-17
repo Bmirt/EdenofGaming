@@ -1,28 +1,33 @@
 .footer{
     width: 100%;
     height: auto;
-    background-color: yellow;
+    background-color: #31353e;
     display: flex;
         align-items: center;
         justify-content: center;
 
     &__wrapper{
         width: calc(100% - 200px);
-        background-color:green;
+        // background-color:green;
         height: auto; 
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
         
         &__item{
-            width: 300px;
-            height: 200px;;
-            background-color: pink;
+            width: 274px;
+            height: 100px;;
+            display: flex;
+justify-content: space-between;
+flex-direction: column;
+            // background-color: rgba(168, 159, 161, 0.363);
             margin:20px 0; 
             &__text{
                 font-weight: bold;
                 font-size: 2.5rem;
                 color: #fff;
+                width: 100%;
+                
             }  
             &__wrapper{
                display: flex;
@@ -30,8 +35,8 @@
                 width: 100%;
                 &--social{
                    background-color: #222;
-                   width: 50px;
-                   height: 50px;
+                   width: 40px;
+                   height: 40px;
                    border-radius: 50%;
                    display: flex;
                    justify-content: center;
@@ -41,13 +46,13 @@
                    cursor: pointer;
                    &:hover{
                      background-color: #fff;
-                     transition: 0.6s;
+                     transition: 0.8s;
                    }
                    &:hover .awesome{
                     color:#222;
                    }
                    .awesome{
-                       font-size: 3rem;
+                       font-size: 2rem;
                        color:#fff;
                        
                    }
@@ -55,12 +60,49 @@
             }
         }
        
+        &__item.left{
+         .location{
+             display: block;
+             color:#222;
+             margin-top:1.2em;
+                 font-size: 1.8rem;
+             &:hover{
+                color:#fff;
+                transition: 0.6s;
+             }
+             
+         }   
+         .name{
+            
+            font-size: 1.8rem;
+            color: #cec8c8;
+            &:hover{
+               color:#227d96;
+               transition: 0.6s;
+            }
+         }
 
+         }
+        
+        &__item.middle{
+            font-size: 3rem;
+            color: #767676;
+            text-align: center;
+        }
+            .techub{
+                color:#21769d;
+                font-weight: bold;
+                transition: 0.6s;
+                &:hover{
+                    color: #142136;
+                }
+            }
+        
         &__bottom{
             position: relative;
             width: 100%;
             height: 30px;
-            background-color: blueviolet;
+            // background-color: blueviolet;
             bottom: 0;
             display: flex;
             justify-content: center;
@@ -68,5 +110,6 @@
             font-size: 1.8rem;
             color:#fff;
         }
-    }
+    
+}
 }

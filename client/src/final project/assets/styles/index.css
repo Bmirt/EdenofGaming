@@ -843,7 +843,7 @@ body {
 .footer {
   width: 100%;
   height: auto;
-  background-color: yellow;
+  background-color: #31353e;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -857,7 +857,6 @@ body {
 
 .footer__wrapper {
   width: calc(100% - 200px);
-  background-color: green;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -870,9 +869,18 @@ body {
 }
 
 .footer__wrapper__item {
-  width: 300px;
-  height: 200px;
-  background-color: pink;
+  width: 274px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin: 20px 0;
 }
 
@@ -880,6 +888,7 @@ body {
   font-weight: bold;
   font-size: 2.5rem;
   color: #fff;
+  width: 100%;
 }
 
 .footer__wrapper__item__wrapper {
@@ -894,8 +903,8 @@ body {
 
 .footer__wrapper__item__wrapper--social {
   background-color: #222;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -912,8 +921,8 @@ body {
 
 .footer__wrapper__item__wrapper--social:hover {
   background-color: #fff;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
 }
 
 .footer__wrapper__item__wrapper--social:hover .awesome {
@@ -921,15 +930,55 @@ body {
 }
 
 .footer__wrapper__item__wrapper--social .awesome {
-  font-size: 3rem;
+  font-size: 2rem;
   color: #fff;
+}
+
+.footer__wrapper__item.left .location {
+  display: block;
+  color: #222;
+  margin-top: 1.2em;
+  font-size: 1.8rem;
+}
+
+.footer__wrapper__item.left .location:hover {
+  color: #fff;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.footer__wrapper__item.left .name {
+  font-size: 1.8rem;
+  color: #cec8c8;
+}
+
+.footer__wrapper__item.left .name:hover {
+  color: #227d96;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.footer__wrapper__item.middle {
+  font-size: 3rem;
+  color: #767676;
+  text-align: center;
+}
+
+.footer__wrapper .techub {
+  color: #21769d;
+  font-weight: bold;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.footer__wrapper .techub:hover {
+  color: #142136;
 }
 
 .footer__wrapper__bottom {
   position: relative;
   width: 100%;
   height: 30px;
-  background-color: blueviolet;
   bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
