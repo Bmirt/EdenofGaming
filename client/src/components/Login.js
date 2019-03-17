@@ -4,7 +4,8 @@ import axios from "axios";
 class Login extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    errors:{}
   };
   onHandleChange = e => {
     this.setState({
@@ -20,14 +21,18 @@ class Login extends React.Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then(res => res.json())
-      .then(res => console.log(res))
-      .catch(function(error) {
-        console.log(JSON.stringify(error));
+      .then(res => {
+        console.log(res.data.token.payload)
+        localStorage.setItem("userToken", res.data.token);
+      })
+      .catch(err =>{
+        console.log(err.response.data);
+        this.setState({errors:err.response.data})
       });
   };
 
   render() {
+    const {errors} = this.state;
     return (
       <React.Fragment>
         <form action="" className="form login">
@@ -42,7 +47,7 @@ class Login extends React.Component {
           <label htmlFor="name" className="form__label">
             Username
           </label>
-
+          {errors.email && <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>}
           <input
             onChange={this.onHandleChange}
             type="password"
@@ -54,6 +59,7 @@ class Login extends React.Component {
           <label htmlFor="password" className="form__label password">
             Password
           </label>
+          {errors.password && <div style={{ color: "red",fontSize: "15px" }}>{errors.password}</div>}
 
           <button
             onClick={this.onHandleSubmit}

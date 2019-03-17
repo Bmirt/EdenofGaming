@@ -16,15 +16,19 @@ class Header extends React.Component {
                   src={logo}
                   alt=""
                   className="header__top__wrapper--logo--image"
-                  width="140px"
                 />
               </h1>
-              <div className="header__top__wrapper--user">
+              <div className="header__top__wrapper__search">
                 <input
                   type="search"
                   placeholder="Search"
-                  className="header__top__wrapper--user--search"
+                  className="header__top__wrapper__search--content"
                 />
+                <button className="header__top__wrapper__search--button">
+                  <i className="fab fa-searchengin awesome" />
+                </button>
+              </div>
+              <div className="header__top__wrapper--user">
                 <div className="header__top__wrapper--user--login">
                   <img src={user} width="30px;" alt="" />
                   <Link to={"/login"} className="header__top__wrapper--user--login--text">
@@ -32,6 +36,7 @@ class Header extends React.Component {
                   </Link>
                 </div>
                 <div className="header__top__wrapper--user--login register">
+                  <img src={user} width="30px" />
                   <Link to={"/register"} className="header__top__wrapper--user--login--text ">
                     Register
                   </Link>
