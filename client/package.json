@@ -12,6 +12,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+  "copy":"cp src/final\\ project/assets/styles/index.css src/App.css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
