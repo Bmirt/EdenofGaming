@@ -28,3 +28,6 @@ let slider = {
 slider.prevbtn.addEventListener("click",slider.prevslide);
 slider.nextbtn.addEventListener("click",slider.nextslide);
 
+
+
+

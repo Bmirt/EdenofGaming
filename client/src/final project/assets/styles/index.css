@@ -74,7 +74,7 @@ body {
 .header__top__wrapper--logo--image {
   display: block;
   width: 130px;
-  margin-top: -0.5em;
+  margin-top: -1em;
 }
 
 .header__top__wrapper__search {
@@ -388,7 +388,7 @@ body {
 }
 
 .main__top__slider {
-  width: calc(100% - 29px);
+  width: 100%;
   height: 500px;
   position: relative;
 }
@@ -490,45 +490,90 @@ body {
           justify-content: space-evenly;
 }
 
-.main__middle__wrapper__image {
+.main__middle__wrapper__container {
   width: 270px;
-  height: 350px;
-  background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
+  height: 380px;
   margin: 50px 0 80px;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main__middle__wrapper__container:hover .main__middle__wrapper__container--image {
+  background-size: 120%;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.main__middle__wrapper__container--image {
+  width: 270px;
+  height: 330px;
+  background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
   background-position: center;
   background-size: 100%;
-  border-radius: 8px 8px 0 0;
+  border-radius: 7px 7px 0 0;
   position: relative;
-  cursor: pointer;
-}
-
-.main__middle__wrapper__image:hover {
-  background-size: 120%;
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-  border-radius: 8px 8px 0 0;
-}
-
-.main__middle__wrapper__image:before {
-  content: "Halo 4";
-  width: 100%;
-  height: 50px;
-  background-color: #000;
-  position: absolute;
-  bottom: -50px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 50px;
-  color: #fff;
-  font-weight: 600;
   letter-spacing: 1px;
 }
 
-.main__middle__wrapper__image:hover:after {
-  content: "FOR MORE CLICK HERE";
-  text-align: center;
+.main__middle__wrapper__container--image--text {
+  position: absolute;
   width: 100%;
   height: 100%;
+  background-color: #0c0c0ce0;
+  font-size: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
+}
+
+.main__middle__wrapper__container--image--text--all {
+  width: 70%;
+  height: 30px;
+  text-align: center;
+}
+
+.main__middle__wrapper__container--image--text--all.price {
+  color: #db2e2e;
+}
+
+.main__middle__wrapper__container--image--text--all.click {
+  color: #fff;
+}
+
+.main__middle__wrapper__container--image--text--all.platform {
+  color: #2cb42c;
+}
+
+.main__middle__wrapper__container--image:hover .main__middle__wrapper__container--image--text {
+  opacity: 1;
+}
+
+.main__middle__wrapper__container--name {
+  width: 100%;
+  height: calc(100% - 330px);
   background-color: #0c0c0ce0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -539,9 +584,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: absolute;
-  font-size: 25px;
-  border-radius: 8px 8px 0 0;
+  font-size: 2rem;
   color: #fff;
 }
 
@@ -606,6 +649,10 @@ body {
 
 .aside__nav__list__social:hover .awesome {
   color: #fff;
+}
+
+.aside__nav__list__social:hover .youtube {
+  color: #ff0000;
 }
 
 .aside__nav__list__social:hover .facebook {
@@ -799,8 +846,106 @@ body {
 
 .footer {
   width: 100%;
-  height: 400px;
-  background-color: red;
+  height: auto;
+  background-color: yellow;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer__wrapper {
+  width: calc(100% - 200px);
+  background-color: green;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.footer__wrapper__item {
+  width: 300px;
+  height: 200px;
+  background-color: pink;
+  margin: 20px 0;
+}
+
+.footer__wrapper__item__text {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.footer__wrapper__item__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.footer__wrapper__item__wrapper--social {
+  background-color: #222;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1.5em;
+  cursor: pointer;
+}
+
+.footer__wrapper__item__wrapper--social:hover {
+  background-color: #fff;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.footer__wrapper__item__wrapper--social:hover .awesome {
+  color: #222;
+}
+
+.footer__wrapper__item__wrapper--social .awesome {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.footer__wrapper__bottom {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: blueviolet;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.8rem;
+  color: #fff;
 }
 
 .form {
