@@ -11,7 +11,7 @@
         justify-content: center;
         // background-color: red;
         &__slider{
-            width: calc(100% - 29px);
+            width: 100%;
             height: 500px;
             position: relative;
             &__image{
@@ -88,53 +88,92 @@
          display: flex;
          flex-wrap: wrap;
          justify-content: space-evenly;
-         &__image{
-             width:270px;
-             height: 350px;
-             background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
+        
+         &__container{
+            width:270px;
+            height: 380px;
              margin:50px 0 80px;
+             cursor: pointer;
+             border-radius: 8px 8px 0 0;
+             display: flex;
+             flex-direction: column;
+              justify-content: space-between;   
+              &:hover &--image{
+                background-size: 120%;
+                transition: 0.6s;
+                
+             }
+             
+         &--image{
+             width:270px;
+             height: 330px;
+             background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
              background-position: center;
              background-size: 100%;
-             border-radius: 8px 8px 0 0;
+             border-radius: 7px 7px 0 0;
              position: relative;
-             cursor: pointer;
-             &:hover{
-                background-size: 120%;
-               transition: 0.5s ease-in-out; 
-               border-radius: 8px 8px 0 0;
-            }
-        &:before{
-            content: "Halo 4";
-            width: 100%;
-            height: 50px;
-            background-color: #000;
-            position: absolute;
-            bottom: -50px;
-            font-size: 20px;
-            text-align: center;
-            line-height: 50px;
-            color:#fff;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-             &:hover:after{
-                    content: "FOR MORE CLICK HERE";
-                    text-align: center;
-                    width:100%;
-                    height: 100%;;
-                    background-color: #0c0c0ce0;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: absolute;
-                    font-size: 25px;
-                    border-radius: 8px 8px 0 0;
-                    color: #fff;  
+             letter-spacing: 1px;
+            //  &:hover{
+            //      background-size: 120%;
+            //      transition: 0.6s ease-in-out;
+            //  }
+             &--text{
+                 position: absolute;
+                 width: 100%;
+                 height: 100%;
+                 background-color: #0c0c0ce0;
+                 font-size: 2.5rem;
+                 display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                opacity: 0;
+                transition: 0.6s ease-in-out;
+                 &--all{
+                     width: 70%;
+                     height: 30px;
+                     text-align: center;
+                    
+                     
+                 }
+                 &--all.price{
+                     color: #db2e2e;
+                 }
+                 &--all.click{
+                    color: #fff;
+                }
+                &--all.platform{
+                    color: #2cb42c;
+                }
+              
+            
+            
+         } 
+         &:hover &--text{
+            opacity: 1;
              }
+        }
+         &--name{
+             width: 100%;
+             height: calc(100% - 330px);
+             background-color: #0c0c0ce0;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             font-size:2rem;
+             color:#fff;
+             
+         }
+   
          }
      }
+     &__wrapper:hover{
+       
+     }
   }
+
 }
+
 
 
 
