@@ -6,13 +6,13 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.8"
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-  "copy":"cp src/final\\ project/assets/styles/index.css src/App.css",
+    "copy": "cp src/final\\ project/assets/styles/index.css src/App.css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
