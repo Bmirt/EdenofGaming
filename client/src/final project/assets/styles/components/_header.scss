@@ -1,5 +1,5 @@
 .header{
-    @include size(100%,120px,#222);
+    @include size(100%,auto,#222);
     @include flexa(center);
     flex-direction: column;
     &__top{
@@ -34,9 +34,7 @@
                     display: block;
                     margin-left: auto;
                     
-                    &:focus{
-                        border:2px solid rgba(8, 119, 184, 0.726);
-                    }
+                   
                 }
                 &--content::placeholder{
                     font-size: 1.8rem;
@@ -81,112 +79,136 @@
     &__bottom{
         @include flexj(center);
         width: calc(100% - 200px);
-        height: 50%;
-        &__nav{
+        height:50px; 
+        &__navigation{
+            width: 800px;
+            height: 100%;
             display: flex;
-            font-size:1.8rem;
-            height: 51px;
-            &--list{
+          &__list{
+            height: 100%;
+            width: 164px;
+            position: relative;
+            color: #fff;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1b1f1e;
+            cursor: pointer;
+            &:hover{
+                background-color: #262626;
+                transition: 0.6s ease-in-out;
+            }
+           &:hover &--item{
+               display: block;           
+           }
+            &--item{
+                position: absolute;
+                height: auto;
+                width: 100%;
+                top:50px;
+                display: flex;
+                flex-direction: column;
+                display: none;
+                z-index: 999;
+                background-color: #0000ff;
+                &--link{    
+                    display: block;
+                    width: 100%;
+                    height: 50px;
+                    text-align: center;
+                    line-height: 50px;
                     color: #fff;
-                    display: flex;
-                    padding: 14.5px 24px;
-                    background: #232526;  
-                    background: linear-gradient(to top, #414345, #232526); 
-                    position: relative;
-                    cursor: pointer;
-                    font-weight: 600;
-                    white-space: nowrap;
-                    z-index: 6;
-                    &:hover{
-                        background: linear-gradient(to bottom, #4C4E50, #383A3B);
-                       transition: 0.5 ease-in-out;
-                    }
-                    &--nav{
-                        position: absolute;
-                        @include size(900px,auto,#1f1f1f);
-                        display: none;
-                        top:51px;
-                        cursor: default;
-                        &--wrapper{
-                            position: absolute;
-                            width: 660px;
-                            height: 200px;;
-                            left:222px;
-                              @include flexj(space-around);
-                           &--game{
-                            //    display: none;
-                               width: 250px;
-                               height: 200px;
-                               background-image: url("https://via.placeholder.com/300");
-                           }
-                        }
-                       &--nav{
-                           height: 100%;
-                           width: 200px;
-                           &--list{
-                            @include size(100%,50px,#31353e);
-                            @include flex(space-between,center);
-                            @include font(1.2rem,#fff);
-                            position: relative;
-                              &:hover{
-                                  transition: 0.7s ease-in-out;
-                              }
-                               &--line{
-                                @include flex(center,center);
-                                @include size(100%,50px,#31353e);
-                                font-size: 1.4rem;
-                                position: relative;
-                                cursor: pointer;
-                                &:hover:after{
-                                    opacity: 1;
-                                    transition: 0.7s ease-in-out;
-                                }
-                                &:after{
-                                    content: "";                                    width: 100%;
-                                    border-bottom: solid 1px #fff;
-                                    position: absolute;
-                                    top: 50%;
-                                    z-index: 1;
-                                    opacity: 0;
-                                }
-                                &--text{
-                                    background-color: #31353e; 
-                                    z-index: 2;
-                                    padding: 0 1.5em 0 1.5em;
-                                    color: #fff;
-                                    position: relative;
-                                }
-                               }
-                           }
-                       }
-                      }
-                      &:hover .nav--first{
-                        left:-40px;
-                    }
-                      &:hover .nav--second{
-                          right: -587px;
-                      }
-                      &:hover .nav--third{
-                        left:-313px;
-                       }
-                         &:hover .nav--fourth{
-                        left:-494px;
-                        }
-                        &:hover .nav--fifth{
-                            left:-662px;
-                            }
-                    &:hover &--nav{
-                    display:  block;
-                    animation:headernavigation 0.6s linear forwards; 
+                    font-size: 1.5rem;  
                    
-                    
+                    &:hover{
+                        transition: 0.6s;
+                        background-color: #a52a2a;
+                    }
+
                 }
-                @keyframes headernavigation {
-                    0%{ transform: translatex(30px) }
-                    100% {transform: translatex(0) }
-                    
-              }
-            } 
+            }
+          }
+         
+        }
         }
     }  
+
+@media (max-width:1024px){
+    .header__top{
+        width: 100%;
+        height: 170px;
+        margin-top: 1em;
+    }
+    .header__bottom{
+        height: 70px;
+    }
+    .header__top__wrapper{
+        height: 109%;
+        width: 100%;
+        flex-wrap: wrap;
+        
+    }
+    .header__top__wrapper--logo--image{
+        margin:1em 0 0 -1em;
+        width:178px;
+        
+    }
+     .header__top__wrapper--user{
+  
+    height: 40px;
+    margin-top: 4em;
+
+     }
+    .header__top__wrapper__search{
+        margin-left: 0;
+        height: 55px;
+        width: 120%;
+        order: 1;
+        flex: 1 0 100%;
+    }
+
+    .header__top__wrapper__search--content{
+        width: 100%;
+       
+    }
+    
 }
+    @media(max-width:600px){
+        .header__top__wrapper {
+            height: 147%;
+            
+        }
+        .header__top__wrapper__search{
+            margin-top: -34px;
+        }
+        .header__top__wrapper--user{
+        height: 106px;
+        width: auto;
+        margin-right: 15px;
+        justify-content: space-evenly;
+         flex-direction: column;
+         align-items: center;
+        }
+        .header__top__wrapper--user--login{
+        height: 40px;
+        width: 150px;
+        margin: 5px 10px;
+
+    }
+    .header__top__wrapper--logo--image{
+        margin:1em 0 0 -1em;
+        width:178px;
+        margin:4em 0 0 -1em
+    }
+    }
+
+// animation:headernavigation 0.6s linear forwards; 
+                   
+                    
+// }
+// @keyframes headernavigation {
+//     0%{ transform: translatex(30px) }
+//     100% {transform: translatex(0) }
+    
+// // 

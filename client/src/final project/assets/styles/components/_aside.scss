@@ -1,9 +1,8 @@
 .aside{
- 
      &__nav{
         position: fixed;
         left:0;
-        top:220px;
+        top:230px;
         z-index: 999;
         &__list{
             width: 80px;
@@ -59,7 +58,7 @@
 }
    .chat{
        position: fixed;
-       top:220px;
+       top:230px;
        z-index: 999;
        transition: 1s;
        border-radius: 8px 0 0 8px;

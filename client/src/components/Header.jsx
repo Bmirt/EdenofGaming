@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 class Header extends React.Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <>
+  
         <header className="header">
           <section className="header__top">
             <div className="header__top__wrapper">
@@ -16,30 +20,44 @@ class Header extends React.Component {
                   src={logo}
                   alt=""
                   className="header__top__wrapper--logo--image"
-                  width="140px"
                 />
               </h1>
-              <div className="header__top__wrapper--user">
+              <div className="header__top__wrapper__search">
                 <input
                   type="search"
                   placeholder="Search"
-                  className="header__top__wrapper--user--search"
+                  className="header__top__wrapper__search--content"
                 />
-                <div className="header__top__wrapper--user--login">
-                  <img src={user} width="30px;" alt="" />
-                  <Link to={"/login"} className="header__top__wrapper--user--login--text">
-                    Log In
-                  </Link>
-                </div>
-                <div className="header__top__wrapper--user--login register">
-                  <Link to={"/register"} className="header__top__wrapper--user--login--text ">
-                    Register
-                  </Link>
-                </div>
+                <button className="header__top__wrapper__search--button">
+                  <i className="fab fa-searchengin awesome" />
+                </button>
+              </div>
+              <div className="header__top__wrapper--user">
+                {!this.props.user ? (
+                  <div>
+                    <div className="header__top__wrapper--user--login">
+                      <img src={user} width="30px;" alt="" />
+                      <Link
+                        to={"/login"}
+                        className="header__top__wrapper--user--login--text"
+                      >
+                        Log In
+                      </Link>
+                    </div>
+                    <div className="header__top__wrapper--user--login register">
+                      <img src={user} width="30px" />
+                      <Link
+                        to={"/register"}
+                        className="header__top__wrapper--user--login--text "
+                      >
+                        Register
+                      </Link>
+                    </div>
+                  </div>
+                ) : this.props.user}
               </div>
             </div>
           </section>
-
           <section className="header__bottom">
             <NavigationItem title="Platforms">
               <SubNavigationItem title="PC" />
