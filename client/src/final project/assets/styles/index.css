@@ -1,7 +1,3 @@
-#root {
-  width: 100%;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +31,7 @@ body {
 
 .header {
   width: 100%;
-  height: 120px;
+  height: auto;
   background-color: #222;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -97,10 +93,6 @@ body {
   font-weight: 600;
   display: block;
   margin-left: auto;
-}
-
-.header__top__wrapper__search--content:focus {
-  border: 2px solid rgba(8, 119, 184, 0.726);
 }
 
 .header__top__wrapper__search--content::-webkit-input-placeholder {
@@ -188,97 +180,23 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   width: calc(100% - 200px);
-  height: 50%;
-}
-
-.header__bottom__nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.8rem;
-  height: 51px;
-}
-
-.header__bottom__nav--list {
-  color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 14.5px 24px;
-  background: #232526;
-  background: -webkit-gradient(linear, left bottom, left top, from(#414345), to(#232526));
-  background: linear-gradient(to top, #414345, #232526);
-  position: relative;
-  cursor: pointer;
-  font-weight: 600;
-  white-space: nowrap;
-  z-index: 6;
-}
-
-.header__bottom__nav--list:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#4C4E50), to(#383A3B));
-  background: linear-gradient(to bottom, #4C4E50, #383A3B);
-  -webkit-transition: 0.5 ease-in-out;
-  transition: 0.5 ease-in-out;
-}
-
-.header__bottom__nav--list--nav {
-  position: absolute;
-  width: 900px;
-  height: auto;
-  background-color: #1f1f1f;
-  display: none;
-  top: 51px;
-  cursor: default;
-}
-
-.header__bottom__nav--list--nav--wrapper {
-  position: absolute;
-  width: 660px;
-  height: 200px;
-  left: 222px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.header__bottom__nav--list--nav--wrapper--game {
-  width: 250px;
-  height: 200px;
-  background-image: url("https://via.placeholder.com/300");
-}
-
-.header__bottom__nav--list--nav--nav {
-  height: 100%;
-  width: 200px;
-}
-
-.header__bottom__nav--list--nav--nav--list {
-  width: 100%;
   height: 50px;
-  background-color: #31353e;
+}
+
+.header__bottom__navigation {
+  width: 800px;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 1.2rem;
-  color: #fff;
+}
+
+.header__bottom__navigation__list {
+  height: 100%;
+  width: 164px;
   position: relative;
-}
-
-.header__bottom__nav--list--nav--nav--list:hover {
-  -webkit-transition: 0.7s ease-in-out;
-  transition: 0.7s ease-in-out;
-}
-
-.header__bottom__nav--list--nav--nav--list--line {
+  color: #fff;
+  font-size: 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -288,88 +206,128 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  height: 50px;
-  background-color: #31353e;
-  font-size: 1.4rem;
-  position: relative;
+  background-color: #1b1f1e;
   cursor: pointer;
 }
 
-.header__bottom__nav--list--nav--nav--list--line:hover:after {
-  opacity: 1;
-  -webkit-transition: 0.7s ease-in-out;
-  transition: 0.7s ease-in-out;
+.header__bottom__navigation__list:hover {
+  background-color: #262626;
+  -webkit-transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
 }
 
-.header__bottom__nav--list--nav--nav--list--line:after {
-  content: "";
-  width: 100%;
-  border-bottom: solid 1px #fff;
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  opacity: 0;
-}
-
-.header__bottom__nav--list--nav--nav--list--line--text {
-  background-color: #31353e;
-  z-index: 2;
-  padding: 0 1.5em 0 1.5em;
-  color: #fff;
-  position: relative;
-}
-
-.header__bottom__nav--list:hover .nav--first {
-  left: -40px;
-}
-
-.header__bottom__nav--list:hover .nav--second {
-  right: -587px;
-}
-
-.header__bottom__nav--list:hover .nav--third {
-  left: -313px;
-}
-
-.header__bottom__nav--list:hover .nav--fourth {
-  left: -494px;
-}
-
-.header__bottom__nav--list:hover .nav--fifth {
-  left: -662px;
-}
-
-.header__bottom__nav--list:hover .header__bottom__nav--list--nav {
+.header__bottom__navigation__list:hover .header__bottom__navigation__list--item {
   display: block;
-  -webkit-animation: headernavigation 0.6s linear forwards;
-          animation: headernavigation 0.6s linear forwards;
 }
 
-@-webkit-keyframes headernavigation {
-  0% {
-    -webkit-transform: translatex(30px);
-            transform: translatex(30px);
+.header__bottom__navigation__list--item {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+  z-index: 999;
+  background-color: #0000ff;
+}
+
+.header__bottom__navigation__list--item--link {
+  display: block;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.header__bottom__navigation__list--item--link:hover {
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  background-color: #a52a2a;
+}
+
+@media (max-width: 1024px) {
+  .header__top {
+    width: 100%;
+    height: 170px;
+    margin-top: 1em;
   }
-  100% {
-    -webkit-transform: translatex(0);
-            transform: translatex(0);
+  .header__bottom {
+    height: 70px;
+  }
+  .header__top__wrapper {
+    height: 109%;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .header__top__wrapper--logo--image {
+    margin: 1em 0 0 -1em;
+    width: 178px;
+  }
+  .header__top__wrapper--user {
+    height: 40px;
+    margin-top: 4em;
+  }
+  .header__top__wrapper__search {
+    margin-left: 0;
+    height: 55px;
+    width: 120%;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 100%;
+            flex: 1 0 100%;
+  }
+  .header__top__wrapper__search--content {
+    width: 100%;
   }
 }
 
-@keyframes headernavigation {
-  0% {
-    -webkit-transform: translatex(30px);
-            transform: translatex(30px);
+@media (max-width: 600px) {
+  .header__top__wrapper {
+    height: 147%;
   }
-  100% {
-    -webkit-transform: translatex(0);
-            transform: translatex(0);
+  .header__top__wrapper__search {
+    margin-top: -34px;
+  }
+  .header__top__wrapper--user {
+    height: 106px;
+    width: auto;
+    margin-right: 15px;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header__top__wrapper--user--login {
+    height: 40px;
+    width: 150px;
+    margin: 5px 10px;
+  }
+  .header__top__wrapper--logo--image {
+    margin: 1em 0 0 -1em;
+    width: 178px;
+    margin: 4em 0 0 -1em;
   }
 }
 
 .main {
-  width: calc(100% - 200px);
+  width: calc(100% - 185px);
   height: auto;
 }
 
@@ -389,16 +347,16 @@ body {
 
 .main__top__slider {
   width: 100%;
-  height: 500px;
+  height: 430px;
   position: relative;
 }
 
 .main__top__slider__image {
   width: 100%;
-  height: 500px;
+  height: 470px;
   -webkit-transition: 1.2s;
   transition: 1.2s;
-  background-image: url("https://i.pinimg.com/originals/32/4c/e2/324ce26a7f7a880483bf7bc12574d6f0.jpg");
+  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
   opacity: 0.3;
   border-radius: 8px;
 }
@@ -416,23 +374,23 @@ body {
 }
 
 .main__top__slider__image.secondimage {
-  background-image: url("https://c.wallhere.com/photos/5e/71/armor_clouds_giant_sunset_warrior_video_games_artwork_fantasy_art-27590.jpg!d");
+  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
   position: absolute;
 }
 
 .main__top__slider__image.thirdimage {
-  background-image: url("https://gameranx.com/wp-content/uploads/2017/03/Gwent-The-Witcher-Card-Game-1080P-Wallpaper.jpg");
+  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
   position: absolute;
 }
 
 .main__top__slider__image.fourthimage {
-  background-image: url("https://stmed.net/sites/default/files/pc-gaming-hd-wallpapers-33488-2835517.jpg");
+  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
   position: absolute;
 }
 
 .main__top__slider__image.fifthimage {
   position: absolute;
-  background-image: url("https://stmed.net/sites/default/files/hellgate%3A-london-hd-wallpapers-33229-5837648.jpg");
+  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
 }
 
 .main__top #prev {
@@ -531,6 +489,7 @@ body {
   height: 100%;
   background-color: #0c0c0ce0;
   font-size: 2.5rem;
+  text-shadow: 2px 3px 6px #ebdbdb;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -588,10 +547,74 @@ body {
   color: #fff;
 }
 
+@media (max-width: 1024px) {
+  .main {
+    width: calc(100% - 240px);
+  }
+  .main__middle__wrapper {
+    width: 90%;
+  }
+  .main__top__slider__image {
+    width: 100%;
+    height: 400px;
+  }
+  #prev, #next {
+    top: 170px;
+  }
+}
+
+@media (max-width: 960px) {
+  .main__top__slider__image {
+    width: 100%;
+    height: 297px;
+  }
+  .main__top {
+    margin: 30px 0 -80px;
+  }
+  #prev, #next {
+    top: 115px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    width: 100%;
+  }
+  .main__middle__wrapper {
+    width: 100%;
+  }
+  .main__middle__wrapper__container {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .main__middle__wrapper__container--image {
+    width: 100%;
+  }
+  .main__slider__image:nth-child() {
+    width: 30%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    background-color: #0d151f85;
+  }
+  .main__top {
+    margin: 30px 0 -190px;
+  }
+  .main__top__slider__image {
+    width: 100%;
+    height: 200px;
+  }
+  #prev, #next {
+    top: 70px;
+  }
+}
+
 .aside__nav {
   position: fixed;
   left: 0;
-  top: 220px;
+  top: 230px;
   z-index: 999;
 }
 
@@ -693,7 +716,7 @@ body {
 
 .chat {
   position: fixed;
-  top: 220px;
+  top: 230px;
   z-index: 999;
   -webkit-transition: 1s;
   transition: 1s;
@@ -982,7 +1005,7 @@ body {
 .footer__wrapper__bottom {
   position: relative;
   width: 100%;
-  height: 30px;
+  height: 80px;
   bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -997,10 +1020,37 @@ body {
   color: #fff;
 }
 
+@media (max-width: 1024px) {
+  .footer__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .footer__wrapper__item {
+    width: 100%;
+  }
+  .footer__wrapper__item .location, .footer__wrapper__item .name {
+    margin: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer__wrapper {
+    width: 100%;
+  }
+  .location {
+    margin: auto;
+  }
+}
+
 .form {
   font-family: "Concolas";
   width: 400px;
-  height: 600px;
+  height: 470px;
   background-color: #505c5ccc;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1015,7 +1065,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 50px auto;
+  margin: 50px 0;
   border-radius: 8px;
 }
 
@@ -1084,7 +1134,6 @@ body {
   border-radius: 8px;
   border: none;
   outline: none;
-  letter-spacing: 3px;
   font-weight: 600;
   cursor: pointer;
 }

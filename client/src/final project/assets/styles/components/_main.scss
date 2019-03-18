@@ -1,5 +1,5 @@
 .main{
-    width: calc(100% - 200px);
+    width: calc(100% - 185px);
     height: auto;
     // background-color: yellow;
     &__top{
@@ -12,13 +12,13 @@
         // background-color: red;
         &__slider{
             width: 100%;
-            height: 500px;
+            height: 430px;
             position: relative;
             &__image{
                 width:100%;
-                height: 500px;
+                height: 470px;
                 transition: 1.2s;
-                background-image: url("https://i.pinimg.com/originals/32/4c/e2/324ce26a7f7a880483bf7bc12574d6f0.jpg");
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
                 opacity: 0.3;
                 border-radius: 8px ;
             }
@@ -33,21 +33,21 @@
                 position: absolute; 
             }
             &__image.secondimage{
-                background-image: url("https://c.wallhere.com/photos/5e/71/armor_clouds_giant_sunset_warrior_video_games_artwork_fantasy_art-27590.jpg!d");
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
 
                 position: absolute;
               }
               &__image.thirdimage{
-                background-image: url("https://gameranx.com/wp-content/uploads/2017/03/Gwent-The-Witcher-Card-Game-1080P-Wallpaper.jpg");
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
                 position: absolute;
               }
               &__image.fourthimage{
-                background-image: url("https://stmed.net/sites/default/files/pc-gaming-hd-wallpapers-33488-2835517.jpg");
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
                 position: absolute;
               }
               &__image.fifthimage{
                   position: absolute;
-                  background-image: url("https://stmed.net/sites/default/files/hellgate%3A-london-hd-wallpapers-33229-5837648.jpg");
+                  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
               }
         }
         #prev{
@@ -120,6 +120,7 @@
                  height: 100%;
                  background-color: #0c0c0ce0;
                  font-size: 2.5rem;
+                 text-shadow:2px 3px 6px rgb(235, 219, 219);
                  display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
@@ -172,4 +173,68 @@
 
 
 
- 
+
+@media(max-width:1024px){
+    .main{
+        width:calc(100% - 240px) ;
+    }
+    .main__middle__wrapper{
+        width: 90%;
+    }
+    .main__top__slider__image {
+        width: 100%;
+        height: 400px;
+    }
+    
+    #prev,#next{
+        top: 170px;
+    }
+
+}
+@media(max-width:960px){
+    .main__top__slider__image {
+        width: 100%;
+        height: 297px;
+    }
+    .main__top{
+        margin:30px 0 -80px;
+    }
+     
+        #prev,#next{
+            top: 115px;
+        }
+}
+
+@media(max-width:768px){
+  .main{
+      width: 100%;
+  }
+  .main__middle__wrapper{
+    width: 100%;
+}
+.main__middle__wrapper__container{
+    width: 100%;
+    margin: 20px 0 ;
+}
+.main__middle__wrapper__container--image{
+    width: 100%;
+}
+.main__slider__image:nth-child(){
+    width: 30%;
+}
+}
+@media(max-width:600px){
+    .main{
+        background-color: #0d151f85;
+    }
+    .main__top{
+        margin:30px 0 -190px;
+    }
+    .main__top__slider__image {
+        width: 100%;
+        height: 200px;
+    }
+    #prev,#next{
+        top: 70px;
+    }
+}

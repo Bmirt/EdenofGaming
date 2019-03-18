@@ -1,6 +1,6 @@
 .form{
    font-family: "Concolas";
-    @include size(400px,600px,#505c5ccc);
+    @include size(400px,470px,#505c5ccc);
     @include flex(center, center);
     flex-direction: column;
     margin:50px 0;
@@ -53,7 +53,6 @@
        border-radius: 8px;
        border: none;
        outline: none;
-       letter-spacing: 3px;
        font-weight: 600;
        cursor: pointer;
      }  
