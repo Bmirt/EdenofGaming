@@ -1,3 +1,7 @@
+#root {
+  width: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -332,7 +336,7 @@ body {
 }
 
 .main__top {
-  margin: 100px 0;
+  margin: 100px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;

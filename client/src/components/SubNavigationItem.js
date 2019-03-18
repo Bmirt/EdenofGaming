@@ -6,10 +6,8 @@ class SubNavigationItem extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Link to="#" className="header__bottom__nav--list--nav--nav--list">
-          <div className="header__bottom__nav--list--nav--nav--list--line" />
+        <Link to="#" className="header__bottom__navigation__list--item--link">
           {this.props.title}
-          <div className="header__bottom__nav--list--nav--nav--list--line" />
         </Link>
       </React.Fragment>
     );

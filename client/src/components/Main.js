@@ -7,7 +7,9 @@ class Main extends React.Component{
         return(
             <React.Fragment>
                 <main className="main">
-                    <Slider/>
+                    <section className="main__top">
+                        <Slider/>
+                    </section>
                 </main>
             </React.Fragment>
         )
