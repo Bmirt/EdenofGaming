@@ -2,7 +2,7 @@ import React from "react";
 
 class Product extends React.Component {
   render() {
-    const {image, platform, price} = this.props;
+    const {image, platform, price, name} = this.props;
     return (
       <React.Fragment>
         <div className="main__middle__wrapper__container">
@@ -19,6 +19,7 @@ class Product extends React.Component {
               </p>
             </div>
           </div>
+          <div class="main__middle__wrapper__container--name ">{name}</div>
         </div>
       </React.Fragment>
     );

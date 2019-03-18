@@ -35,6 +35,7 @@ class Games extends React.Component {
                 image={game.image}
                 platform={game.platforms}
                 price={game.price}
+                name={game.name}
               />
             ))}
           </div>
