@@ -45,20 +45,22 @@ class Login extends React.Component {
         <form action="" className="form login">
           <input
             onChange={this.onHandleChange}
+            id="email"
             type="email"
             name="email"
             required
             autoComplete="off"
             className="form__register"
           />
-          <label htmlFor="name" className="form__label">
-            Username
+          <label htmlFor="email" className="form__label">
+          Email
           </label>
           {errors.email && (
             <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
           )}
           <input
             onChange={this.onHandleChange}
+            id="password"
             type="password"
             name="password"
             required
