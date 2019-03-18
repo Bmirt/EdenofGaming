@@ -27,7 +27,7 @@ class Login extends React.Component {
       })
       .then(res => {
         Auth.storeToken(res.data.token);
-        let user = Auth.getCurrentUser()
+        let user = Auth.getCurrentUser();
         this.state.updateUserState(user);
         this.props.history.replace("/");
  

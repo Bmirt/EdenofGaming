@@ -13,7 +13,6 @@ class Register extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
 
   onHandleSubmit = e => {
@@ -26,13 +25,11 @@ class Register extends React.Component {
         password2: this.state.password2
       })
       .then(res => {
-        console.log(res);
         alert("you succesfully registered");
         this.props.history.replace("/login");
       })
       .catch(err =>
-        // this.setState({ errors: err.response.data})
-        console.log(err)
+        this.setState({ errors: err.response.data})
       );
   };
 

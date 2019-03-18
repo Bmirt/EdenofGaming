@@ -87,9 +87,9 @@ class Header extends React.Component {
               </NavigationItem>
 
               <NavigationItem title="Coming Soon">
-                <SubNavigationItem title="MOST PREORDERED" />
-                <SubNavigationItem title="MOST LIKED" />
-                <SubNavigationItem title="MOST VIEWD" />
+                <SubNavigationItem title="Most Preordered" />
+                <SubNavigationItem title="Most Liked" />
+                <SubNavigationItem title="MOST VIEWED" />
                 <SubNavigationItem title="AWARD VINING" />
               </NavigationItem>
 
