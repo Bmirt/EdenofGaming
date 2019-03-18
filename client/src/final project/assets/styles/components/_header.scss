@@ -59,7 +59,7 @@
                 height: 100%;
                 @include flexj(space-evenly);
                 &--login{
-                    @include size(120px,100%,#27a8e4);
+                    @include size(120px,100%,#21769d);
                     @include flex(space-evenly,center);
                     border-radius: 4px;
                     color:#fff;
