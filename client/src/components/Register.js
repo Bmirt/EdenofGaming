@@ -25,7 +25,6 @@ class Register extends React.Component {
         password: this.state.password,
         password2: this.state.password2
       })
-      .then(res => console.log(res))
       .then(res => {
         console.log(res);
         alert("you succesfully registered");
