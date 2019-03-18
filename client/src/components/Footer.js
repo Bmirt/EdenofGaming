@@ -4,50 +4,50 @@ class Footer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <footer class="footer">
-          <section class="footer__wrapper">
-            <div class="footer__wrapper__item  left">
-              <a href="" class="name">
+        <footer className="footer">
+          <section className="footer__wrapper">
+            <div className="footer__wrapper__item  left">
+              <a href="" className="name">
                 ABOUT EDEN OF GAMING
               </a>
-              <a href="#" class="location">
-                <i class="fas  fa-globe-americas awesome" /> Find Us On This
+              <a href="#" className="location">
+                <i className="fas  fa-globe-americas awesome" /> Find Us On This
                 Location
               </a>
             </div>
-            <div class="footer__wrapper__item  middle">
+            <div className="footer__wrapper__item  middle">
               Special Thanks To{" "}
-              <a href="http://techub.ge/" target="_blank" class="techub">
+              <a href="http://techub.ge/" target="_blank" className="techub">
                 Techub
               </a>
             </div>
-            <div class="footer__wrapper__item ">
-              <h2 class="footer__wrapper__item__text"> Follow Us</h2>
-              <div class="footer__wrapper__item__wrapper ">
-                <span class="footer__wrapper__item__wrapper--social">
+            <div className="footer__wrapper__item ">
+              <h2 className="footer__wrapper__item__text"> Follow Us</h2>
+              <div className="footer__wrapper__item__wrapper ">
+                <span className="footer__wrapper__item__wrapper--social">
                   {" "}
-                  <i class="fab fa-youtube awesome" />{" "}
+                  <i className="fab fa-youtube awesome" />{" "}
                 </span>
-                <span class="footer__wrapper__item__wrapper--social">
+                <span className="footer__wrapper__item__wrapper--social">
                   {" "}
-                  <i class="fab fa-facebook-f awesome" />{" "}
+                  <i className="fab fa-facebook-f awesome" />{" "}
                 </span>
-                <span class="footer__wrapper__item__wrapper--social">
+                <span className="footer__wrapper__item__wrapper--social">
                   {" "}
-                  <i class="fab fa-twitter awesome" />{" "}
+                  <i className="fab fa-twitter awesome" />{" "}
                 </span>
-                <span class="footer__wrapper__item__wrapper--social">
+                <span className="footer__wrapper__item__wrapper--social">
                   {" "}
-                  <i class="fab fa-instagram awesome" />{" "}
+                  <i className="fab fa-instagram awesome" />{" "}
                 </span>
-                <span class="footer__wrapper__item__wrapper--social">
+                <span className="footer__wrapper__item__wrapper--social">
                   {" "}
-                  <i class="fab fa-google-plus-g awesome" />{" "}
+                  <i className="fab fa-google-plus-g awesome" />{" "}
                 </span>
               </div>
             </div>
 
-            <div class="footer__wrapper__bottom">
+            <div className="footer__wrapper__bottom">
               {" "}
               &#169 2019 All Rights Reserved
             </div>

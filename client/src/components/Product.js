@@ -2,22 +2,24 @@ import React from "react";
 
 class Product extends React.Component {
   render() {
+    const {image, platform, price, name} = this.props;
     return (
       <React.Fragment>
-        <div class="main__middle__wrapper__container">
-          <div class="main__middle__wrapper__container--image">
-            <div class="main__middle__wrapper__container--image--text">
-              <p class="main__middle__wrapper__container--image--text--all platform ">
-                {this.props.platform}
+        <div className="main__middle__wrapper__container">
+          <div style={{backgroundImage: `url(${image})`}} className="main__middle__wrapper__container--image">
+            <div className="main__middle__wrapper__container--image--text">
+              <p className="main__middle__wrapper__container--image--text--all platform ">
+                {platform}
               </p>
-              <p class="main__middle__wrapper__container--image--text--all price">
-                price {this.props.proce}$
+              <p className="main__middle__wrapper__container--image--text--all price">
+                price {price}$
               </p>
-              <p class="main__middle__wrapper__container--image--text--all click">
+              <p className="main__middle__wrapper__container--image--text--all click">
                 For More Click Here
               </p>
             </div>
           </div>
+          <div class="main__middle__wrapper__container--name ">{name}</div>
         </div>
       </React.Fragment>
     );

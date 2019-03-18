@@ -1,8 +1,7 @@
 import React from "react";
 import Slider from "./Slider";
-import Product from "./Product";
-import Footer from "./Footer"
-
+import Footer from "./Footer";
+import Games from "./Games";
 class Main extends React.Component {
   render() {
     return (
@@ -11,20 +10,8 @@ class Main extends React.Component {
           <section className="main__top">
             <Slider />
           </section>
-          <section className="main__middle">
-            <div class="main__middle__wrapper">
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-              <Product platform="PlayStation" price="100" />
-            </div>
-          </section>
-          <Footer/>
+          <Games />
+          <Footer />
         </main>
       </React.Fragment>
     );

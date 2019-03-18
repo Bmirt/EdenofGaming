@@ -3,16 +3,19 @@ import axios from "axios";
 import Auth from "./utils/AuthMethods";
 
 class Login extends React.Component {
-  state = {
-    email: "",
-    password: "",
-    errors: {}
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...props,
+      email: "",
+      password: "",
+      errors: {}
+    };
+  }
   onHandleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
 
   onHandleSubmit = e => {
@@ -24,11 +27,13 @@ class Login extends React.Component {
       })
       .then(res => {
         Auth.storeToken(res.data.token);
-        this.props.setUserState(Auth.getCurrentUser());
-        console.log(Auth.getCurrentUser())
+        let user = Auth.getCurrentUser();
+        this.state.updateUserState(user);
+        this.props.history.replace("/");
+ 
       })
       .catch(err => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         this.setState({ errors: err.response.data });
       });
   };
@@ -40,20 +45,22 @@ class Login extends React.Component {
         <form action="" className="form login">
           <input
             onChange={this.onHandleChange}
-            type="text"
+            id="email"
+            type="email"
             name="email"
             required
             autoComplete="off"
             className="form__register"
           />
-          <label htmlFor="name" className="form__label">
-            Username
+          <label htmlFor="email" className="form__label">
+          Email
           </label>
           {errors.email && (
             <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
           )}
           <input
             onChange={this.onHandleChange}
+            id="password"
             type="password"
             name="password"
             required

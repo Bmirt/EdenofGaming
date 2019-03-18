@@ -4,9 +4,9 @@ class NavigationItem extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ul class="header__bottom__navigation__list">
+        <ul className="header__bottom__navigation__list">
           {this.props.title}
-          <li class="header__bottom__navigation__list--item">
+          <li className="header__bottom__navigation__list--item">
             {this.props.children}
           </li>
         </ul>

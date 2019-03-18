@@ -24,9 +24,13 @@ class Register extends React.Component {
         password: this.state.password,
         password2: this.state.password2
       })
-      .then(res => res.json())
-      .then(res => console.log(res))
-      .catch(err => this.setState({ errors: err.response.data }));
+      .then(res => {
+        alert("you succesfully registered");
+        this.props.history.replace("/login");
+      })
+      .catch(err =>
+        this.setState({ errors: err.response.data})
+      );
   };
 
   render() {
