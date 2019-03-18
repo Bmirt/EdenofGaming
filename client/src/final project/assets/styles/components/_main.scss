@@ -1,6 +1,7 @@
 .main{
     width: calc(100% - 185px);
     height: auto;
+    margin: 0 auto;
     // background-color: yellow;
     &__top{
         margin:100px 0;
@@ -82,7 +83,7 @@
      justify-content: center;
      &__wrapper{
          width:calc(100% - 100px);
-         background-color: #0d151f85;
+        //  background-color: #0d151f85;
          border-radius: 8px;
          height: auto;
          display: flex;

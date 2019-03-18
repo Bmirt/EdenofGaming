@@ -4,14 +4,10 @@ class NavigationItem extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ul className="header__bottom__nav">
-          <li className="header__bottom__nav--list">
-            {this.props.title}
-            <ul className="header__bottom__nav--list--nav nav--first">
-              <li className="header__bottom__nav--list--nav--nav">
-                {this.props.children}
-              </li>
-            </ul>
+        <ul class="header__bottom__navigation__list">
+          {this.props.title}
+          <li class="header__bottom__navigation__list--item">
+            {this.props.children}
           </li>
         </ul>
       </React.Fragment>

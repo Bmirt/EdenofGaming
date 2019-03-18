@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
+import Auth from "./utils/AuthMethods";
 
 class Login extends React.Component {
   state = {
     email: "",
     password: "",
-    errors:{}
+    errors: {}
   };
   onHandleChange = e => {
     this.setState({
@@ -22,17 +23,18 @@ class Login extends React.Component {
         password: this.state.password
       })
       .then(res => {
-        console.log(res.data.token.payload)
-        localStorage.setItem("userToken", res.data.token);
+        Auth.storeToken(res.data.token);
+        this.props.setUserState(Auth.getCurrentUser());
+        console.log(Auth.getCurrentUser())
       })
-      .catch(err =>{
+      .catch(err => {
         console.log(err.response.data);
-        this.setState({errors:err.response.data})
+        this.setState({ errors: err.response.data });
       });
   };
 
   render() {
-    const {errors} = this.state;
+    const { errors } = this.state;
     return (
       <React.Fragment>
         <form action="" className="form login">
@@ -47,7 +49,9 @@ class Login extends React.Component {
           <label htmlFor="name" className="form__label">
             Username
           </label>
-          {errors.email && <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>}
+          {errors.email && (
+            <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
+          )}
           <input
             onChange={this.onHandleChange}
             type="password"
@@ -59,7 +63,11 @@ class Login extends React.Component {
           <label htmlFor="password" className="form__label password">
             Password
           </label>
-          {errors.password && <div style={{ color: "red",fontSize: "15px" }}>{errors.password}</div>}
+          {errors.password && (
+            <div style={{ color: "red", fontSize: "15px" }}>
+              {errors.password}
+            </div>
+          )}
 
           <button
             onClick={this.onHandleSubmit}

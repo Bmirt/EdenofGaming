@@ -3,8 +3,9 @@
     @include size(400px,470px,#505c5ccc);
     @include flex(center, center);
     flex-direction: column;
-    margin:50px 0;
+    margin:100px auto;
     border-radius: 8px;
+    
     &__register{
         margin-top:20px;
         @include font(20px,#fff); 
@@ -13,6 +14,7 @@
         @include size(100%,30px,transparent);
         z-index: 1; 
         padding-left:10px;
+        border-bottom: 1px solid #0bb3e6;
         &:focus,&:valid{
         outline: none;
         border-bottom: 1px solid #0bb3e6;
