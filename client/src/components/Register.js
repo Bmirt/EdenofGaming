@@ -27,6 +27,10 @@ class Register extends React.Component {
       .then(res => res.json())
       .then(res => console.log(res))
       .catch(err => this.setState({ errors: err.response.data }));
+      if(!Object.keys(this.state.errors).length===0){
+        alert("you succesfully registered")
+        this.props.history.replace("/login")
+      }
   };
 
   render() {

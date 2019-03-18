@@ -12,7 +12,7 @@ class Main extends React.Component {
             <Slider />
           </section>
           <section className="main__middle">
-            <div class="main__middle__wrapper">
+            <div className="main__middle__wrapper">
               <Product platform="PlayStation" price="100" />
               <Product platform="PlayStation" price="100" />
               <Product platform="PlayStation" price="100" />

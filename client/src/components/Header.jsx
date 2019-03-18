@@ -5,48 +5,62 @@ import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 class Header extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
+    this.state = {
+      user : props.user,
+      logout: props.logout
+    }
   }
+
+
   render() {
     return (
       <>
         <header className="header">
-          <section class="header__top">
-            <div id="j" class="header__top__wrapper">
-              <Link to={"/"} class="header__top__wrapper--logo">
+          <section className="header__top">
+            <div id="j" className="header__top__wrapper">
+              <Link to={"/"} className="header__top__wrapper--logo">
                 <img
                   src={logo}
                   alt=""
-                  class="header__top__wrapper--logo--image"
+                  className="header__top__wrapper--logo--image"
                 />
               </Link>
-              <div id="z" class="header__top__wrapper__search">
+              <div id="z" className="header__top__wrapper__search">
                 <input
                   type="search"
                   placeholder="Search"
-                  class="header__top__wrapper__search--content"
+                  className="header__top__wrapper__search--content"
                 />
-                <button class="header__top__wrapper__search--button">
-                  <i class="fab fa-searchengin awesome" />
+                <button className="header__top__wrapper__search--button">
+                  <i className="fab fa-searchengin awesome" />
                 </button>
               </div>
-              <div class="header__top__wrapper--user">
-                <Link to={"/login"} class="header__top__wrapper--user--login">
-                  <img src={user} width="30px;" alt="" />
-                  <span class="header__top__wrapper--user--login--text">
-                    Log In
-                  </span>
-                </Link>
-                <Link
-                  to={"/register"}
-                  class="header__top__wrapper--user--login register"
-                >
-                  <img src={user} width="30px;" />
-                  <span class="header__top__wrapper--user--login--text ">
-                    Register
-                  </span>
-                </Link>
+              <div className="header__top__wrapper--user">
+             
+              {this.state.user ? <div>
+                                 <Link to={"/userprofile"} style={{color:"white"}}>{this.props.user}</Link>
+                                  <Link onClick={this.state.logout} to={"/"} style={{textDecoration:"none", color:"white", fontSize:"15px", marginLeft:"20px"}}>Log Out</Link>
+                                 </div> :
+               
+                <>
+                  <Link to={"/login"} className="header__top__wrapper--user--login">
+                    <img src={user} width="30px;" alt="" />
+                    <span className="header__top__wrapper--user--login--text">
+                      Log In
+                    </span>
+                  </Link>
+                  <Link
+                    to={"/register"}
+                    className="header__top__wrapper--user--login register"
+                  >
+                    <img src={user} width="30px;" />
+                    <span className="header__top__wrapper--user--login--text ">
+                      Register
+                    </span>
+                  </Link>
+                </>}
               </div>
             </div>
           </section>
