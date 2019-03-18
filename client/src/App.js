@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from './components/Register';
 import Main from './components/Main'
+import UserProfile from "./components/UserProfile";
 class App extends Component {
   render() {
     return (
@@ -14,6 +15,8 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Main} />
+          <Route exact path="/userProfile" component={UserProfile} />
+
         </div>
       </Router>
     );
