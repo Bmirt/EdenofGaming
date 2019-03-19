@@ -6,9 +6,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Main from "./components/Main";
 import UserProfile from "./components/UserProfile";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
 import AuthMethods from "./components/utils/AuthMethods";
-import ProtectedRoute from './components/utils/ProtectedRoute';
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+import Map from "./components/Map";
+import ProductDetails from "./components/ProductDetails"
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,7 @@ class App extends Component {
 
   logout = () => {
     AuthMethods.logout();
-    this.setState({user : null});
+    this.setState({ user: null });
   };
   render() {
     return (
@@ -31,7 +33,9 @@ class App extends Component {
         <div className="App">
           <Route
             path="/"
-            component={props => <Header {...props} user={this.state.user} logout={this.logout}/>}
+            component={props => (
+              <Header {...props} user={this.state.user} logout={this.logout} />
+            )}
           />
           <Route
             exact
@@ -42,10 +46,18 @@ class App extends Component {
           />
           <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Main} />
-
-          <ProtectedRoute exact path="/userProfile" component={props => (<UserProfile {...props} user={this.state.user}/>)}/> />
-          <ProtectedRoute path='/123' component={Login}/>
-          <Route path="/" component={Footer}/>
+          <Route exact path="/about" component={Map} />
+          
+          <Route exact path="/products/:id" component={ProductDetails}/>
+          
+          <ProtectedRoute
+            exact
+            path="/userProfile"
+            render={props => (
+              <UserProfile {...props} user={this.state.user} />
+            )}
+          />
+          <Route path="/" component={Footer} />
         </div>
       </Router>
     );

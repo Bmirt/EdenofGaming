@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 
 class Footer extends React.Component {
   render() {
@@ -10,10 +12,10 @@ class Footer extends React.Component {
               <a href="" className="name">
                 ABOUT EDEN OF GAMING
               </a>
-              <a href="#" className="location">
+              <Link to="/about" className="location">
                 <i className="fas  fa-globe-americas awesome" /> Find Us On This
                 Location
-              </a>
+              </Link>
             </div>
             <div className="footer__wrapper__item  middle">
               Special Thanks To{" "}

@@ -30,6 +30,7 @@ class Games extends React.Component {
             {games.map(game => (
               <Product
                 key={game._id}
+                id= {game._id}
                 image={game.image}
                 platform={game.platforms}
                 price={game.price}
