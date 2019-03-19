@@ -6,7 +6,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Main from "./components/Main";
 import UserProfile from "./components/UserProfile";
+import Footer from "./components/Footer"
 import AuthMethods from "./components/utils/AuthMethods";
+import ProtectedRoute from './components/utils/ProtectedRoute';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ class App extends Component {
   };
 
   logout = () => {
-    localStorage.removeItem('token');
+    AuthMethods.logout();
     this.setState({user : null});
   };
   render() {
@@ -40,7 +42,10 @@ class App extends Component {
           />
           <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Main} />
-          <Route exact path="/userProfile" component={UserProfile} />
+
+          <ProtectedRoute exact path="/userProfile" component={props => (<UserProfile {...props} user={this.state.user}/>)}/> />
+          <ProtectedRoute path='/123' component={Login}/>
+          <Route path="/" component={Footer}/>
         </div>
       </Router>
     );

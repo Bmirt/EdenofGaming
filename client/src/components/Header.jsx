@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 class Header extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      user : props.user,
+      user: props.user,
       logout: props.logout
-    }
+    };
   }
-
 
   render() {
     return (
@@ -38,29 +37,46 @@ class Header extends React.Component {
                 </button>
               </div>
               <div className="header__top__wrapper--user">
-             
-              {this.state.user ? <div>
-                                 <Link to={"/userprofile"} style={{color:"white"}}>{this.props.user}</Link>
-                                  <Link onClick={this.state.logout} to={"/"} style={{textDecoration:"none", color:"white", fontSize:"15px", marginLeft:"20px"}}>Log Out</Link>
-                                 </div> :
-               
-                <>
-                  <Link to={"/login"} className="header__top__wrapper--user--login">
-                    <img src={user} width="30px;" alt="" />
-                    <span className="header__top__wrapper--user--login--text">
-                      Log In
-                    </span>
-                  </Link>
-                  <Link
-                    to={"/register"}
-                    className="header__top__wrapper--user--login register"
-                  >
-                    <img src={user} width="30px;" />
-                    <span className="header__top__wrapper--user--login--text ">
-                      Register
-                    </span>
-                  </Link>
-                </>}
+                {this.state.user ? (
+                  <div>
+                    <Link to={"/userprofile"} style={{ color: "white" }}>
+                      {this.props.user}
+                    </Link>
+                    <Link
+                      onClick={this.state.logout}
+                      to={"/"}
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                        fontSize: "15px",
+                        marginLeft: "20px"
+                      }}
+                    >
+                      Log Out
+                    </Link>
+                  </div>
+                ) : (
+                  <>
+                    <Link
+                      to={"/login"}
+                      className="header__top__wrapper--user--login"
+                    >
+                      <img src={user} width="30px;" alt="" />
+                      <span className="header__top__wrapper--user--login--text">
+                        Log In
+                      </span>
+                    </Link>
+                    <Link
+                      to={"/register"}
+                      className="header__top__wrapper--user--login register"
+                    >
+                      <img src={user} width="30px;" />
+                      <span className="header__top__wrapper--user--login--text ">
+                        Register
+                      </span>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </section>

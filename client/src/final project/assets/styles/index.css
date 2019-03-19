@@ -7,6 +7,15 @@
   text-decoration: none;
 }
 
+a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+a:focus{
+  text-decoration: none;
+  color: #fff;
+}
 html {
   font-size: 10px;
 }
@@ -352,11 +361,29 @@ body {
     position: relative;
     left: 0;
     background-color: #222;
+    color: #fff;
+  }
+  .header__bottom__navigation__list:hover {
+    -webkit-box-shadow: 0 5px 15px #000000a6;
+            box-shadow: 0 5px 15px #000000a6;
+    color: #fff;
   }
   .header__bottom__navigation__list--item {
     position: absolute;
     right: 164px;
     top: 0;
+  }
+  .header__bottom__navigation__list--item--link {
+    -webkit-box-shadow: 0 5px 15px #000000a6;
+            box-shadow: 0 5px 15px #000000a6;
+    color: #fff;
+  }
+  .header__bottom__navigation__list--item--link:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    color: #fff;
+    -webkit-box-shadow: 0 5px 15px #000000a6;
+            box-shadow: 0 5px 15px #000000a6;
   }
 }
 

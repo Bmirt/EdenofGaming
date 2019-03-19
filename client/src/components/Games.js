@@ -15,14 +15,12 @@ class Games extends React.Component {
           games: res.data,
           isLoaded: true
         });
-        console.log(res.data);
       })
       .catch(err => console.log(err));
   }
 
   render() {
     const { games } = this.state;
-    console.log(games);
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     } else {
