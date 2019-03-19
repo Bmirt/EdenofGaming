@@ -1,7 +1,8 @@
 import React from "react";
 import Slider from "./Slider";
-import Footer from "./Footer";
 import Games from "./Games";
+import SocialMedia from "./SocialMedia";
+import Chat from "./Chat";
 class Main extends React.Component {
   render() {
     return (
@@ -11,8 +12,9 @@ class Main extends React.Component {
             <Slider />
           </section>
           <Games />
-          <Footer />
         </main>
+        <SocialMedia/>
+        <Chat/>
       </React.Fragment>
     );
   }

@@ -19,7 +19,7 @@ class Product extends React.Component {
               </p>
             </div>
           </div>
-          <div class="main__middle__wrapper__container--name ">{name}</div>
+          <div className="main__middle__wrapper__container--name ">{name}</div>
         </div>
       </React.Fragment>
     );

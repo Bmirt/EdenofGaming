@@ -2,8 +2,8 @@ import React from "react";
 class Slider extends React.Component {
   state = {
     images: [
-      "https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg",
       "https://stmed.net/sites/default/files/wolfenstein-hd-wallpapers-33901-7518132.jpg",
+      "https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg",
       "https://stmed.net/sites/default/files/world-of-warships-hd-wallpapers-33918-5969700.jpg"
     ],
     currentImage: 1
