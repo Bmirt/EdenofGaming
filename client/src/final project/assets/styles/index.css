@@ -1362,3 +1362,15 @@ form.login .register:hover {
   }
 }
 /*# sourceMappingURL=index.css.map */
+
+
+a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+a:focus{
+  text-decoration: none;
+  color: #fff;
+}
