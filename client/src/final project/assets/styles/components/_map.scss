@@ -8,27 +8,23 @@ height: auto;
    box-shadow:inset 2px 6px 34px #000000;
    position: relative;
   &__wrapper{
-   width: 100%;
-   height: auto;
-   display: flex;
+   @include size(100%,auto,#202020);
+   @include flexj (center);
    flex-wrap: wrap;
-   justify-content: center;
-   background-color: rgb(32, 32, 32);
    background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,1)), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));
    background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
    background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
    &__about{
+      @include font(2.5rem ,#fff);
       width: 450px;
-      font-size: 2.5rem;
       padding: 1.6em;
       text-align: justify;
       height: 330px;;
-      color:#fff;
      }
      &__information{
         width: auto;
         height:259px; 
-        font-size: 2rem;
+        @include font(2rem ,#fff);
         color:#fff;
         align-self: center;
         &__wrapper{
@@ -41,12 +37,10 @@ height: auto;
         }
      }
      &__developers{
-      font-size: 2.5rem;
+      @include font(2.5rem ,#fff);
       text-align: justify;
       padding: 1.5em;
-      display: flex;
-      flex-direction: column;
-      color:#fff;
+      @include column(column);
       &__name{
        font-weight: bold;
        padding: 0.3em;
@@ -66,10 +60,7 @@ height: auto;
      }
   }
 }
-
 }
-
-
 @media(max-width:1366px){
    .map__content__wrapper__about{
       width: 100%;
