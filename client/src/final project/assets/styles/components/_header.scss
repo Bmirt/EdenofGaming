@@ -191,7 +191,7 @@
         height: 55px;
         width: 120%;
         order: 1;
-        // flex: 1 0 100%;
+       
     }
 
     .header__top__wrapper__search--content{
@@ -228,12 +228,28 @@
         position: relative;
         left: 0;
         background-color: #222;
+        
+        color:#fff;
+        &:hover{
+            box-shadow: 0 5px 15px #000000a6;
+            color:#fff;
+        }
    }
    .header__bottom__navigation__list--item{
     position: absolute;
     right:164px ;
     top:0;
+   
 }
+    .header__bottom__navigation__list--item--link{
+        box-shadow: 0 5px 15px #000000a6;
+        color:#fff;
+        &:hover{
+            box-shadow: none;
+            color:#fff;
+            box-shadow: 0 5px 15px #000000a6;
+        }
+    }
 
    }
       

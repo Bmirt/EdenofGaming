@@ -1,4 +1,4 @@
-document.getElementById("btn").addEventListener("click",left);
+document.getElementById("button").addEventListener("click",left);
 let eat="burger";
 function left(){
     if(eat==="burger"){ 
