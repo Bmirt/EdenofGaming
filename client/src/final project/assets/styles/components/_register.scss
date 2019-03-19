@@ -5,7 +5,6 @@
     flex-direction: column;
     margin:100px auto;
     border-radius: 8px;
-    
     &__register{
         margin-top:20px;
         @include font(20px,#fff); 
@@ -48,7 +47,6 @@
      &__label.balance{
         left: -157px;  
      }
-     
      &__submit{
      @include size(150px,40px,#0bb3e6);
      @include font(1.6rem,#fff);

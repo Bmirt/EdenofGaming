@@ -1,48 +1,31 @@
 .footer{
-    width: 100%;
-    height: auto;
-     background-color: #171718; 
-       display: flex;
-        align-items: center;
-        justify-content: center;
-
+    @include size(100%,center,#171718);
+    @include flex(center,center);
     &__wrapper{
         width: calc(100% - 200px);
         height: auto; 
-        display: flex;
-        justify-content: space-evenly;
+        @include flexj(space-evenly);
         flex-wrap: wrap;
-        
         &__item{
             width: 274px;
-            height: 100px;;
-            display: flex;
-            justify-content: space-between;
+            height: 100px;
+            @include flexj(space-between);
              flex-direction: column;
-            // background-color: rgba(168, 159, 161, 0.363);
-            margin:20px 0; 
+            margin:2em 0; 
             &__text{
+                @include font(2.5rem,#fff);
                 font-weight: bold;
-                font-size: 2.5rem;
-                color: #fff;
-                width: 100%;
-                
+                width: 100%;  
             }  
             &__wrapper{
-               display: flex;
-              justify-content: space-between;
+                @include flexj(space-between);
                 width: 100%;
                 &--social{
-                   background-color: #222;
-                   width: 40px;
-                   height: 40px;
-                   border-radius: 50%;
-                   display: flex;
-                   justify-content: center;
-                   align-items: center;
-                   margin-top:1.5em;
-                   
-                   cursor: pointer;
+                    @include size(40px,40px,#222);
+                    @include flex(center,center);
+                    border-radius: 50%;
+                    margin-top:1.5em;
+                    cursor: pointer;
                    &:hover{
                      background-color: #fff;
                      transition: 0.8s;
@@ -51,41 +34,31 @@
                     color:#222;
                    }
                    .awesome{
-                       font-size: 2rem;
-                       color:#fff;
-                       
+                       @include font(2rem,#fff);
                    }
                 }
             }
         }
-       
         &__item.left{
          .location{
              display: block;
-            color:#fff;
-             margin-top:1.2em;
+             @include font(1.2rem,#fff);
                  font-size: 1.8rem;
              &:hover {
-               
                 color:#c70f0f;
                 transition: 0.6s;
              }
          }   
          .name{
-            font-size: 1.8rem;
-            
-            color: #fff;
+            @include font(1.8rem,#fff);
             &:hover{
                color:#227d96;
                transition: 0.6s;
             }
          }
-
          }
-        
         &__item.middle{
-            font-size: 3rem;
-            color: #767676;
+            @include font(3rem,#767676);
             text-align: center;
         }
             .techub{
@@ -93,21 +66,18 @@
                 font-weight: bold;
                 transition: 0.6s;
                 &:hover{
-                    color: #142136;
+                    color: #a730309a;
                 }
             }
         &__bottom{
+          @include flex(center,center);
+          @include font(1.8rem,#fff); 
             position: relative;
             width: 100%;
             height: 80px;
             bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            color:#fff;
         }
-}
+ }
 }
 @media (max-width:1024px){
     .footer__wrapper{
@@ -118,10 +88,8 @@
         width: 100%;
         .location,.name{
             margin:auto;
-           
         }
-}
-
+    }
 }
 @media(max-width:600px){
     .footer__wrapper{
