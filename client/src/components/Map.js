@@ -5,6 +5,7 @@ class Map extends React.Component {
     return (
       <section className="map">
         <iframe
+          title="map"
           className="map__content"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5957.245297479906!2d44.738859!3d41.7070812!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40447344e8047ced%3A0xb53d8ecd4495903f!2sBusiness+and+Technology+University!5e0!3m2!1sen!2sge!4v1552921700283"
           frameBorder="0"
