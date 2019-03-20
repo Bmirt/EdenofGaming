@@ -59,7 +59,7 @@ body {
 
 .header__top__wrapper--logo--image {
   display: block;
-  width: 130px;
+  width: 160px;
   margin-top: -1em;
 }
 
@@ -1334,7 +1334,7 @@ form.login .register:hover {
 }
 
 .map__content__wrapper__developers__name.vakho::after {
-  content: " who knows what";
+  content: " full stack developer";
 }
 
 @media (max-width: 1366px) {

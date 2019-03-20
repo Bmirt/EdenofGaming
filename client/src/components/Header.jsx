@@ -70,7 +70,7 @@ class Header extends React.Component {
                       to={"/register"}
                       className="header__top__wrapper--user--login register"
                     >
-                      <img src={user} width="30px;" />
+                      <img src={user} width="30px;" alt="" />
                       <span className="header__top__wrapper--user--login--text ">
                         Register
                       </span>
