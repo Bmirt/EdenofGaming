@@ -1358,6 +1358,7 @@ form.login .register:hover {
     font-size: 1.75rem;
   }
 }
+<<<<<<< HEAD
 
 .discription {
   width: 100%;
@@ -1585,3 +1586,18 @@ form.login .register:hover {
   }
 }
 /*# sourceMappingURL=index.css.map */
+=======
+/*# sourceMappingURL=index.css.map */
+
+
+a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+a:focus{
+  text-decoration: none;
+  color: #fff;
+}
+>>>>>>> 7db8f96056fa5f9f07e185393de9da575817b8d7

@@ -7,15 +7,12 @@ const ProtectedRoute = ({ conponent: Component, ...rest }) => {
       {...rest}
       render={props => {
         if (AuthMethods.getJWT()) {
-            alert('hello')
-          console.log(AuthMethods.getJWT());
           return <Component {...props} />;
         } else {
-            console.log('in aprotected route')
           return (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/login",
                 state: {
                   from: props.location
                 }

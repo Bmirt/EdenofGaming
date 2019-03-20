@@ -1,11 +1,13 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 class Product extends React.Component {
   render() {
-    const {image, platform, price, name} = this.props;
+    const {id,image, platform, price, name} = this.props;
+    const link = `/products/${id}`;
     return (
       <React.Fragment>
-        <div className="main__middle__wrapper__container">
+        <Link to={link}  className="main__middle__wrapper__container">
           <div style={{backgroundImage: `url(${image})`}} className="main__middle__wrapper__container--image">
             <div className="main__middle__wrapper__container--image--text">
               <p className="main__middle__wrapper__container--image--text--all platform ">
@@ -19,8 +21,8 @@ class Product extends React.Component {
               </p>
             </div>
           </div>
-          <div className="main__middle__wrapper__container--name ">{name}</div>
-        </div>
+          <div onClick={()=>alert(`${name} clicked`)} className="main__middle__wrapper__container--name ">{name}</div>
+        </Link>
       </React.Fragment>
     );
   }
