@@ -4,7 +4,7 @@
     &__wrapper{
         width: calc(100% - 200px);
         height: auto; 
-        @include flexj(space-evenly);
+        @include flex(space-evenly,center);
         flex-wrap: wrap;
         &__item{
             width: 274px;

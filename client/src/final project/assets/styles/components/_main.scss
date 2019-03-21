@@ -100,7 +100,7 @@
          &--image{
              width:270px;
              height: 330px;
-             background-image: url("https://imgc.allpostersimages.com/img/print/posters/halo-4-key-art-video-game-poster_a-G-12925559-0.jpg");
+             background-image: url("https://m.media-amazon.com/images/M/MV5BYTRmZmI4MzgtZDNjZS00YzdmLTk5ZjktNjczODgzYmViM2JhXkEyXkFqcGdeQXVyNzU1OTYxNzU@._V1_.jpg");
              background-position: center;
              background-size: 100%;
              border-radius: 7px 7px 0 0;
@@ -189,6 +189,10 @@
 }
 .main__middle__wrapper__container--image{
     width: 100%;
+    border-radius: 0;
+}
+.main__top__slider__image {
+    border-radius:0;
 }
 .main__slider__image:nth-child(){
     width: 30%;
