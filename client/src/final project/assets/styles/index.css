@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -151,6 +152,7 @@ body {
   color: #fff;
   cursor: pointer;
   white-space: nowrap;
+  position: relative;
 }
 
 .header__top__wrapper--user--login--text {
@@ -205,7 +207,7 @@ body {
 }
 
 .header__bottom__navigation {
-  width: 800px;
+  width: 785px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -297,6 +299,7 @@ body {
   .header__top {
     width: 100%;
     height: 170px;
+    margin-top: 1em;
   }
   .header__bottom {
     width: 100%;
@@ -338,12 +341,15 @@ body {
   .header__bottom__navigation {
     width: auto;
     height: auto;
-    position: fixed;
-    right: -164px;
+    position: absolute;
+    right: 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    display: none;
+    -webkit-transition: 1s,  opacity 0.5s ease-out;
+    transition: 1s,  opacity 0.5s ease-out;
   }
   .header__bottom__navigation__list {
     position: relative;
@@ -370,7 +376,7 @@ body {
     height: 147%;
   }
   .header__top__wrapper__search {
-    margin-top: -3.2em;
+    margin-top: -3.1em;
   }
   .header__top__wrapper--user {
     height: 106px;
@@ -506,7 +512,7 @@ body {
 }
 
 .main__middle__wrapper {
-  width: calc(100% - 100px);
+  max-width: 1600px;
   border-radius: 8px;
   height: auto;
   display: -webkit-box;
@@ -525,6 +531,7 @@ body {
   margin: 50px 0 80px;
   cursor: pointer;
   border-radius: 8px 8px 0 0;
+  text-transform: uppercase;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1385,21 +1392,40 @@ form.login .register:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 5em;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.discription__wrappertop__image {
-  height: 540px;
+.discription__wrappertop__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: auto;
+  background-color: #0a0911c2;
+  margin-bottom: 1em;
 }
 
-.discription__wrappertop__details {
+.discription__wrappertop__wrapper--image {
+  height: 545px;
+}
+
+.discription__wrappertop__wrapper__details {
   width: 400px;
-  height: 540px;
+  height: 545px;
   text-transform: capitalize;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1408,88 +1434,121 @@ form.login .register:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 1.9em;
+  font-size: 1.6em;
   color: #fff;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.discription__wrappertop__details__name {
+.discription__wrappertop__wrapper__details__name {
   width: calc(100% - 50px);
-  background-color: #0c0c0c;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  padding: 0.8em 0;
-  text-align: center;
-  border-radius: 4px;
 }
 
-.discription__wrappertop__details__platform {
+.discription__wrappertop__wrapper__details__name:before {
+  content: "name: ";
+}
+
+.discription__wrappertop__wrapper__details__date {
+  width: calc(100% - 50px);
+}
+
+.discription__wrappertop__wrapper__details__date:before {
+  content: "release date: ";
+}
+
+.discription__wrappertop__wrapper__details__platform {
   text-transform: uppercase;
   width: calc(100% - 50px);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
-.discription__wrappertop__details__platform .pc {
-  background-color: #03090c;
-  padding: 0.8em 0.2em;
-  border-radius: 4px;
-  text-align: center;
+.discription__wrappertop__wrapper__details__platform:before {
+  content: "platforms: ";
 }
 
-.discription__wrappertop__details__platform .ps4 {
-  background-color: #283064;
-  padding: 0.8em 0.2em;
-  border-radius: 4px;
+.discription__wrappertop__wrapper__details__platform .pc::after {
+  content: " ";
 }
 
-.discription__wrappertop__details__platform .xbox {
-  background-color: #033303c5;
-  padding: 0.8em 0.2em;
-  border-radius: 4px;
+.discription__wrappertop__wrapper__details__platform .ps4::after {
+  content: " ";
 }
 
-.discription__wrappertop__details__price {
-  text-transform: uppercase;
+.discription__wrappertop__wrapper__details__platform .xbox::after {
+  content: " ";
+}
+
+.discription__wrappertop__wrapper__details__developer {
   width: calc(100% - 50px);
-  padding: 0.4em 0;
-  background-color: #591c35;
+}
+
+.discription__wrappertop__wrapper__details__developer:before {
+  content: "developer:";
+}
+
+.discription__wrappertop__wrapper__details__price {
+  width: calc(100% - 50px);
+}
+
+.discription__wrappertop__wrapper__details__price:before {
+  content: "price: ";
+}
+
+.discription__wrappertop__wrapper__details__buy {
+  width: 200px;
+  height: 40px;
+  background-color: #4a8f63;
   line-height: 4rem;
-  border-radius: 4px;
+  text-align: center;
+  border-radius: 0.4em;
+}
+
+.discription__wrappertop__wrapper__details__buy.cart {
+  width: 200px;
+  height: 40px;
+  background-color: #24407a;
+  line-height: 4rem;
   text-align: center;
 }
 
-.discription__wrappertop__details__buy {
-  width: calc(100% - 50px);
-  background-color: #702a10;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  padding: 0.8em 0;
-  text-align: center;
-  border-radius: 4px;
+.discription__wrappertop__wrapper__details__raiting {
+  width: 85px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-.discription__wrappertop__details__buy .awesome {
-  padding-right: 0.6rem;
-}
-
-.discription__wrappertop__details__buy.cart {
-  background-color: #10704b;
-}
-
-.discription__wrappertop__details__raiting__stars {
+.discription__wrappertop__wrapper__details__raiting__thumbs {
   font-size: 2.5rem;
+}
+
+.discription__wrappertop__middle {
+  width: 700px;
+  background-color: #0f0e14;
+}
+
+.discription__wrappertop__middle__wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0%;
+}
+
+.discription__wrappertop__middle__wrapper__iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .discription__wrappertop__down {
@@ -1507,11 +1566,11 @@ form.login .register:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: rgba(24, 22, 22, 0.884);
+  background-color: #0a0911c2;
 }
 
 .discription__wrappertop__down__aboutgame {
-  padding: 20px;
+  padding: 28px;
   text-align: justify;
   text-indent: 20px;
   width: auto;
@@ -1521,6 +1580,7 @@ form.login .register:hover {
   line-height: 1.6rem;
   font-size: 1.4rem;
   letter-spacing: 1px;
+  position: relative;
 }
 
 .discription__wrappertop__down__system {
@@ -1536,6 +1596,11 @@ form.login .register:hover {
 }
 
 .discription__wrappertop__down__system__lawspecs, .discription__wrappertop__down__system__recomendedspecs {
+  line-height: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  height: 200px;
+  width: 380px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1543,60 +1608,65 @@ form.login .register:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  line-height: 20px;
-  font-size: 1.2rem;
-  color: #fff;
-  padding: 40px 26px;
-  width: 50%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-@media (max-width: 768px) {
-  .discription__wrappertop__image {
-    width: 100%;
-  }
-  .discription__wrappertop__system {
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
+@media (max-width: 800px) {
   .discription {
     background-color: #222;
     background-image: none;
   }
-  .discription__wrappertop__down__system {
+  .discription__wrappertop {
+    margin: 0;
+  }
+  .discription__wrappertop__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 100%;
+    margin: 0;
+  }
+  .discription__wrappertop__wrapper--image {
+    height: auto;
+    width: 100%;
+  }
+  .discription__wrappertop__wrapper__details {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+  }
+  .discription__wrappertop__middle {
+    width: 100%;
+  }
+  .discription__wrappertop__down {
+    margin: 0;
+  }
+  .discription__wrappertop__down__system {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
   }
   .discription__wrappertop__down__system__lawspecs, .discription__wrappertop__down__system__recomendedspecs {
     width: 100%;
+    margin-left: 3em;
   }
-  .discription__wrappertop__details {
-    margin: 3em 0;
-    width: 100%;
+}
+
+@media (max-width: 600px) {
+  .discription__wrappertop__down__aboutgame {
+    padding: 2.8em 0.8em;
   }
-  .discription__wrappertop {
-    margin-top: 0;
+  .discription__wrappertop__down__system__lawspecs, .discription__wrappertop__down__system__recomendedspecs {
+    margin-left: 1em;
+    font-size: 1.1rem;
   }
 }
 /*# sourceMappingURL=index.css.map */
-
-
-a:hover{
-  text-decoration: none;
-  color: #FFF;
-}
-
-a:active{
-  text-decoration: none;
-  color: #FFF;
-}
-a:focus{
-  text-decoration: none;
-  columns: #FFF;
-}
-
-a{
-  color: #FFF;
-}

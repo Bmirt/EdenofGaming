@@ -79,8 +79,9 @@
      height: auto;
     //  background-color: gray;
      &__wrapper{
-         width:calc(100% - 100px);
+        //  width:calc(100% - 100px);
         //  background-color: #0d151f85;
+        max-width: 1600px;
          border-radius: 8px;
          height: auto;
          @include flexj(space-evenly);
@@ -91,6 +92,7 @@
              margin:50px 0 80px;
              cursor: pointer;
              border-radius: 8px 8px 0 0;
+             text-transform: uppercase;
              @include column(column);
               justify-content: space-between;  
               &:hover &--image{
