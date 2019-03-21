@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import {Link} from "react-router-dom"
 import spinner from "../final project/spinner.gif"
 
 class ProductDetails extends React.Component {
@@ -36,13 +36,13 @@ class ProductDetails extends React.Component {
 
           <div className="discription__wrappertop__details">
             <div className="discription__wrappertop__details__name" >Name: {product.name}</div>
-            <div className="discription__wrappertop__details__platform" >Platforms: {product.platforms}</div>
+            <div className="discription__wrappertop__details__platform" ><span class="pc">{product.platforms}</span></div>
             <div className="discription__wrappertop__details__price" >Price: {product.price}$</div>
-            <div className="discription__wrappertop__details__release" >Realease Date: {product.release}</div>
+            {/* <div className="discription__wrappertop__details__release" >Realease Date: {product.release}</div>
             <div className="discription__wrappertop__details__genre" >Genre: {product.genre}</div>
-            <div className="discription__wrappertop__details__developers" >Developers: {product.developer}</div>
-
-            <div className="discription__wrappertop__details__buy" />
+            <div className="discription__wrappertop__details__developers" >Developers: {product.developer}</div> */}
+            <Link to="#" class="discription__wrappertop__details__buy cart"><i class="fas fa-shopping-cart awesome" ></i>Add To Cart</Link>
+            <Link to="#" class="discription__wrappertop__details__buy"><i class="fas fa-money-bill-alt awesome"></i>Buy</Link>
             <div className="discription__wrappertop__details__raiting">
               <span className="discription__wrappertop__details__raiting__stars" />
               <span className="discription__wrappertop__details__raiting__stars" />

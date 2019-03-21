@@ -1581,3 +1581,22 @@ form.login .register:hover {
   }
 }
 /*# sourceMappingURL=index.css.map */
+
+
+a:hover{
+  text-decoration: none;
+  color: #FFF;
+}
+
+a:active{
+  text-decoration: none;
+  color: #FFF;
+}
+a:focus{
+  text-decoration: none;
+  columns: #FFF;
+}
+
+a{
+  color: #FFF;
+}
