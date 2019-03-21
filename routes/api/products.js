@@ -31,11 +31,13 @@ router.post("/", (req, res, next) => {
     name: req.body.name,
     developer: req.body.developer,
     image: req.body.image,
+    image2: req.body.image2,
     genre: req.body.genre,
     trailer: req.body.trailer,
     release: req.body.release,
     platforms: req.body.platforms,
-    price: req.body.price
+    price: req.body.price,
+    description: req.body.description,
   });
   product
     .save()

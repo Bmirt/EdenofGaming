@@ -7,6 +7,7 @@ const productSchema = mongoose.Schema({
         required: true
       }, 
     image: String,
+    image2: String,
     genre: String,
     developer: String,  
     release: String,
@@ -16,6 +17,7 @@ const productSchema = mongoose.Schema({
         required: true
       },
     trailer: String,
+    description: String,
 
 })
 
