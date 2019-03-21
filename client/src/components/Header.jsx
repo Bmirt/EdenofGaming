@@ -40,7 +40,7 @@ class Header extends React.Component {
                 {this.state.user ? (
                   <div>
                     <Link to={"/userprofile"} style={{ color: "white" }}>
-                      {this.props.user}
+                      {this.props.user.name}
                     </Link>
                     <Link
                       onClick={this.state.logout}

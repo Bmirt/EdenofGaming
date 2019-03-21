@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import AuthMethods from "./components/utils/AuthMethods";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Map from "./components/Map";
-import ProductDetails from "./components/ProductDetails"
+import ProductDetails from "./components/ProductDetails";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -47,16 +47,19 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Main} />
           <Route exact path="/about" component={Map} />
-          
-          <Route exact path="/products/:id" component={ProductDetails}/>
-          
-          <ProtectedRoute
+
+          <Route exact path="/products/:id" component={ProductDetails} />
+
+          {/* <ProtectedRoute
             exact
             path="/userProfile"
             render={props => (
               <UserProfile {...props} user={this.state.user} />
             )}
-          />
+          /> */}
+          <Route exact path="/userprofile" component={()=><ProtectedRoute><UserProfile user={this.state.user}/></ProtectedRoute>}/>
+            
+         
           <Route path="/" component={Footer} />
         </div>
       </Router>

@@ -4,7 +4,7 @@ import decode from 'jwt-decode';
 export function getCurrentUser(){
     try{
         const user = decode(localStorage.getItem('token'));
-        return user.name;
+        return user;
     }
     catch(err){
         return null;
@@ -13,7 +13,7 @@ export function getCurrentUser(){
 
 export function getJWT(){
     try{
-        const token = decode(localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
         return token;
     }
     catch(err){

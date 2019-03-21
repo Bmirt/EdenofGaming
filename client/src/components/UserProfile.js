@@ -8,14 +8,14 @@ class UserProfile extends React.Component {
         <div className="container bootstrap snippet">
           <div className="row">
             <div className="col-sm-10">
-              <h1>{this.props.user}</h1>
+              <h1>{this.props.user.name}</h1>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-3">
               <div className="text-center">
                 <img
-                  src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                  src={this.props.user.avatar}
                   className="avatar img-circle img-thumbnail"
                   alt="avatar"
                 />

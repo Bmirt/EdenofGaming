@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import spinner from "../final project/spinner.gif"
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -19,14 +21,13 @@ class ProductDetails extends React.Component {
           isLoaded: true
         });
       })
-
       .catch(err => this.setState({ isLoaded: true }));
   }
   render() {
       const { product } = this.state;
       console.log(product)
       if (!this.state.isLoaded) {
-      return <h1>Loading...</h1>;
+      return <img style={{width:"80px", height:"80px", margin:"100px 500px"}} src={spinner} />;
     }
     return product ? (
       <section className="discription">
