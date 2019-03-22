@@ -88,7 +88,6 @@
                 }
                 &__price{
                     width:calc(100% - 50px);
-                   
                     &:before{
                         content: ("price:\00a0")
                     }  
@@ -113,10 +112,9 @@
                     display: flex;
                     justify-content: space-evenly;
                  &__thumbs{
-                     font-size: 2.5rem;
-                    
+                     font-size: 2.5rem;              
                  } 
-                }
+               }
             }
          }
          &__middle{
@@ -134,10 +132,8 @@
                     right: 0;
                     top:0;
                     bottom:0;
-    
                 }
             }
-           
          }
       &__down{
           margin-top:1em;  
@@ -177,10 +173,45 @@
                           justify-content: space-evenly;
                       }
                }
-      }
-
-    }
-      
+            //    &__comment{
+            //        width: 100%;
+            //        height: auto;
+            //        background-color: chocolate;
+            //        &--wrapper{
+            //         width: auto ;
+            //         height: 120;
+            //         background-color: #4a8f63;
+            //         margin-top:10px;
+            //         &--inside{
+            //             width: auto;
+            //             height: auto;
+            //             background-color: brown;
+            //             font-size: 1.8rem;
+            //             display: flex;
+            //             &--image{
+            //                 width: 70px;
+            //                 height: 70px;
+            //                 border-radius: 50%;
+            //             }
+            //             &--comment{
+            //                 width: 800px;
+            //                 height: 200px;
+            //                 border:none;
+            //                 resize: none;
+            //                 border-radius: 10px;
+            //                 padding: 1.2em;
+            //                  display: flex;
+            //                  font-size: 1.8rem;
+            //                  text-indent: 15px;
+            //                 &::placeholder{
+            //                     font-size: 1.8rem;
+            //                 }
+            //             }
+            //         }
+            //        }
+            //    }
+         }
+    }    
 }
 @media(max-width:800px){
     .discription{
@@ -190,7 +221,6 @@
     .discription__wrappertop{
         margin:0;
     }
-    
     .discription__wrappertop__wrapper{
         flex-direction: column;
         width: 100%;
@@ -203,12 +233,10 @@
     .discription__wrappertop__wrapper__details{
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        
+        width: 100%; 
     }
     .discription__wrappertop__middle{
         width: 100%;
-    
     }
     .discription__wrappertop__down{
         margin:0;
@@ -217,10 +245,9 @@
      align-items: flex-start;
      &__lawspecs,&__recomendedspecs{
          width: 100%;
-         margin-left:3em;
-         
+         margin-left:3em; 
      }
-    }
+   }
 }
 @media(max-width:600px){
     .discription__wrappertop__down__aboutgame{
@@ -231,5 +258,5 @@
             margin-left:1em;
             font-size: 1.1rem;
         }
-       }
+    }
 }
