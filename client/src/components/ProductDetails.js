@@ -30,34 +30,78 @@ class ProductDetails extends React.Component {
       return <img style={{width:"80px", height:"80px", margin:"100px 500px"}} src={spinner} />;
     }
     return product ? (
-      <section className="discription">
-        <div className="discription__wrappertop">
-          <img src={product.image} alt="" className="discription__wrappertop__image" />
+      <section className="discription" style={{backgroundImage:`url(${product.image2})`}}>
 
-          <div className="discription__wrappertop__details">
-            <div className="discription__wrappertop__details__name" >Name: {product.name}</div>
-            <div className="discription__wrappertop__details__platform" ><span class="pc">{product.platforms}</span></div>
-            <div className="discription__wrappertop__details__price" >Price: {product.price}$</div>
-            {/* <div className="discription__wrappertop__details__release" >Realease Date: {product.release}</div>
-            <div className="discription__wrappertop__details__genre" >Genre: {product.genre}</div>
-            <div className="discription__wrappertop__details__developers" >Developers: {product.developer}</div> */}
-            <Link to="#" class="discription__wrappertop__details__buy cart"><i class="fas fa-shopping-cart awesome" ></i>Add To Cart</Link>
-            <Link to="#" class="discription__wrappertop__details__buy"><i class="fas fa-money-bill-alt awesome"></i>Buy</Link>
-            <div className="discription__wrappertop__details__raiting">
-              <span className="discription__wrappertop__details__raiting__stars" />
-              <span className="discription__wrappertop__details__raiting__stars" />
-              <span className="discription__wrappertop__details__raiting__stars" />
-              <span className="discription__wrappertop__details__raiting__stars" />
-              <span className="discription__wrappertop__details__raiting__stars" />
+    <div className="discription__wrappertop">
+          
+     <div className="discription__wrappertop__wrapper">
+        <img src={product.image} alt="" className="discription__wrappertop__wrapper--image" />
+
+        <div className="discription__wrappertop__wrapper__details">
+            <div className="discription__wrappertop__wrapper__details__name">{product.name}</div>
+            <div className="discription__wrappertop__wrapper__details__date">{product.release}</div>
+
+            <div className="discription__wrappertop__wrapper__details__platform"> <span className="pc">{product.platforms}</span> <span className="ps4">p</span><span className="xbox"></span></div>
+
+            <div className="discription__wrappertop__wrapper__details__developer"> {product.developer}</div> 
+            
+        
+                      <div className="discription__wrappertop__wrapper__details__price">${product.price}</div>
+
+
+            <div className="discription__wrappertop__wrapper__details__buy cart"><i className="fas fa-shopping-cart awesome" > add to cart </i></div>
+            <div className="discription__wrappertop__wrapper__details__buy"><i className="fas fa-money-bill-alt awesome"></i> buy </div>
+
+            <div className="discription__wrappertop__wrapper__details__raiting">
+                <span className="discription__wrappertop__wrapper__details__raiting__thumbs"><i className="fas fa-thumbs-up awesome"></i></span>
+                <span className="discription__wrappertop__wrapper__details__raiting__thumbs"><i className="fas fa-thumbs-down awesome"></i></span>
+                
             </div>
-          </div>
-          <p className="discription__wrappertop__aboutgame" />
-          <div className="discription__wrappertop__system">
-            <p className="discription__wrappertop__system__lawspecs" />
-            <p className="discription__wrappertop__system__recomendedspecs" />
-          </div>
+            
         </div>
-      </section>
+
+
+     </div>
+
+
+
+       
+        <div className="discription__wrappertop__middle">
+        <div className="discription__wrappertop__middle__wrapper">
+            <iframe   src={product.trailer} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="discription__wrappertop__middle__wrapper__iframe" ></iframe>
+        </div>
+    </div>
+
+        
+        
+          <div className="discription__wrappertop__down">
+
+         <p className="discription__wrappertop__down__aboutgame">{product.description}</p> 
+
+
+        <div className="discription__wrappertop__down__system">
+              
+            <p className="discription__wrappertop__down__system__lawspecs">
+                <span className="discription__wrappertop__down__system__lawspecs__os">Windows 7,Windows 8,Windows 10</span>
+                <span className="discription__wrappertop__down__system__lawspecs__processor">AMD FX-8320 (3,5 GHz) / Intel i5-4690K (3,5 GHz) or better</span>
+                <span className="discription__wrappertop__down__system__lawspecs__grapics">GeForce GTX 660 / Radeon R7 370 with 2 GB VRAM</span>
+                <span className="discription__wrappertop__down__system__lawspecs__hdd">25 GB available space</span>
+                <span className="discription__wrappertop__down__system__lawspecs__api">DirectX: Version 11</span>
+
+            </p>
+         
+            <p className="discription__wrappertop__down__system__recomendedspecs">
+                    <span className="discription__wrappertop__down__system__recomendedspecs__os">Windows 7,Windows 8,Windows 10</span>
+                    <span className="discription__wrappertop__down__system__recomendedspecs__processor">Intel Core i7-3930K (3.2 GHz)/AMD Ryzen 5 1600 (3.2 GHz) or better</span>
+                    <span className="discription__wrappertop__down__system__recomendedspecs__grapics">AMD Radeon RX 480 / NVIDIA GeForce GTX 970 with 4 GB VRAM</span>
+                    <span className="discription__wrappertop__down__system__recomendedspecs__hdd">25 GB available space</span>
+                    <span className="discription__wrappertop__down__system__recomendedspecs__api">DirectX: Version 11</span>
+            </p>
+            
+        </div>
+    </div>
+    </div>
+</section>
     ) : (
       <h1>product not found</h1>
     );
