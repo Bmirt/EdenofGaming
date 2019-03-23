@@ -15,12 +15,8 @@ module.exports = function validateLoginInput(data) {
     errors.handle = "Profile handle is required";
   }
 
-  if (Validator.isEmpty(data.status)) {
-    errors.status = "status field is required";
-  }
-
-  if (Validator.isEmpty(data.skills)) {
-    errors.skills = "skills field is required";
+  if (Validator.isEmpty(data.balance)) {
+    errors.handle = "Balance is required";
   }
 
   if (!isEmpty(data.website)) {
