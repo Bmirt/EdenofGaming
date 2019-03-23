@@ -15,6 +15,10 @@ module.exports = function validateLoginInput(data) {
     errors.handle = "Profile handle is required";
   }
 
+  if (Validator.isEmpty(data.balance)) {
+    errors.handle = "Balance is required";
+  }
+
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
       errors.website = "Not a valid URL";

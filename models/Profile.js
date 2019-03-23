@@ -30,6 +30,9 @@ const ProfileSchema = new Schema({
   bio: {
     type: String
   },
+  balance: {
+    type: Number
+  },
   githubusername: {
     type: String
   },
