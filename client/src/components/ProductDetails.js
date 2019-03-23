@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {Link} from "react-router-dom"
-import spinner from "../final project/spinner.gif"
+import { Link } from "react-router-dom";
+import spinner from "../final project/spinner.gif";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -24,84 +24,129 @@ class ProductDetails extends React.Component {
       .catch(err => this.setState({ isLoaded: true }));
   }
   render() {
-      const { product } = this.state;
-      console.log(product)
-      if (!this.state.isLoaded) {
-      return <img style={{width:"80px", height:"80px", margin:"100px 500px"}} src={spinner} />;
+    const { product } = this.state;
+    console.log(product);
+    if (!this.state.isLoaded) {
+      return (
+        <img
+          style={{ width: "80px", height: "80px", margin: "100px 500px" }}
+          src={spinner}
+        />
+      );
     }
     return product ? (
-      <section className="discription" style={{backgroundImage:`url(${product.image2})`}}>
+      <section
+        className="discription"
+        style={{ backgroundImage: `url(${product.image2})` }}
+      >
+        <div className="discription__wrappertop">
+          <div className="discription__wrappertop__wrapper">
+            <img
+              src={product.image}
+              alt=""
+              className="discription__wrappertop__wrapper--image"
+            />
 
-    <div className="discription__wrappertop">
-          
-     <div className="discription__wrappertop__wrapper">
-        <img src={product.image} alt="" className="discription__wrappertop__wrapper--image" />
+            <div className="discription__wrappertop__wrapper__details">
+              <div className="discription__wrappertop__wrapper__details__name">
+                {product.name}
+              </div>
+              <div className="discription__wrappertop__wrapper__details__date">
+                {product.release}
+              </div>
 
-        <div className="discription__wrappertop__wrapper__details">
-            <div className="discription__wrappertop__wrapper__details__name">{product.name}</div>
-            <div className="discription__wrappertop__wrapper__details__date">{product.release}</div>
+              <div className="discription__wrappertop__wrapper__details__platform">
+                {" "}
+                <span className="pc">{product.platforms}</span>{" "}
+                <span className="ps4">p</span>
+                <span className="xbox" />
+              </div>
 
-            <div className="discription__wrappertop__wrapper__details__platform"> <span className="pc">{product.platforms}</span> <span className="ps4">p</span><span className="xbox"></span></div>
+              <div className="discription__wrappertop__wrapper__details__developer">
+                {" "}
+                {product.developer}
+              </div>
 
-            <div className="discription__wrappertop__wrapper__details__developer"> {product.developer}</div> 
-            
-        
-                      <div className="discription__wrappertop__wrapper__details__price">${product.price}</div>
+              <div className="discription__wrappertop__wrapper__details__price">
+                ${product.price}
+              </div>
 
+              <div className="discription__wrappertop__wrapper__details__buy cart">
+                <i className="fas fa-shopping-cart awesome"> add to cart </i>
+              </div>
+              <div className="discription__wrappertop__wrapper__details__buy">
+                <i className="fas fa-money-bill-alt awesome" /> buy{" "}
+              </div>
 
-            <div className="discription__wrappertop__wrapper__details__buy cart"><i className="fas fa-shopping-cart awesome" > add to cart </i></div>
-            <div className="discription__wrappertop__wrapper__details__buy"><i className="fas fa-money-bill-alt awesome"></i> buy </div>
-
-            <div className="discription__wrappertop__wrapper__details__raiting">
-                <span className="discription__wrappertop__wrapper__details__raiting__thumbs"><i className="fas fa-thumbs-up awesome"></i></span>
-                <span className="discription__wrappertop__wrapper__details__raiting__thumbs"><i className="fas fa-thumbs-down awesome"></i></span>
-                
+              <div className="discription__wrappertop__wrapper__details__raiting">
+                <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
+                  <i className="fas fa-thumbs-up awesome" />
+                </span>
+                <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
+                  <i className="fas fa-thumbs-down awesome" />
+                </span>
+              </div>
             </div>
-            
-        </div>
+          </div>
 
+          <div className="discription__wrappertop__middle">
+            <div className="discription__wrappertop__middle__wrapper">
+              <iframe
+                src={product.trailer}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="discription__wrappertop__middle__wrapper__iframe"
+              />
+            </div>
+          </div>
 
-     </div>
-
-
-
-       
-        <div className="discription__wrappertop__middle">
-        <div className="discription__wrappertop__middle__wrapper">
-            <iframe   src={product.trailer} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="discription__wrappertop__middle__wrapper__iframe" ></iframe>
-        </div>
-    </div>
-
-        
-        
           <div className="discription__wrappertop__down">
-
-         <p className="discription__wrappertop__down__aboutgame">{product.description}</p> 
-
-
-        <div className="discription__wrappertop__down__system">
-              
-            <p className="discription__wrappertop__down__system__lawspecs">
-                <span className="discription__wrappertop__down__system__lawspecs__os">Windows 7,Windows 8,Windows 10</span>
-                <span className="discription__wrappertop__down__system__lawspecs__processor">AMD FX-8320 (3,5 GHz) / Intel i5-4690K (3,5 GHz) or better</span>
-                <span className="discription__wrappertop__down__system__lawspecs__grapics">GeForce GTX 660 / Radeon R7 370 with 2 GB VRAM</span>
-                <span className="discription__wrappertop__down__system__lawspecs__hdd">25 GB available space</span>
-                <span className="discription__wrappertop__down__system__lawspecs__api">DirectX: Version 11</span>
-
+            <p className="discription__wrappertop__down__aboutgame">
+              {product.description}
             </p>
-         
-            <p className="discription__wrappertop__down__system__recomendedspecs">
-                    <span className="discription__wrappertop__down__system__recomendedspecs__os">Windows 7,Windows 8,Windows 10</span>
-                    <span className="discription__wrappertop__down__system__recomendedspecs__processor">Intel Core i7-3930K (3.2 GHz)/AMD Ryzen 5 1600 (3.2 GHz) or better</span>
-                    <span className="discription__wrappertop__down__system__recomendedspecs__grapics">AMD Radeon RX 480 / NVIDIA GeForce GTX 970 with 4 GB VRAM</span>
-                    <span className="discription__wrappertop__down__system__recomendedspecs__hdd">25 GB available space</span>
-                    <span className="discription__wrappertop__down__system__recomendedspecs__api">DirectX: Version 11</span>
-            </p>
-            
+
+            <div className="discription__wrappertop__down__system">
+              <p className="discription__wrappertop__down__system__lawspecs">
+                <span className="discription__wrappertop__down__system__lawspecs__os">
+                  Windows 7,Windows 8,Windows 10
+                </span>
+                <span className="discription__wrappertop__down__system__lawspecs__processor">
+                  AMD FX-8320 (3,5 GHz) / Intel i5-4690K (3,5 GHz) or better
+                </span>
+                <span className="discription__wrappertop__down__system__lawspecs__grapics">
+                  GeForce GTX 660 / Radeon R7 370 with 2 GB VRAM
+                </span>
+                <span className="discription__wrappertop__down__system__lawspecs__hdd">
+                  25 GB available space
+                </span>
+                <span className="discription__wrappertop__down__system__lawspecs__api">
+                  DirectX: Version 11
+                </span>
+              </p>
+
+              <p className="discription__wrappertop__down__system__recomendedspecs">
+                <span className="discription__wrappertop__down__system__recomendedspecs__os">
+                  Windows 7,Windows 8,Windows 10
+                </span>
+                <span className="discription__wrappertop__down__system__recomendedspecs__processor">
+                  Intel Core i7-3930K (3.2 GHz)/AMD Ryzen 5 1600 (3.2 GHz) or
+                  better
+                </span>
+                <span className="discription__wrappertop__down__system__recomendedspecs__grapics">
+                  AMD Radeon RX 480 / NVIDIA GeForce GTX 970 with 4 GB VRAM
+                </span>
+                <span className="discription__wrappertop__down__system__recomendedspecs__hdd">
+                  25 GB available space
+                </span>
+                <span className="discription__wrappertop__down__system__recomendedspecs__api">
+                  DirectX: Version 11
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
-    </div>
-    </div>
-</section>
+      </section>
     ) : (
       <h1>product not found</h1>
     );
