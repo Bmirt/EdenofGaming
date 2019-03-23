@@ -13,6 +13,7 @@ class ProductDetails extends React.Component {
     };
   }
   componentDidMount() {
+    window.scroll(0,0);
     axios
       .get(`http://localhost:5000/api/products/${this.props.match.params.id}`)
       .then(res => {

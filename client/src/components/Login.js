@@ -50,11 +50,10 @@ class Login extends React.Component {
             name="email"
             required
             autoComplete="off"
-            className="form__register"
+            className="form__register top"
+            placeholder="Email"
           />
-          <label htmlFor="email" className="form__label">
-          Email
-          </label>
+          
           {errors.email && (
             <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
           )}
@@ -66,10 +65,8 @@ class Login extends React.Component {
             required
             autoComplete="off"
             className="form__register"
+            placeholder="Password"
           />
-          <label htmlFor="password" className="form__label password">
-            Password
-          </label>
           {errors.password && (
             <div style={{ color: "red", fontSize: "15px" }}>
               {errors.password}

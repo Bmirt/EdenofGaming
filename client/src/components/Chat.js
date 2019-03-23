@@ -6,7 +6,7 @@ class Chat extends React.Component {
       <React.Fragment>
         <aside id="chat" className="chat">
           <nav className="chat__nav">
-            <div id="btn" className="chat__nav__button">
+            <div  id="btn" className="chat__nav__button">
               <i id="awesome" className="fas fa-comment-alt awesome " />
             </div>
 

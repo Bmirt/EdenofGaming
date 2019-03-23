@@ -28,9 +28,7 @@ class Register extends React.Component {
         alert("you succesfully registered");
         this.props.history.replace("/login");
       })
-      .catch(err =>
-        this.setState({ errors: err.response.data})
-      );
+      .catch(err => this.setState({ errors: err.response.data }));
   };
 
   render() {
@@ -43,13 +41,23 @@ class Register extends React.Component {
             type="text"
             name="name"
             required
+            autocomplete="off"
+            class="form__register top"
+            placeholder="username"
+          />
+
+          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
+
+          <input
+            onChange={this.onHandleChange}
+            type="text"
+            name="email"
+            required
             autoComplete="off"
             className="form__register"
+            placeholder="Email"
           />
-          <label htmlFor="name" className="form__label">
-            Username
-          </label>
-          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
+          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
 
           <input
             onChange={this.onHandleChange}
@@ -58,10 +66,9 @@ class Register extends React.Component {
             required
             autoComplete="off"
             className="form__register"
+            placeholder="Password"
           />
-          <label htmlFor="password" className="form__label password">
-            Password
-          </label>
+
           {errors.password && (
             <div style={{ color: "red" }}>{errors.password}</div>
           )}
@@ -73,26 +80,12 @@ class Register extends React.Component {
             required
             autoComplete="off"
             className="form__register"
+            placeholder="Repeat Password"
           />
-          <label htmlFor="password" className="form__label repeatpassword">
-            Repeat Password
-          </label>
+
           {errors.password2 && (
             <div style={{ color: "red" }}>{errors.password2}</div>
           )}
-
-          <input
-            onChange={this.onHandleChange}
-            type="text"
-            name="email"
-            required
-            autoComplete="off"
-            className="form__register"
-          />
-          <label htmlFor="email" className="form__label email">
-            Email{" "}
-          </label>
-          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
 
           {/* <input
             type="text"
@@ -130,7 +123,7 @@ class Register extends React.Component {
           <input
             onClick={this.onHandleSubmit}
             type="submit"
-            value="SUBMIT"
+            value="Register"
             className="form__submit"
           />
         </form>

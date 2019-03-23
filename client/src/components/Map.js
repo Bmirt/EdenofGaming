@@ -1,6 +1,9 @@
 import React from "react";
 
 class Map extends React.Component {
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
   render() {
     return (
       <section className="map">
