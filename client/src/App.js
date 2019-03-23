@@ -11,6 +11,7 @@ import AuthMethods from "./components/utils/AuthMethods";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Map from "./components/Map";
 import ProductDetails from "./components/ProductDetails";
+import Admin from "./components/Admin";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +60,8 @@ class App extends Component {
           /> */}
           <Route exact path="/userprofile" component={()=><ProtectedRoute><UserProfile user={this.state.user}/></ProtectedRoute>}/>
             
-         
+          <Route path="/admin" component={Admin} />
+
           <Route path="/" component={Footer} />
         </div>
       </Router>

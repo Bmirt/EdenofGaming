@@ -60,8 +60,8 @@ body {
 
 .header__top__wrapper--logo--image {
   display: block;
-  width: 130px;
-  margin-top: -4em;
+  width: 170px;
+  margin-top: -1em;
 }
 
 .header__top__wrapper__search {
@@ -1704,6 +1704,16 @@ form.login::before {
 
 .user-profile__name {
   color: #f1f1f1;
+  margin-bottom: 30px;
+}
+
+.user-profile__name--title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .user-profile__link {
@@ -1740,5 +1750,20 @@ form.login::before {
 
 .user-profile__btn__color {
   background-color: #178d44;
+}
+
+.admin__name {
+  color: #f1f1f1;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.admin__name--title {
+  margin-left: 40px;
 }
 /*# sourceMappingURL=index.css.map */

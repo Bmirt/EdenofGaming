@@ -8,7 +8,7 @@ class UserProfile extends React.Component {
         <div className="container bootstrap snippet">
           <div className="row">
             <div className="col-sm-10">
-              <h1 className= "user-profile__name">{this.props.user.name}</h1>
+              <h1 className= "user-profile__name">Welcome {this.props.user.name}</h1>
             </div>
           </div>
           <div className="row">
