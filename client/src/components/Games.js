@@ -1,18 +1,19 @@
 import React from "react";
 import axios from "axios";
-import Product from "./Product"
+import Product from "./Product";
+import ShopContext from "../context/shop-context";
 
 class Games extends React.Component {
+  static contextType = ShopContext;
   state = {
-    games: [],
     isLoaded: false
   };
   componentDidMount() {
     axios
       .get("http://localhost:5000/api/products")
       .then(res => {
+        this.context.games = res.data;
         this.setState({
-          games: res.data,
           isLoaded: true
         });
       })
@@ -20,7 +21,7 @@ class Games extends React.Component {
   }
 
   render() {
-    const { games } = this.state;
+    const games = this.context.games;
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     } else {
@@ -30,7 +31,7 @@ class Games extends React.Component {
             {games.map(game => (
               <Product
                 key={game._id}
-                id= {game._id}
+                id={game._id}
                 image={game.image}
                 platform={game.platforms}
                 price={game.price}

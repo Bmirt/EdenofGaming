@@ -8,8 +8,10 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.user,
-      logout: props.logout
+      user: props.state.user,
+      logout: props.state.logout,
+      isAdmn: props.state.isAdmin
+
     };
   }
 

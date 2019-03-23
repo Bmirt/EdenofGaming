@@ -21,7 +21,7 @@ class Product extends React.Component {
               </p>
             </div>
           </div>
-          <div onClick={()=>alert(`${name} clicked`)} className="main__middle__wrapper__container--name ">{name}</div>
+          <div className="main__middle__wrapper__container--name ">{name}</div>
         </Link>
       </React.Fragment>
     );

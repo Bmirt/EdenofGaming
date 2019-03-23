@@ -16,6 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAdmin: AuthMethods.isAdmin(),
       user: AuthMethods.getCurrentUser() || null
     };
   }
@@ -35,7 +36,7 @@ class App extends Component {
           <Route
             path="/"
             component={props => (
-              <Header {...props} user={this.state.user} logout={this.logout} />
+              <Header {...props} state={this.state.state} logout={this.logout} />
             )}
           />
           <Route
