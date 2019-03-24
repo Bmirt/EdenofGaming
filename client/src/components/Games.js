@@ -28,6 +28,7 @@ class Games extends React.Component {
         <img
           style={{ width: "80px", height: "80px", margin: "100px 500px" }}
           src={spinner}
+          alt="spinner"
         />
       );
     } else {

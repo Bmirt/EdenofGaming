@@ -1,5 +1,8 @@
 import React from 'react';
 
 export default React.createContext({
-    games: {}
+    games: [],
+    cart:[],
+    addToCart:()=>{},
+    removeFromCart:()=>{}
 })

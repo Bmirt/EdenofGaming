@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import spinner from "../final project/spinner.gif";
 import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
+import ShopContext from "../context/shop-context";
+import Auth from "./utils/AuthMethods";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -14,6 +16,17 @@ class ProductDetails extends React.Component {
       isLoaded: false
     };
   }
+
+  static contextType = ShopContext;
+  addToCart = () => {
+    if (Auth.getJWT()) {
+      this.context.cart.push(this.state.product);
+      console.log(this.context.cart);
+    }else{
+      alert("You need to be logged in")
+    }
+  };
+
   componentDidMount() {
     window.scroll(0, 0);
     axios
@@ -34,6 +47,7 @@ class ProductDetails extends React.Component {
         <img
           style={{ width: "80px", height: "80px", margin: "100px 500px" }}
           src={spinner}
+          alt="spinner"
         />
       );
     }
@@ -74,7 +88,10 @@ class ProductDetails extends React.Component {
                 ${product.price}
               </div>
 
-              <div className="discription__wrappertop__wrapper__details__buy cart">
+              <div
+                onClick={this.addToCart}
+                className="discription__wrappertop__wrapper__details__buy cart"
+              >
                 <i className="fas fa-shopping-cart awesome"> add to cart </i>
               </div>
               <div className="discription__wrappertop__wrapper__details__buy">
@@ -92,7 +109,7 @@ class ProductDetails extends React.Component {
             </div>
           </div>
           <Trailler>
-            <Iframe url={product.trailer.replace("watch?v=","embed/")} />
+            <Iframe url={product.trailer.replace("watch?v=", "embed/")} />
           </Trailler>
           <div className="discription__wrappertop__down">
             <p className="discription__wrappertop__down__aboutgame">

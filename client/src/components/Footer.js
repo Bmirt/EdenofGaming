@@ -9,9 +9,9 @@ class Footer extends React.Component {
         <footer className="footer">
           <section className="footer__wrapper">
             <div className="footer__wrapper__item  left">
-              <a href="" className="name">
+              <Link to="#" className="name">
                 ABOUT EDEN OF GAMING
-              </a>
+              </Link>
               <Link to="/about" className="location">
                 <i className="fas  fa-globe-americas awesome" /> Find Us On This
                 Location
@@ -19,9 +19,9 @@ class Footer extends React.Component {
             </div>
             <div className="footer__wrapper__item  middle">
               Special Thanks To{" "}
-              <a href="http://techub.ge/" target="_blank" className="techub">
+              <Link to="http://techub.ge/" target="_blank" className="techub">
                 Techub
-              </a>
+              </Link>
             </div>
             <div className="footer__wrapper__item ">
               <h2 className="footer__wrapper__item__text"> Follow Us</h2>

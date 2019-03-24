@@ -46,7 +46,7 @@ class Register extends React.Component {
             placeholder="username"
           />
 
-          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
+          {errors.name && <div className="error" style={{ color: "red" }}>{errors.name}</div>}
 
           <input
             onChange={this.onHandleChange}
@@ -57,7 +57,7 @@ class Register extends React.Component {
             className="form__register"
             placeholder="Email"
           />
-          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
+          {errors.email && <div className="error" style={{ color: "red" }}>{errors.email}</div>}
 
           <input
             onChange={this.onHandleChange}

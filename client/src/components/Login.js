@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Auth from "./utils/AuthMethods";
 import {Link} from "react-router-dom"
-import AuthMethods from "./utils/AuthMethods";
 
 class Login extends React.Component {
   constructor(props) {
