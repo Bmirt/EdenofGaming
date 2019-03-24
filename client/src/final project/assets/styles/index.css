@@ -1202,6 +1202,7 @@ body {
 .form__wrapper {
   margin: 40px 0 0 30px;
   position: relative;
+  width: 280px;
 }
 
 .form__wrapper__popup {
@@ -1209,10 +1210,10 @@ body {
   width: auto;
   border-radius: 8px;
   padding: 0.2em;
-  background-color: #878d87;
+  background-color: #45504e;
   color: #fff;
   font-size: 1.5rem;
-  bottom: -33px;
+  bottom: -39px;
   left: 20px;
 }
 
@@ -1220,7 +1221,7 @@ body {
   content: "";
   width: 10px;
   height: 10px;
-  background-color: #878d87;
+  background-color: #45504e;
   display: block;
   position: absolute;
   -webkit-transform: rotate(45deg);
@@ -1229,12 +1230,16 @@ body {
   left: 10px;
 }
 
+.form__wrapper__popup.password {
+  width: 289px;
+}
+
 .form__wrapper__register {
   font-family: 'Baloo Chettan', cursive;
   font-size: 20px;
   color: #fff;
   border: none;
-  width: 60%;
+  width: 70%;
   height: 50px;
   background-color: transparent;
   z-index: 1;
@@ -1271,7 +1276,7 @@ body {
 .form__wrapper__register:focus {
   outline: none;
   border: 1px solid #178d44;
-  width: 85%;
+  width: 120%;
   -webkit-transition: 1s;
   transition: 1s;
 }
