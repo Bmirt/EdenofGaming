@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -159,6 +159,7 @@ body {
   cursor: pointer;
   white-space: nowrap;
   position: relative;
+  text-decoration: none;
 }
 
 .header__top__wrapper--user--login--text {
@@ -340,6 +341,7 @@ body {
   }
   .header__top__wrapper--user {
     height: 40px;
+    margin-top: 4em;
   }
   .header__top__wrapper__search {
     height: 55px;
@@ -723,7 +725,8 @@ body {
 .aside__nav {
   position: fixed;
   left: 0;
-  top: 230px;
+  top: 354px;
+  bottom: 500px;
   z-index: 999;
 }
 
@@ -766,6 +769,7 @@ body {
   height: 100%;
   background-color: #222;
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .aside__nav__list__social .awesome {
@@ -825,7 +829,7 @@ body {
 
 .chat {
   position: fixed;
-  top: 230px;
+  top: 354px;
   z-index: 999;
   -webkit-transition: 1s;
   transition: 1s;
@@ -1016,6 +1020,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  text-decoration: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1162,7 +1167,7 @@ body {
 .form {
   font-family: "Concolas";
   width: 400px;
-  height: 650px;
+  height: 570px;
   background-color: #1e1e1e;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1194,9 +1199,38 @@ body {
   top: 25px;
 }
 
-.form__register {
-  font-family: 'Baloo Chettan', cursive;
+.form__wrapper {
   margin: 40px 0 0 30px;
+  position: relative;
+}
+
+.form__wrapper__popup {
+  position: absolute;
+  width: auto;
+  border-radius: 8px;
+  padding: 0.2em;
+  background-color: #878d87;
+  color: #fff;
+  font-size: 1.5rem;
+  bottom: -33px;
+  left: 20px;
+}
+
+.form__wrapper__popup::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #878d87;
+  display: block;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: -4px;
+  left: 10px;
+}
+
+.form__wrapper__register {
+  font-family: 'Baloo Chettan', cursive;
   font-size: 20px;
   color: #fff;
   border: none;
@@ -1210,31 +1244,31 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
-.form__register::-webkit-input-placeholder {
+.form__wrapper__register::-webkit-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register:-ms-input-placeholder {
+.form__wrapper__register:-ms-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register::-ms-input-placeholder {
+.form__wrapper__register::-ms-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register::placeholder {
+.form__wrapper__register::placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register:focus {
+.form__wrapper__register:focus {
   outline: none;
   border: 1px solid #178d44;
   width: 85%;
@@ -1242,7 +1276,7 @@ body {
   transition: 1s;
 }
 
-.form__register.top {
+.form__wrapper.top {
   margin-top: 80px;
 }
 
