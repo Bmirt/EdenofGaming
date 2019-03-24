@@ -22,11 +22,14 @@ body {
 
 .header {
   width: 100%;
-  height: auto;
+  height: 254px;
   background-color: #222;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -37,7 +40,7 @@ body {
 }
 
 .header__top {
-  width: calc(100% - 200px);
+  width: calc(100% - 150px);
   height: 140px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,11 +59,14 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .header__top__wrapper--logo--image {
   display: block;
-  width: 170px;
+  width: 140px;
   margin-top: -1em;
 }
 
@@ -125,7 +131,7 @@ body {
 }
 
 .header__top__wrapper--user {
-  width: 300px;
+  width: 440px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -162,6 +168,24 @@ body {
 .header__top__wrapper--user--login.register {
   background-color: black;
   width: 150px;
+}
+
+.header__top__wrapper--user--basket {
+  color: #fff;
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+  height: 40px;
+}
+
+.header__top__wrapper--user--basket--image {
+  height: 40px;
+}
+
+.header__top__wrapper--user--basket--number {
+  line-height: 40px;
 }
 
 .header__bottom {
@@ -372,16 +396,19 @@ body {
 }
 
 @media (max-width: 600px) {
+  .header {
+    height: 290px;
+  }
   .header__top__wrapper {
-    height: 147%;
+    height: 167%;
   }
   .header__top__wrapper__search {
     margin-top: -3.1em;
   }
   .header__top__wrapper--user {
-    height: 106px;
+    height: auto;
     width: auto;
-    margin-right: 1.5em;
+    margin: 3.5em 1.5em 0 0;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
@@ -399,7 +426,7 @@ body {
     margin: 0.5em 1em;
   }
   .header__top__wrapper--logo--image {
-    margin: 4em 0 0 1.4em;
+    margin: 3.2em 0 0 1.4em;
   }
 }
 
@@ -1466,7 +1493,7 @@ form.login::before {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: 1.6em;
+  font-size: 1.6rem;
   color: #fff;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -1765,18 +1792,5 @@ form.login::before {
 
 .admin__name--title {
   margin-left: 40px;
-}
-
-
-a:hover{
-  text-decoration: none;
-  color: #fff;
-}
-a:focus{
-  text-decoration: none;
-  color: #fff;
-}a:active{
-  text-decoration: none;
-  color: #fff;
 }
 /*# sourceMappingURL=index.css.map */

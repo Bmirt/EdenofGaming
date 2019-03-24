@@ -1,0 +1,217 @@
+.main{
+    width: calc(100% - 185px);
+    height: auto;
+    margin: 0 auto;
+    // background-color: yellow;
+    &__top{
+        margin:100px 0;
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto;
+        @include flexj(center);
+        // background-color: red;
+        &__slider{
+            width: 100%;
+            height: 430px;
+            position: relative;
+            &__image{
+                width:100%;
+                height: 470px;
+                transition: 1.2s;
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
+                opacity: 0.3;
+                border-radius: 8px ;
+            }
+            &__image.active{
+                z-index: 1;
+                opacity: 1;
+                background-position-x:center;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            &__image.firstimage{
+                position: absolute; 
+            }
+            &__image.secondimage{
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
+
+                position: absolute;
+              }
+              &__image.thirdimage{
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
+                position: absolute;
+              }
+              &__image.fourthimage{
+                background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
+                position: absolute;
+              }
+              &__image.fifthimage{
+                  position: absolute;
+                  background-image: url("https://stmed.net/sites/default/files/video-game-hd-wallpapers-33874-6610787.jpg");
+              }
+        }
+        #prev{
+            left:50px;  
+        }
+        #next{
+            right:50px;
+        }
+        .both{
+            position: absolute;
+            top :230px;
+            z-index: 2;
+            background: transparent;
+            border: none;
+            outline: none;  
+            cursor: pointer!important;
+            &:hover .bothkey{
+                color:#19a6e7b6;
+                transition: 0.7s;
+            }  
+        }
+        .bothkey{  
+            @include font(7rem,#02010e8a)
+        }
+    }
+    &__middle{
+        @include flexj(center);
+     width:100% ;
+     height: auto;
+    //  background-color: gray;
+     &__wrapper{
+        //  width:calc(100% - 100px);
+        //  background-color: #0d151f85;
+        max-width: 1600px;
+         border-radius: 8px;
+         height: auto;
+         @include flexj(space-evenly);
+         flex-wrap: wrap;
+         &__container{
+            width:270px;
+            height: 380px;
+             margin:50px 0 80px;
+             cursor: pointer;
+             border-radius: 8px 8px 0 0;
+             text-transform: uppercase;
+             @include column(column);
+              justify-content: space-between;  
+              &:hover &--image{
+                background-size: 120%;
+                transition: 0.6s;
+             }
+         &--image{
+             width:270px;
+             height: 330px;
+             background-image: url("https://m.media-amazon.com/images/M/MV5BYTRmZmI4MzgtZDNjZS00YzdmLTk5ZjktNjczODgzYmViM2JhXkEyXkFqcGdeQXVyNzU1OTYxNzU@._V1_.jpg");
+             background-position: center;
+             background-size: 100%;
+             border-radius: 7px 7px 0 0;
+             position: relative;
+             letter-spacing: 1px;
+            
+             &--text{
+                 position: absolute;
+                 @include size(100%,100%,#0c0c0ce0);
+                 @include flex(space-evenly,center);
+                 font-size: 2.5rem;
+                 text-shadow:2px 3px 6px rgb(235, 219, 219);
+                 flex-direction: column;
+                 opacity: 0;
+                 transition: 0.6s ease-in-out;
+                 &--all{
+                     width: 70%;
+                     height: 30px;
+                     text-align: center;  
+                 }
+                 &--all.price{
+                     color: #db2e2e;
+                 }
+                 &--all.click{
+                    color: #fff;
+                }
+                &--all.platform{
+                    color: #2cb42c;
+                }   
+         } 
+         &:hover &--text{
+            opacity: 1;
+             }
+        }
+         &--name{
+             @include flex(center,center);
+             @include font(2rem,#fff);
+             @include size(100%,calc(100% - 330px),#0c0c0ce0);   
+         }
+         }
+     }  
+  }
+
+}
+@media(max-width:1024px){
+    .main{
+        width:calc(100% - 240px) ;
+    }
+    .main__middle__wrapper{
+        width: 90%;
+    }
+    .main__top__slider__image {
+        width: 100%;
+        height: 400px;
+    }
+    
+    #prev,#next{
+        top: 170px;
+    }
+
+}
+@media(max-width:960px){
+    .main__top__slider__image {
+        width: 100%;
+        height: 297px;
+    }
+    .main__top{
+        margin:30px 0 -80px;
+    }
+     
+        #prev,#next{
+            top: 115px;
+        }
+}
+
+@media(max-width:768px){
+  .main{
+      width: 100%;
+  }
+  .main__middle__wrapper{
+    width: 100%;
+}
+.main__middle__wrapper__container{
+    width: 100%;
+    margin: 20px 0 ;
+}
+.main__middle__wrapper__container--image{
+    width: 100%;
+    border-radius: 0;
+}
+.main__top__slider__image {
+    border-radius:0;
+}
+.main__slider__image:nth-child(){
+    width: 30%;
+}
+}
+@media(max-width:600px){
+    .main{
+        background-color: #0d151f85;
+    }
+    .main__top{
+        margin:30px 0 -190px;
+    }
+    .main__top__slider__image {
+        width: 100%;
+        height: 200px;
+    }
+    #prev,#next{
+        top: 70px;
+    }
+}

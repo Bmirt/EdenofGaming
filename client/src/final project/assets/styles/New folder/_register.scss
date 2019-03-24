@@ -1,0 +1,102 @@
+.form{
+   font-family: "Concolas";
+    @include size(400px,650px,#1e1e1e);
+    @include flex(flex-start, flex-start);
+    flex-direction: column;
+    margin:100px auto;
+    border-radius: 8px;
+    position: relative;
+    font-family: 'Baloo Chettan', cursive;
+    &::before{
+        content: ("register");
+        text-transform:uppercase;
+        position: absolute;
+        color:#fff;
+        font-size: 2.5rem;
+        font-weight: 600;
+        left:143px;
+        top:25px; 
+    }
+    &__register{
+        font-family: 'Baloo Chettan', cursive;
+        margin:40px 0 0 30px;
+        @include font(20px,#fff); 
+        border: none ;
+        @include size(60%,50px,transparent);
+        z-index: 1; 
+        background: #141414ce;
+        padding-left:10px;
+        border: 1px solid transparent;
+        border-radius: 0 4px 4px 0;
+        &::placeholder{
+            text-transform: capitalize;  
+            opacity:1; 
+            color: #fff;
+        }
+        &:focus{
+        outline: none;
+        border:1px solid #178d44;
+        width: 85%;
+        transition: 1s;
+        } 
+    }
+    &__register.top{
+        margin-top:80px;
+     }
+     &__submit{
+     @include size(120px,50px,#178d44);
+     @include font(1.8rem,#fff);
+       border-radius: 4px;
+       border: none;
+       outline: none;
+       font-weight: 600;
+       cursor: pointer;
+       align-self: center;
+       font-family: 'Baloo Chettan', cursive;
+       margin-top:2.3em;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+      
+     } 
+     &__reg{
+        font-size: 1.5rem;
+        position: absolute;
+        bottom:1.7em;
+        left:2em;
+        color:#fff;
+        transition: 0.5s;
+        outline:none;
+        &:hover{
+            color:#6d0b0b;
+        }
+       }
+     } 
+
+
+
+
+
+
+form.login{
+    height: 400px;
+    font-family: 'Baloo Chettan', cursive;
+    justify-content: flex-start;
+    &::before{
+        content: ("log in");
+        left:161.5px;
+    }
+}
+
+
+
+
+@media(max-width:600px){
+ .form {
+     width: 360px;
+     &__register{
+        &:focus{
+            width: 83.3%;
+        }
+     }
+ }  
+}
