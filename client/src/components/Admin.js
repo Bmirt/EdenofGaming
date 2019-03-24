@@ -1,15 +1,25 @@
 import React from "react";
+import Auth from './utils/AuthMethods';
 // import axios from "axios";
 
 class Admin extends React.Component {
+  state ={
+    isAdmin: null
+  }
+  componentDidMount(){
+    this.setState({isAdmin:Auth.isAdmin()})
+  }
   render() {
+    if(!this.state.isAdmin){
+      return<h1 style={{textAlign:"center", fontSize:"20px", color:"#FFF",margin:"200px 0"}}>You Don't have Access To This Page</h1>
+    }
     return (
       <div>
         <div className="container bootstrap snippet">
           <div className="row">
             <div className="col-sm-10">
-              <h1 className= "admin__name">Admin <span className= "admin__name--title">Manage Your Site</span></h1>
-              <h2 className= "admin__name">Welcome /name/ </h2>
+              <h1 className= "admin__name">Admin Panel<span className= "admin__name--title">Manage Your Site</span></h1>
+              <h2 className= "admin__name">Welcome {this.props.user.name} </h2>
 
             </div>
           </div>

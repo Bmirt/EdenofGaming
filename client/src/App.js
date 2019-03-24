@@ -24,6 +24,9 @@ class App extends Component {
   updateUserState = username => {
     this.setState({ user: username });
   };
+  updateAdminState = adminStatus =>{
+    this.setState({isAdmin:adminStatus})
+  }
 
   logout = () => {
     AuthMethods.logout();
@@ -43,7 +46,7 @@ class App extends Component {
             exact
             path="/login"
             component={props => (
-              <Login {...props} updateUserState={this.updateUserState} />
+              <Login {...props} updateUserState={this.updateUserState} updateAdminState={this.updateAdminState}/>
             )}
           />
           <Route exact path="/register" component={Register} />
@@ -52,16 +55,9 @@ class App extends Component {
 
           <Route exact path="/products/:id" component={ProductDetails} />
 
-          {/* <ProtectedRoute
-            exact
-            path="/userProfile"
-            render={props => (
-              <UserProfile {...props} user={this.state.user} />
-            )}
-          /> */}
           <Route exact path="/userprofile" component={()=><ProtectedRoute><UserProfile user={this.state.user}/></ProtectedRoute>}/>
             
-          <Route path="/admin" component={Admin} />
+          <Route path="/admin" component={()=><ProtectedRoute><Admin user={this.state.user}/></ProtectedRoute>} />
 
           <Route path="/" component={Footer} />
         </div>

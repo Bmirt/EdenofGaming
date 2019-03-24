@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Auth from "./utils/AuthMethods";
 import {Link} from "react-router-dom"
+import AuthMethods from "./utils/AuthMethods";
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Login extends React.Component {
         Auth.storeToken(res.data.token);
         let user = Auth.getCurrentUser();
         this.state.updateUserState(user);
+        this.state.updateAdminState(Auth.isAdmin());
         this.props.history.replace("/");
  
       })
@@ -82,7 +84,7 @@ class Login extends React.Component {
             Log In
           </button>
 
-          <Link to="/register" class="form__reg">Click here to register</Link>
+          <Link to="/register" className="form__reg">Click here to register</Link>
 
         </form>
       </React.Fragment>

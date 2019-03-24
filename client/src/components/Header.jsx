@@ -1,48 +1,38 @@
 import React from "react";
 import logo from "../final project/assets/images/eagle.png";
-import user from "../final project/assets/images/user.png";
+import {Logo} from "./Logo";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 import LoginAndRegister from "./LoginAndRegister";
+import {Search} from "./Search";
+import AuthMethods from "./utils/AuthMethods";
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: props.user,
       logout: props.logout,
-      isAdmn: props.isAdmin
+      isAdmin: props.isAdmin
 
     };
   }
 
   render() {
+    console.log(AuthMethods.isAdmin())
     return (
       <>
         <header className="header">
           <section className="header__top">
             <div id="j" className="header__top__wrapper">
-              <Link to={"/"} className="header__top__wrapper--logo">
-                <img
-                  src={logo}
-                  alt=""
-                  className="header__top__wrapper--logo--image"
-                />
-              </Link>
-              <div id="z" className="header__top__wrapper__search">
-                <input
-                  type="search"
-                  placeholder="Search"
-                  className="header__top__wrapper__search--content"
-                />
-                <button className="header__top__wrapper__search--button">
-                  <i className="fab fa-searchengin awesome" />
-                </button>
-              </div>
+              <Logo logo={logo}/>
+              <Search/>
               <div className="header__top__wrapper--user">
-                {this.state.user ? (
+                {this.state.user ? this.state.isAdmin ? 
+                
+                  (
                   <div>
-                    <Link to={"/userprofile"} style={{ color: "white" }}>
+                    <Link to={"/admin"} style={{ color: "white", fontSize:"16px" }}>
                       {this.props.user.name}
                     </Link>
                     <Link
@@ -51,7 +41,27 @@ class Header extends React.Component {
                       style={{
                         textDecoration: "none",
                         color: "white",
-                        fontSize: "15px",
+                        fontSize: "16px",
+                        marginLeft: "20px"
+                      }}
+                    >
+                      Log Out
+                    </Link>
+                  </div>
+                )
+                :
+                 (
+                  <div>
+                    <Link to={"/userprofile"} style={{ color: "white", fontSize:"16px" }}>
+                      {this.props.user.name}
+                    </Link>
+                    <Link
+                      onClick={this.state.logout}
+                      to={"/"}
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                        fontSize: "16px",
                         marginLeft: "20px"
                       }}
                     >
