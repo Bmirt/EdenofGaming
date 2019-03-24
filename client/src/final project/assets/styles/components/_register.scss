@@ -20,21 +20,22 @@
     &__wrapper{
          margin:40px 0 0 30px;
          position: relative;
+         width: 280px;
        &__popup{
            position: absolute;
            width: auto;
            border-radius: 8px;
            padding: 0.2em;
-           background-color: #878d87;
+           background-color: #45504e;
            color:#fff;
            font-size: 1.5rem;
-           bottom:-33px;
+           bottom:-39px;
            left:20px;
            &::before{
                content: ("");
                width: 10px;
                height: 10px;
-               background-color: #878d87;
+               background-color: #45504e;
                display: block;
                position: absolute;
                transform: rotate(45deg);
@@ -43,12 +44,14 @@
                
            }
        }
+       &__popup.password{
+        width:289px;
+       }
         &__register{
             font-family: 'Baloo Chettan', cursive;
-            // margin:40px 0 0 30px;
             @include font(20px,#fff); 
             border: none ;
-            @include size(60%,50px,transparent);
+            @include size(70%,50px,transparent);
             z-index: 1; 
             background: #141414ce;
             padding-left:10px;
@@ -62,7 +65,7 @@
             &:focus{
             outline: none;
             border:1px solid #178d44;
-            width: 85%;
+            width: 120%;
             transition: 1s;
             } 
         }
