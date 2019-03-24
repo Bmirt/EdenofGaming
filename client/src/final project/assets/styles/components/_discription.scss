@@ -145,7 +145,7 @@
           align-items: center;
           background-color: #0a0911c2;   
           &__aboutgame{
-              padding: 28px;
+              padding:32px 28px;
                 text-align: justify;
                 text-indent: 20px;
                 width: auto;
@@ -155,7 +155,16 @@
                 line-height: 1.6rem;
                 font-size: 1.4rem;
                 letter-spacing: 1px; 
-                position: relative;       
+                position: relative; 
+                &::before{
+                    content: ("GAME DISCRIPTION");
+                    top:8px;
+                    position: absolute;
+                    font-weight: bold;
+                    left: 8px;
+                    font-size: 2rem;
+                    color:#376e92;
+                }      
                }
                 &__system{
                   display: flex;
@@ -166,12 +175,36 @@
                           line-height: 20px;
                           font-size: 1.2rem;
                           color:#fff;
-                          height: 200px;
+                          height: 220px;
                           width: 380px;
                           display: flex;
                           flex-direction: column;
                           justify-content: space-evenly;
+                          position: relative;
                       }
+                      &__lawspecs{
+                          &:before{
+                              content: ("minimum specs");
+                              position: absolute;
+                              font-size: 2rem;
+                              top:-18px;
+                              left: -25px;
+                              color:#376e92;
+                              text-transform: capitalize;
+                          }
+                      }
+                      &__recomendedspecs{
+                        &::before{
+                            content: ("recomended specs");
+                            position: absolute;
+                              font-size: 2rem;
+                              top:-18px;
+                              left: -25px;
+                              color:#376e92;
+                              text-transform: capitalize;
+                            
+                        }
+                    }
                }
             //    &__comment{
             //        width: 100%;
@@ -215,8 +248,7 @@
 }
 @media(max-width:800px){
     .discription{
-        background-color: #222;
-        background-image: none;
+         background-image: none!important;
     }
     .discription__wrappertop{
         margin:0;
@@ -258,5 +290,19 @@
             margin-left:1em;
             font-size: 1.1rem;
         }
+        &__lawspecs{
+            &:before{
+                content: ("minimum specs");
+                font-size: 1.6rem;
+                left: 0;
+            }
+        }
+        &__recomendedspecs{
+          &::before{
+              content: ("recomended specs");
+                font-size: 1.6rem;
+                left: 0px;  
+          }
+      }
     }
 }

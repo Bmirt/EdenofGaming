@@ -154,4 +154,8 @@
     }
 }
 
-  
+@media(max-width:800px){
+    .aside,.chat{
+        display: none;
+    }
+}
