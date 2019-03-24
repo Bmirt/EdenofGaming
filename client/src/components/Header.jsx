@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../final project/assets/images/eagle.png";
-import {Logo} from "./Logo";
+import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 import LoginAndRegister from "./LoginAndRegister";
-import {Search} from "./Search";
+import { Search } from "./Search";
 import AuthMethods from "./utils/AuthMethods";
+import CartIcon from "./CartIcon";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -14,62 +15,68 @@ class Header extends React.Component {
       user: props.user,
       logout: props.logout,
       isAdmin: props.isAdmin
-
     };
   }
 
   render() {
-    console.log(AuthMethods.isAdmin())
+    console.log(AuthMethods.isAdmin());
     return (
       <>
         <header className="header">
           <section className="header__top">
             <div id="j" className="header__top__wrapper">
-              <Logo logo={logo}/>
-              <Search/>
+              <Logo logo={logo} />
+              <Search />
               <div className="header__top__wrapper--user">
-                {this.state.user ? this.state.isAdmin ? 
-                
-                  (
-                  <div>
-                    <Link to={"/admin"} style={{ color: "white", fontSize:"16px" }}>
-                      {this.props.user.name}
-                    </Link>
-                    <Link
-                      onClick={this.state.logout}
-                      to={"/"}
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                        fontSize: "16px",
-                        marginLeft: "20px"
-                      }}
-                    >
-                      Log Out
-                    </Link>
-                  </div>
-                )
-                :
-                 (
-                  <div>
-                    <Link to={"/userprofile"} style={{ color: "white", fontSize:"16px" }}>
-                      {this.props.user.name}
-                    </Link>
-                    <Link
-                      onClick={this.state.logout}
-                      to={"/"}
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                        fontSize: "16px",
-                        marginLeft: "20px"
-                      }}
-                    >
-                      Log Out
-                    </Link>
-                  </div>
+                {this.state.user ? (
+                  this.state.isAdmin ? (
+                    <div>
+                      <Link
+                        to={"/admin"}
+                        style={{ color: "white", fontSize: "16px" }}
+                      >
+                        {this.props.user.name}
+                      </Link>
+                      <Link
+                        onClick={this.state.logout}
+                        to={"/"}
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          fontSize: "16px",
+                          marginLeft: "20px"
+                        }}
+                      >
+                        Log Out
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to="/cart">
+                        <CartIcon />
+                      </Link>
+                      <Link
+                        to={"/userprofile"}
+                        style={{ color: "white", fontSize: "16px" }}
+                      >
+                        {this.props.user.name}
+                      </Link>
+                      <Link
+                        onClick={this.state.logout}
+                        to={"/"}
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          fontSize: "16px",
+                          marginLeft: "20px"
+                        }}
+                      >
+                        Log Out
+                      </Link>
+                    </div>
+                  )
                 ) : (
-                  <LoginAndRegister/>
+                  <LoginAndRegister />
                 )}
               </div>
             </div>
