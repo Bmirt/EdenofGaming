@@ -41,8 +41,8 @@ class Register extends React.Component {
             type="text"
             name="name"
             required
-            autocomplete="off"
-            class="form__register top"
+            autoComplete="off"
+            className="form__register top"
             placeholder="username"
           />
 
