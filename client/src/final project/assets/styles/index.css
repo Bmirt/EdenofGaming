@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +18,21 @@ body {
   background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
   background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
   font-family: 'Orbitron', sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+a:active {
+  text-decoration: none;
+  color: #FFF;
+}
+
+a:focus {
+  text-decoration: none;
+  color: #FFF;
 }
 
 .header {
@@ -159,6 +174,7 @@ body {
   cursor: pointer;
   white-space: nowrap;
   position: relative;
+  text-decoration: none;
 }
 
 .header__top__wrapper--user--login--text {
@@ -340,6 +356,7 @@ body {
   }
   .header__top__wrapper--user {
     height: 40px;
+    margin-top: 4em;
   }
   .header__top__wrapper__search {
     height: 55px;
@@ -766,6 +783,7 @@ body {
   height: 100%;
   background-color: #222;
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .aside__nav__list__social .awesome {
@@ -1016,6 +1034,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  text-decoration: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1280,6 +1299,10 @@ body {
 
 .form__reg:hover {
   color: #6d0b0b;
+}
+
+.form .error {
+  margin: 1.6em 0 0 3.5em;
 }
 
 form.login {
