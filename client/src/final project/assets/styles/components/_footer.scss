@@ -10,6 +10,7 @@
             width: 274px;
             height: 100px;
             @include flexj(space-between);
+            text-decoration: none;
              flex-direction: column;
             margin:2em 0; 
             &__text{
@@ -44,6 +45,8 @@
              display: block;
              @include font(1.2rem,#fff);
                  font-size: 1.8rem;
+
+               
              &:hover {
                 color:#c70f0f;
                 transition: 0.6s;
@@ -51,6 +54,8 @@
          }   
          .name{
             @include font(1.8rem,#fff);
+
+           
             &:hover{
                color:#227d96;
                transition: 0.6s;
@@ -60,6 +65,7 @@
         &__item.middle{
             @include font(3rem,#767676);
             text-align: center;
+           
         }
             .techub{
                 color:#21769d;
