@@ -14,6 +14,7 @@ class Register extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state)
   };
 
   onHandleSubmit = e => {
@@ -43,7 +44,7 @@ class Register extends React.Component {
               type="text"
               name="name"
               required
-              autocomplete="off"
+              autoComplete="off"
               className="form__wrapper__register"
               placeholder="username"
             />
@@ -58,7 +59,7 @@ class Register extends React.Component {
               type="text"
               name="email"
               required
-              autocomplete="off"
+              autoComplete="off"
               className="form__wrapper__register "
               placeholder="email"
             />
@@ -73,7 +74,7 @@ class Register extends React.Component {
               type="password"
               name="password"
               required
-              autocomplete="off"
+              autoComplete="off"
               className="form__wrapper__register "
               placeholder="password"
             />
@@ -85,9 +86,9 @@ class Register extends React.Component {
             <input
               onChange={this.onHandleChange}
               type="password"
-              name="password"
+              name="password2"
               required
-              autocomplete="off"
+              autoComplete="off"
               className="form__wrapper__register "
               placeholder="repeat password"
             />
