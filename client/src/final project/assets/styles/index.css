@@ -1766,4 +1766,17 @@ form.login::before {
 .admin__name--title {
   margin-left: 40px;
 }
+
+
+a:hover{
+  text-decoration: none;
+  color: #fff;
+}
+a:focus{
+  text-decoration: none;
+  color: #fff;
+}a:active{
+  text-decoration: none;
+  color: #fff;
+}
 /*# sourceMappingURL=index.css.map */

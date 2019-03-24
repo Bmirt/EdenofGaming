@@ -51,7 +51,7 @@ class Footer extends React.Component {
 
             <div className="footer__wrapper__bottom">
               {" "}
-              &#169 2019 All Rights Reserved
+              © 2019 All Rights Reserved
             </div>
           </section>
         </footer>

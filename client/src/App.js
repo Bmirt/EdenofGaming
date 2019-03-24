@@ -36,7 +36,7 @@ class App extends Component {
           <Route
             path="/"
             component={props => (
-              <Header {...props} state={this.state.state} logout={this.logout} />
+              <Header {...props} user={this.state.user} isAdmin={this.state.isAdmin} logout={this.logout} />
             )}
           />
           <Route

@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import spinner from "../final project/spinner.gif";
+import { Trailler } from "./Trailler";
+import { Iframe } from "./Iframe";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class ProductDetails extends React.Component {
     };
   }
   componentDidMount() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     axios
       .get(`http://localhost:5000/api/products/${this.props.match.params.id}`)
       .then(res => {
@@ -89,19 +91,9 @@ class ProductDetails extends React.Component {
               </div>
             </div>
           </div>
-
-          <div className="discription__wrappertop__middle">
-            <div className="discription__wrappertop__middle__wrapper">
-              <iframe
-                src={product.trailer}
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="discription__wrappertop__middle__wrapper__iframe"
-              />
-            </div>
-          </div>
-
+          <Trailler>
+            <Iframe url={product.trailer.replace("watch?v=","embed/")} />
+          </Trailler>
           <div className="discription__wrappertop__down">
             <p className="discription__wrappertop__down__aboutgame">
               {product.description}

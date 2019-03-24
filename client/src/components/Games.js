@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Product from "./Product";
 import ShopContext from "../context/shop-context";
+import spinner from "../final project/spinner.gif";
 
 class Games extends React.Component {
   static contextType = ShopContext;
@@ -23,7 +24,12 @@ class Games extends React.Component {
   render() {
     const games = this.context.games;
     if (!this.state.isLoaded) {
-      return <div>Loading...</div>;
+      return (
+        <img
+          style={{ width: "80px", height: "80px", margin: "100px 500px" }}
+          src={spinner}
+        />
+      );
     } else {
       return (
         <section className="main__middle">

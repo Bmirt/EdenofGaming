@@ -70,7 +70,7 @@ class Register extends React.Component {
           />
 
           {errors.password && (
-            <div style={{ color: "red" }}>{errors.password}</div>
+            <div className="error" style={{ color: "red" }}>{errors.password}</div>
           )}
 
           <input
@@ -84,7 +84,7 @@ class Register extends React.Component {
           />
 
           {errors.password2 && (
-            <div style={{ color: "red" }}>{errors.password2}</div>
+            <div className="error" style={{ color: "red" }}>{errors.password2}</div>
           )}
 
           {/* <input

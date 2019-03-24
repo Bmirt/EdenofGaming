@@ -4,13 +4,14 @@ import user from "../final project/assets/images/user.png";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
+import LoginAndRegister from "./LoginAndRegister";
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.state.user,
-      logout: props.state.logout,
-      isAdmn: props.state.isAdmin
+      user: props.user,
+      logout: props.logout,
+      isAdmn: props.isAdmin
 
     };
   }
@@ -58,26 +59,7 @@ class Header extends React.Component {
                     </Link>
                   </div>
                 ) : (
-                  <>
-                    <Link
-                      to={"/login"}
-                      className="header__top__wrapper--user--login"
-                    >
-                      <img src={user} width="30px;" alt="" />
-                      <span className="header__top__wrapper--user--login--text">
-                        Log In
-                      </span>
-                    </Link>
-                    <Link
-                      to={"/register"}
-                      className="header__top__wrapper--user--login register"
-                    >
-                      <img src={user} width="30px;" alt="" />
-                      <span className="header__top__wrapper--user--login--text ">
-                        Register
-                      </span>
-                    </Link>
-                  </>
+                  <LoginAndRegister/>
                 )}
               </div>
             </div>

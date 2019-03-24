@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Auth from "./utils/AuthMethods";
+import {Link} from "react-router-dom"
 
 class Login extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Login extends React.Component {
           />
           
           {errors.email && (
-            <div style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
+            <div className="error" style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
           )}
           <input
             onChange={this.onHandleChange}
@@ -68,7 +69,7 @@ class Login extends React.Component {
             placeholder="Password"
           />
           {errors.password && (
-            <div style={{ color: "red", fontSize: "15px" }}>
+            <div className="error" style={{ color: "red", fontSize: "15px" }}>
               {errors.password}
             </div>
           )}
@@ -80,6 +81,9 @@ class Login extends React.Component {
           >
             Log In
           </button>
+
+          <Link to="/register" class="form__reg">Click here to register</Link>
+
         </form>
       </React.Fragment>
     );

@@ -40,5 +40,6 @@ export default {
   storeToken,
   getCurrentUser,
   getJWT,
-  logout
+  logout,
+  isAdmin
 };
