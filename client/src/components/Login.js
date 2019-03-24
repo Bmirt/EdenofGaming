@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Auth from "./utils/AuthMethods";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Login extends React.Component {
         this.state.updateUserState(user);
         this.state.updateAdminState(Auth.isAdmin());
         this.props.history.replace("/");
- 
+        window.scroll(0, 0);
       })
       .catch(err => {
         // console.log(err.response.data);
@@ -45,35 +45,34 @@ class Login extends React.Component {
     return (
       <React.Fragment>
         <form action="" className="form login">
-          <input
-            onChange={this.onHandleChange}
-            id="email"
-            type="email"
-            name="email"
-            required
-            autoComplete="off"
-            className="form__register top"
-            placeholder="Email"
-          />
-          
-          {errors.email && (
-            <div className="error" style={{ color: "red", fontSize: "15px" }}>{errors.email}</div>
-          )}
-          <input
-            onChange={this.onHandleChange}
-            id="password"
-            type="password"
-            name="password"
-            required
-            autoComplete="off"
-            className="form__register"
-            placeholder="Password"
-          />
-          {errors.password && (
-            <div className="error" style={{ color: "red", fontSize: "15px" }}>
-              {errors.password}
-            </div>
-          )}
+          <div className="form__wrapper top">
+            <input
+              onChange={this.onHandleChange}
+              type="email"
+              name="email"
+              required
+              autocomplete="off"
+              className="form__wrapper__register top "
+              placeholder="Email"
+            />
+            {errors.email && (
+              <p className="form__wrapper__popup email">{errors.email}</p>
+            )}
+          </div>
+          <div className="form__wrapper">
+            <input
+              onChange={this.onHandleChange}
+              type="password"
+              name="password"
+              required
+              autocomplete="off"
+              className="form__wrapper__register "
+              placeholder="password"
+            />
+            {errors.password && (
+              <p className="form__wrapper__popup password">{errors.password}</p>
+            )}
+          </div>
 
           <button
             onClick={this.onHandleSubmit}
@@ -83,8 +82,9 @@ class Login extends React.Component {
             Log In
           </button>
 
-          <Link to="/register" className="form__reg">Click here to register</Link>
-
+          <Link to="/register" className="form__reg">
+            Click here to register
+          </Link>
         </form>
       </React.Fragment>
     );

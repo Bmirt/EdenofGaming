@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Register extends React.Component {
   state = {
@@ -35,90 +36,71 @@ class Register extends React.Component {
     const { errors } = this.state;
     return (
       <React.Fragment>
-        <form className="form">
-          <input
-            onChange={this.onHandleChange}
-            type="text"
-            name="name"
-            required
-            autoComplete="off"
-            className="form__register top"
-            placeholder="username"
-          />
+        <form action="" className="form">
+          <div className="form__wrapper  top">
+            <input
+              onChange={this.onHandleChange}
+              type="text"
+              name="name"
+              required
+              autocomplete="off"
+              className="form__wrapper__register"
+              placeholder="username"
+            />
+            {errors.name && (
+              <p className="form__wrapper__popup username">{errors.name}</p>
+            )}
+          </div>
 
-          {errors.name && <div className="error" style={{ color: "red" }}>{errors.name}</div>}
+          <div className="form__wrapper">
+            <input
+              onChange={this.onHandleChange}
+              type="text"
+              name="email"
+              required
+              autocomplete="off"
+              className="form__wrapper__register "
+              placeholder="email"
+            />
+            {errors.email && (
+              <p className="form__wrapper__popup email">{errors.email}</p>
+            )}
+          </div>
 
-          <input
-            onChange={this.onHandleChange}
-            type="text"
-            name="email"
-            required
-            autoComplete="off"
-            className="form__register"
-            placeholder="Email"
-          />
-          {errors.email && <div className="error" style={{ color: "red" }}>{errors.email}</div>}
+          <div className="form__wrapper">
+            <input
+              onChange={this.onHandleChange}
+              type="password"
+              name="password"
+              required
+              autocomplete="off"
+              className="form__wrapper__register "
+              placeholder="password"
+            />
+            {errors.password && (
+              <p className="form__wrapper__popup password">{errors.password}</p>
+            )}
+          </div>
+          <div className="form__wrapper">
+            <input
+              onChange={this.onHandleChange}
+              type="password"
+              name="password"
+              required
+              autocomplete="off"
+              className="form__wrapper__register "
+              placeholder="repeat password"
+            />
+            {errors.password2 && (
+              <p className="form__wrapper__popup repeatpassword">
+                {errors.password2}
+              </p>
+            )}
+          </div>
 
-          <input
-            onChange={this.onHandleChange}
-            type="password"
-            name="password"
-            required
-            autoComplete="off"
-            className="form__register"
-            placeholder="Password"
-          />
-
-          {errors.password && (
-            <div className="error" style={{ color: "red" }}>{errors.password}</div>
-          )}
-
-          <input
-            onChange={this.onHandleChange}
-            type="password"
-            name="password2"
-            required
-            autoComplete="off"
-            className="form__register"
-            placeholder="Repeat Password"
-          />
-
-          {errors.password2 && (
-            <div className="error" style={{ color: "red" }}>{errors.password2}</div>
-          )}
-
-          {/* <input
-            type="text"
-            name="age"
-            required
-            autoComplete="off"
-            className="form__register"
-          />
-          <label htmlFor="age" className="form__label age">
-            Age
-          </label>
-
-          <input
-            type="text"
-            name="bday"
-            required
-            autoComplete="off"
-            className="form__register"
-          />
-          <label for="bday" className="form__label bday">
-            Birthday
-          </label>
-
-          <input
-            type="text"
-            name="balance"
-            required
-            autoComplete="off"
-            className="form__register"
-          />
-          <label htmlFor="balance" className="form__label balance">
-            Balance
-          </label> */}
+          <Link to="/login" className="form__reg">
+            Click here to log in
+          </Link>
 
           <input
             onClick={this.onHandleSubmit}
