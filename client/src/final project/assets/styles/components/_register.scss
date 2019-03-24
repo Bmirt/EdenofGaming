@@ -1,6 +1,6 @@
 .form{
    font-family: "Concolas";
-    @include size(400px,650px,#1e1e1e);
+    @include size(400px,570px,#1e1e1e);
     @include flex(flex-start, flex-start);
     flex-direction: column;
     margin:100px auto;
@@ -17,30 +17,58 @@
         left:143px;
         top:25px; 
     }
-    &__register{
-        font-family: 'Baloo Chettan', cursive;
-        margin:40px 0 0 30px;
-        @include font(20px,#fff); 
-        border: none ;
-        @include size(60%,50px,transparent);
-        z-index: 1; 
-        background: #141414ce;
-        padding-left:10px;
-        border: 1px solid transparent;
-        border-radius: 0 4px 4px 0;
-        &::placeholder{
-            text-transform: capitalize;  
-            opacity:1; 
-            color: #fff;
+    &__wrapper{
+         margin:40px 0 0 30px;
+         position: relative;
+       &__popup{
+           position: absolute;
+           width: auto;
+           border-radius: 8px;
+           padding: 0.2em;
+           background-color: #878d87;
+           color:#fff;
+           font-size: 1.5rem;
+           bottom:-33px;
+           left:20px;
+           &::before{
+               content: ("");
+               width: 10px;
+               height: 10px;
+               background-color: #878d87;
+               display: block;
+               position: absolute;
+               transform: rotate(45deg);
+               top:-4px;
+               left:10px;
+               
+           }
+       }
+        &__register{
+            font-family: 'Baloo Chettan', cursive;
+            // margin:40px 0 0 30px;
+            @include font(20px,#fff); 
+            border: none ;
+            @include size(60%,50px,transparent);
+            z-index: 1; 
+            background: #141414ce;
+            padding-left:10px;
+            border: 1px solid transparent;
+            border-radius: 0 4px 4px 0;
+            &::placeholder{
+                text-transform: capitalize;  
+                opacity:1; 
+                color: #fff;
+            }
+            &:focus{
+            outline: none;
+            border:1px solid #178d44;
+            width: 85%;
+            transition: 1s;
+            } 
         }
-        &:focus{
-        outline: none;
-        border:1px solid #178d44;
-        width: 85%;
-        transition: 1s;
-        } 
+        
     }
-    &__register.top{
+    &__wrapper.top{
         margin-top:80px;
      }
      &__submit{
@@ -70,9 +98,6 @@
         &:hover{
             color:#6d0b0b;
         }
-       }
-       .error{
-           margin:1.6em 0 0 3.5em;
        }
      } 
 

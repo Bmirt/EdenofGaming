@@ -20,21 +20,6 @@ body {
   font-family: 'Orbitron', sans-serif;
 }
 
-a:hover {
-  text-decoration: none;
-  color: #FFF;
-}
-
-a:active {
-  text-decoration: none;
-  color: #FFF;
-}
-
-a:focus {
-  text-decoration: none;
-  color: #FFF;
-}
-
 .header {
   width: 100%;
   height: 254px;
@@ -740,7 +725,8 @@ a:focus {
 .aside__nav {
   position: fixed;
   left: 0;
-  top: 230px;
+  top: 354px;
+  bottom: 500px;
   z-index: 999;
 }
 
@@ -843,7 +829,7 @@ a:focus {
 
 .chat {
   position: fixed;
-  top: 230px;
+  top: 354px;
   z-index: 999;
   -webkit-transition: 1s;
   transition: 1s;
@@ -1181,7 +1167,7 @@ a:focus {
 .form {
   font-family: "Concolas";
   width: 400px;
-  height: 650px;
+  height: 570px;
   background-color: #1e1e1e;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1213,9 +1199,38 @@ a:focus {
   top: 25px;
 }
 
-.form__register {
-  font-family: 'Baloo Chettan', cursive;
+.form__wrapper {
   margin: 40px 0 0 30px;
+  position: relative;
+}
+
+.form__wrapper__popup {
+  position: absolute;
+  width: auto;
+  border-radius: 8px;
+  padding: 0.2em;
+  background-color: #878d87;
+  color: #fff;
+  font-size: 1.5rem;
+  bottom: -33px;
+  left: 20px;
+}
+
+.form__wrapper__popup::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #878d87;
+  display: block;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: -4px;
+  left: 10px;
+}
+
+.form__wrapper__register {
+  font-family: 'Baloo Chettan', cursive;
   font-size: 20px;
   color: #fff;
   border: none;
@@ -1229,31 +1244,31 @@ a:focus {
   border-radius: 0 4px 4px 0;
 }
 
-.form__register::-webkit-input-placeholder {
+.form__wrapper__register::-webkit-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register:-ms-input-placeholder {
+.form__wrapper__register:-ms-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register::-ms-input-placeholder {
+.form__wrapper__register::-ms-input-placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register::placeholder {
+.form__wrapper__register::placeholder {
   text-transform: capitalize;
   opacity: 1;
   color: #fff;
 }
 
-.form__register:focus {
+.form__wrapper__register:focus {
   outline: none;
   border: 1px solid #178d44;
   width: 85%;
@@ -1261,7 +1276,7 @@ a:focus {
   transition: 1s;
 }
 
-.form__register.top {
+.form__wrapper.top {
   margin-top: 80px;
 }
 
@@ -1299,10 +1314,6 @@ a:focus {
 
 .form__reg:hover {
   color: #6d0b0b;
-}
-
-.form .error {
-  margin: 1.6em 0 0 3.5em;
 }
 
 form.login {

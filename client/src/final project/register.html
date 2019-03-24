@@ -12,21 +12,33 @@
 </head>
 <body>
     <form action="" class="form">
-        <input type="text" name="name" required autocomplete="off" class="form__register top"
+        <div class="form__wrapper  top">
+        <input type="text" name="name" required autocomplete="off" class="form__wrapper__register"
         placeholder="username">
-        
+        <p class="form__wrapper__popup username">koko is great.yes</p>
+    </div>
          
-        <input type="password" name="password" required autocomplete="off" class="form__register " placeholder="password">
-        
-       
-        <input type="password" name="password" required autocomplete="off" class="form__register "  placeholder="repeat password">
-   
+    <div class="form__wrapper">
+        <input type="text" name="email" required autocomplete="off" class="form__wrapper__register " placeholder="email">     
+        <p class="form__wrapper__popup email">koko</p>
+    </div>
+
+    <div class="form__wrapper">
+        <input type="password" name="password" required autocomplete="off" class="form__wrapper__register " placeholder="password">
+        <p class="form__wrapper__popup password">koko</p>
+
+    </div>
+    <div class="form__wrapper">
+        <input type="password" name="password" required autocomplete="off" class="form__wrapper__register "  placeholder="repeat password">
+        <p class="form__wrapper__popup repeatpassword">koko</p>
+
+    </div>
         
 
-        <input type="text" name="email" required autocomplete="off" class="form__register " placeholder="email">
+       
      
          
-        <input type="text" name="age"  required autocomplete="off" class="form__register" placeholder="age">
+       
       
         <a href="login.html" class="form__reg">Click here to log in</a>
             
