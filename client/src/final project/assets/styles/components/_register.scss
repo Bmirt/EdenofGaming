@@ -14,7 +14,7 @@
         color:#fff;
         font-size: 2.5rem;
         font-weight: 600;
-        left:143px;
+        // left:143px;
         top:25px; 
     }
     &__wrapper{
@@ -124,11 +124,21 @@ form.login{
 
 @media(max-width:600px){
  .form {
-     width: 360px;
+     width: 320px;
+     &::before{
+      left:97px; 
+     }
+     &__wrapper{
      &__register{
         &:focus{
-            width: 83.3%;
+            width: 90%;
         }
      }
+    }
  }  
+}
+form.login{
+    &::before{
+        left:112px;
+    }
 }

@@ -1,25 +1,25 @@
 .header{
-    @include size(100%,254px,#222);
+    @include size(100%,290px,#222);
     @include flex(space-between,center);
     flex-direction: column;
     &__top{
         width: calc(100% - 150px);
         height: 140px;
+        height: 187px;
         @include flexa(center);
         &__wrapper{
             width: 100%;
-            height: 40px;
+            height: 50px;
             @include flex(space-between,center);
             &--logo{
               &--image{
                   display: block;
                   width: 140px;
-                  margin-top:-1em;
               }
             }
             &__search{
                 width: 250px;
-                height: 100%;
+                height: 50px;
                 display: flex;
                 margin-left: auto;
                 &--content{
@@ -41,7 +41,7 @@
                 }
                 &--button{
                   width: 50px;
-                  height: 100%;
+                  height: 50px;
                   border: none;
                   outline: none;
                   background-color: #fff;
@@ -53,8 +53,8 @@
                 }
             }
             &--user{
-                width: 440px;
-                height: 100%;
+                width: 300px;
+                height: 50px;
                 @include flexj(space-evenly);
                 &--login{
                     @include size(120px,100%,#21769d);
@@ -185,34 +185,27 @@
     }  
 
 @media (max-width:1024px){
+   
     .header__top{
         width: 100%;
-        height: 170px;
-        margin-top: 1em;
     }
     .header__bottom{
         width: 100%;
     }
     .header__top__wrapper{
-        height: 109%;
+        height: 156%;
         width: 100%;
         flex-wrap: wrap;
-        
     }
     .header__top__wrapper--logo--image{
         margin:1em 0 0 0;
-        
-        
+        margin:3.2em 0 0 1.4em;  
     }
-     .header__top__wrapper--user{
-  
-    height: 40px;
+    .header__top__wrapper--user{
+      margin:3em 1.4em 0 0;
+    }
     
-
-     }
     .header__top__wrapper__search{
-        
-        height: 55px;
         width: 120%;
         order: 1;
        
@@ -243,7 +236,7 @@
       right:0;
         flex-direction: column;
         display: none;
-        transition:1s,  opacity 0.5s ease-out;
+        transition:1s opacity 0.5s ease-out;
        
      }
      .header__bottom__navigation__list{
@@ -272,30 +265,24 @@
         .header{
             height: 290px;
         }
-        .header__top__wrapper {
-            height: 167%;
-            
-        }
-        .header__top__wrapper__search{
-            margin-top: -3.1em;
-        }
+      
         .header__top__wrapper--user{
         height: auto;
         width: auto;
-        margin:3.5em 1.5em 0 0;
+        margin:4.5em 1.5em 0 0;
         justify-content: space-evenly;
          flex-direction: column;
          align-items: center;
          
         }
         .header__top__wrapper--user--login{
-        height: 40px;
+        height: 50px;
         width: 150px;
         margin: 0.5em 1em;
 
     }
     .header__top__wrapper--logo--image{
-        margin:3.2em 0 0 1.4em
+        margin:4.2em 0 0 1.4em
     }
     
 }
