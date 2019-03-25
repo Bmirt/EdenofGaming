@@ -29,12 +29,14 @@ class Header extends React.Component {
                   context.user.isAdmin ? (
                     <div>
                       <Link
+                        className="header__top__wrapper--user--name"
                         to={"/admin"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
                         {context.user.name}
                       </Link>
                       <Link
+                        className="header__top__wrapper--user--logout"
                         onClick={context.logout}
                         to={"/"}
                         style={{
@@ -59,6 +61,7 @@ class Header extends React.Component {
                         {context.user.name}
                       </Link>
                       <Link
+                        className=""
                         onClick={context.logout}
                         to={"/"}
                         style={{
