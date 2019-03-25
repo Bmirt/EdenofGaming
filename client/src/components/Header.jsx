@@ -8,37 +8,34 @@ import LoginAndRegister from "./LoginAndRegister";
 import { Search } from "./Search";
 import AuthMethods from "./utils/AuthMethods";
 import CartIcon from "./CartIcon";
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: props.user,
-      logout: props.logout,
-      isAdmin: props.isAdmin
-    };
-  }
 
+import UserContext from '../context/user-context';
+
+class Header extends React.Component {
+  
   render() {
-    console.log(AuthMethods.isAdmin());
+    
     return (
-      <>
+      <UserContext.Consumer>
+      {
+        (context)=>
         <header className="header">
           <section className="header__top">
             <div id="j" className="header__top__wrapper">
               <Logo logo={logo} />
               <Search />
               <div className="header__top__wrapper--user">
-                {this.state.user ? (
-                  this.state.isAdmin ? (
+                {context.user ? (
+                  context.user.isAdmin ? (
                     <div>
                       <Link
                         to={"/admin"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {this.props.user.name}
+                        {context.user.name}
                       </Link>
                       <Link
-                        onClick={this.state.logout}
+                        onClick={context.logout}
                         to={"/"}
                         style={{
                           textDecoration: "none",
@@ -59,10 +56,10 @@ class Header extends React.Component {
                         to={"/userprofile"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {this.props.user.name}
+                        {context.user.name}
                       </Link>
                       <Link
-                        onClick={this.state.logout}
+                        onClick={context.logout}
                         to={"/"}
                         style={{
                           textDecoration: "none",
@@ -126,7 +123,8 @@ class Header extends React.Component {
             </nav>
           </section>
         </header>
-      </>
+      }
+      </UserContext.Consumer>
     );
   }
 }
