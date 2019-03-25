@@ -341,7 +341,6 @@ body {
   }
   .header__top__wrapper--user {
     height: 40px;
-    margin-top: 4em;
   }
   .header__top__wrapper__search {
     height: 55px;
@@ -541,7 +540,7 @@ body {
 }
 
 .main__middle__wrapper {
-  max-width: 1600px;
+  max-width: 1500px;
   border-radius: 8px;
   height: auto;
   display: -webkit-box;
@@ -555,7 +554,7 @@ body {
 }
 
 .main__middle__wrapper__container {
-  width: 270px;
+  width: 260px;
   height: 380px;
   margin: 50px 0 80px;
   cursor: pointer;
@@ -580,8 +579,8 @@ body {
 }
 
 .main__middle__wrapper__container--image {
-  width: 270px;
-  height: 330px;
+  width: 260px;
+  height: 320px;
   background-image: url("https://m.media-amazon.com/images/M/MV5BYTRmZmI4MzgtZDNjZS00YzdmLTk5ZjktNjczODgzYmViM2JhXkEyXkFqcGdeQXVyNzU1OTYxNzU@._V1_.jpg");
   background-position: center;
   background-size: 100%;
@@ -604,7 +603,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -979,6 +978,12 @@ body {
 .chat__nav__footer__button .awesome {
   font-size: 3rem;
   color: #fff;
+}
+
+@media (max-width: 1366px) {
+  .aside__nav__list {
+    height: 50px;
+  }
 }
 
 @media (max-width: 800px) {

@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
         alert("Profile has been succesfully updated");
         window.location = "/";
       })
-      .catch(err => console.log(err.response.data));
+      .catch(err => this.setState({ errors: err.response.data }));
   }
 
   render() {
@@ -178,7 +178,7 @@ class UserProfile extends React.Component {
                           onChange={this.onChange}
                         />
                         {errors.handle && (
-                          <p className="form__wrapper__popup username">
+                          <p className="form__wrapper__popup username is-red">
                             {errors.handle}
                           </p>
                         )}

@@ -78,17 +78,14 @@
         @include flexj(center);
      width:100% ;
      height: auto;
-    //  background-color: gray;
      &__wrapper{
-        //  width:calc(100% - 100px);
-        //  background-color: #0d151f85;
-        max-width: 1600px;
+         max-width: 1500px;
          border-radius: 8px;
          height: auto;
          @include flexj(space-evenly);
          flex-wrap: wrap;
          &__container{
-            width:270px;
+            width:260px;
             height: 380px;
              margin:50px 0 80px;
              cursor: pointer;
@@ -101,8 +98,8 @@
                 transition: 0.6s;
              }
          &--image{
-             width:270px;
-             height: 330px;
+             width:260px;
+             height: 320px;
              background-image: url("https://m.media-amazon.com/images/M/MV5BYTRmZmI4MzgtZDNjZS00YzdmLTk5ZjktNjczODgzYmViM2JhXkEyXkFqcGdeQXVyNzU1OTYxNzU@._V1_.jpg");
              background-position: center;
              background-size: 100%;
@@ -114,12 +111,13 @@
                  position: absolute;
                  @include size(100%,100%,#0c0c0ce0);
                  @include flex(space-evenly,center);
-                 font-size: 2.5rem;
+                 font-size: 2.4rem;
                 //  text-shadow:2px 3px 6px rgb(235, 219, 219);
                  flex-direction: column;
                  font-weight: bold;
                  opacity: 0;
                  transition: 0.6s ease-in-out;
+                 
                  &--all{
                      width: 70%;
                      height: 30px;
