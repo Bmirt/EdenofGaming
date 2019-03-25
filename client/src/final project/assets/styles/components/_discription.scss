@@ -7,6 +7,7 @@
     background-position: center;
     background-size: 100%;
     position: relative;  
+    background-repeat:no-repeat;
     &::after{
         content: "";
         width: 100%;
@@ -145,7 +146,7 @@
           align-items: center;
           background-color: #0a0911c2;   
           &__aboutgame{
-              padding: 28px;
+              padding:32px 28px;
                 text-align: justify;
                 text-indent: 20px;
                 width: auto;
@@ -155,7 +156,16 @@
                 line-height: 1.6rem;
                 font-size: 1.4rem;
                 letter-spacing: 1px; 
-                position: relative;       
+                position: relative; 
+                &::before{
+                    content: ("GAME DISCRIPTION");
+                    top:8px;
+                    position: absolute;
+                    font-weight: bold;
+                    left: 8px;
+                    font-size: 2rem;
+                    color:#376e92;
+                }      
                }
                 &__system{
                   display: flex;
@@ -166,57 +176,122 @@
                           line-height: 20px;
                           font-size: 1.2rem;
                           color:#fff;
-                          height: 200px;
+                          height: 220px;
                           width: 380px;
                           display: flex;
                           flex-direction: column;
                           justify-content: space-evenly;
+                          position: relative;
                       }
+                      &__lawspecs{
+                          &:before{
+                              content: ("minimum specs");
+                              position: absolute;
+                              font-size: 2rem;
+                              top:-18px;
+                              left: -25px;
+                              color:#376e92;
+                              text-transform: capitalize;
+                          }
+                      }
+                      &__recomendedspecs{
+                        &::before{
+                            content: ("recomended specs");
+                            position: absolute;
+                              font-size: 2rem;
+                              top:-18px;
+                              left: -25px;
+                              color:#376e92;
+                              text-transform: capitalize;
+                            
+                        }
+                    }
                }
-            //    &__comment{
-            //        width: 100%;
-            //        height: auto;
-            //        background-color: chocolate;
-            //        &--wrapper{
-            //         width: auto ;
-            //         height: 120;
-            //         background-color: #4a8f63;
-            //         margin-top:10px;
-            //         &--inside{
-            //             width: auto;
-            //             height: auto;
-            //             background-color: brown;
-            //             font-size: 1.8rem;
-            //             display: flex;
-            //             &--image{
-            //                 width: 70px;
-            //                 height: 70px;
-            //                 border-radius: 50%;
-            //             }
-            //             &--comment{
-            //                 width: 800px;
-            //                 height: 200px;
-            //                 border:none;
-            //                 resize: none;
-            //                 border-radius: 10px;
-            //                 padding: 1.2em;
-            //                  display: flex;
-            //                  font-size: 1.8rem;
-            //                  text-indent: 15px;
-            //                 &::placeholder{
-            //                     font-size: 1.8rem;
-            //                 }
-            //             }
-            //         }
-            //        }
-            //    }
+               &__comment{
+                   width: 76%;
+                   height: auto;
+                   &--wrapper{
+                    width: auto ;
+                    height: auto;
+                    padding: 1.5em;
+                    background-color: #4a8f63;
+                    &--inside{
+                        width: auto;
+                        height: auto;
+                        font-size: 1.8rem;
+                        display: flex;
+                        justify-content: space-between;
+                        &--profile{
+                            width: 70px;
+                            height: 100px;
+                            text-align: center;
+                            position: relative;
+                            &::after{
+                                content: ("");
+                                display: block;
+                                position: absolute;
+                                width: 20px;
+                                height: 20px;
+                                transform: rotate(45deg);
+                             background-color: #343438;
+                                // border:1px solid rgb(28, 209, 88);
+                                top: 25px;
+                                left: 80px;
+                            }
+                            &--image{
+                                width: 70px;
+                                height: 70px;
+                                border-radius: 50%;
+                            }
+                            &--name{
+                                color:#fff;
+                                font-size: 1.6rem;
+                                display: block;
+                                word-break: break-all;
+                                font-weight: bold;  
+                            }
+                        }
+                       
+                       
+                        &--comment{
+                            width:calc(100% - 90px);
+                            min-height: 120px;
+                            border:none;
+                            resize: none;
+                            border-radius: 10px;
+                            padding: 0.7em;
+                             display: flex;
+                             font-size: 1.8rem;
+                             text-indent: 15px;
+                             position: relative;
+                             display: block;
+                             background-color: #343438;
+                             color:#fff;
+                             font-weight: 600;
+                             font-size: 2rem;
+                             outline: none;
+                             
+                            //  &:focus{
+                            //  background-color: #18181ad7;
+                            //  }
+                             &::placeholder{
+                                 font-weight: 600;
+                                 color:#fff;
+                             }
+                        
+                            &::placeholder{
+                                font-size: 1.8rem;
+                            }
+                        }
+                    }
+                   }
+               }
          }
     }    
 }
 @media(max-width:800px){
     .discription{
-        background-color: #222;
-        background-image: none;
+         background-image: none!important;
     }
     .discription__wrappertop{
         margin:0;
@@ -248,6 +323,11 @@
          margin-left:3em; 
      }
    }
+   .discription__wrappertop__down__comment{
+       width: 100%;
+   }
+  
+   
 }
 @media(max-width:600px){
     .discription__wrappertop__down__aboutgame{
@@ -258,5 +338,33 @@
             margin-left:1em;
             font-size: 1.1rem;
         }
+        &__lawspecs{
+            &:before{
+                content: ("minimum specs");
+                font-size: 1.6rem;
+                left: 0;
+            }
+        }
+        &__recomendedspecs{
+          &::before{
+              content: ("recomended specs");
+                font-size: 1.6rem;
+                left: 0px;  
+          }
+      }
     }
+    .discription__wrappertop__down__comment--wrapper--inside{
+     flex-direction: column;
+     height: 240px; 
+    }
+    .discription__wrappertop__down__comment--wrapper--inside--comment{
+        order:-1;
+        width: 100%;
+        
+       }
+       .discription__wrappertop__down__comment--wrapper--inside--profile::after{
+           top:-30px;
+           left:25px;
+       }
 }
+

@@ -16,7 +16,7 @@ module.exports = function validateLoginInput(data) {
   }
 
   if (Validator.isEmpty(data.balance)) {
-    errors.handle = "Balance is required";
+    errors.balance = "Balance is required";
   }
 
   if (!isEmpty(data.website)) {

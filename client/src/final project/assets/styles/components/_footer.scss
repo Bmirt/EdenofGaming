@@ -43,8 +43,8 @@
         &__item.left{
          .location{
              display: block;
-             @include font(1.2rem,#fff);
-                 font-size: 1.8rem;
+             @include font(1.6rem,#fff);
+                 
 
                
              &:hover {
@@ -53,8 +53,9 @@
              }
          }   
          .name{
-            @include font(1.8rem,#fff);
-
+            @include font(1.6rem,#fff);
+             text-transform: uppercase;
+             font-weight: 600;
            
             &:hover{
                color:#227d96;
@@ -63,7 +64,7 @@
          }
          }
         &__item.middle{
-            @include font(3rem,#767676);
+            @include font(2.48rem,#767676);
             text-align: center;
            
         }
@@ -72,7 +73,7 @@
                 font-weight: bold;
                 transition: 0.6s;
                 &:hover{
-                 color: #a730309a;
+                 color: #162c41;
                 }
             }
         &__bottom{
@@ -90,10 +91,15 @@
         flex-direction: column;
         align-items: center
     }
+    .footer__wrapper__item.middle{
+        flex-direction: row;
+        width: 360px;
+    }
     .footer__wrapper__item{
         width: 100%;
         .location,.name{
             margin:auto;
+            text-transform: capitalize;
         }
     }
 }
@@ -101,7 +107,12 @@
     .footer__wrapper{
         width:100%
     }
-    .location{
-        margin:auto;
+    .footer__wrapper__item__wrapper {
+        justify-content: space-evenly;
     }
+    .footer__wrapper__item__text{
+        text-align: center;
+    }
+   
 }
+
