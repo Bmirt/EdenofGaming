@@ -153,7 +153,11 @@
         }
     }
 }
-
+@media(max-width:1366px){
+    .aside__nav__list{
+        height: 50px;
+    }
+}
 @media(max-width:800px){
     .aside,.chat{
         display: none;
