@@ -7,13 +7,18 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
   handle: {
     type: String,
     required: true,
     max: 40
   },
-  company: {
-    type: String
+  age: {
+    type: Number,
+    required: true
   },
   website: {
     type: String
@@ -21,19 +26,21 @@ const ProfileSchema = new Schema({
   location: {
     type: String
   },
-  status: {
-    type: String
+  phoneNumber: {
+    type: String,
+    required: true
   },
   skills: {
     type: [String]
   },
   bio: {
+    type: String,
+    required: true
+  },
+  githubusername: {
     type: String
   },
   balance: {
-    type: Number
-  },
-  githubusername: {
     type: String
   },
   social: {
