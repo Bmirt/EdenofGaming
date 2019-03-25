@@ -18,7 +18,7 @@ class CartIcon extends React.Component {
           alt="Cart"
         />
         <p className="header__top__wrapper--user--basket--number">
-          ({this.state.count})
+          ({this.context.cart.length})
         </p>
       </div>
     );

@@ -20,10 +20,14 @@ class ProductDetails extends React.Component {
   static contextType = ShopContext;
   addToCart = () => {
     if (Auth.getJWT()) {
-      this.context.cart.push(this.state.product);
-      console.log(this.context.cart);
-    }else{
-      alert("You need to be logged in")
+      if (this.context.cart.includes(this.state.product)) {
+        alert("Already in the cart");
+      } else {
+        this.context.cart.push(this.state.product);
+        console.log(this.context.cart);
+      }
+    } else {
+      alert("You need to be logged in");
     }
   };
 
@@ -73,14 +77,10 @@ class ProductDetails extends React.Component {
               </div>
 
               <div className="discription__wrappertop__wrapper__details__platform">
-                {" "}
-                <span className="pc">{product.platforms}</span>{" "}
-                <span className="ps4">p</span>
-                <span className="xbox" />
+                <span className="pc">{product.platforms}</span>
               </div>
 
               <div className="discription__wrappertop__wrapper__details__developer">
-                {" "}
                 {product.developer}
               </div>
 
@@ -90,12 +90,13 @@ class ProductDetails extends React.Component {
 
               <div
                 onClick={this.addToCart}
+                style={{ cursor: "pointer", fontFamily: "Orbitron" }}
                 className="discription__wrappertop__wrapper__details__buy cart"
               >
-                <i className="fas fa-shopping-cart awesome"> add to cart </i>
+                <i className="fas fa-shopping-cart awesome" /> Add To Cart
               </div>
               <div className="discription__wrappertop__wrapper__details__buy">
-                <i className="fas fa-money-bill-alt awesome" /> buy{" "}
+                <i className="fas fa-money-bill-alt awesome" /> Buy{" "}
               </div>
 
               <div className="discription__wrappertop__wrapper__details__raiting">
