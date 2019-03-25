@@ -22,7 +22,7 @@ body {
 
 .header {
   width: 100%;
-  height: 254px;
+  height: 290px;
   background-color: #222;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -42,6 +42,7 @@ body {
 .header__top {
   width: calc(100% - 150px);
   height: 140px;
+  height: 187px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,7 +53,7 @@ body {
 
 .header__top__wrapper {
   width: 100%;
-  height: 40px;
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,12 +68,11 @@ body {
 .header__top__wrapper--logo--image {
   display: block;
   width: 140px;
-  margin-top: -1em;
 }
 
 .header__top__wrapper__search {
   width: 250px;
-  height: 100%;
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,7 +118,7 @@ body {
 
 .header__top__wrapper__search--button {
   width: 50px;
-  height: 100%;
+  height: 50px;
   border: none;
   outline: none;
   background-color: #fff;
@@ -131,8 +131,8 @@ body {
 }
 
 .header__top__wrapper--user {
-  width: 440px;
-  height: 100%;
+  width: 300px;
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -324,26 +324,24 @@ body {
 @media (max-width: 1024px) {
   .header__top {
     width: 100%;
-    height: 170px;
-    margin-top: 1em;
   }
   .header__bottom {
     width: 100%;
   }
   .header__top__wrapper {
-    height: 109%;
+    height: 156%;
     width: 100%;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
   .header__top__wrapper--logo--image {
     margin: 1em 0 0 0;
+    margin: 3.2em 0 0 1.4em;
   }
   .header__top__wrapper--user {
-    height: 40px;
+    margin: 3em 1.4em 0 0;
   }
   .header__top__wrapper__search {
-    height: 55px;
     width: 120%;
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
@@ -373,8 +371,8 @@ body {
         -ms-flex-direction: column;
             flex-direction: column;
     display: none;
-    -webkit-transition: 1s,  opacity 0.5s ease-out;
-    transition: 1s,  opacity 0.5s ease-out;
+    -webkit-transition: 1s opacity 0.5s ease-out;
+    transition: 1s opacity 0.5s ease-out;
   }
   .header__bottom__navigation__list {
     position: relative;
@@ -400,16 +398,10 @@ body {
   .header {
     height: 290px;
   }
-  .header__top__wrapper {
-    height: 167%;
-  }
-  .header__top__wrapper__search {
-    margin-top: -3.1em;
-  }
   .header__top__wrapper--user {
     height: auto;
     width: auto;
-    margin: 3.5em 1.5em 0 0;
+    margin: 4.5em 1.5em 0 0;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
@@ -422,12 +414,12 @@ body {
             align-items: center;
   }
   .header__top__wrapper--user--login {
-    height: 40px;
+    height: 50px;
     width: 150px;
     margin: 0.5em 1em;
   }
   .header__top__wrapper--logo--image {
-    margin: 3.2em 0 0 1.4em;
+    margin: 4.2em 0 0 1.4em;
   }
 }
 
@@ -725,7 +717,7 @@ body {
 .aside__nav {
   position: fixed;
   left: 0;
-  top: 354px;
+  top: 390px;
   bottom: 500px;
   z-index: 999;
 }
@@ -829,14 +821,14 @@ body {
 
 .chat {
   position: fixed;
-  top: 354px;
+  top: 390px;
   z-index: 999;
   -webkit-transition: 1s;
   transition: 1s;
   border-radius: 0.8em 0 0 0.8em;
   right: -270px;
   width: 270px;
-  height: 350px;
+  height: 30px;
 }
 
 .chat__nav {
@@ -1166,6 +1158,8 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
     width: 360px;
+    height: auto;
+    margin: 0;
   }
   .footer__wrapper__item {
     width: 100%;
@@ -1347,7 +1341,7 @@ body {
   color: #6d0b0b;
 }
 
-form.login {
+.login {
   height: 400px;
   font-family: 'Baloo Chettan', cursive;
   -webkit-box-pack: start;
@@ -1355,17 +1349,23 @@ form.login {
           justify-content: flex-start;
 }
 
-form.login::before {
+.login::before {
   content: "log in";
-  left: 161.5px;
+  left: 150px;
 }
 
 @media (max-width: 600px) {
   .form {
-    width: 360px;
+    width: 320px;
   }
-  .form__register:focus {
-    width: 83.3%;
+  .form::before {
+    left: 97px;
+  }
+  .form__wrapper__register:focus {
+    width: 90%;
+  }
+  .login::before {
+    left: 112px;
   }
 }
 
