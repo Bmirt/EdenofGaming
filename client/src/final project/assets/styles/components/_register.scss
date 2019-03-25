@@ -14,7 +14,7 @@
         color:#fff;
         font-size: 2.5rem;
         font-weight: 600;
-        // left:143px;
+        left:143px;
         top:25px; 
     }
     &__wrapper{
@@ -109,13 +109,13 @@
 
 
 
-form.login{
+.login{
     height: 400px;
     font-family: 'Baloo Chettan', cursive;
     justify-content: flex-start;
     &::before{
         content: ("log in");
-        left:161.5px;
+        left:150px;
     }
 }
 
@@ -136,9 +136,9 @@ form.login{
      }
     }
  }  
-}
-form.login{
+ .login{
     &::before{
         left:112px;
     }
+}
 }

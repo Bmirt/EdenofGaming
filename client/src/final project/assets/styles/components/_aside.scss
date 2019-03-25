@@ -2,7 +2,7 @@
      &__nav{
         position: fixed;
         left:0;
-        top:354px;
+        top:390px;
         bottom:500px;
         z-index: 999;
         &__list{
@@ -55,13 +55,13 @@
      }
    .chat{
        position: fixed;
-       top:354px;
+       top:390px;
        z-index: 999;
        transition: 1s;
        border-radius: 0.8em 0 0 0.8em;
        right:-270px;
        width: 270px;
-       height: 350px;
+       height: 30px;
       &__nav{
            position: relative;
            width: 100%;

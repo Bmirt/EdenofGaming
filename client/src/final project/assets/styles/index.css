@@ -717,7 +717,7 @@ body {
 .aside__nav {
   position: fixed;
   left: 0;
-  top: 354px;
+  top: 390px;
   bottom: 500px;
   z-index: 999;
 }
@@ -821,14 +821,14 @@ body {
 
 .chat {
   position: fixed;
-  top: 354px;
+  top: 390px;
   z-index: 999;
   -webkit-transition: 1s;
   transition: 1s;
   border-radius: 0.8em 0 0 0.8em;
   right: -270px;
   width: 270px;
-  height: 350px;
+  height: 30px;
 }
 
 .chat__nav {
@@ -1158,6 +1158,8 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
     width: 360px;
+    height: auto;
+    margin: 0;
   }
   .footer__wrapper__item {
     width: 100%;
@@ -1213,6 +1215,7 @@ body {
   color: #fff;
   font-size: 2.5rem;
   font-weight: 600;
+  left: 143px;
   top: 25px;
 }
 
@@ -1338,7 +1341,7 @@ body {
   color: #6d0b0b;
 }
 
-form.login {
+.login {
   height: 400px;
   font-family: 'Baloo Chettan', cursive;
   -webkit-box-pack: start;
@@ -1346,9 +1349,9 @@ form.login {
           justify-content: flex-start;
 }
 
-form.login::before {
+.login::before {
   content: "log in";
-  left: 161.5px;
+  left: 150px;
 }
 
 @media (max-width: 600px) {
@@ -1361,10 +1364,9 @@ form.login::before {
   .form__wrapper__register:focus {
     width: 90%;
   }
-}
-
-form.login::before {
-  left: 112px;
+  .login::before {
+    left: 112px;
+  }
 }
 
 .map {
