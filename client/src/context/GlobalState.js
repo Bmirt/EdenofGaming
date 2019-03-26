@@ -6,20 +6,29 @@ import MessageBox from "../components/utils/MessageBox";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {
-    user: Auth.getCurrentUser(),
-    games: this.context.games,
-    cart: this.context.cart,
+    user: null,
+    games: [],
+    cart: [],
     MessageBoxIsOpen: false,
     MessageBoxText: ""
   };
-
+  componentDidMount() {
+    this.setState({
+      user: Auth.getCurrentUser(),
+      games: this.context.games,
+      cart: this.context.cart,
+      MessageBoxIsOpen: false,
+      MessageBoxText: ""
+    });
+  }
   closeMessageBox = () => {
     this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
   };
-  message = messageText=> {
-    this.setState({ 
-      MessageBoxIsOpen: true, 
-      MessageBoxText: messageText });
+  message = messageText => {
+    this.setState({
+      MessageBoxIsOpen: true,
+      MessageBoxText: messageText
+    });
   };
 
   logout = () => {
@@ -27,12 +36,13 @@ class GlobalState extends React.Component {
     this.setState({ user: null });
   };
   addToCart = product => {
-    if(!Auth.getCurrentUser()){
+    console.log("user", this.state.user);
+    if (!Auth.getCurrentUser()) {
       this.message("You need to be logged in");
       return;
     }
     if (this.state.cart.includes(product)) {
-      this.message("Item is Already In The cart")
+      this.message("Item is Already In The cart");
       return;
     }
     const updatedCart = [...this.state.cart];
@@ -61,7 +71,7 @@ class GlobalState extends React.Component {
           updateUserState: this.updateUserState,
           updateAdminState: this.updateAdminState,
           logout: this.logout,
-          message:this.message
+          message: this.message
         }}
       >
         <ShopContext.Provider

@@ -9,11 +9,12 @@ import { Search } from "./Search";
 import CartIcon from "./CartIcon";
 
 import UserContext from '../../context/user-context';
+import AuthMethods from "../utils/AuthMethods";
 
 class Header extends React.Component {
   
   render() {
-    
+    const user = AuthMethods.getCurrentUser();
     return (
       <UserContext.Consumer>
       {
@@ -24,15 +25,15 @@ class Header extends React.Component {
               <Logo logo={logo} />
               <Search />
               <div className="header__top__wrapper--user">
-                {context.user ? (
-                  context.user.isAdmin ? (
+                {user ? (
+                  user.isAdmin ? (
                     <div>
                       <Link
                         className="header__top__wrapper--user--name"
                         to={"/admin"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {context.user.name}
+                        {user.name}
                       </Link>
                       <Link
                         className="header__top__wrapper--user--logout"
@@ -57,7 +58,7 @@ class Header extends React.Component {
                         to={"/userprofile"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {context.user.name}
+                        {user.name}
                       </Link>
                       <Link
                         className=""
