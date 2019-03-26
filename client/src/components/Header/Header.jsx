@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../final project/assets/images/eagle.png";
+import logo from "../../final project/assets/images/eagle.png";
 import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
@@ -8,12 +8,13 @@ import LoginAndRegister from "./LoginAndRegister";
 import { Search } from "./Search";
 import CartIcon from "./CartIcon";
 
-import UserContext from '../context/user-context';
+import UserContext from '../../context/user-context';
+import AuthMethods from "../utils/AuthMethods";
 
 class Header extends React.Component {
   
   render() {
-    
+    const user = AuthMethods.getCurrentUser();
     return (
       <UserContext.Consumer>
       {
@@ -24,15 +25,15 @@ class Header extends React.Component {
               <Logo logo={logo} />
               <Search />
               <div className="header__top__wrapper--user">
-                {context.user ? (
-                  context.user.isAdmin ? (
+                {user ? (
+                  user.isAdmin ? (
                     <div>
                       <Link
                         className="header__top__wrapper--user--name"
                         to={"/admin"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {context.user.name}
+                        {user.name}
                       </Link>
                       <Link
                         className="header__top__wrapper--user--logout"
@@ -57,7 +58,7 @@ class Header extends React.Component {
                         to={"/userprofile"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {context.user.name}
+                        {user.name}
                       </Link>
                       <Link
                         className=""
@@ -82,7 +83,7 @@ class Header extends React.Component {
           </section>
 
           <section className="header__bottom">
-            <nav className="header__bottom__navigation">
+            <nav className="header__bottom__navigation" id="nav">
               <NavigationItem title="Platforms">
                 <SubNavigationItem title="PC" />
                 <SubNavigationItem title="PLAYSTATION 4" />

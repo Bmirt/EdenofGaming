@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Auth from "./utils/AuthMethods";
+import Auth from "../utils/AuthMethods";
 import { Link } from "react-router-dom";
-import UserContext from '../context/user-context';
+import UserContext from '../../context/user-context';
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class Login extends React.Component {
         Auth.storeToken(res.data.token);
         let user = Auth.getCurrentUser();
         this.context.user = user;
+        console.log(this.context.user)
         this.props.history.replace("/");
         window.scroll(0, 0);
       })

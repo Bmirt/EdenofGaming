@@ -1,6 +1,6 @@
 import React from "react";
-import ShopContext from "../context/shop-context";
-import Product from "./Product";
+import ShopContext from "../../context/shop-context";
+import Product from "../Product/Product";
 class Cart extends React.Component {
   render() {
     return (

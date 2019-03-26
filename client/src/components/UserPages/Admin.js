@@ -1,7 +1,8 @@
 import React from "react";
-import Auth from "./utils/AuthMethods";
+import Auth from "../utils/AuthMethods";
 // import axios from "axios";
-import UserContext from "../context/user-context";
+import UserContext from "../../context/user-context";
+import AddGames from "./admin/AddGame";
 
 class Admin extends React.Component {
   state = {
@@ -45,7 +46,13 @@ class Admin extends React.Component {
                 <div className="col-sm-3">
                   <ul className="list-group">
                     <li className="list-group-item text-muted">
-                      Activity <i className="fa fa-dashboard fa-1x" />
+                      New Activities <i className="fa fa-dashboard fa-1x" />
+                    </li>
+                    <li className="list-group-item text-right">
+                      <span className="pull-left">
+                        <strong>new Users</strong>
+                      </span>{" "}
+                      7098978
                     </li>
                     <li className="list-group-item text-right">
                       <span className="pull-left">
@@ -57,13 +64,13 @@ class Admin extends React.Component {
                       <span className="pull-left">
                         <strong>Likes</strong>
                       </span>{" "}
-                      13
+                      23
                     </li>
                     <li className="list-group-item text-right">
                       <span className="pull-left">
                         <strong>Dislikes</strong>
                       </span>{" "}
-                      37
+                      4
                     </li>
                     <li className="list-group-item text-right">
                       <span className="pull-left">
@@ -71,38 +78,51 @@ class Admin extends React.Component {
                       </span>{" "}
                       78
                     </li>
+                    <li className="list-group-item text-right">
+                      <span className="pull-left">
+                        <strong>Sold</strong>
+                      </span>{" "}
+                      28
+                    </li>
                   </ul>
 
                   <div className="panel panel-default">
-                    <div className="panel-heading">Social Media</div>
+                    <div className="panel-heading"> Connect Social Media</div>
                     <div className="panel-body">
                       <div className="bottom">
                         <a
-                          className="btn btn-primary btn-twitter btn-sm"
+                          className="btn btn-primary btn-twitter btn-sm admin__game__social"
                           href="https://twitter.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <i className="fa fa-twitter" />
+                             <i className="fab fa-twitter awesome twitter" />
                         </a>
                         <a
-                          className="btn btn-danger btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-danger btn-sm admin__game__social"
+                          href="https://youtube.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+
                         >
-                          <i className="fa fa-google-plus" />
+                            <i className="fab fa-youtube awesome youtube" />
                         </a>
                         <a
-                          className="btn btn-primary btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-primary btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://facebook.com"
                         >
-                          <i className="fa fa-facebook" />
+                            <i className="fab fa-facebook-f awesome facebook" />
                         </a>
                         <a
-                          className="btn btn-warning btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-warning btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://instagram.com"
                         >
-                          <i className="fa fa-behance" />
+                            <i className="fab fa-instagram awesome instagram" />
+
                         </a>
                       </div>{" "}
                     </div>
@@ -136,7 +156,7 @@ class Admin extends React.Component {
                         className="user-profile__link"
                         href="#games"
                       >
-                        Games
+                        Add Games
                       </a>
                     </li>
                     <li>
@@ -161,7 +181,7 @@ class Admin extends React.Component {
                     </div>
                     <div className="tab-pane" id="games">
                       <h3 className="header__bottom__nav--list">
-                        Games information
+                       <AddGames />
                       </h3>
                     </div>
                     <div className="tab-pane" id="users">

@@ -2120,4 +2120,44 @@ body {
 .admin__name--title {
   margin-left: 40px;
 }
+
+.admin__game__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.admin__game__button {
+  height: 50px;
+  font-size: 1.8rem;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-family: "Baloo Chettan", cursive;
+  margin: 2.3em 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.admin__game__social {
+  width: 40px;
+  height: 40px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 18px;
+}
 /*# sourceMappingURL=index.css.map */
