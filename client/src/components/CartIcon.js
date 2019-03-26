@@ -15,9 +15,7 @@ class CartIcon extends React.Component {
               alt="Cart"
             />
             <p className="header__top__wrapper--user--basket--number">
-              {this.context.cart.reduce((count, curItem) => {
-                return count + curItem.quantity;
-              }, 0)}
+              {context.cart.length}
             </p>
           </div>
         )}

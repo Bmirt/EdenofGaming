@@ -2,20 +2,24 @@ import React from "react";
 import ShopContext from "./shop-context";
 import UserContext from "./user-context";
 import Auth from "../components/utils/AuthMethods";
-import Product from "../components/Product";
+import MessageBox from "../components/MessageBox";
 class GlobalState extends React.Component {
-    static contextType = ShopContext;
+  static contextType = ShopContext;
   state = {
     user: Auth.getCurrentUser(),
     games: this.context.games,
     cart: this.context.cart,
-    count: this.context.cart.length,
+    MessageBoxIsOpen: false,
+    MessageBoxText: ""
   };
-  updateUserState = username => {
-    this.setState({ user: username });
+
+  closeMessageBox = () => {
+    this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
   };
-  updateAdminState = adminStatus => {
-    this.setState({ isAdmin: adminStatus });
+  message = messageText=> {
+    this.setState({ 
+      MessageBoxIsOpen: true, 
+      MessageBoxText: messageText });
   };
 
   logout = () => {
@@ -23,41 +27,28 @@ class GlobalState extends React.Component {
     this.setState({ user: null });
   };
   addToCart = product => {
-    console.log('Adding product', product);
-    const updatedCart = [...this.state.cart];
-    const updatedItemIndex = updatedCart.findIndex(
-      item => item.id === product.id
-    );
-
-    if (updatedItemIndex < 0) {
-      updatedCart.push({ ...product, quantity: 1 });
-    } else {
-      const updatedItem = {
-        ...updatedCart[updatedItemIndex]
-      };
-      updatedItem.quantity++;
-      updatedCart[updatedItemIndex] = updatedItem;
+    if(!Auth.getCurrentUser()){
+      this.message("You need to be logged in");
+      return;
     }
+    if (this.state.cart.includes(product)) {
+      this.message("Item is Already In The cart")
+      return;
+    }
+    const updatedCart = [...this.state.cart];
+    updatedCart.push(product);
     setTimeout(() => {
       this.setState({ cart: updatedCart });
+      this.context.cart = updatedCart;
     }, 100);
   };
   removeFromCart = productId => {
-    console.log('Removing product with id: ' + productId);
+    console.log("Removing product with id: " + productId);
     const updatedCart = [...this.state.cart];
     const updatedItemIndex = updatedCart.findIndex(
       item => item.id === productId
     );
-
-    const updatedItem = {
-      ...updatedCart[updatedItemIndex]
-    };
-    updatedItem.quantity--;
-    if (updatedItem.quantity <= 0) {
-      updatedCart.splice(updatedItemIndex, 1);
-    } else {
-      updatedCart[updatedItemIndex] = updatedItem;
-    }
+    updatedCart.splice(updatedItemIndex, 1);
     setTimeout(() => {
       this.setState({ cart: updatedCart });
     }, 100);
@@ -68,16 +59,27 @@ class GlobalState extends React.Component {
         value={{
           user: this.state.user,
           updateUserState: this.updateUserState,
-          updateAdminState:this.updateAdminState,
-          logout:this.logout
+          updateAdminState: this.updateAdminState,
+          logout: this.logout,
+          message:this.message
         }}
       >
-        <ShopContext.Provider value={{
+        <ShopContext.Provider
+          value={{
             games: this.state.games,
             cart: this.state.cart,
             addToCart: this.addToCart,
-            count:this.state.count
-        }}>{this.props.children}</ShopContext.Provider>
+            count: this.state.count
+          }}
+        >
+          <MessageBox
+            isOpen={this.state.MessageBoxIsOpen}
+            close={this.closeMessageBox}
+          >
+            {this.state.MessageBoxText}
+          </MessageBox>
+          {this.props.children}
+        </ShopContext.Provider>
       </UserContext.Provider>
     );
   }
