@@ -2,7 +2,7 @@ import React from "react";
 import ShopContext from "./shop-context";
 import UserContext from "./user-context";
 import Auth from "../components/utils/AuthMethods";
-import MessageBox from "../components/MessageBox";
+import MessageBox from "../components/utils/MessageBox";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {

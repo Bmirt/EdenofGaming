@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Product from "../Product/Product";
-import spinner from "../final project/spinner.gif";
+import spinner from "../../final project/spinner.gif";
 import ShopContext from '../../context/shop-context';
 
 class Games extends React.Component {

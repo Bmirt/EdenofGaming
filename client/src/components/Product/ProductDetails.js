@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import spinner from "../final project/spinner.gif";
+import spinner from "../../final project/spinner.gif";
 import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../../context/shop-context";

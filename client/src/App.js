@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import "./final project/assets/styles/index.css";
 import Header from "./components/Header/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Main from "./components/Main";
-import UserProfile from "./components/UserProfile";
+import Login from "./components/Login/Login";
+import Register from "./components/UserPages/Register";
+import Main from "./components/Main/Main";
+import UserProfile from "./components/UserPages/UserProfile";
 import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
-import Map from "./components/Map";
-import ProductDetails from "./components/ProductDetails";
-import Admin from "./components/Admin";
-import Cart from "./components/Cart";
+import Map from "./components/Main/Map";
+import ProductDetails from "./components/Product/ProductDetails";
+import Admin from "./components/UserPages/Admin";
+import Cart from "./components/Main/Cart";
 import GlobalState from "./context/GlobalState";
 class App extends Component {
   render() {

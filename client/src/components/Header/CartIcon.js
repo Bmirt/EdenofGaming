@@ -1,5 +1,5 @@
 import React from "react";
-import ShopContext from "../context/shop-context";
+import ShopContext from "../../context/shop-context";
 
 class CartIcon extends React.Component {
   static contextType = ShopContext;

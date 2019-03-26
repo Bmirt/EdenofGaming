@@ -1,7 +1,7 @@
 import React from "react";
-import Auth from "./utils/AuthMethods";
+import Auth from "../utils/AuthMethods";
 // import axios from "axios";
-import UserContext from "../context/user-context";
+import UserContext from "../../context/user-context";
 
 class Admin extends React.Component {
   state = {
