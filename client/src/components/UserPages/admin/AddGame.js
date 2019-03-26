@@ -63,7 +63,7 @@ class AddGames extends React.Component {
     
                   
                           <form
-                            className="user-formm"
+                            className="admin__game__form"
                             onSubmit={this.onSubmit}
                             method="post"
                             id="gameAdding"
@@ -253,7 +253,7 @@ class AddGames extends React.Component {
                                     description
                                   </h4>
                                 </label>
-                                <input
+                                <textarea
                                   type="text"
                                   className="form-control user-profile__input"
                                   name="description"
@@ -262,6 +262,8 @@ class AddGames extends React.Component {
                                   title="description"
                                   value={this.state.description}
                                   onChange={this.onChange}
+                                  cols="30"
+                                  rows="10"
                                 />
                               </div>
                             </div>
@@ -274,7 +276,7 @@ class AddGames extends React.Component {
                               <div className="col-xs-12">
                                 <br />
                                 <button
-                                  className="btn btn-lg btn-success user-profile__btn user-profile__btn__color"
+                                  className="btn btn-lg btn-success admin__game__button user-profile__btn__color"
                                   type="submit"
                                 >
                                   <i className="glyphicon glyphicon-ok-sign" /> add game
