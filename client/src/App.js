@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./final project/assets/styles/index.css";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Main from "./components/Main";
 import UserProfile from "./components/UserProfile";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Map from "./components/Map";
 import ProductDetails from "./components/ProductDetails";
