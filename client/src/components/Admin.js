@@ -1,5 +1,5 @@
 import React from "react";
-import Auth from "./utils/AuthMethods";
+import Auth from "../utils/AuthMethods";
 // import axios from "axios";
 import UserContext from "../context/user-context";
 
