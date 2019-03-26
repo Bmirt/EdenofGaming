@@ -7,7 +7,6 @@ import Register from "./components/Register";
 import Main from "./components/Main";
 import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
-import AuthMethods from "./components/utils/AuthMethods";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Map from "./components/Map";
 import ProductDetails from "./components/ProductDetails";

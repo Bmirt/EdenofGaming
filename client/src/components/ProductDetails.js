@@ -5,7 +5,6 @@ import spinner from "../final project/spinner.gif";
 import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../context/shop-context";
-import Auth from "./utils/AuthMethods";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -18,18 +17,7 @@ class ProductDetails extends React.Component {
   }
 
   static contextType = ShopContext;
-  addToCart = () => {
-    if (Auth.getJWT()) {
-      if (this.context.cart.includes(this.state.product)) {
-        alert("Already in the cart");
-      } else {
-        this.context.cart.push(this.state.product);
-        console.log(this.context.cart);
-      }
-    } else {
-      alert("You need to be logged in");
-    }
-  };
+  
 
   componentDidMount() {
     window.scroll(0, 0);
@@ -89,7 +77,7 @@ class ProductDetails extends React.Component {
               </div>
 
               <div
-                onClick={this.addToCart}
+                onClick={this.context.addToCart.bind(this, product)}
                 style={{ cursor: "pointer", fontFamily: "Orbitron" }}
                 className="discription__wrappertop__wrapper__details__buy cart"
               >

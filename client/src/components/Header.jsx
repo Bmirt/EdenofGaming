@@ -6,7 +6,6 @@ import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 import LoginAndRegister from "./LoginAndRegister";
 import { Search } from "./Search";
-import AuthMethods from "./utils/AuthMethods";
 import CartIcon from "./CartIcon";
 
 import UserContext from '../context/user-context';
