@@ -81,7 +81,7 @@ class AddGames extends React.Component {
                                   id="game_name"
                                   placeholder="game title"
                                   className="form-control user-profile__input "
-                                  title="enter your unique identifier"
+                                  title="enter game name"
                                   value={this.state.name}
                                   onChange={this.onChange}
                                 />
@@ -158,8 +158,8 @@ class AddGames extends React.Component {
                                   className="form-control user-profile__input"
                                   name="trailer"
                                   id="trailer"
-                                  placeholder="triler link"
-                                  title="treiler"
+                                  placeholder="trailer link"
+                                  title="trailer"
                                   value={this.state.trailer}
                                   onChange={this.onChange}
                                 />

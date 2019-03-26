@@ -2092,4 +2092,15 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+.admin__game__social {
+  width: 40px;
+  height: 40px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 18px;
+}
 /*# sourceMappingURL=index.css.map */
