@@ -25,8 +25,8 @@
 
 
 
-var hamburgerButton = document.querySelector('.header__bottom__burger__line');
-var mobileNav = document.querySelector('.mobile');
+var hamburgerButton = document.getElementById("btn");
+var mobileNav = document.getElementById("nav");
 
 function openMobile() {
     mobileNav.classList.add('open');
