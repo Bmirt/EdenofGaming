@@ -2,6 +2,7 @@ import React from "react";
 import Auth from "../utils/AuthMethods";
 // import axios from "axios";
 import UserContext from "../../context/user-context";
+import AddGames from "./admin/AddGame";
 
 class Admin extends React.Component {
   state = {
@@ -161,7 +162,7 @@ class Admin extends React.Component {
                     </div>
                     <div className="tab-pane" id="games">
                       <h3 className="header__bottom__nav--list">
-                        Games information
+                       <AddGames />
                       </h3>
                     </div>
                     <div className="tab-pane" id="users">
