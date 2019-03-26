@@ -1,15 +1,14 @@
 import React from "react";
-import logo from "../final project/assets/images/eagle.png";
+import logo from "../../final project/assets/images/eagle.png";
 import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 import NavigationItem from "./NavigationItem";
 import SubNavigationItem from "./SubNavigationItem";
 import LoginAndRegister from "./LoginAndRegister";
 import { Search } from "./Search";
-import AuthMethods from "./utils/AuthMethods";
 import CartIcon from "./CartIcon";
 
-import UserContext from '../context/user-context';
+import UserContext from '../../context/user-context';
 
 class Header extends React.Component {
   
@@ -83,7 +82,7 @@ class Header extends React.Component {
           </section>
 
           <section className="header__bottom">
-            <nav className="header__bottom__navigation">
+            <nav className="header__bottom__navigation" id="nav">
               <NavigationItem title="Platforms">
                 <SubNavigationItem title="PC" />
                 <SubNavigationItem title="PLAYSTATION 4" />

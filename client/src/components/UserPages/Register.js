@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import userContext from "../../context/user-context";
 
 class Register extends React.Component {
   state = {
@@ -10,6 +11,7 @@ class Register extends React.Component {
     password2: "",
     errors: {}
   };
+  static contextType = userContext;
   onHandleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -26,7 +28,7 @@ class Register extends React.Component {
         password2: this.state.password2
       })
       .then(res => {
-        alert("you succesfully registered");
+        this.context.message("You Registered Successfully");
         this.props.history.replace("/login");
       })
       .catch(err => this.setState({ errors: err.response.data }));

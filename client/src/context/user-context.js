@@ -4,5 +4,5 @@ export default React.createContext({
   user: Auth.getCurrentUser(),
   updateUserState: user=>{},
   updateAdminState: adminStatus=>{},
-  logout: ()=>{}
+  logout: ()=>{},
 });

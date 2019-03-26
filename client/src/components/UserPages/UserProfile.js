@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 // import classnames from "classnames";
-import UserContext from "../context/user-context";
+import UserContext from "../../context/user-context";
 
 class UserProfile extends React.Component {
   constructor() {
