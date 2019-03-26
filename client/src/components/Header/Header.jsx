@@ -14,7 +14,7 @@ import AuthMethods from "../utils/AuthMethods";
 class Header extends React.Component {
   
   render() {
-    const user = AuthMethods.getCurrentUser();
+    // const user = AuthMethods.getCurrentUser();
     return (
       <UserContext.Consumer>
       {
@@ -25,15 +25,15 @@ class Header extends React.Component {
               <Logo logo={logo} />
               <Search />
               <div className="header__top__wrapper--user">
-                {user ? (
-                  user.isAdmin ? (
+                {context.user ? (
+                  context.user.isAdmin ? (
                     <div>
                       <Link
                         className="header__top__wrapper--user--name"
                         to={"/admin"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {user.name}
+                        {context.user.name}
                       </Link>
                       <Link
                         className="header__top__wrapper--user--logout"
@@ -58,7 +58,7 @@ class Header extends React.Component {
                         to={"/userprofile"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {user.name}
+                        {context.user.name}
                       </Link>
                       <Link
                         className=""

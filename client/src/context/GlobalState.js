@@ -6,7 +6,7 @@ import MessageBox from "../components/utils/MessageBox";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {
-    user: null,
+    user: Auth.getCurrentUser(),
     games: [],
     cart: [],
     MessageBoxIsOpen: false,
@@ -32,6 +32,7 @@ class GlobalState extends React.Component {
   };
 
   logout = () => {
+    alert("logout called")
     Auth.logout();
     this.setState({ user: null });
   };
@@ -48,7 +49,9 @@ class GlobalState extends React.Component {
     const updatedCart = [...this.state.cart];
     updatedCart.push(product);
     setTimeout(() => {
-      this.setState({ cart: updatedCart });
+      this.setState({ cart: updatedCart,
+      user:Auth.getCurrentUser()
+      });
       this.context.cart = updatedCart;
     }, 100);
   };
