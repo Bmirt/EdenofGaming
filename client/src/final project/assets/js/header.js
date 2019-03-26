@@ -25,16 +25,16 @@
 
 
 
-var hamburgerButton = document.getElementById("btn");
-var mobileNav = document.getElementById("nav");
+// var hamburgerButton = document.getElementById("btn");
+// var mobileNav = document.getElementById("nav");
 
-function openMobile() {
-    mobileNav.classList.add('open');
-}
+// function openMobile() {
+//     mobileNav.classList.add('open');
+// }
 
-function closeMobile() {
-    mobileNav.classList.remove('open');
-}
+// function closeMobile() {
+//     mobileNav.classList.remove('open');
+// }
 
-hamburgerButton.addEventListener('click', openMobile);
-mobileNav.addEventListener('click', closeMobile);
+// hamburgerButton.addEventListener('click', openMobile);
+// mobileNav.addEventListener('click', closeMobile);
