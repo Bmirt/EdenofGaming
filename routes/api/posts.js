@@ -39,14 +39,14 @@ router.get("/:product_id", (req, res) => {
 // @route  GET api/posts/:id
 // @desc   get posts by id
 // @access Public
-router.get("/:id", (req, res) => {
-  console.log(req.id);
-  Post.findById(req.params.id)
-    .then(post => res.json(post))
-    .catch(err =>
-      res.status(404).json({ nopostfound: "no post found with that id" })
-    );
-});
+// router.get("/:id", (req, res) => {
+//   console.log(req.id);
+//   Post.findById(req.params.id)
+//     .then(post => res.json(post))
+//     .catch(err =>
+//       res.status(404).json({ nopostfound: "no post found with that id" })
+//     );
+// });
 
 // @route  POST api/posts
 // @desc   Create Post
