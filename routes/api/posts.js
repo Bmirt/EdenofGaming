@@ -138,6 +138,7 @@ router.post(
           for (var i = 0; i < product.reviews.length; i++) {
             if (product.reviews[i].id === req.params.review_id) {
               ourReview = product.reviews[i];
+              console.log(product.reviews[i]);
             }
           }
           if (

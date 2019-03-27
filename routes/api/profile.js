@@ -12,6 +12,8 @@ const validateEducationInput = require("../../validation/education");
 const Profile = require("../../models/Profile");
 // load user model
 const User = require("../../models/User");
+// load product model
+const Product = require("../../models/product");
 
 // @route GET api/profile/test
 // @desc Tests profile route
@@ -301,6 +303,63 @@ router.delete(
         res.json({ success: true })
       );
     });
+  }
+);
+
+// @route  POST api/profile/productid
+// @desc   Add cart item to profile
+// @access Private
+router.post(
+  "/product/:product_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Product.findById(req.params.product_id).then(product => {
+        const newItem = {
+          item: req.params.product_id,
+          price: product.price,
+          image: product.image,
+          name: product.name
+        };
+        //Add to exp array
+        profile.cart.unshift(newItem);
+        profile.save().then(profile => res.json(profile));
+      });
+    });
+  }
+);
+
+// @route  DELETE api/profile/experience/:edu_id
+// @desc   Delete item from profile cart
+// @access Private
+router.delete(
+  "/product/:product_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        Product.findById(req.params.product_id).then(product => {
+          var ourProduct;
+          for (var i = 0; i < profile.cart.length; i++) {
+            if (profile.cart[i].item === req.params.product_id) {
+              ourProduct = profile.cart[i];
+              if (ourProduct.item === req.params.product_id) {
+                profile.cart.splice(i, 1);
+              }
+              break;
+            }
+          }
+          if (ourProduct === undefined) {
+            return res.status(404).json({ error: "cart item not found" });
+          }
+          //save
+          profile.save().then(profile => res.json(profile));
+        });
+      })
+      .catch(err => {
+        console.log(err.stack);
+        res.status(404).json(err);
+      });
   }
 );
 
