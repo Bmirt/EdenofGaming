@@ -68,19 +68,16 @@ router.post(
       .then(product => {
         const newPost = {
           text: req.body.text,
-          name: req.body.name,
-          avatar: req.body.avatar,
+          name: req.user.name,
+          avatar: req.user.avatar,
           user: req.user.id
         };
-        const responseJSON = {
-          text: req.body.text,
-          userObject: req.user
-        };
+
         //Add to comments array
         product.reviews.unshift(newPost);
 
         // Save
-        product.save().then(product => res.json(responseJSON));
+        product.save().then(product => res.json(newPost));
       })
       .catch(err =>
         res.status(404).json({ productnotfound: "No product found" })
