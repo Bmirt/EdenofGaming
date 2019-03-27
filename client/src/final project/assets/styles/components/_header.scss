@@ -1,7 +1,12 @@
 .header{
-    @include size(100%,248px,#222);
+    @include size(100%,330px,#222);
     @include flex(space-between,center);
     flex-direction: column;
+    &__languagebar{
+        background-color: red;
+        width: 100%;
+        height: 50px;;
+    }
     &__top{
         width: calc(100% - 150px);
         height: 140px;
@@ -9,7 +14,6 @@
         &__wrapper{
             width: 100%;
             height: 50px;
-
             @include flex(space-between,center);
             &--logo{
               &--image{
@@ -67,38 +71,15 @@
                     position: relative;
                     text-decoration: none;
                     margin:0 0.6em 0 0.9em;
-                    
                     &--text{
                     font-size: 2rem;
                     }
-                }
-                
+                }            
                 &--login.register{
                     background-color: #000;
                     width: 150px;
-                    margin-left:-0.2em;
-                    
-                    
+                    margin-left:-0.2em;              
                 }
-
-                // &--basket{
-                //     color:#fff;
-                //     font-size: 2rem;
-                //     display: flex;
-                //     width: auto;
-                //     height: 50px;
-                //     background-color: red;
-                //     margin-right: 30px;
-    
-                //     border-radius: 4px;
-                //     width: 200px;
-                //     &--image{
-                //         height: 50px;
-                //     }
-                //     &--number{
-                //        line-height: 50px;
-                //     }
-                // }
             }
             &--user>div{
                 width: auto;
@@ -125,23 +106,36 @@
                 background: #10548b;
                 width:110px;
                 height: 50px;
+                text-align: center;
                 line-height: 50px;
                 border-radius: 4px;
-                text-align: center;
                 font-size: 2rem;
                 font-weight: bold;
                 margin:0 0.2em 0 0.2em;  
                 text-decoration: none;
+               
                 &:first-child{
                    background: transparent;
                     width: 75px;
                  }
+                 &:nth-child(2){
+                    text-overflow: ellipsis;
+                     white-space: nowrap;
+                       overflow: hidden;
+                       display: block;
+                       text-align: center;
+                    
+                  }
                  &:last-child{
                     background-color: #273e52;
                     margin:0 -0.1em 0 0.2em !important;
                  }
             } 
         }
+    }
+    #open{
+        display: flex;
+       
     }
     &__bottom{
         @include flexj(center);
@@ -172,7 +166,6 @@
             height: 100%;
             display: flex;
             z-index: 999;
-            
           &__list{
             height: 70px;
             width: 164px;
@@ -227,16 +220,13 @@
                         // box-shadow: 2px  -5px 32px #b30707;
                         // background-color: #a52a2a;
                     }
-
                 }
             }
           }
-         
         }
-        }
+       } 
     }  
 @media (max-width:1024px){
-   
     .header__top{
         width: 100%;
     }
@@ -258,9 +248,7 @@
     .header__top__wrapper__search{
         width: 120%;
         order: 1;
-       
     }
-
     .header__top__wrapper__search--content{
         width: 100%;
         border-radius: 0;
@@ -269,9 +257,8 @@
     .header__top__wrapper__search--button{
         border-radius: 0;
     }
+   
 }
-
-
 @media(max-width:800px){
     .header__bottom{
         position: relative;     
@@ -302,25 +289,22 @@
      }
         .header__bottom__burger{
         //  z-index: 9999;
-         display: block;
-        
+         display: flex;  
+         flex-direction: column; 
+         align-items: center;  
     } 
 }
-
     @media(max-width:600px){
         .header__top__wrapper--user{
-        height: auto;
-        width: auto;
-        
-        justify-content: space-evenly;
+         height: auto;
+         width: auto;
+         justify-content: space-evenly;
          flex-direction: column;
          align-items: center;
-         
         }
         .header__top__wrapper--user--login{
         height: 50px;
         width: 150px;
-
     }
     .header__top__wrapper--user--login.register{
         margin: 0.5em 0 0 0.3em;
@@ -336,6 +320,7 @@
             width: 80px;
             margin-top:14%;
          }
+       
         
     }
     
