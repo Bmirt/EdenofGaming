@@ -13,6 +13,56 @@ import AuthMethods from "../utils/AuthMethods";
 
 class Header extends React.Component {
   
+  state = {
+    platforms: "Platforms",
+    genre: "Genre",
+    comingSoon: "Coming Soon",
+    bestSeller: "Best Seller",
+    merchandise: "Merchandise",
+    action: "ACTION",
+    adventure: "ADVENTURE",
+    horror: "HORROR",
+    strategy: "STRATEGY",
+    online: "ONLINE",
+    quest: "QUEST",
+    other: "OTHER"
+  };
+
+  changeGeo() {
+    this.setState({
+      platforms: "პლატფორმა",
+      genre: "ჟანრი",
+      comingSoon: "მალე დაემატება",
+      bestSeller: "ბესთსელერი",
+      merchandise: "Merchandise",
+      action: "ACTION",
+      adventure: "სათავგადასავლო",
+      horror: "საშინელებათა",
+      strategy: "სტრატეგია",
+      online: "ონლაინი",
+      quest: "QUEST",
+      other: "სხვა"
+
+    })
+  }
+
+  changeEng() {
+    this.setState({
+      platforms: "Platforms",
+      genre: "Genre",
+      comingSoon: "Coming Soon",
+      bestSeller: "Best Seller",
+      merchandise: "Merchandise",
+      action: "ACTION",
+      adventure: "ADVENTURE",
+      horror: "HORROR",
+      strategy: "STRATEGY",
+      online: "ONLINE",
+      quest: "QUEST",
+      other: "OTHER"
+    })
+  }
+
   render() {
     // const user = AuthMethods.getCurrentUser();
     return (
@@ -23,6 +73,8 @@ class Header extends React.Component {
           <section className="header__top">
             <div id="j" className="header__top__wrapper">
               <Logo logo={logo} />
+              <button onClick = { () => this.changeGeo()}>GEO</button>
+              <button onClick = { () => this.changeEng()}>ENG</button>
               <Search />
               <div className="header__top__wrapper--user">
                 {context.user ? (
@@ -85,7 +137,7 @@ class Header extends React.Component {
 
           <section className="header__bottom">
             <nav className="header__bottom__navigation" id="nav">
-              <NavigationItem title="Platforms">
+              <NavigationItem title={this.state.platforms}>
                 <SubNavigationItem title="PC" />
                 <SubNavigationItem title="PLAYSTATION 4" />
                 <SubNavigationItem title="XBOX 1" />
@@ -93,32 +145,32 @@ class Header extends React.Component {
                 <SubNavigationItem title="PS VITA" />
               </NavigationItem>
 
-              <NavigationItem title="Genres">
+              <NavigationItem title={this.state.genre}>
                 <SubNavigationItem title="FPS" />
-                <SubNavigationItem title="ACTION" />
-                <SubNavigationItem title="ADVENTURE" />
-                <SubNavigationItem title="HOROR" />
-                <SubNavigationItem title="STRATEGY" />
-                <SubNavigationItem title="ONLINE" />
-                <SubNavigationItem title="QUEST" />
-                <SubNavigationItem title="OTHER" />
+                <SubNavigationItem title={this.state.action} />
+                <SubNavigationItem title={this.state.adventure} />
+                <SubNavigationItem title={this.state.horror} />
+                <SubNavigationItem title={this.state.strategy} />
+                <SubNavigationItem title={this.state.online} />
+                <SubNavigationItem title={this.state.quest}/>
+                <SubNavigationItem title={this.state.other}/>
               </NavigationItem>
 
-              <NavigationItem title="Coming Soon">
+              <NavigationItem title={this.state.comingSoon}>
                 <SubNavigationItem title="Most Preordered" />
                 <SubNavigationItem title="Most Liked" />
                 <SubNavigationItem title="MOST VIEWED" />
                 <SubNavigationItem title="AWARD VINING" />
               </NavigationItem>
 
-              <NavigationItem title="Best Sellers">
+              <NavigationItem title={this.state.bestSeller}>
                 <SubNavigationItem title="THIS WEEK" />
                 <SubNavigationItem title="THIS MONTH" />
                 <SubNavigationItem title="THIS YEAR" />
                 <SubNavigationItem title="ALL TIME" />
               </NavigationItem>
 
-              <NavigationItem title="Merchandise">
+              <NavigationItem title={this.state.merchandise}>
                 <SubNavigationItem title="T-SHIRTS" />
                 <SubNavigationItem title="MUGS" />
                 <SubNavigationItem title="POSSTERS" />
