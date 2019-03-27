@@ -2,7 +2,7 @@
      &__nav{
         position: fixed;
         left:0;
-        top:390px;
+        top:349px;
         bottom:500px;
         z-index: 999;
         &__list{
@@ -19,7 +19,6 @@
                     @include size(100%,100%,#222);
                     border:1px solid transparent;
                     text-decoration: none;
-
                     .awesome{
                         @include font(2.3rem,#fff);
                     } 
@@ -55,7 +54,7 @@
      }
    .chat{
        position: fixed;
-       top:390px;
+       top:349px;
        z-index: 999;
        transition: 1s;
        border-radius: 0.8em 0 0 0.8em;
@@ -156,6 +155,12 @@
 @media(max-width:1366px){
     .aside__nav__list{
         height: 50px;
+    }
+}
+@media(max-width:1024px){
+    .aside__nav,.chat{
+        top:279px;
+        bottom: 500px;
     }
 }
 @media(max-width:800px){

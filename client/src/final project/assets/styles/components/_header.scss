@@ -120,7 +120,6 @@
                        line-height: 50px;
                     }
                 }
-   
             }
             &--user>div>a{
                 background: #10548b;
@@ -132,6 +131,7 @@
                 font-size: 2rem;
                 font-weight: bold;
                 margin:0 0.2em 0 0.2em;  
+                text-decoration: none;
                 &:first-child{
                    background: transparent;
                     width: 75px;
@@ -140,9 +140,7 @@
                     background-color: #273e52;
                     margin:0 -0.1em 0 0.2em !important;
                  }
-            }
-          
-            
+            } 
         }
     }
     &__bottom{
@@ -222,7 +220,6 @@
                     font-size: 1.5rem; 
                     box-shadow: 0 5px 15px #000000a6;
                     background-color: #222; 
-                   
                     &:hover{
                         transition: 0.6s;
                         box-shadow: 0 5px 15px #df0808;
@@ -238,7 +235,6 @@
         }
         }
     }  
-
 @media (max-width:1024px){
    
     .header__top{
@@ -259,7 +255,6 @@
     .header__top__wrapper--user{
       margin:3em 1.4em 0 0;
     }
-    
     .header__top__wrapper__search{
         width: 120%;
         order: 1;
@@ -269,32 +264,26 @@
     .header__top__wrapper__search--content{
         width: 100%;
         border-radius: 0;
-        padding-left: 35px;
-       
+        padding-left: 35px;  
     }
     .header__top__wrapper__search--button{
         border-radius: 0;
     }
-    
 }
 
 
 @media(max-width:800px){
     .header__bottom{
-        position: relative;  
-        
+        position: relative;     
     }
      .header__bottom__navigation{
       width: auto;
-     height: auto;
+      height: auto;
       position: absolute;
       right:0;
-      
         flex-direction: column;
         display: none;
         transition:1s opacity 0.5s ease-out;
-        
-       
      }
      .header__bottom__navigation__list{
          position: relative;
@@ -304,10 +293,8 @@
         }
         &:last-child{
             border-radius:  0 ;
-        }
-        
+        }  
 }
-  
      .header__bottom__navigation__list--item{
         position: absolute;   
         right: 164px;
@@ -319,9 +306,8 @@
         
     } 
 }
+
     @media(max-width:600px){
-      
-      
         .header__top__wrapper--user{
         height: auto;
         width: auto;
