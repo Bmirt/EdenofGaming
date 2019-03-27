@@ -21,7 +21,7 @@ class Register extends React.Component {
   onHandleSubmit = e => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/users/register", {
+      .post("/api/users/register", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,

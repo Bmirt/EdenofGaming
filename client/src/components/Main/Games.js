@@ -12,7 +12,7 @@ class Games extends React.Component {
   componentDidMount() {
     console.log(this.context)
     axios
-      .get("http://localhost:5000/api/products")
+      .get("/api/products")
       .then(res => {
         this.context.games = res.data;
         this.setState({

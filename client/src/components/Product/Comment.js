@@ -9,7 +9,8 @@ export default class Comment extends React.Component {
     this.state = {
       productID: props.productID,
       comment: "",
-      comments: []
+      comments: null,
+      haveComments: false
     };
   }
   onHandleChange = e => {
@@ -18,21 +19,29 @@ export default class Comment extends React.Component {
     });
   };
   componentDidMount() {
-    console.log(this.state);
+    axios
+      .get(`http://localhost:5000/api/posts/${this.state.productID}`)
+      .then(res => {
+        if (res.data.length > 0)
+          this.setState({ comments: res.data, haveComments: true });
+      });
   }
   onHandleSubmit = e => {
     e.preventDefault();
     const jwt = Auth.getJWT();
-    console.log(jwt)
-    axios.post(`http://localhost/5000/api/posts/${this.state.productID}`, {
-      text: this.state.comment,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: jwt
-        }.then(res =>console.log(res))
-    });
+    fetch(`/api/posts/${this.state.productID}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt
+      },
+      body: { text: this.state.comment }
+    })
+      .then(res => console.log("then", res))
+      .catch(err => console.log("errror", err));
   };
   render() {
+    console.log(this.state);
     return (
       <UserContext.Consumer>
         {context => (
@@ -68,26 +77,30 @@ export default class Comment extends React.Component {
                   post
                 </button>
               </form>
-              <div className="discription__wrappertop__down__comment--wrapper--result">
-                <div className="discription__wrappertop__down__comment--wrapper--result--profile">
-                  <img
-                    src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
-                    alt=""
-                    className="discription__wrappertop__down__comment--wrapper--result--profile--image"
-                  />
-                  <span className="discription__wrappertop__down__comment--wrapper--result--profile--name">
-                    koko
-                  </span>
-                </div>
-                <p className="discription__wrappertop__down__comment--wrapper--result--comment">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptas facilis sed cum quisquam nihil cumque nemo, unde
-                  assumenda dolorum ab iusto, ullam commodi neque odio molestiae
-                  at mollitia numquam repellat! Voluptas facilis sed cum
-                  quisquam nihil cumque nemo, unde assumenda dolorum ab iusto,
-                  ullam commodi neque odio molestiae at mollitia numquam repell
-                </p>
-              </div>
+              {this.state.haveComments ? (
+                this.state.comments.map(item => (
+                  <div
+                    key={item.date}
+                    className="discription__wrappertop__down__comment--wrapper--result"
+                  >
+                    <div className="discription__wrappertop__down__comment--wrapper--result--profile">
+                      <img
+                        src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
+                        alt=""
+                        className="discription__wrappertop__down__comment--wrapper--result--profile--image"
+                      />
+                      <span className="discription__wrappertop__down__comment--wrapper--result--profile--name">
+                        koko
+                      </span>
+                    </div>
+                    <p className="discription__wrappertop__down__comment--wrapper--result--comment">
+                      {item.text}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div>No comments yet</div>
+              )}
             </div>
           </div>
         )}
