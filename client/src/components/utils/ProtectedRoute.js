@@ -18,7 +18,8 @@ class ProtectedRoute extends React.Component {
       headers: { Authorization: jwt }
     }).then(res => {
       this.setState({ user: res });
-    });
+    })
+    .catch(err => AuthMethods.logout())
   }
   render() {
     if (this.state.user === undefined) {

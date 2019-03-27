@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import user from '../final project/assets/images/user.png'
+import user from '../../final project/assets/images/user.png'
 
 
 export default () =>{
