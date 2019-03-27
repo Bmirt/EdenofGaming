@@ -22,17 +22,21 @@
                 @include flexj(space-between);
                 width: 100%;
                 &--social{
-                    @include size(40px,40px,#222);
+                    @include size(50px,50px,#222);
                     @include flex(center,center);
-                    border-radius: 50%;
+                    border-radius: 20%;
                     margin-top:1.5em;
+                    transition: 0.7s linear;
+
                     cursor: pointer;
                    &:hover{
                      background-color: #fff;
-                     transition: 0.8s;
+                    
                    }
                    &:hover .awesome{
                     color:#222;
+                    transform: scale(1.3);
+                    transition: 0.7s linear;
                    }
                    .awesome{
                        @include font(2rem,#fff);

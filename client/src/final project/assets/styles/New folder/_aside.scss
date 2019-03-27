@@ -8,9 +8,9 @@
             @include size(80px,60px,#222);
             @include flex(space-around,center);
            flex-direction: column;
-        //    animation: socialnetwork;  
+           animation: socialnetwork;  
            &:hover &__social{
-            // animation:socialnetwork 0.5s linear forwards;
+            animation:socialnetwork 0.5s linear forwards;
            }
                 &__social{
                     @include flex(center,center);

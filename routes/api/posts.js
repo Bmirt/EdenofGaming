@@ -3,9 +3,10 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-// Post model
+// Models
 const Post = require("../../models/Post");
 const Profile = require("../../models/Profile");
+const Product = require("../../models/product");
 
 // Validation
 const validatePostInput = require("../../validation/post");
@@ -42,11 +43,11 @@ router.get("/:id", (req, res) => {
     );
 });
 
-// @route  GET api/posts
+// @route  POST api/posts
 // @desc   Create Post
 // @access Private
 router.post(
-  "/",
+  "/:product_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
@@ -57,14 +58,24 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    const newPost = new Post({
-      text: req.body.text,
-      name: req.body.name,
-      avatar: req.body.avatar,
-      user: req.user.id
-    });
+    Product.findById(req.params.product_id)
+      .then(product => {
+        const newPost = {
+          text: req.body.text,
+          name: req.body.name,
+          avatar: req.body.avatar,
+          user: req.user.id
+        };
 
-    newPost.save().then(post => res.json(post));
+        //Add to comments array
+        product.reviews.unshift(newPost);
+
+        // Save
+        product.save().then(product => res.json(product));
+      })
+      .catch(err =>
+        res.status(404).json({ productnotfound: "No product found" })
+      );
   }
 );
 
@@ -73,24 +84,36 @@ router.post(
 // @access Private
 
 router.delete(
-  "/:id",
+  "/:product_id/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log(req.params.product_id);
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
-          console.log(post.user.toString());
-          console.log(req.user.id);
-          //check for post owner
-          if (post.user.toString() !== req.user.id) {
+      Product.findById(req.params.product_id)
+        .then(product => {
+          //check for product owner
+          if (
+            product.reviews.filter(
+              review => review._id.toString() === req.params.id
+            ).length === 0
+          ) {
             return res
-              .status(401)
-              .json({ notauthorized: "user not authorized" });
+              .status(404)
+              .json({ commentnotexists: "comment does not exist" });
           }
-          //delete
-          post.remove().then(() => res.json({ success: true }));
+          // Get remove index
+          const removeIndex = product.reviews
+            .map(item => item._id.toString())
+            .indexOf(req.params.comment_id);
+
+          //Splice comment out of array
+          product.reviews.splice(removeIndex, 1);
+
+          product.save().then(product => res.json(product));
         })
-        .catch(err => res.status(404).json({ postnotfound: "post not found" }));
+        .catch(err => {
+          return res.status(404).json({ postnotfound: "post not found" });
+        });
     });
   }
 );
@@ -100,39 +123,56 @@ router.delete(
 // @access Private
 
 router.post(
-  "/like/:id",
+  "/like/:product_id/:review_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
+      Product.findById(req.params.product_id)
+        .then(product => {
+          var ourReview;
+          for (var i = 0; i < product.reviews.length; i++) {
+            if (product.reviews[i].id === req.params.review_id) {
+              ourReview = product.reviews[i];
+            }
+          }
           if (
-            post.likes.filter(like => like.user.toString() === req.user.id)
+            ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
+
+            // product.likes.filter(like => like.user.toString() === req.user.id)
+            //   .length > 0
           ) {
             return res
               .status(400)
-              .json({ alreadyliked: "User already liked this post" });
+              .json({ alreadyliked: "User already liked this product" });
           } else if (
-            post.dislikes.filter(
+            ourReview.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length > 0
+
+            // product.dislikes.filter(
+            //   dislike => dislike.user.toString() === req.user.id
+            // ).length > 0
           ) {
             //Get remove index
-            const removeIndex = post.dislikes
+            const removeIndex = ourReview.dislikes
               .map(item => item.user.toString())
               .indexOf(req.user.id);
 
             //Splice out of array
-            post.dislikes.splice(removeIndex, 1);
+            ourReview.dislikes.splice(removeIndex, 1);
           }
 
           //Add user id to likes array
-          post.likes.unshift({ user: req.user.id });
+          ourReview.likes.unshift({ user: req.user.id });
 
-          post.save().then(post => res.json(post));
+          product.save();
+          return res.status(404).json(ourReview);
         })
-        .catch(err => res.status(404).json({ postnotfound: "post not found" }));
+        .catch(err => {
+          console.log(err.message);
+          return res.status(404).json({ postnotfound: "review not found" });
+        });
     });
   }
 );
@@ -142,33 +182,42 @@ router.post(
 // @access Private
 
 router.post(
-  "/unlike/:id",
+  "/unlike/:product_id/:review_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
+      Product.findById(req.params.product_id)
+        .then(product => {
+          var ourReview;
+          for (var i = 0; i < product.reviews.length; i++) {
+            if (product.reviews[i].id === req.params.review_id) {
+              ourReview = product.reviews[i];
+            }
+          }
           if (
-            post.likes.filter(like => like.user.toString() === req.user.id)
+            ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length === 0
           ) {
             return res
               .status(400)
-              .json({ notliked: "You have not yet liked this post" });
+              .json({ notliked: "You have not yet liked this review" });
           }
 
           //Get remove index
-          const removeIndex = post.likes
+          const removeIndex = ourReview.likes
             .map(item => item.user.toString())
             .indexOf(req.user.id);
 
           //Splice out of array
-          post.likes.splice(removeIndex, 1);
+          ourReview.likes.splice(removeIndex, 1);
 
           //Save
-          post.save().then(post => res.json(post));
+          product.save();
+          return res.status(404).json(ourReview);
         })
-        .catch(err => res.status(404).json({ postnotfound: "post not found" }));
+        .catch(err =>
+          res.status(404).json({ postnotfound: "review not found" })
+        );
     });
   }
 );
@@ -178,39 +227,49 @@ router.post(
 // @access Private
 
 router.post(
-  "/dislike/:id",
+  "/dislike/:product_id/:review_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
+      Product.findById(req.params.product_id)
+        .then(product => {
+          var ourReview;
+          for (var i = 0; i < product.reviews.length; i++) {
+            if (product.reviews[i].id === req.params.review_id) {
+              ourReview = product.reviews[i];
+            }
+          }
           if (
-            post.dislikes.filter(
+            ourReview.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length > 0
           ) {
             return res
               .status(400)
-              .json({ alreadydisliked: "User already liked this post" });
+              .json({ alreadydisliked: "User already liked this review" });
           } else if (
-            post.likes.filter(like => like.user.toString() === req.user.id)
+            ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
             //Get remove index
-            const removeIndex = post.likes
+            const removeIndex = ourReview.likes
               .map(item => item.user.toString())
               .indexOf(req.user.id);
 
             //Splice out of array
-            post.likes.splice(removeIndex, 1);
+            ourReview.likes.splice(removeIndex, 1);
           }
 
           //Add user id to dislikes array
-          post.dislikes.unshift({ user: req.user.id });
+          ourReview.dislikes.unshift({ user: req.user.id });
 
-          post.save().then(post => res.json(post));
+          product.save();
+          return res.status(404).json(ourReview);
         })
-        .catch(err => res.status(404).json({ postnotfound: "post not found" }));
+        .catch(err => {
+          console.log(err.stack);
+          res.status(404).json({ postnotfound: "post not found" });
+        });
     });
   }
 );
@@ -220,32 +279,39 @@ router.post(
 // @access Private
 
 router.post(
-  "/undislike/:id",
+  "/undislike/:product_id/:review_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
-        .then(post => {
+      Product.findById(req.params.product_id)
+        .then(product => {
+          var ourReview;
+          for (var i = 0; i < product.reviews.length; i++) {
+            if (product.reviews[i].id === req.params.review_id) {
+              ourReview = product.reviews[i];
+            }
+          }
           if (
-            post.dislikes.filter(
+            ourReview.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length === 0
           ) {
             return res
               .status(400)
-              .json({ notdisliked: "You have not yet disliked this post" });
+              .json({ notdisliked: "You have not yet disliked this review" });
           }
 
           //Get remove index
-          const removeIndex = post.dislikes
+          const removeIndex = ourReview.dislikes
             .map(item => item.user.toString())
             .indexOf(req.user.id);
 
           //Splice out of array
-          post.dislikes.splice(removeIndex, 1);
+          ourReview.dislikes.splice(removeIndex, 1);
 
           //Save
-          post.save().then(post => res.json(post));
+          product.save();
+          return res.status(404).json(ourReview);
         })
         .catch(err => res.status(404).json({ postnotfound: "post not found" }));
     });
@@ -256,7 +322,7 @@ router.post(
 // @desc   Add comment to post
 // @access Private
 router.post(
-  "/comment/:id",
+  "/comment/:product_id/:review_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
@@ -266,8 +332,14 @@ router.post(
       // if any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
-    Post.findById(req.params.id)
-      .then(post => {
+    Product.findById(req.params.product_id)
+      .then(product => {
+        var ourReview;
+        for (var i = 0; i < product.reviews.length; i++) {
+          if (product.reviews[i].id === req.params.review_id) {
+            ourReview = product.reviews[i];
+          }
+        }
         const newComment = {
           text: req.body.text,
           name: req.body.name,
@@ -276,12 +348,16 @@ router.post(
         };
 
         //Add to comments array
-        post.comments.unshift(newComment);
+        ourReview.comments.unshift(newComment);
 
         // Save
-        post.save().then(post => res.json(post));
+        product.save();
+        return res.status(404).json(ourReview);
       })
-      .catch(err => res.status(404).json({ postnotfound: "No post found" }));
+      .catch(err => {
+        console.log(err.stack);
+        res.status(404).json({ postnotfound: "No post found" });
+      });
   }
 );
 
@@ -289,14 +365,20 @@ router.post(
 // @desc   Add comment from post
 // @access Private
 router.delete(
-  "/comment/:id/:comment_id",
+  "/comment/:product_id/:review_id/:comment_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Post.findById(req.params.id)
-      .then(post => {
+    Product.findById(req.params.product_id)
+      .then(product => {
+        var ourReview;
+        for (var i = 0; i < product.reviews.length; i++) {
+          if (product.reviews[i].id === req.params.review_id) {
+            ourReview = product.reviews[i];
+          }
+        }
         // Check to see if comment exists
         if (
-          post.comments.filter(
+          ourReview.comments.filter(
             comment => comment._id.toString() === req.params.comment_id
           ).length === 0
         ) {
@@ -306,14 +388,15 @@ router.delete(
         }
 
         // Get remove index
-        const removeIndex = post.comments
+        const removeIndex = ourReview.comments
           .map(item => item._id.toString())
           .indexOf(req.params.comment_id);
 
         //Splice comment out of array
-        post.comments.splice(removeIndex, 1);
+        ourReview.comments.splice(removeIndex, 1);
 
-        post.save().then(post => res.json(post));
+        product.save();
+        return res.status(404).json(ourReview);
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
