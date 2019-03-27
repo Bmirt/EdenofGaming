@@ -14,7 +14,7 @@ class ProtectedRoute extends React.Component {
     if (!jwt) {
       this.props.history.push("/login");
     }
-    Axios.get("http://localhost:5000/api/users/current", {
+    Axios.get("/api/users/current", {
       headers: { Authorization: jwt }
     })
       .then(res => {
