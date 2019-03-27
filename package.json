@@ -4,9 +4,11 @@
   "description": "Online cd key platform",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "client": "cd client && npm start",
-    "both": "concurrently \"nodemon server.js\" \" npm run client\" "
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Boris Mirtskhulava",
   "license": "MIT",
