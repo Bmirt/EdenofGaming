@@ -1,0 +1,124 @@
+td,table{
+    border:6px inset #202020e6 ;
+}
+.cart{   
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    border-collapse: collapse; 
+    &__header{
+          height: 50px;
+          background-color: #20201e; 
+          text-align: center;
+          font-size: 2rem;
+          color:#ececec;
+          text-transform: capitalize;
+          border:none;
+          &__name{
+              text-align: center;
+              height: 50px;
+          }
+      }
+    &__wrapper{
+        background: #0c0909;
+      &__content{
+          height: auto;
+          &__inside{
+              font-size: 2rem;
+              text-align: center;
+              color:#fff;     
+          }
+          &__inside{
+            text-transform: capitalize;
+            &--delete{
+                width: 110px;
+                height: 40px;
+                border: none;
+                border-radius: 6px;
+                font-size: 1.8rem;
+                background-color: #1b4b6a;
+                color:#fff;
+                box-shadow:inset 1px 2px 75px #000000;
+            }
+          }
+          &__inside.image{
+             width: 300px;
+             height: 300px;
+             background-image: url("https://i.pinimg.com/originals/6f/9d/26/6f9d26f313e51dc347b0cea00c4c6078.jpg");
+             background-position: center ;
+             background-size: 100%;
+             background-repeat: no-repeat;
+        }
+      }
+    }
+}
+
+
+
+
+
+@media(max-width: 1024px)
+ {
+table, thead, tbody, th, td, tr { 
+    display: block; 
+}
+.cart {
+    width: 100%;
+    border: none;
+    &__header{
+    height: 0;
+    }
+}
+.cart__wrapper__content:nth-child(n+2){
+    margin-top:4.6em;
+}
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+tr { 
+     border:3px inset #202020e6 ; 
+    }
+
+td { 
+    /* Behave  like a "row" */
+    border: none;
+    border:1px solid  #d3cdcde6 ;
+    position: relative;
+    padding-left: 50%; 
+}
+td:last-child{
+    line-height: 40px;
+}
+    .cart__wrapper__content__inside.image{
+     width: 100%;
+     height: 300px;
+ }
+
+td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0px;
+    left: 0px;
+    width: 40%; 
+    padding-right: 10px; 
+    // white-space: nowrap;
+}
+
+/*
+Label the data
+*/
+
+td:nth-of-type(1):before { content: "check"; }
+td:nth-of-type(2):before { content: " Name"; }
+td:nth-of-type(3):before { content: "platform"; }
+td:nth-of-type(4):before { content: "price"; }
+td:nth-of-type(5):before { content: ""; }
+td:nth-of-type(6):before { content: "publisher"; }
+td:nth-of-type(7):before { content: "remove "; }
+
+}
