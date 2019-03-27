@@ -64,19 +64,20 @@ router.post(
     }
 
     Product.findById(req.params.product_id)
+
       .then(product => {
         const newPost = {
           text: req.body.text,
-          name: req.body.name,
-          avatar: req.body.avatar,
-          user: req.user
+          name: req.user.name,
+          avatar: req.user.avatar,
+          user: req.user.id
         };
 
         //Add to comments array
         product.reviews.unshift(newPost);
 
         // Save
-        product.save().then(product => res.json(product));
+        product.save().then(product => res.json(newPost));
       })
       .catch(err =>
         res.status(404).json({ productnotfound: "No product found" })
@@ -138,6 +139,7 @@ router.post(
           for (var i = 0; i < product.reviews.length; i++) {
             if (product.reviews[i].id === req.params.review_id) {
               ourReview = product.reviews[i];
+              console.log(product.reviews[i]);
             }
           }
           if (

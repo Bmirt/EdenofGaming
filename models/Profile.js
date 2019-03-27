@@ -33,6 +33,7 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
+  cart: [{}],
   githubusername: {
     type: String
   },
