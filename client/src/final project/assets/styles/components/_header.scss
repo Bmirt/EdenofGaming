@@ -1,7 +1,12 @@
 .header{
-    @include size(100%,248px,#222);
+    @include size(100%,330px,#222);
     @include flex(space-between,center);
     flex-direction: column;
+    &__languagebar{
+        background-color: red;
+        width: 100%;
+        height: 50px;;
+    }
     &__top{
         width: calc(100% - 150px);
         height: 140px;
