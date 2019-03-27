@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 let dialogStyles = {
-  minwidth: "200px",
+  minwidth: "300px",
   maxWidth: "400",
   margin: "0 auto",
   position: "fixed",
