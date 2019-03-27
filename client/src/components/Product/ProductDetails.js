@@ -143,7 +143,7 @@ class ProductDetails extends React.Component {
                 </span>
               </p>
             </div>
-            <Comment/>
+            <Comment productID={product._id}/>
           </div>
         </div>
       </section>

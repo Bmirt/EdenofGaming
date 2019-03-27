@@ -16,10 +16,11 @@ class ProtectedRoute extends React.Component {
     }
     Axios.get("http://localhost:5000/api/users/current", {
       headers: { Authorization: jwt }
-    }).then(res => {
-      this.setState({ user: res });
     })
-    .catch(err => AuthMethods.logout())
+      .then(res => {
+        this.setState({ user: res });
+      })
+      .catch(err => AuthMethods.logout());
   }
   render() {
     if (this.state.user === undefined) {
@@ -29,11 +30,7 @@ class ProtectedRoute extends React.Component {
         </div>
       );
     } else {
-      return (
-        <React.Fragment>
-          {this.props.children}
-        </React.Fragment>
-      );
+      return <React.Fragment>{this.props.children}</React.Fragment>;
     }
   }
 }
