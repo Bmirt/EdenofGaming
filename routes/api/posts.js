@@ -21,27 +21,32 @@ router.get("/test", (req, res) =>
   })
 );
 
-// @route  GET api/posts
-// @desc   get posts
+// @route  GET api/posts/:productid
+// @desc   get posts on certain product
 // @access Public
-router.get("/", (req, res) => {
-  Post.find()
-    .sort({ date: -1 })
-    .then(posts => res.json(posts))
-    .catch(err => res.status(404).json({ nopostfound: "no posts found" }));
+router.get("/:product_id", (req, res) => {
+  Product.findById(req.params.product_id)
+    .then(product => {
+      console.log(product);
+      res.json(product.reviews);
+    })
+    .catch(err => {
+      console.log(err.stack);
+      return res.status(404).json({ nopostfound: "no posts found" });
+    });
 });
 
 // @route  GET api/posts/:id
 // @desc   get posts by id
 // @access Public
-router.get("/:id", (req, res) => {
-  console.log(req.id);
-  Post.findById(req.params.id)
-    .then(post => res.json(post))
-    .catch(err =>
-      res.status(404).json({ nopostfound: "no post found with that id" })
-    );
-});
+// router.get("/:id", (req, res) => {
+//   console.log(req.id);
+//   Post.findById(req.params.id)
+//     .then(post => res.json(post))
+//     .catch(err =>
+//       res.status(404).json({ nopostfound: "no post found with that id" })
+//     );
+// });
 
 // @route  POST api/posts
 // @desc   Create Post
