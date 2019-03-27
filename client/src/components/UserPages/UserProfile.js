@@ -110,32 +110,39 @@ class UserProfile extends React.Component {
                     <div className="panel-heading">Social Media</div>
                     <div className="panel-body">
                       <div className="bottom">
-                        <a
-                          className="btn btn-primary btn-twitter btn-sm"
+                      <a
+                          className="btn btn-primary btn-twitter btn-sm admin__game__social"
                           href="https://twitter.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <i className="fa fa-twitter" />
+                             <i className="fab fa-twitter awesome twitter" />
                         </a>
                         <a
-                          className="btn btn-danger btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-danger btn-sm admin__game__social"
+                          href="https://youtube.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+
                         >
-                          <i className="fa fa-google-plus" />
+                            <i className="fab fa-youtube awesome youtube" />
                         </a>
                         <a
-                          className="btn btn-primary btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-primary btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://facebook.com"
                         >
-                          <i className="fa fa-facebook" />
+                            <i className="fab fa-facebook-f awesome facebook" />
                         </a>
                         <a
-                          className="btn btn-warning btn-sm"
-                          rel="publisher"
-                          href="https://plus.google.com"
+                          className="btn btn-warning btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://instagram.com"
                         >
-                          <i className="fa fa-behance" />
+                            <i className="fab fa-instagram awesome instagram" />
+
                         </a>
                       </div>{" "}
                     </div>
@@ -208,6 +215,27 @@ class UserProfile extends React.Component {
 
                         <div className="form-group">
                           <div className="col-xs-6">
+                            <label htmlFor="email">
+                              <h4 className="user-profile__input-title">
+                                Biography
+                              </h4>
+                            </label>
+                            <textarea
+                              type="text"
+                              className="form-control user-profile__input"
+                              name="bio"
+                              id="email"
+                              title="enter your email."
+                              value={this.state.bio}
+                              onChange={this.onChange}
+                              cols="30"
+                              rows="9"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <div className="col-xs-6">
                             <label htmlFor="phone">
                               <h4 className="user-profile__input-title">
                                 Location
@@ -246,6 +274,8 @@ class UserProfile extends React.Component {
                           </div>
                         </div>
 
+                        
+
                         <div className="form-group">
                           <div className="col-xs-6">
                             <label htmlFor="mobile">
@@ -265,26 +295,7 @@ class UserProfile extends React.Component {
                             />
                           </div>
                         </div>
-                        <div className="form-group">
-                          <div className="col-xs-6">
-                            <label htmlFor="email">
-                              <h4 className="user-profile__input-title">
-                                Biography
-                              </h4>
-                            </label>
-                            <textarea
-                              type="text"
-                              className="form-control user-profile__input"
-                              name="bio"
-                              id="email"
-                              title="enter your email."
-                              value={this.state.bio}
-                              onChange={this.onChange}
-                              cols="30"
-                              rows="10"
-                            />
-                          </div>
-                        </div>
+                        
                         <div className="form-group">
                           <div className="col-xs-12">
                             <br />
