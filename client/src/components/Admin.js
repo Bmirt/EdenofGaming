@@ -1,31 +1,43 @@
 import React from "react";
-import Auth from './utils/AuthMethods';
+import Auth from "./utils/AuthMethods";
 // import axios from "axios";
 
 class Admin extends React.Component {
-  state ={
+  state = {
     isAdmin: null
-  }
-  componentDidMount(){
-    this.setState({isAdmin:Auth.isAdmin()})
+  };
+  componentDidMount() {
+    this.setState({ isAdmin: Auth.isAdmin() });
   }
   render() {
-    if(!this.state.isAdmin){
-      return<h1 style={{textAlign:"center", fontSize:"20px", color:"#FFF",margin:"200px 0"}}>You Don't have Access To This Page</h1>
+    if (!this.state.isAdmin) {
+      return (
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "20px",
+            color: "#FFF",
+            margin: "200px 0"
+          }}
+        >
+          You Don't have Access To This Page
+        </h1>
+      );
     }
     return (
       <div>
         <div className="container bootstrap snippet">
           <div className="row">
             <div className="col-sm-10">
-              <h1 className= "admin__name">Admin Panel<span className= "admin__name--title">Manage Your Site</span></h1>
-              <h2 className= "admin__name">Welcome {this.props.user.name} </h2>
-
+              <h1 className="admin__name">
+                Admin Panel
+                <span className="admin__name--title">Manage Your Site</span>
+              </h1>
+              <h2 className="admin__name">Welcome {this.props.user.name} </h2>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-3">
-              
               <ul className="list-group">
                 <li className="list-group-item text-muted">
                   Activity <i className="fa fa-dashboard fa-1x" />
@@ -96,22 +108,38 @@ class Admin extends React.Component {
             <div className="col-sm-9">
               <ul className="nav nav-tabs">
                 <li className="active">
-                  <a data-toggle="tab" className="user-profile__link" href="#home">
+                  <a
+                    data-toggle="tab"
+                    className="user-profile__link"
+                    href="#home"
+                  >
                     dashboard
                   </a>
                 </li>
                 <li>
-                  <a data-toggle="tab" className="user-profile__link" href="#pages">
+                  <a
+                    data-toggle="tab"
+                    className="user-profile__link"
+                    href="#pages"
+                  >
                     Pages
                   </a>
                 </li>
                 <li>
-                  <a data-toggle="tab" className="user-profile__link" href="#games">
+                  <a
+                    data-toggle="tab"
+                    className="user-profile__link"
+                    href="#games"
+                  >
                     Games
                   </a>
                 </li>
                 <li>
-                  <a data-toggle="tab" className="user-profile__link" href="#users">
+                  <a
+                    data-toggle="tab"
+                    className="user-profile__link"
+                    href="#users"
+                  >
                     Users
                   </a>
                 </li>
@@ -119,29 +147,22 @@ class Admin extends React.Component {
 
               <div className="tab-content">
                 <div className="tab-pane active" id="home">
-                <h3 className="header__bottom__nav--list">
-                    dashboard
-                  </h3>   
-                 
+                  <h3 className="header__bottom__nav--list">dashboard</h3>
                 </div>
                 <div className="tab-pane" id="pages">
                   <h3 className="header__bottom__nav--list">
                     Pages information
                   </h3>
-                 </div> 
-                  <div className="tab-pane" id="games">
+                </div>
+                <div className="tab-pane" id="games">
                   <h3 className="header__bottom__nav--list">
                     Games information
                   </h3>
-                </div> 
-                  <div className="tab-pane" id="users">
+                </div>
+                <div className="tab-pane" id="users">
                   <h3 className="header__bottom__nav--list">
                     Users information
                   </h3>
-
-                  
-
-                
                 </div>
               </div>
             </div>
