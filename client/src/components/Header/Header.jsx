@@ -58,7 +58,8 @@ class Header extends React.Component {
                         to={"/userprofile"}
                         style={{ color: "white", fontSize: "16px" }}
                       >
-                        {context.user.name}
+                        {context.
+                        user.name}
                       </Link>
                       <Link
                         className=""
