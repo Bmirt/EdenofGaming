@@ -37,7 +37,6 @@ class GlobalState extends React.Component {
     this.setState({ user: null });
   };
   addToCart = product => {
-    console.log("user", this.state.user);
     if (!Auth.getCurrentUser()) {
       this.message("You need to be logged in");
       return;
@@ -48,6 +47,7 @@ class GlobalState extends React.Component {
     }
     const updatedCart = [...this.state.cart];
     updatedCart.push(product);
+    this.message("Added To Cart")
     setTimeout(() => {
       this.setState({ cart: updatedCart,
       user:Auth.getCurrentUser()
