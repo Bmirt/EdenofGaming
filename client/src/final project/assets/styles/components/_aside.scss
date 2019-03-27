@@ -9,10 +9,13 @@
             @include size(80px,60px,#222);
             @include flex(space-around,center);
            flex-direction: column;
-        //    animation: socialnetwork;
+        //  animation: socialnetwork;
            
            &:hover &__social{
             // animation:socialnetwork 0.5s linear forwards;
+            border:1px solid #d1cbcb9c;
+            width: 140%;
+            transition: 0.5s ease-in-out;
            }
                 &__social{
                     @include flex(center,center);
@@ -46,10 +49,10 @@
                    color: #3688d5;
                 }
             }
-            @keyframes socialnetwork {
-                   0%{  width:100%; }
-                100% {  width: 140%;border:1px solid rgba(209, 203, 203, 0.61)}
-            }
+            // @keyframes socialnetwork {
+            //        0%{  width:100%; }
+            //     100% {  width: 140%;border:1px solid rgba(209, 203, 203, 0.61)}
+            // }
         }    
      }
    .chat{
@@ -157,7 +160,7 @@
         height: 50px;
     }
 }
-@media(max-width:1024px){
+@media(max-width:960px){
     .aside__nav,.chat{
         top:279px;
         bottom: 500px;
