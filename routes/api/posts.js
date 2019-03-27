@@ -64,6 +64,7 @@ router.post(
     }
 
     Product.findById(req.params.product_id)
+
       .then(product => {
         const newPost = {
           text: req.body.text,
@@ -71,12 +72,15 @@ router.post(
           avatar: req.body.avatar,
           user: req.user.id
         };
-
+        const responseJSON = {
+          text: req.body.text,
+          userObject: req.user
+        };
         //Add to comments array
         product.reviews.unshift(newPost);
 
         // Save
-        product.save().then(product => res.json(product));
+        product.save().then(product => res.json(responseJSON));
       })
       .catch(err =>
         res.status(404).json({ productnotfound: "No product found" })
