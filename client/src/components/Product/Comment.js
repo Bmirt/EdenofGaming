@@ -7,7 +7,8 @@ export default class Comment extends React.Component {
       likes: 0,
       dislikes: 0,
       liked: false,
-      disliked: false
+      disliked: false,
+      replays: null
     };
   }
 
@@ -58,7 +59,7 @@ export default class Comment extends React.Component {
           {this.props.text}
         </p>
 
-        <div>
+        <div style={{ height: "auto" }}>
           <span
             style={{ fontSize: "20px", display: "inline-block", width: "20px" }}
           >
@@ -74,8 +75,70 @@ export default class Comment extends React.Component {
             style={{ cursor: "pointer", fontSize: "25px" }}
             className="fas fa-thumbs-down"
           />
-
           <span style={{ fontSize: "20px" }}>{this.state.dislikes}</span>
+          <div
+            style={{
+              width: "80%",
+              float: "right",
+              height: "auto",
+              background: "green"
+            }}
+          >
+            <div className="discription__wrappertop__down__comment--wrapper--result--profile">
+              <img
+                src={this.props.avatar}
+                alt=""
+                style={{ width: "35px", borderRadius: "50%" }}
+              />
+              <span
+                style={{
+                  fontSize: "16px",
+                  color: "#FFF",
+                  marginLeft: "10px"
+                }}
+              >
+                {this.props.name}
+              </span>
+            </div>
+            <p
+              style={{
+                fontSize: "14px",
+                color: "#FFF",
+                padding: "10px",
+                background: "brown"
+              }}
+            >
+              {this.props.text}
+            </p>
+            <div style={{ display: "flex" }}>
+              <textarea
+                type="text"
+                name="replay"
+                style={{
+                  height: "80px",
+                  width: "300px",
+                  borderRadius: "9px",
+                  resize: "none",
+                  outline: "none",
+                  padding: "6px 12px"
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  background: "orange",
+                  border: "none",
+                  padding: "5px 10px",
+                  // height:"30px",
+                  alignSelf: "center",
+                  outline: "none",
+                  borderRadius: "8px"
+                }}
+              >
+                Replay
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );

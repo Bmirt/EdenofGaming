@@ -1,12 +1,25 @@
 import React from "react";
+import chat from "../../final project/assets/js/chat";
+import Auth from "../utils/AuthMethods";
 
 class Chat extends React.Component {
+  state ={
+    name : Auth.getCurrentUser() ? Auth.getCurrentUser().name : "User",
+    avatar: Auth.getCurrentUser() ? Auth.getCurrentUser().avatar : "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png"
+  }
   render() {
     return (
       <React.Fragment>
         <aside id="chat" className="chat">
           <nav className="chat__nav">
-            <div  id="btn" className="chat__nav__button">
+            <div
+              onClick={() => {
+                console.log("chat on click");
+                chat();
+              }}
+              id="btn"
+              className="chat__nav__button"
+            >
               <i id="awesome" className="fas fa-comment-alt awesome " />
             </div>
 
@@ -17,12 +30,14 @@ class Chat extends React.Component {
             <div className="chat__nav__main">
               <div className="chat__nav__main__wrapper">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png"
+                  src={this.state.avatar}
                   alt=""
                   className="chat__nav__main__wrapper--icon"
                 />
                 <div className="chat__nav__main__wrapper--message">
-                  <p className="chat__nav__main__wrapper--message--user">User</p>
+                  <p className="chat__nav__main__wrapper--message--user">
+                    {this.state.name}
+                  </p>
                   <p className="chat__nav__main__wrapper--message--content">
                     {" "}
                     KOKO is so wild and sexy{" "}
@@ -36,7 +51,9 @@ class Chat extends React.Component {
                   className="chat__nav__main__wrapper--icon"
                 />
                 <div className="chat__nav__main__wrapper--message">
-                  <p className="chat__nav__main__wrapper--message--user">Admin</p>
+                  <p className="chat__nav__main__wrapper--message--user">
+                    Admin
+                  </p>
                   <p className="chat__nav__main__wrapper--message--content">
                     {" "}
                     Yes indeed{" "}

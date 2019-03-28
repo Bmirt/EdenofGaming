@@ -1,4 +1,3 @@
-document.getElementById("btn").addEventListener("click",left)
 let push="chat";
 function left(){
     if(push==="chat"){ 
@@ -17,6 +16,9 @@ function left(){
         document.getElementById("awesome").style.color="#292b2c";
          document.getElementById("headchat").style.backgroundColor="#292b2c";
         
-        push="chat";
+         push="chat";
     }   
 }
+
+// document.getElementById("btn").addEventListener("click",left)
+export default left;
