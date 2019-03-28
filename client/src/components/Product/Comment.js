@@ -1,47 +1,116 @@
 import React from "react";
+import Auth from "../utils/AuthMethods";
+import userContext from "../../context/user-context";
 export default class Comment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // ...props,
-      likes: 0,
-      dislikes: 0,
+      ...props,
       liked: false,
-      disliked: false
+      disliked: false,
+      likeCount: props.likes.length,
+      dislikeCount: props.dislikes.length,
+      showReplays: false
     };
   }
 
+  static contextType = userContext;
+
+  componentDidMount() {
+    let liked = false;
+    let disliked = false;
+    for (let i = 0; i < this.props.likes.length; i++) {
+      if ((this.props.likes[i].user = Auth.getCurrentUser().id)) {
+        liked = true;
+      }
+      // if(this.props.dislikes[i].user = Auth.getCurrentUser().id){
+      //   disliked = true;
+      // }
+    }
+    this.setState({ liked: liked, disliked: disliked });
+  }
   like = e => {
+    const { productID, reviewID } = this.state;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to like the review");
+      return;
+    }
     if (this.state.liked) {
+      fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log("error", err));
       this.setState({
-        likes: this.state.likes - 1,
-        liked: false
+        liked: false,
+        likeCount: this.state.likeCount - 1
       });
-      // e.target.style.transform = "scale(1)";
     } else {
       if (this.state.disliked) {
         this.dislike();
       }
-      this.setState({ likes: this.state.likes + 1, liked: true });
-      e.target.style.transform = "scale(1.1)";
+      fetch(`/api/posts/like/${productID}/${reviewID}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log("error", err));
+      this.setState({ liked: true, likeCount: this.state.likeCount + 1 });
     }
   };
   dislike = e => {
+    const { productID, reviewID } = this.state;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to dislike the review");
+      return;
+    }
     if (this.state.disliked) {
+      fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log("error", err));
       this.setState({
-        dislikes: this.state.dislikes - 1,
-        disliked: false
+        disliked: false,
+        dislikeCount: this.state.dislikeCount - 1
       });
-      // e.target.style.transform = "scale(1)";
     } else {
       if (this.state.liked) {
         this.like();
       }
-      this.setState({ dislikes: this.state.dislikes + 1, disliked: true });
-      e.target.style.transform = "scale(1.1)";
+      fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log("error", err));
+      this.setState({
+        disliked: true,
+        dislikeCount: this.state.dislikeCount + 1
+      });
     }
   };
+  showReplays = ()=>{
+    this.setState({showReplays:true})
+  }
   render() {
+    console.log(this.state.liked);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -58,11 +127,11 @@ export default class Comment extends React.Component {
           {this.props.text}
         </p>
 
-        <div>
+        <div style={{ height: "auto" }}>
           <span
             style={{ fontSize: "20px", display: "inline-block", width: "20px" }}
           >
-            {this.state.likes}
+            {this.state.likeCount}
           </span>
           <i
             onClick={this.like}
@@ -74,8 +143,76 @@ export default class Comment extends React.Component {
             style={{ cursor: "pointer", fontSize: "25px" }}
             className="fas fa-thumbs-down"
           />
-
-          <span style={{ fontSize: "20px" }}>{this.state.dislikes}</span>
+          <span style={{ fontSize: "20px" }}>{this.state.dislikeCount}</span>
+          {this.state.showReplays ? (
+            <div>
+              <div
+                style={{
+                  width: "80%",
+                  float: "right",
+                  height: "auto",
+                  background: "green"
+                }}
+              >
+                <div className="discription__wrappertop__down__comment--wrapper--result--profile">
+                  <img
+                    src={this.props.avatar}
+                    alt=""
+                    style={{ width: "35px", borderRadius: "50%" }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      color: "#FFF",
+                      marginLeft: "10px"
+                    }}
+                  >
+                    {this.props.name}
+                  </span>
+                </div>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#FFF",
+                    padding: "10px",
+                    background: "brown"
+                  }}
+                >
+                  {this.props.text}
+                </p>
+                <div style={{ display: "flex" }}>
+                  <textarea
+                    type="text"
+                    name="replay"
+                    style={{
+                      height: "80px",
+                      width: "300px",
+                      borderRadius: "9px",
+                      resize: "none",
+                      outline: "none",
+                      padding: "6px 12px"
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    style={{
+                      background: "orange",
+                      border: "none",
+                      padding: "5px 10px",
+                      // height:"30px",
+                      alignSelf: "center",
+                      outline: "none",
+                      borderRadius: "8px"
+                    }}
+                  >
+                    Replay
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div onClick={this.showReplays} style={{cursor:"pointer"}}>Replays</div>
+          )}
         </div>
       </div>
     );
