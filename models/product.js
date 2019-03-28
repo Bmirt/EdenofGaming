@@ -54,6 +54,7 @@ const productSchema = mongoose.Schema({
       ],
       comments: [
         {
+          _id: mongoose.Schema.Types.ObjectId,
           user: {
             type: Schema.Types.ObjectId,
             ref: "users"

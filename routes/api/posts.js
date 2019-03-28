@@ -349,9 +349,10 @@ router.post(
           }
         }
         const newComment = {
+          _id: new mongoose.Types.ObjectId(),
           text: req.body.text,
-          name: req.body.name,
-          avatar: req.body.avatar,
+          name: req.user.name,
+          avatar: req.user.avatar,
           user: req.user.id
         };
 
@@ -360,7 +361,7 @@ router.post(
 
         // Save
         product.save();
-        return res.status(404).json(ourReview);
+        return res.status(404).json(newComment);
       })
       .catch(err => {
         console.log(err.stack);
