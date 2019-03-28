@@ -110,11 +110,20 @@
                         text-align: center;
                 }
                 &__raiting{
-                    width: 85px;
+                    width: auto;
                     display: flex;
-                    justify-content: space-evenly;
+                    flex-direction: column;
                  &__thumbs{
-                     font-size: 2.5rem;              
+                     font-size: 2.5rem;  
+                     display: flex;
+                     padding-bottom: 0.4em;
+                     &--score{
+                        padding-left:0.4em;
+                        color:rgb(230, 159, 29);
+                     }  
+                     &--score.dislike{
+                         color: rgb(107, 104, 104);
+                     }          
                  } 
                }
             }

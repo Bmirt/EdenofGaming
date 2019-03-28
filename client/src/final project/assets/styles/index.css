@@ -152,7 +152,7 @@ body {
 .header__top__wrapper--user--login {
   width: 120px;
   height: 100%;
-  background-color: #21769d;
+  background-color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,6 +162,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: linear-gradient(1055deg, #114b11 35%, #24c924);
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -176,7 +177,8 @@ body {
 }
 
 .header__top__wrapper--user--login.register {
-  background-color: #000;
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
   width: 150px;
   margin-left: -0.2em;
 }
@@ -190,7 +192,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-left: 1em;
+  margin-left: 0.3em;
 }
 
 .header__top__wrapper--user > div .header__top__wrapper--user--basket {
@@ -215,7 +217,7 @@ body {
 }
 
 .header__top__wrapper--user > div > a {
-  background: #10548b;
+  background-image: linear-gradient(115deg, #09203f 0%, #124485 74%);
   width: 110px;
   height: 50px;
   text-align: center;
@@ -230,6 +232,10 @@ body {
 .header__top__wrapper--user > div > a:first-child {
   background: transparent;
   width: 75px;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  margin-left: 0.5em;
 }
 
 .header__top__wrapper--user > div > a:nth-child(2) {
@@ -241,7 +247,7 @@ body {
 }
 
 .header__top__wrapper--user > div > a:last-child {
-  background-color: #273e52;
+  background-image: linear-gradient(115deg, #291e1c 0%, #8a2b20 74%);
   margin: 0 -0.1em 0 0.2em !important;
 }
 
@@ -490,7 +496,7 @@ body {
         -ms-flex-order: 5;
             order: 5;
     width: 80px;
-    margin-top: 14%;
+    margin: 14% -0.3em 0 0;
   }
 }
 
@@ -1370,9 +1376,10 @@ body {
 .form__submit {
   width: 120px;
   height: 50px;
-  background-color: #178d44;
+  background-color: #24c924;
   font-size: 1.8rem;
   color: #fff;
+  background: linear-gradient(1055deg, #114b11 35%, #24c924);
   border-radius: 4px;
   border: none;
   outline: none;
@@ -1616,10 +1623,9 @@ td {
 
 .emptycart {
   padding: 1em;
-  max-width: 1100px;
+  width: 100%;
   background-color: #fff;
   margin: 0 auto;
-  border-radius: 2em;
 }
 
 .emptycart__text {
@@ -1706,11 +1712,6 @@ Label the data
   }
   td:nth-of-type(7):before {
     content: "remove ";
-  }
-  .emptycart {
-    width: 100%;
-    border-radius: 0;
-    height: 100vh;
   }
 }
 
@@ -1871,17 +1872,31 @@ Label the data
 }
 
 .discription__wrappertop__wrapper__details__raiting {
-  width: 85px;
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .discription__wrappertop__wrapper__details__raiting__thumbs {
   font-size: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 0.4em;
+}
+
+.discription__wrappertop__wrapper__details__raiting__thumbs--score {
+  padding-left: 0.4em;
+  color: #e69f1d;
+}
+
+.discription__wrappertop__wrapper__details__raiting__thumbs--score.dislike {
+  color: #6b6868;
 }
 
 .discription__wrappertop__middle {

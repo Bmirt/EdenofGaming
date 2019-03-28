@@ -75,8 +75,10 @@
         margin-top:80px;
      }
      &__submit{
-     @include size(120px,50px,#178d44);
+     @include size(120px,50px,#24c924);
      @include font(1.8rem,#fff);
+     background: linear-gradient(1055deg, #114b11 35%, #24c924 );
+     
        border-radius: 4px;
        border: none;
        outline: none;

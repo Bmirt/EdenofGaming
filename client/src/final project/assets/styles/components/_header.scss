@@ -1,5 +1,6 @@
 .header{
     @include size(100%,330px,#222);
+    
     @include flex(space-between,center);
     flex-direction: column;
     &__languagebar{
@@ -62,8 +63,9 @@
                 align-items: center;
                 @include flexj(space-evenly);
                 &--login{
-                    @include size(120px,100%,#21769d);
+                    @include size(120px,100%,#000);
                     @include flex(space-evenly,center);
+                    background: linear-gradient(1055deg, #114b11 35%, #24c924 ); 
                     border-radius: 4px;
                     color:#fff;
                     cursor: pointer;
@@ -73,10 +75,13 @@
                     margin:0 0.6em 0 0.9em;
                     &--text{
                     font-size: 2rem;
+                   
                     }
+                    
                 }            
                 &--login.register{
-                    background-color: #000;
+                    background-color: #2d3436;
+                    background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
                     width: 150px;
                     margin-left:-0.2em;              
                 }
@@ -86,7 +91,7 @@
                 height: auto;
                 display: flex;
                 justify-content: space-between;
-                margin-left:1em;
+                margin-left: 0.3em;
                 .header__top__wrapper--user--basket{
                     color:#fff;
                     font-size: 2rem;
@@ -103,7 +108,7 @@
                 }
             }
             &--user>div>a{
-                background: #10548b;
+                background-image: linear-gradient(115deg, #09203f 0%, #124485 74%);
                 width:110px;
                 height: 50px;
                 text-align: center;
@@ -113,10 +118,15 @@
                 font-weight: bold;
                 margin:0 0.2em 0 0.2em;  
                 text-decoration: none;
+                &:hover{
+                    
+                }
                
                 &:first-child{
                    background: transparent;
                     width: 75px;
+                    order: 2;
+                    margin-left:0.5em;
                  }
                  &:nth-child(2){
                     text-overflow: ellipsis;
@@ -127,7 +137,7 @@
                     
                   }
                  &:last-child{
-                    background-color: #273e52;
+                    background-image: linear-gradient(115deg, #291e1c 0%, #8a2b20 74%);
                     margin:0 -0.1em 0 0.2em !important;
                  }
             } 
@@ -318,7 +328,7 @@
         &>a:first-child{
             order: 5;
             width: 80px;
-            margin-top:14%;
+            margin:14% -0.3em 0 0;
          }
        
         
