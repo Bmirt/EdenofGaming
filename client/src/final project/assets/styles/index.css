@@ -1857,18 +1857,40 @@ Label the data
 .discription__wrappertop__wrapper__details__buy {
   width: 200px;
   height: 40px;
-  background-color: #4a8f63;
-  line-height: 4rem;
+  line-height: 3.8rem;
   text-align: center;
   border-radius: 0.4em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #074d24;
+}
+
+.discription__wrappertop__wrapper__details__buy::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.discription__wrappertop__wrapper__details__buy:hover {
+  z-index: 1;
+}
+
+.discription__wrappertop__wrapper__details__buy:hover::before {
+  width: 100%;
+  background-image: linear-gradient(109.6deg, #0b5808 22.2%, #032701 77.8%);
 }
 
 .discription__wrappertop__wrapper__details__buy.cart {
-  width: 200px;
-  height: 40px;
-  background-color: #24407a;
-  line-height: 4rem;
-  text-align: center;
+  border: 2px solid #24407a;
+}
+
+.discription__wrappertop__wrapper__details__buy.cart:hover::before {
+  background-image: linear-gradient(109.6deg, #0b5a9c 22.2%, #011f42 77.8%);
 }
 
 .discription__wrappertop__wrapper__details__raiting {
@@ -2022,7 +2044,8 @@ Label the data
   width: auto;
   height: auto;
   padding: 1.5em;
-  background-color: #4a8f63;
+  border-radius: 8px 8px 0 0;
+  background-color: #756f6f;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside {
@@ -2035,7 +2058,6 @@ Label the data
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: blue;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: relative;
@@ -2044,7 +2066,8 @@ Label the data
 .discription__wrappertop__down__comment--wrapper--inside--button {
   width: 120px;
   height: 50px;
-  background-color: red;
+  background: -webkit-gradient(linear, left top, right top, from(#151416), to(#090313));
+  background: linear-gradient(to right, #151416, #090313);
   -ms-flex-item-align: end;
       align-self: flex-end;
   border: none;
@@ -2054,11 +2077,11 @@ Label the data
   color: #fff;
   text-transform: uppercase;
   position: absolute;
-  right: 0;
+  right: 8px;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--profile {
-  width: 70px;
+  width: 88px;
   height: 100px;
   text-align: center;
   position: relative;
@@ -2066,15 +2089,14 @@ Label the data
 
 .discription__wrappertop__down__comment--wrapper--inside--profile::after {
   content: "";
-  display: block;
   position: absolute;
   width: 20px;
   height: 20px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  background-color: #343438;
+  background-color: #18181a;
   top: 25px;
-  left: 80px;
+  left: 88px;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--profile--image {
@@ -2092,7 +2114,7 @@ Label the data
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--comment {
-  width: calc(100% - 90px);
+  width: calc(100% - 105px);
   height: 120px;
   border: none;
   resize: none;
@@ -2102,12 +2124,11 @@ Label the data
   display: -ms-flexbox;
   display: flex;
   text-indent: 15px;
-  position: relative;
   display: block;
-  background-color: #343438;
+  background-color: #18181a;
   color: #fff;
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.6rem;
   outline: none;
   position: relative;
 }
@@ -2151,17 +2172,44 @@ Label the data
 .discription__wrappertop__down__comment--wrapper--result {
   width: 100%;
   height: auto;
-  background-color: chocolate;
+  background-color: #18181ad7;
   margin-top: 1.5em;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px 8px 0 0;
+}
+
+.discription__wrappertop__down__comment--wrapper--result > div:nth-of-type(2) {
+  background-color: #e6e3e3d7;
+  width: 300px;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-clip-path: polygon(29% 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(29% 0, 100% 0%, 100% 100%, 0% 100%);
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .discription__wrappertop__down__comment--wrapper--result--profile {
-  width: 400px;
+  width: auto;
   height: auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #0084ff;
+  margin: 0.3em 0 0.3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2171,6 +2219,7 @@ Label the data
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin-left: 1.5em;
 }
 
 .discription__wrappertop__down__comment--wrapper--result--profile--name {
@@ -2185,13 +2234,15 @@ Label the data
 .discription__wrappertop__down__comment--wrapper--result--comment {
   width: 100%;
   height: auto;
-  background-color: brown;
+  background-color: #e6e3e3d7;
   color: #fff;
   font-size: 1.6rem;
-  text-indent: 20px;
-  border-radius: 4px;
+  text-indent: 30px;
   text-transform: capitalize;
   padding: 0.5em;
+  margin-bottom: 0;
+  color: #000;
+  font-weight: 600;
 }
 
 @media (max-width: 800px) {
@@ -2267,6 +2318,9 @@ Label the data
         -ms-flex-direction: column;
             flex-direction: column;
     height: 240px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .discription__wrappertop__down__comment--wrapper--inside--comment {
     -webkit-box-ordinal-group: 0;
@@ -2274,13 +2328,39 @@ Label the data
             order: -1;
     width: 100%;
   }
+  .discription__wrappertop__down__comment--wrapper--inside--profile {
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    position: relative;
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .discription__wrappertop__down__comment--wrapper--inside--profile--name {
+    font-size: 1.4rem;
+    padding: 0.1em;
+    border-radius: 10%;
+  }
+  .discription__wrappertop__down__comment--wrapper--inside--profile--image {
+    width: 55px;
+    height: 55px;
+  }
+  .discription__wrappertop__down__comment--wrapper {
+    width: 100%;
+  }
   .discription__wrappertop__down__comment--wrapper--inside--profile::after {
-    top: -30px;
-    left: 25px;
+    top: -42px;
+    left: 17px;
   }
   .discription__wrappertop__down__comment--wrapper--inside--button {
-    top: 150px;
-    right: 50px;
+    top: 156px;
+    right: 14px;
+    width: 90px;
   }
 }
 
