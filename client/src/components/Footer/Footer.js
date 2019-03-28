@@ -1,6 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 class Footer extends React.Component {
   render() {
@@ -9,17 +8,26 @@ class Footer extends React.Component {
         <footer className="footer">
           <section className="footer__wrapper">
             <div className="footer__wrapper__item  left">
-              <Link to="#" className="name">
+              <Link to="#" className="name" style={{ textDecoration: "none" }}>
                 ABOUT EDEN OF GAMING
               </Link>
-              <Link to="/about" className="location">
+              <Link
+                to="/about"
+                className="location"
+                style={{ textDecoration: "none" }}
+              >
                 <i className="fas  fa-globe-americas awesome" /> Find Us On This
                 Location
               </Link>
             </div>
             <div className="footer__wrapper__item  middle">
               Special Thanks To{" "}
-              <Link to="http://techub.ge/" target="_blank" className="techub">
+              <Link
+                to="http://techub.ge/"
+                target="_blank"
+                className="techub"
+                style={{ textDecoration: "none" }}
+              >
                 Techub
               </Link>
             </div>
@@ -59,6 +67,5 @@ class Footer extends React.Component {
     );
   }
 }
-
 
 export default Footer;

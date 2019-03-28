@@ -13,11 +13,11 @@ export default class Review extends React.Component {
       review: "",
       reviews: [],
       hasReviews: false,
-      errors: {},
+      errors: {}
     };
   }
   static contextType = userContext;
-  
+
   onHandleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -32,41 +32,42 @@ export default class Review extends React.Component {
   onHandleSubmit = e => {
     e.preventDefault();
     const jwt = Auth.getJWT();
-    console.log(jwt);
-
-    fetch(`/api/posts/${this.state.productID}`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json",
-        Authorization: jwt
-      },
-      body: JSON.stringify({ text: this.state.review })
-    })
-      .then(res => res.json())
-      .then(res => this.setState({ errors: res }))
-      .catch(err => console.log(err));
-
-    //updating reviews state so it displays new review right away when user posts
-    let reviews = this.state.reviews;
-    let newReview = {
-      likes: [],
-      dislikes: [],
-      comments: [],
-      date: Date.now(),
-      text: this.state.review,
-      avatar: this.context.user.avatar,
-      name: this.context.user.name,
-      user: this.context.user._id
-    };
-    reviews.push(newReview);
-    this.setState({
-      reviews: reviews
-    });
-    document.getElementById("reviewInput").value = "";
+    if (jwt) {
+      fetch(`/api/posts/${this.state.productID}`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: jwt
+        },
+        body: JSON.stringify({ text: this.state.review })
+      })
+        .then(res => res.json())
+        .then(res => this.setState({ errors: res }))
+        .catch(err => console.log(err));
+      //updating reviews state so it displays new review right away when user posts
+      let reviews = this.state.reviews;
+      let newReview = {
+        likes: [],
+        dislikes: [],
+        comments: [],
+        date: Date.now(),
+        text: this.state.review,
+        avatar: this.context.user.avatar,
+        name: this.context.user.name,
+        user: this.context.user._id
+      };
+      reviews.push(newReview);
+      this.setState({
+        reviews: reviews
+      });
+      document.getElementById("reviewInput").value = "";
+    } else {
+      this.context.message("Please log to add a review");
+    }
   };
   render() {
-    console.log(this.state);
+    console.log(this.state.reviews);
     return (
       <UserContext.Consumer>
         {context => (
@@ -109,7 +110,14 @@ export default class Review extends React.Component {
               </form>
               {this.state.hasReviews ? (
                 this.state.reviews.map(item => (
-                  <Comment key={item.date} avatar={item.avatar} name={item.name} text={item.text} />
+                  <Comment
+                    key={item.date}
+                    avatar={item.avatar}
+                    name={item.name}
+                    text={item.text}
+                    likes={item.likes}
+                    dislikes={item.dislikes}
+                  />
                 ))
               ) : (
                 <div>No comments yet</div>
