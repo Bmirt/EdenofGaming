@@ -5,7 +5,8 @@ import spinner from "../../final project/spinner.gif";
 import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../../context/shop-context";
-import Comment from './Comment'
+import Comment from "./Comment";
+import Review from "./Review";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -143,7 +144,7 @@ class ProductDetails extends React.Component {
                 </span>
               </p>
             </div>
-            <Comment productID={product._id}/>
+            <Review productID={product._id} />
           </div>
         </div>
       </section>
