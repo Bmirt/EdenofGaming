@@ -374,7 +374,7 @@ router.post(
     // Check Validation
     if (!isValid) {
       // if any errors, send 400 with errors object
-      return res.status(400).json(errors);
+      return res.status(400).json({errors});
     }
     Product.findById(req.params.product_id)
       .then(product => {
@@ -397,7 +397,7 @@ router.post(
 
         // Save
         product.save();
-        return res.status(404).json(newComment);
+        return res.status(200).json(newComment);
       })
       .catch(err => {
         console.log(err.stack);

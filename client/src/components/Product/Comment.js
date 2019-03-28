@@ -1,6 +1,8 @@
 import React from "react";
 import Auth from "../utils/AuthMethods";
 import userContext from "../../context/user-context";
+import Reply from "./Reply";
+import Axios from "axios";
 export default class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -10,27 +12,35 @@ export default class Comment extends React.Component {
       disliked: false,
       likeCount: props.likes.length,
       dislikeCount: props.dislikes.length,
-      showReplays: false
+      showReplays: false,
+      replytext: ""
     };
   }
 
   static contextType = userContext;
 
   componentDidMount() {
+    this.setState({ replies: this.state.replies.reverse() });
+
     let liked = false;
     let disliked = false;
     if (Auth.getCurrentUser()) {
       for (let i = 0; i < this.props.likes.length; i++) {
-        if (this.props.likes[i].user == Auth.getCurrentUser().id) {
-          liked = true;
-        }
-        if (this.props.dislikes[i].user == Auth.getCurrentUser().id) {
-          disliked = true;
-        }
+        // if (this.props.likes[i].user == Auth.getCurrentUser().id) {
+        //   liked = true;
+        // }
+        // if (this.props.dislikes[i].user == Auth.getCurrentUser().id) {
+        //   disliked = true;
+        // }
       }
     }
     this.setState({ liked: liked, disliked: disliked });
   }
+  onHandleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
   like = e => {
     const { productID, reviewID } = this.state;
     const jwt = Auth.getJWT();
@@ -111,8 +121,42 @@ export default class Comment extends React.Component {
   showReplays = () => {
     this.setState({ showReplays: true });
   };
+
+  onHandleSubmit = e => {
+    e.preventDefault();
+    const jwt = Auth.getJWT();
+    const { productID, reviewID } = this.state;
+    console.log(productID, reviewID, jwt);
+    fetch(`/api/posts/comment/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt
+      },
+      body: JSON.stringify({ text: this.state.replytext })
+    })
+      .then(res =>   res.json())
+      .then(res => {
+        if(res.user!== undefined){
+          const newReply = res;
+          const allReplies = this.state.replies;
+          allReplies.push(newReply);
+          this.setState({ replies: allReplies });
+        }
+        else{
+          throw Error(res.text)
+        }
+      })
+      .catch(err =>{
+        this.context.message("The text field shouldnt be empty and it should be between 10 to 30 charachters")
+      });
+
+    this.setState({ replytext: "" });
+    document.getElementById("reply").value = "";
+  };
+
   render() {
-    console.log(this.state.liked);
+    console.log(this.state.replies);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -129,63 +173,61 @@ export default class Comment extends React.Component {
           {this.props.text}
         </p>
 
-        <div style={{ height: "auto" }}>
-          <span
-            style={{ fontSize: "20px", display: "inline-block", width: "20px" }}
-          >
-            {this.state.likeCount}
-          </span>
-          <i
-            onClick={this.like}
-            style={{ cursor: "pointer", fontSize: "25px", marginRight: "10px" }}
-            className="fas fa-thumbs-up"
-          />
-          <i
-            onClick={this.dislike}
-            style={{ cursor: "pointer", fontSize: "25px" }}
-            className="fas fa-thumbs-down"
-          />
-          <span style={{ fontSize: "20px" }}>{this.state.dislikeCount}</span>
-          {this.state.showReplays ? (
-            <div>
-              <div
+        <div style={{ height: "auto", width: "100%" }}>
+          <div style={{ width: "40%" }}>
+            <div style={{ float: "right", marginRight: "20px" }}>
+              <span
                 style={{
-                  width: "80%",
-                  float: "right",
-                  height: "auto",
-                  background: "green"
+                  fontSize: "20px",
+                  display: "inline-block",
+                  width: "20px",
+                  color: "#FFF"
                 }}
               >
-                <div className="discription__wrappertop__down__comment--wrapper--result--profile">
-                  <img
-                    src={this.props.avatar}
-                    alt=""
-                    style={{ width: "35px", borderRadius: "50%" }}
+                {this.state.likeCount}
+              </span>
+              <i
+                onClick={this.like}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "25px",
+                  marginRight: "10px",
+                  color: "#FFF"
+                }}
+                className="fas fa-thumbs-up"
+              />
+              <i
+                onClick={this.dislike}
+                style={{ cursor: "pointer", fontSize: "25px", color: "#FFF" }}
+                className="fas fa-thumbs-down"
+              />
+              <span style={{ fontSize: "20px", color: "#FFF" }}>
+                {this.state.dislikeCount}
+              </span>
+            </div>
+          </div>
+          {this.state.showReplays ? (
+            <div style={{ width: "60%" }}>
+              <div
+                style={{
+                  height: "auto",
+                  background: "#262526"
+                }}
+              >
+                {this.props.replies.map(item => (
+                  <Reply
+                    key={item._id}
+                    avatar={item.avatar}
+                    name={item.name}
+                    text={item.text}
                   />
-                  <span
-                    style={{
-                      fontSize: "16px",
-                      color: "#FFF",
-                      marginLeft: "10px"
-                    }}
-                  >
-                    {this.props.name}
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    color: "#FFF",
-                    padding: "10px",
-                    background: "brown"
-                  }}
-                >
-                  {this.props.text}
-                </p>
+                ))}
                 <div style={{ display: "flex" }}>
                   <textarea
+                    id="reply"
+                    onChange={this.onHandleChange}
                     type="text"
-                    name="replay"
+                    name="replytext"
                     style={{
                       height: "80px",
                       width: "300px",
@@ -195,7 +237,9 @@ export default class Comment extends React.Component {
                       padding: "6px 12px"
                     }}
                   />
+
                   <button
+                    onClick={this.onHandleSubmit}
                     type="submit"
                     style={{
                       background: "orange",

@@ -118,7 +118,7 @@ export default class Review extends React.Component {
                     text={item.text}
                     likes={item.likes}
                     dislikes={item.dislikes}
-                    replays={item.comments}
+                    replies={item.comments}
                     reviewID={item._id}
                     productID={this.state.productID}
                   />
