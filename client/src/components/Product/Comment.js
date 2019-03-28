@@ -211,7 +211,7 @@ export default class Comment extends React.Component {
               </div>
             </div>
           ) : (
-            <div onClick={this.showReplays} style={{cursor:"pointer"}}>Replays</div>
+            <span onClick={this.showReplays} style={{cursor:"pointer"}}>Replays</span>
           )}
         </div>
       </div>

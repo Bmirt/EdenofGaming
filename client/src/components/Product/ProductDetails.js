@@ -5,7 +5,6 @@ import spinner from "../../final project/spinner.gif";
 import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../../context/shop-context";
-import Comment from "./Comment";
 import Review from "./Review";
 
 class ProductDetails extends React.Component {

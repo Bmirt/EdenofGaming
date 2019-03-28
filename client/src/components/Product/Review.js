@@ -32,6 +32,7 @@ export default class Review extends React.Component {
   onHandleSubmit = e => {
     e.preventDefault();
     const jwt = Auth.getJWT();
+    console.log("submit")
     if (jwt) {
       fetch(`/api/posts/${this.state.productID}`, {
         method: "POST",
