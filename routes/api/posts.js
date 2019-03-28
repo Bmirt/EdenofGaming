@@ -125,6 +125,42 @@ router.delete(
   }
 );
 
+// @route  DELETE api/posts/:id
+// @desc   Delete all Posts
+// @access Private
+
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log(req.params.product_id);
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Product.find({})
+        .then(products => {
+          // console.log(products);
+
+          products.forEach(product => {
+            if (product.reviews) {
+              product.reviews = [];
+              product.save();
+            }
+          });
+
+          // for (var i = 0; i < products.length; i++) {
+          //   products[i].reviews = "hi i am nero";
+          //   product[i].reviews.save();
+          // }
+          res.json({ success: "All reviews of all games are cleared" });
+        })
+        .catch(err => {
+          return res
+            .status(404)
+            .json({ postnotfound: "There are no posts to delete" });
+        });
+    });
+  }
+);
+
 // @route  POST api/posts/like/:id
 // @desc   Like Post
 // @access Private
