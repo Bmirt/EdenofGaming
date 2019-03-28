@@ -19,13 +19,15 @@ export default class Comment extends React.Component {
   componentDidMount() {
     let liked = false;
     let disliked = false;
-    for (let i = 0; i < this.props.likes.length; i++) {
-      if ((this.props.likes[i].user = Auth.getCurrentUser().id)) {
-        liked = true;
+    if (Auth.getCurrentUser()) {
+      for (let i = 0; i < this.props.likes.length; i++) {
+        if (this.props.likes[i].user == Auth.getCurrentUser().id) {
+          liked = true;
+        }
+        if (this.props.dislikes[i].user == Auth.getCurrentUser().id) {
+          disliked = true;
+        }
       }
-      // if(this.props.dislikes[i].user = Auth.getCurrentUser().id){
-      //   disliked = true;
-      // }
     }
     this.setState({ liked: liked, disliked: disliked });
   }
@@ -106,9 +108,9 @@ export default class Comment extends React.Component {
       });
     }
   };
-  showReplays = ()=>{
-    this.setState({showReplays:true})
-  }
+  showReplays = () => {
+    this.setState({ showReplays: true });
+  };
   render() {
     console.log(this.state.liked);
     return (
@@ -211,7 +213,9 @@ export default class Comment extends React.Component {
               </div>
             </div>
           ) : (
-            <span onClick={this.showReplays} style={{cursor:"pointer"}}>Replays</span>
+            <span onClick={this.showReplays} style={{ cursor: "pointer" }}>
+              Replays
+            </span>
           )}
         </div>
       </div>
