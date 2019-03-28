@@ -67,6 +67,7 @@ router.post(
 
       .then(product => {
         const newPost = {
+          _id: new mongoose.Types.ObjectId(),
           text: req.body.text,
           name: req.user.name,
           avatar: req.user.avatar,
