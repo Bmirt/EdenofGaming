@@ -23,7 +23,6 @@ export default class Comment extends React.Component {
 
   componentDidMount() {
     this.setState({ replies: this.state.replies.reverse() });
-
     let liked = false;
     let disliked = false;
     if (Auth.getCurrentUser()) {
@@ -105,10 +104,9 @@ export default class Comment extends React.Component {
         disliked: false,
         dislikeCount: this.state.dislikeCount - 1
       });
+    } else if (this.state.liked) {
+      this.like();
     } else {
-      if (this.state.liked) {
-        this.like();
-      }
       fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
         method: "POST",
         headers: {
@@ -154,16 +152,15 @@ export default class Comment extends React.Component {
       })
       .catch(err => {
         this.context.message(
-          "The text field shouldnt be empty and it should be between 10 to 30 charachters"
+          "The text field should not be empty and it should be between 10 to 30 characters"
         );
       });
-
     this.setState({ replytext: "" });
-    document.getElementById("reply").value = "";
+    document.querySelectorAll('textarea').forEach(item => item.value = "")
   };
 
   render() {
-    console.log(this.state.replies);
+    console.log(this.state);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -231,7 +228,7 @@ export default class Comment extends React.Component {
                 ))}
                 <div style={{ display: "flex" }}>
                   <textarea
-                    id="reply"
+                    className="textarea"
                     onChange={this.onHandleChange}
                     type="text"
                     name="replytext"

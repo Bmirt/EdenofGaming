@@ -32,7 +32,7 @@ export default class Review extends React.Component {
   onHandleSubmit = e => {
     e.preventDefault();
     const jwt = Auth.getJWT();
-    console.log("submit")
+    console.log("submit");
     if (jwt) {
       fetch(`/api/posts/${this.state.productID}`, {
         method: "POST",
@@ -44,31 +44,36 @@ export default class Review extends React.Component {
         body: JSON.stringify({ text: this.state.review })
       })
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => {
+          console.log("response to comment", res);
+          let reviews = this.state.reviews;
+          let newReview = {
+            _id: res._id,
+            likes: [],
+            dislikes: [],
+            comments: [],
+            date: Date.now(),
+            text: res.text,
+            avatar: this.context.user.avatar,
+            name: this.context.user.name,
+            user: this.context.user._id
+          };
+          reviews.push(newReview);
+          this.setState({
+            reviews: reviews,
+            hasReviews: true
+          });
+        })
         .catch(err => console.log(err));
       //updating reviews state so it displays new review right away when user posts
-      let reviews = this.state.reviews;
-      let newReview = {
-        likes: [],
-        dislikes: [],
-        comments: [],
-        date: Date.now(),
-        text: this.state.review,
-        avatar: this.context.user.avatar,
-        name: this.context.user.name,
-        user: this.context.user._id
-      };
-      reviews.push(newReview);
-      this.setState({
-        reviews: reviews
-      });
+
       document.getElementById("reviewInput").value = "";
     } else {
       this.context.message("Please log to add a review");
     }
   };
   render() {
-    console.log(this.state.reviews);
+    console.log("review id", this.state.reviews);
     return (
       <UserContext.Consumer>
         {context => (
