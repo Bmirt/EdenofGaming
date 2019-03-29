@@ -26,9 +26,6 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
-  skills: {
-    type: [String]
-  },
   bio: {
     type: String,
     required: true
@@ -48,12 +45,6 @@ const ProfileSchema = new Schema({
       type: String
     },
     facebook: {
-      type: String
-    },
-    linkedin: {
-      type: String
-    },
-    instagram: {
       type: String
     }
   },
