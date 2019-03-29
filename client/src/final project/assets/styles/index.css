@@ -1775,11 +1775,11 @@ Label the data
 
 .discription__wrappertop__wrapper--image {
   height: 545px;
-  width: 400px;
+  width: 390px;
 }
 
 .discription__wrappertop__wrapper__details {
-  width: 400px;
+  width: 390px;
   height: 545px;
   text-transform: capitalize;
   display: -webkit-box;
@@ -2045,7 +2045,7 @@ Label the data
   height: auto;
   padding: 1.5em;
   border-radius: 8px 8px 0 0;
-  background-color: #756f6f;
+  background-color: #222;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside {
@@ -2094,9 +2094,12 @@ Label the data
   height: 20px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  background-color: #18181a;
+  background-color: #222;
   top: 25px;
-  left: 88px;
+  left: 86px;
+  -webkit-box-shadow: inset 0 3px 7px #000;
+          box-shadow: inset 0 3px 7px #000;
+  z-index: 0;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--profile--image {
@@ -2126,11 +2129,15 @@ Label the data
   text-indent: 15px;
   display: block;
   background-color: #18181a;
+  background-color: #222;
   color: #fff;
   font-weight: 600;
   font-size: 1.6rem;
   outline: none;
   position: relative;
+  -webkit-box-shadow: inset 0 3px 7px #000;
+          box-shadow: inset 0 3px 7px #000;
+  z-index: 1;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--comment::-webkit-input-placeholder {
@@ -2167,6 +2174,10 @@ Label the data
 
 .discription__wrappertop__down__comment--wrapper--inside--comment::placeholder {
   font-size: 1.8rem;
+}
+
+.discription__wrappertop__down__comment--wrapper--inside.replays {
+  margin-top: 1em;
 }
 
 .discription__wrappertop__down__comment--wrapper--result {
@@ -2182,25 +2193,6 @@ Label the data
   display: -ms-flexbox;
   display: flex;
   border-radius: 8px 8px 0 0;
-}
-
-.discription__wrappertop__down__comment--wrapper--result > div:nth-of-type(2) {
-  background-color: #e6e3e3d7;
-  width: 300px;
-  height: 35px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-clip-path: polygon(29% 0, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(29% 0, 100% 0%, 100% 100%, 0% 100%);
-  -ms-flex-item-align: end;
-      align-self: flex-end;
 }
 
 .discription__wrappertop__down__comment--wrapper--result--profile {
@@ -2236,13 +2228,91 @@ Label the data
   height: auto;
   background-color: #e6e3e3d7;
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   text-indent: 30px;
   text-transform: capitalize;
   padding: 0.5em;
   margin-bottom: 0;
   color: #000;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate {
+  width: 330px;
+  height: 35px;
+  background-color: #e6e3e3d7 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper {
+  height: 35px;
+  width: 25%;
+  color: #fff;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.15rem;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper:hover, .discription__wrappertop__down__comment--wrapper--result--rate--wrapper:hover .awesome {
+  color: #000;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper:last-child .discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs {
+  color: #2653b4;
+  font-size: 1.4rem;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs {
+  border: none;
+  outline: none;
+  height: 14px;
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: none;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs .awesome {
+  color: #fff;
+  font-size: 1.8rem;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  line-height: 40%;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper:last-child > .discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs > .awesome {
+  color: #2653b4;
+}
+
+.discription__wrappertop__down__comment--wrapper--result--rate--wrapper:last-child:hover .discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs > .awesome {
+  color: #2653b4;
+}
+
+.discription__wrappertop__down__comment--wrapper--result.replay {
+  background-color: #525274;
 }
 
 @media (max-width: 800px) {
@@ -2340,6 +2410,7 @@ Label the data
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    left: 10px;
   }
   .discription__wrappertop__down__comment--wrapper--inside--profile--name {
     font-size: 1.4rem;
