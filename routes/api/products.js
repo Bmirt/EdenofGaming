@@ -248,14 +248,8 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Product.findById(req.params.product_id)
         .then(product => {
-          var ourReview;
-          for (var i = 0; i < product.reviews.length; i++) {
-            if (product.reviews[i].id === req.params.review_id) {
-              ourReview = product.reviews[i];
-            }
-          }
           if (
-            ourReview.dislikes.filter(
+            product.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length === 0
           ) {
@@ -265,16 +259,16 @@ router.post(
           }
 
           //Get remove index
-          const removeIndex = ourReview.dislikes
+          const removeIndex = product.dislikes
             .map(item => item.user.toString())
             .indexOf(req.user.id);
 
           //Splice out of array
-          ourReview.dislikes.splice(removeIndex, 1);
+          product.dislikes.splice(removeIndex, 1);
 
           //Save
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(404).json(product);
         })
         .catch(err =>
           res.status(404).json({ postnotfound: "product not found" })
