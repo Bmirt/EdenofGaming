@@ -146,7 +146,7 @@ router.post(
         })
         .catch(err => {
           console.log(err.message);
-          return res.status(404).json({ postnotfound: "review not found" });
+          return res.status(404).json({ postnotfound: "product not found" });
         });
     });
   }
@@ -163,31 +163,29 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Product.findById(req.params.product_id)
         .then(product => {
-          var ourReview;
-          
           if (
-            ourReview.likes.filter(like => like.user.toString() === req.user.id)
+            product.likes.filter(like => like.user.toString() === req.user.id)
               .length === 0
           ) {
             return res
               .status(400)
-              .json({ notliked: "You have not yet liked this review" });
+              .json({ notliked: "You have not yet liked this product" });
           }
 
           //Get remove index
-          const removeIndex = ourReview.likes
+          const removeIndex = product.likes
             .map(item => item.user.toString())
             .indexOf(req.user.id);
 
           //Splice out of array
-          ourReview.likes.splice(removeIndex, 1);
+          product.likes.splice(removeIndex, 1);
 
           //Save
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(404).json(product);
         })
         .catch(err =>
-          res.status(404).json({ postnotfound: "review not found" })
+          res.status(404).json({ postnotfound: "product not found" })
         );
     });
   }
@@ -217,7 +215,7 @@ router.post(
           ) {
             return res
               .status(400)
-              .json({ alreadydisliked: "User already liked this review" });
+              .json({ alreadydisliked: "User already liked this product" });
           } else if (
             ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
@@ -239,7 +237,7 @@ router.post(
         })
         .catch(err => {
           console.log(err.stack);
-          res.status(404).json({ postnotfound: "post not found" });
+          res.status(404).json({ postnotfound: "product not found" });
         });
     });
   }
@@ -269,7 +267,7 @@ router.post(
           ) {
             return res
               .status(400)
-              .json({ notdisliked: "You have not yet disliked this review" });
+              .json({ notdisliked: "You have not yet disliked this product" });
           }
 
           //Get remove index
@@ -284,7 +282,9 @@ router.post(
           product.save();
           return res.status(404).json(ourReview);
         })
-        .catch(err => res.status(404).json({ postnotfound: "post not found" }));
+        .catch(err =>
+          res.status(404).json({ postnotfound: "product not found" })
+        );
     });
   }
 );
