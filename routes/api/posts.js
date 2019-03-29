@@ -186,7 +186,7 @@ router.post(
           ourReview.likes.unshift({ user: req.user.id });
 
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(200).json(ourReview);
         })
         .catch(err => {
           console.log(err.message);
@@ -232,7 +232,7 @@ router.post(
 
           //Save
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(200).json(ourReview);
         })
         .catch(err =>
           res.status(404).json({ postnotfound: "review not found" })
@@ -283,7 +283,7 @@ router.post(
           ourReview.dislikes.unshift({ user: req.user.id });
 
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(200).json(ourReview);
         })
         .catch(err => {
           console.log(err.stack);
@@ -330,7 +330,7 @@ router.post(
 
           //Save
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(200).json(ourReview);
         })
         .catch(err => res.status(404).json({ postnotfound: "post not found" }));
     });
@@ -416,7 +416,7 @@ router.delete(
         ourReview.comments.splice(removeIndex, 1);
 
         product.save();
-        return res.status(404).json(ourReview);
+        return res.status(404).json(200);
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   }
