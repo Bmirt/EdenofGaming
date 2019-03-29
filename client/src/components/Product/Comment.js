@@ -8,6 +8,8 @@ export default class Comment extends React.Component {
     super(props);
     this.state = {
       ...props,
+      likes: props.likes,
+      dislikes: props.dislikes,
       liked: false,
       disliked: false,
       likeCount: props.likes.length,
@@ -26,13 +28,16 @@ export default class Comment extends React.Component {
     let disliked = false;
     if (Auth.getCurrentUser()) {
       for (let i = 0; i < this.props.likes.length; i++) {
-        // if (this.props.likes[i].user == Auth.getCurrentUser().id) {
-        //   liked = true;
-        // }
-        // if (this.props.dislikes[i].user == Auth.getCurrentUser().id) {
-        //   disliked = true;
-        // }
+        if (this.state.likes[i].user === Auth.getCurrentUser().id) {
+          liked = true;
+        }
+        if (this.state.dislikes.length !== 0) {
+          if (this.state.dislikes[i].user === Auth.getCurrentUser().id) {
+            disliked = true;
+          }
+        }
       }
+      console.log("dislikes arrrat", this.state.dislikes);
     }
     this.setState({ liked: liked, disliked: disliked });
   }
@@ -65,6 +70,7 @@ export default class Comment extends React.Component {
     } else {
       if (this.state.disliked) {
         this.dislike();
+        // this.setState({dislikeCount:this.state.dislikeCount-1})
       }
       fetch(`/api/posts/like/${productID}/${reviewID}`, {
         method: "POST",
@@ -135,20 +141,21 @@ export default class Comment extends React.Component {
       },
       body: JSON.stringify({ text: this.state.replytext })
     })
-      .then(res =>   res.json())
+      .then(res => res.json())
       .then(res => {
-        if(res.user!== undefined){
+        if (res.user !== undefined) {
           const newReply = res;
           const allReplies = this.state.replies;
           allReplies.push(newReply);
           this.setState({ replies: allReplies });
-        }
-        else{
-          throw Error(res.text)
+        } else {
+          throw Error(res.text);
         }
       })
-      .catch(err =>{
-        this.context.message("The text field shouldnt be empty and it should be between 10 to 30 charachters")
+      .catch(err => {
+        this.context.message(
+          "The text field shouldnt be empty and it should be between 10 to 30 charachters"
+        );
       });
 
     this.setState({ replytext: "" });

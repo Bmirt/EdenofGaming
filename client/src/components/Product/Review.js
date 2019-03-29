@@ -44,7 +44,7 @@ export default class Review extends React.Component {
         body: JSON.stringify({ text: this.state.review })
       })
         .then(res => res.json())
-        .then(res => this.setState({ errors: res }))
+        .then(res => console.log(res))
         .catch(err => console.log(err));
       //updating reviews state so it displays new review right away when user posts
       let reviews = this.state.reviews;
