@@ -36,18 +36,6 @@ router.get("/:product_id", (req, res) => {
     });
 });
 
-// @route  GET api/posts/:id
-// @desc   get posts by id
-// @access Public
-// router.get("/:id", (req, res) => {
-//   console.log(req.id);
-//   Post.findById(req.params.id)
-//     .then(post => res.json(post))
-//     .catch(err =>
-//       res.status(404).json({ nopostfound: "no post found with that id" })
-//     );
-// });
-
 // @route  POST api/posts
 // @desc   Create Post
 // @access Private
@@ -137,8 +125,6 @@ router.delete(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Product.find({})
         .then(products => {
-          // console.log(products);
-
           products.forEach(product => {
             if (product.reviews) {
               product.reviews = [];
@@ -146,10 +132,6 @@ router.delete(
             }
           });
 
-          // for (var i = 0; i < products.length; i++) {
-          //   products[i].reviews = "hi i am nero";
-          //   product[i].reviews.save();
-          // }
           res.json({ success: "All reviews of all games are cleared" });
         })
         .catch(err => {
@@ -182,9 +164,6 @@ router.post(
           if (
             ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
-
-            // product.likes.filter(like => like.user.toString() === req.user.id)
-            //   .length > 0
           ) {
             return res
               .status(400)
@@ -193,10 +172,6 @@ router.post(
             ourReview.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length > 0
-
-            // product.dislikes.filter(
-            //   dislike => dislike.user.toString() === req.user.id
-            // ).length > 0
           ) {
             //Get remove index
             const removeIndex = ourReview.dislikes
@@ -374,7 +349,7 @@ router.post(
     // Check Validation
     if (!isValid) {
       // if any errors, send 400 with errors object
-      return res.status(400).json({errors});
+      return res.status(400).json({ errors });
     }
     Product.findById(req.params.product_id)
       .then(product => {
