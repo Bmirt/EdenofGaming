@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const passport = require("passport");
 
 const Product = require("../../models/product");
 
@@ -116,39 +117,32 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Product.findById(req.params.product_id)
         .then(product => {
-          var ourReview;
-          for (var i = 0; i < product.reviews.length; i++) {
-            if (product.reviews[i].id === req.params.review_id) {
-              ourReview = product.reviews[i];
-              console.log(product.reviews[i]);
-            }
-          }
           if (
-            ourReview.likes.filter(like => like.user.toString() === req.user.id)
+            product.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
             return res
               .status(400)
               .json({ alreadyliked: "User already liked this product" });
           } else if (
-            ourReview.dislikes.filter(
+            product.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length > 0
           ) {
             //Get remove index
-            const removeIndex = ourReview.dislikes
+            const removeIndex = product.dislikes
               .map(item => item.user.toString())
               .indexOf(req.user.id);
 
             //Splice out of array
-            ourReview.dislikes.splice(removeIndex, 1);
+            product.dislikes.splice(removeIndex, 1);
           }
 
           //Add user id to likes array
-          ourReview.likes.unshift({ user: req.user.id });
+          product.likes.unshift({ user: req.user.id });
 
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(404).json(product);
         })
         .catch(err => {
           console.log(err.message);
@@ -170,11 +164,7 @@ router.post(
       Product.findById(req.params.product_id)
         .then(product => {
           var ourReview;
-          for (var i = 0; i < product.reviews.length; i++) {
-            if (product.reviews[i].id === req.params.review_id) {
-              ourReview = product.reviews[i];
-            }
-          }
+          
           if (
             ourReview.likes.filter(like => like.user.toString() === req.user.id)
               .length === 0

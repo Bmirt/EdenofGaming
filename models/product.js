@@ -19,6 +19,22 @@ const productSchema = mongoose.Schema({
   },
   trailer: String,
   description: String,
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
+  ],
+  dislikes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
+  ],
   reviews: [
     {
       _id: mongoose.Schema.Types.ObjectId,
