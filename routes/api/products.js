@@ -202,14 +202,8 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Product.findById(req.params.product_id)
         .then(product => {
-          var ourReview;
-          for (var i = 0; i < product.reviews.length; i++) {
-            if (product.reviews[i].id === req.params.review_id) {
-              ourReview = product.reviews[i];
-            }
-          }
           if (
-            ourReview.dislikes.filter(
+            product.dislikes.filter(
               dislike => dislike.user.toString() === req.user.id
             ).length > 0
           ) {
@@ -217,23 +211,23 @@ router.post(
               .status(400)
               .json({ alreadydisliked: "User already liked this product" });
           } else if (
-            ourReview.likes.filter(like => like.user.toString() === req.user.id)
+            product.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
             //Get remove index
-            const removeIndex = ourReview.likes
+            const removeIndex = product.likes
               .map(item => item.user.toString())
               .indexOf(req.user.id);
 
             //Splice out of array
-            ourReview.likes.splice(removeIndex, 1);
+            product.likes.splice(removeIndex, 1);
           }
 
           //Add user id to dislikes array
-          ourReview.dislikes.unshift({ user: req.user.id });
+          product.dislikes.unshift({ user: req.user.id });
 
           product.save();
-          return res.status(404).json(ourReview);
+          return res.status(404).json(product);
         })
         .catch(err => {
           console.log(err.stack);
