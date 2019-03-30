@@ -142,7 +142,7 @@ router.post(
           product.likes.unshift({ user: req.user.id });
 
           product.save();
-          return res.status(404).json(product);
+          return res.status(200).json(product);
         })
         .catch(err => {
           console.log(err.message);
@@ -182,7 +182,7 @@ router.post(
 
           //Save
           product.save();
-          return res.status(404).json(product);
+          return res.status(200).json(product);
         })
         .catch(err =>
           res.status(404).json({ postnotfound: "product not found" })
