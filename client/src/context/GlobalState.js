@@ -82,7 +82,8 @@ class GlobalState extends React.Component {
             games: this.state.games,
             cart: this.state.cart,
             addToCart: this.addToCart,
-            count: this.state.count
+            count: this.state.count,
+            message:this.message
           }}
         >
           <MessageBox
