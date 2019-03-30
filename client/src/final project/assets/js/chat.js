@@ -21,8 +21,4 @@ function left(){
 }
 
 // document.getElementById("btn").addEventListener("click",left)
-<<<<<<< HEAD
-export default left;
-=======
 // export default left;
->>>>>>> 29290ce20751c5453bcebbd27e2d0b0f20322a4a
