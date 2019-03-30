@@ -56,7 +56,6 @@ class GlobalState extends React.Component {
     }, 100);
   };
   removeFromCart = productId => {
-    console.log("Removing product with id: " + productId);
     const updatedCart = [...this.state.cart];
     const updatedItemIndex = updatedCart.findIndex(
       item => item.id === productId
@@ -82,6 +81,7 @@ class GlobalState extends React.Component {
             games: this.state.games,
             cart: this.state.cart,
             addToCart: this.addToCart,
+            removeFromCart: this.removeFromCart,
             count: this.state.count,
             message:this.message
           }}

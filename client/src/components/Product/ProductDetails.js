@@ -149,7 +149,6 @@ class ProductDetails extends React.Component {
   };
 
   onHandleLike = e => {
-    console.log('checking liked', this.liked())
     const { _id } = this.state.product;
     const jwt = Auth.getJWT();
     if (!jwt) {
@@ -183,7 +182,6 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    if (this.state.product) console.log(this.state.product.likes);
     const { product } = this.state;
     if (!this.state.isLoaded) {
       return (

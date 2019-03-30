@@ -2,7 +2,6 @@ import React from "react";
 import Auth from "../utils/AuthMethods";
 import userContext from "../../context/user-context";
 import Reply from "./Reply";
-import Axios from "axios";
 export default class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -25,16 +24,15 @@ export default class Comment extends React.Component {
     let disliked = false;
     if (Auth.getCurrentUser()) {
       this.props.likes.forEach(item => {
-        if(item.user === Auth.getCurrentUser().id){
+        if (item.user === Auth.getCurrentUser().id) {
           liked = true;
         }
       });
       this.props.dislikes.forEach(item => {
-        if(item.user === Auth.getCurrentUser().id){
+        if (item.user === Auth.getCurrentUser().id) {
           disliked = true;
         }
       });
-      
     }
     this.setState({ liked: liked, disliked: disliked });
   }
@@ -42,6 +40,7 @@ export default class Comment extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state.replytext);
   };
   like = (productID, reviewID, jwt) => {
     fetch(`/api/posts/like/${productID}/${reviewID}`, {
@@ -160,7 +159,13 @@ export default class Comment extends React.Component {
     }
   };
   showReplays = () => {
-    this.setState({ showReplays: true });
+    if (this.state.showReplays) {
+      this.setState({
+        showReplays: false
+      });
+    } else {
+      this.setState({ showReplays: true });
+    }
   };
 
   onHandleSubmit = e => {
@@ -196,7 +201,6 @@ export default class Comment extends React.Component {
   };
 
   render() {
-    console.log("state", this.state);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -212,96 +216,87 @@ export default class Comment extends React.Component {
         <p className="discription__wrappertop__down__comment--wrapper--result--comment">
           {this.props.text}
         </p>
-
-        <div style={{ height: "auto", width: "100%" }}>
-          <div style={{ width: "40%" }}>
-            <div style={{ float: "right", marginRight: "20px" }}>
-              <span
-                style={{
-                  fontSize: "20px",
-                  display: "inline-block",
-                  width: "20px",
-                  color: "#FFF"
-                }}
-              >
-                {this.state.likes.length}
-              </span>
-              <i
-                onClick={this.onHandleLike}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "25px",
-                  marginRight: "10px",
-                  color: "#FFF"
-                }}
-                className="fas fa-thumbs-up"
-              />
-              <i
-                onClick={this.onHandleDislike}
-                style={{ cursor: "pointer", fontSize: "25px", color: "#FFF" }}
-                className="fas fa-thumbs-down"
-              />
-              <span style={{ fontSize: "20px", color: "#FFF" }}>
-                {this.state.dislikes.length}
-              </span>
-            </div>
-          </div>
-          {this.state.showReplays ? (
-            <div style={{ width: "60%" }}>
-              <div
-                style={{
-                  height: "auto",
-                  background: "#262526"
-                }}
-              >
-                {this.props.replies.map(item => (
-                  <Reply
-                    key={item._id}
-                    avatar={item.avatar}
-                    name={item.name}
-                    text={item.text}
-                  />
-                ))}
-                <div style={{ display: "flex" }}>
-                  <textarea
-                    className="textarea"
-                    onChange={this.onHandleChange}
-                    type="text"
-                    name="replytext"
-                    style={{
-                      height: "80px",
-                      width: "300px",
-                      borderRadius: "9px",
-                      resize: "none",
-                      outline: "none",
-                      padding: "6px 12px"
-                    }}
-                  />
-
-                  <button
-                    onClick={this.onHandleSubmit}
-                    type="submit"
-                    style={{
-                      background: "orange",
-                      border: "none",
-                      padding: "5px 10px",
-                      // height:"30px",
-                      alignSelf: "center",
-                      outline: "none",
-                      borderRadius: "8px"
-                    }}
-                  >
-                    Replay
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <span onClick={this.showReplays} style={{ cursor: "pointer" }}>
-              Replays
+        <div className="discription__wrappertop__down__comment--wrapper--result--rate">
+          <div
+            onClick={this.onHandleLike}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-angle-up awesome" />
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text">
+              {this.state.likes.length}
             </span>
-          )}
+          </div>
+          <div
+            onClick={this.onHandleDislike}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-angle-down awesome" />
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text">
+              {this.state.dislikes.length}
+            </span>
+          </div>
+          <div
+            onClick={this.showReplays}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-reply awesome" />
+              Replay
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text" />
+          </div>
         </div>
+        {this.state.showReplays ? (
+          this.props.replies.length > 0 ? (
+            <>
+              {this.props.replies.map(item => (
+                <Reply
+                  key={item._id}
+                  avatar={item.avatar}
+                  name={item.name}
+                  text={item.text}
+                />
+              ))}
+              <form className="discription__wrappertop__down__comment--wrapper--result--inside ">
+                <textarea
+                  onChange={this.onHandleChange}
+                  name="replytext"
+                  id=""
+                  className="discription__wrappertop__down__comment--wrapper--result--inside--comment "
+                  placeholder="write comment"
+                />
+                <button
+                  onClick={this.onHandleSubmit}
+                  className="discription__wrappertop__down__comment--wrapper--result--inside--button "
+                >
+                  replay
+                </button>
+              </form>
+            </>
+          ) : (
+            <form className="discription__wrappertop__down__comment--wrapper--result--inside ">
+              <textarea
+                onChange={this.onHandleChange}
+                name="replytext"
+                id=""
+                className="discription__wrappertop__down__comment--wrapper--result--inside--comment "
+                placeholder="write comment"
+              />
+              <button
+                onClick={this.onHandleSubmit}
+                className="discription__wrappertop__down__comment--wrapper--result--inside--button "
+              >
+                replay
+              </button>
+            </form>
+          )
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

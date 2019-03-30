@@ -10,7 +10,6 @@ class Games extends React.Component {
     isLoaded: false
   };
   componentDidMount() {
-    console.log(this.context)
     axios
       .get("/api/products")
       .then(res => {
