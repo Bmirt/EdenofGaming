@@ -1,10 +1,9 @@
 .header{
-<<<<<<< HEAD
+
     @include size(100%,330px,#222);
-=======
+
     @include size(100%,250px,#222);
     
->>>>>>> 6138612c505799a76667b3ab8f21200448728530
     @include flex(space-between,center);
     flex-direction: column;
     &__languagebar{

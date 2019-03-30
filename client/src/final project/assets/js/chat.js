@@ -1,4 +1,3 @@
-// document.getElementById("btn").addEventListener("click",left);
 let push="chat";
 function left(){
     if(push==="chat"){ 
@@ -21,5 +20,5 @@ function left(){
     }   
 }
 
-document.getElementById("btn").addEventListener("click",left)
-export default left;
+// document.getElementById("btn").addEventListener("click",left)
+// export default left;
