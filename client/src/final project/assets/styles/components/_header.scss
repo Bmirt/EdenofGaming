@@ -1,9 +1,5 @@
 .header{
-
-    @include size(100%,330px,#222);
-
     @include size(100%,250px,#222);
-    
     @include flex(space-between,center);
     flex-direction: column;
     &__languagebar{
