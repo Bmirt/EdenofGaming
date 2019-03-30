@@ -3,6 +3,8 @@ import Auth from "../utils/AuthMethods";
 // import axios from "axios";
 import UserContext from "../../context/user-context";
 import AddGames from "./admin/AddGame";
+import UserPanel from "./admin/UserPanel";
+import Avarage from "./admin/Avarage";
 
 class Admin extends React.Component {
   state = {
@@ -145,9 +147,9 @@ class Admin extends React.Component {
                       <a
                         data-toggle="tab"
                         className="user-profile__link"
-                        href="#pages"
+                        href="#users"
                       >
-                        Pages
+                        Users
                       </a>
                     </li>
                     <li>
@@ -163,16 +165,18 @@ class Admin extends React.Component {
                       <a
                         data-toggle="tab"
                         className="user-profile__link"
-                        href="#users"
+                        href="#pages"
                       >
-                        Users
+                        Pages
                       </a>
                     </li>
+                    
                   </ul>
 
                   <div className="tab-content">
                     <div className="tab-pane active" id="home">
                       <h3 className="header__bottom__nav--list">dashboard</h3>
+                     <Avarage />
                     </div>
                     <div className="tab-pane" id="pages">
                       <h3 className="header__bottom__nav--list">
@@ -188,6 +192,7 @@ class Admin extends React.Component {
                       <h3 className="header__bottom__nav--list">
                         Users information
                       </h3>
+                      <UserPanel />
                     </div>
                   </div>
                 </div>
