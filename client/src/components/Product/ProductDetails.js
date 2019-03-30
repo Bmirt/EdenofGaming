@@ -14,8 +14,6 @@ class ProductDetails extends React.Component {
     this.state = {
       product: null,
       isLoaded: false,
-      likeCount: 0,
-      dislikeCount: 0
     };
   }
 
@@ -29,8 +27,6 @@ class ProductDetails extends React.Component {
         this.setState({
           product: res.data,
           isLoaded: true,
-          likeCount: res.data.likes.length,
-          dislikeCount: res.data.dislikes.length
         });
       })
       .catch(err => this.setState({ isLoaded: true }));
@@ -69,7 +65,6 @@ class ProductDetails extends React.Component {
     });
   };
   like = (productID, jwt) => {
-    this.setState({ likeCount: this.state.likeCount + 1 });
     fetch(`/api/products/like/${productID}/`, {
       method: "POST",
       headers: {
@@ -89,7 +84,6 @@ class ProductDetails extends React.Component {
       .catch(err => console.log("error", err));
   };
   unlike = (productID, jwt) => {
-    this.setState({ likeCount: this.state.likeCount - 1 });
     fetch(`/api/products/unlike/${productID}`, {
       method: "POST",
       headers: {
@@ -113,7 +107,6 @@ class ProductDetails extends React.Component {
   };
 
   dislike = (productID, jwt) => {
-    this.setState({ dislikeCount: this.state.dislikeCount + 1 });
     fetch(`/api/products/dislike/${productID}`, {
       method: "POST",
       headers: {
@@ -133,7 +126,6 @@ class ProductDetails extends React.Component {
       .catch(err => console.log("error", err));
   };
   unDislike = (productID, jwt) => {
-    this.setState({ dislikeCount: this.state.dislikeCount - 1 });
     fetch(`/api/products/undislike/${productID}`, {
       method: "POST",
       headers: {
@@ -253,7 +245,7 @@ class ProductDetails extends React.Component {
                     className="fas fa-thumbs-up awesome"
                   />
                   <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score">
-                    {this.state.likeCount}
+                    {this.state.product.likes.length}
                   </span>
                 </span>
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
@@ -262,7 +254,7 @@ class ProductDetails extends React.Component {
                     className="fas fa-thumbs-down awesome"
                   />
                   <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score dislike">
-                    {this.state.dislikeCount}
+                    {this.state.product.dislikes.length}
                   </span>
                 </span>
               </div>

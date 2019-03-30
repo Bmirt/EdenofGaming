@@ -12,8 +12,6 @@ export default class Comment extends React.Component {
       dislikes: props.dislikes,
       liked: false,
       disliked: false,
-      likeCount: props.likes.length,
-      dislikeCount: props.dislikes.length,
       showReplays: false,
       replytext: ""
     };
@@ -46,7 +44,6 @@ export default class Comment extends React.Component {
     });
   };
   like = (productID, reviewID, jwt) => {
-    this.setState({ likeCount: this.state.likeCount + 1 });
     fetch(`/api/posts/like/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -66,7 +63,6 @@ export default class Comment extends React.Component {
       .catch(err => console.log("error", err));
   };
   unlike = (productID, reviewID, jwt) => {
-    this.setState({ likeCount: this.state.likeCount - 1 });
     fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -90,7 +86,6 @@ export default class Comment extends React.Component {
   };
 
   dislike = (productID, reviewID, jwt) => {
-    this.setState({ dislikeCount: this.state.dislikeCount + 1 });
     fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -110,7 +105,6 @@ export default class Comment extends React.Component {
       .catch(err => console.log("error", err));
   };
   unDislike = (productID, reviewID, jwt) => {
-    this.setState({ dislikeCount: this.state.dislikeCount - 1 });
     fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -230,7 +224,7 @@ export default class Comment extends React.Component {
                   color: "#FFF"
                 }}
               >
-                {this.state.likeCount}
+                {this.state.likes.length}
               </span>
               <i
                 onClick={this.onHandleLike}
@@ -248,7 +242,7 @@ export default class Comment extends React.Component {
                 className="fas fa-thumbs-down"
               />
               <span style={{ fontSize: "20px", color: "#FFF" }}>
-                {this.state.dislikeCount}
+                {this.state.dislikes.length}
               </span>
             </div>
           </div>
