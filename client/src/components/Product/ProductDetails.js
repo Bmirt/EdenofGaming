@@ -41,7 +41,6 @@ class ProductDetails extends React.Component {
       if (Auth.getCurrentUser()) {
         const userID = Auth.getCurrentUser().id;
         for (let i = 0; i < likes.length; i++) {
-          // console.log(likes[i].user)
           if (likes[i].user === userID) {
             return true;
           }
@@ -52,15 +51,17 @@ class ProductDetails extends React.Component {
   };
   disliked = () => {
     if (this.state.product) {
+      const {dislikes} = this.state.product;
       if (Auth.getCurrentUser()) {
-        this.state.product.dislikes.forEach(item => {
-          if (item.user === Auth.getCurrentUser().id) {
+        const userID = Auth.getCurrentUser().id;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === userID) {
             return true;
           }
-          return false;
-        });
+        }
       }
     }
+    return false;
   };
   onHandleChange = e => {
     this.setState({
@@ -79,7 +80,7 @@ class ProductDetails extends React.Component {
       .then(res => {
         const newLike = {
           _id: res._id,
-          user: res.user
+          user: Auth.getCurrentUser().id
         };
         const Likes = this.state.product.likes;
         Likes.push(newLike);
@@ -99,7 +100,7 @@ class ProductDetails extends React.Component {
       .then(res => {
         let likes = this.state.product.likes;
         for (let i = 0; i < likes.length; i++) {
-          if (likes[i].user === res.user) {
+          if (likes[i].user === Auth.getCurrentUser().id) {
             likes.splice(i, 1);
           }
         }
@@ -123,7 +124,7 @@ class ProductDetails extends React.Component {
       .then(res => {
         const newDislike = {
           _id: res._id,
-          user: res.user
+          user: Auth.getCurrentUser().id
         };
         const Dislikes = this.state.product.dislikes;
         Dislikes.push(newDislike);
@@ -143,7 +144,7 @@ class ProductDetails extends React.Component {
       .then(res => {
         let dislikes = this.state.product.dislikes;
         for (let i = 0; i < dislikes.length; i++) {
-          if (dislikes[i].user === res.user) {
+          if (dislikes[i].user === Auth.getCurrentUser().id) {
             dislikes.splice(i, 1);
           }
         }
@@ -160,7 +161,7 @@ class ProductDetails extends React.Component {
     const { _id } = this.state.product;
     const jwt = Auth.getJWT();
     if (!jwt) {
-      this.context.message("Please log in to like the review");
+      this.context.message("Please log in to like the game");
       return;
     }
     if (this.liked()) {
@@ -176,7 +177,7 @@ class ProductDetails extends React.Component {
     const { _id } = this.state.product;
     const jwt = Auth.getJWT();
     if (!jwt) {
-      this.context.message("Please log in to dislike the review");
+      this.context.message("Please log in to dislike the game");
       return;
     }
     if (this.disliked()) {
