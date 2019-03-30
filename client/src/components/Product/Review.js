@@ -65,7 +65,6 @@ export default class Review extends React.Component {
           });
         })
         .catch(err => console.log(err));
-      //updating reviews state so it displays new review right away when user posts
 
       document.getElementById("reviewInput").value = "";
     } else {
