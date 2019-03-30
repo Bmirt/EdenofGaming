@@ -6,14 +6,20 @@ import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../../context/shop-context";
 import Review from "./Review";
+import Auth from '../utils/AuthMethods';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...props,
       product: null,
-      isLoaded: false
+      isLoaded: false,
+      likes: null,
+      dislikes: null,
+      liked: false,
+      disliked:false,
+      likeCount: 0,
+      dislikeCount: 0,
     };
   }
 
@@ -31,9 +37,157 @@ class ProductDetails extends React.Component {
       })
       .catch(err => this.setState({ isLoaded: true }));
   }
+
+
+  componentDidMount() {
+    let liked = false;
+    let disliked = false;
+    if (Auth.getCurrentUser()) {
+      this.props.likes.forEach(item => {
+        if(item.user === Auth.getCurrentUser().id){
+          liked = true;
+        }
+      });
+      this.props.dislikes.forEach(item => {
+        if(item.user === Auth.getCurrentUser().id){
+          disliked = true;
+        }
+      });
+      
+    }
+    this.setState({ liked: liked, disliked: disliked });
+  }
+  onHandleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  like = (productID, reviewID, jwt) => {
+    this.setState({ likeCount: this.state.likeCount + 1 });
+    fetch(`/api/posts/like/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newLike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Likes = this.state.likes;
+        Likes.push(newLike);
+        this.setState({ liked: true, likes: Likes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unlike = (productID, reviewID, jwt) => {
+    this.setState({ likeCount: this.state.likeCount - 1 });
+    fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let likes = this.state.likes;
+        for (let i = 0; i < likes.length; i++) {
+          if (likes[i].user === res.user) {
+            likes.splice(i, 1);
+          }
+        }
+        this.setState({
+          liked: false,
+          likes: likes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  dislike = (productID, reviewID, jwt) => {
+    this.setState({ dislikeCount: this.state.dislikeCount + 1 });
+    fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newDislike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Dislikes = this.state.dislikes;
+        Dislikes.push(newDislike);
+        this.setState({ disliked: true, dislikes: Dislikes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unDislike = (productID, reviewID, jwt) => {
+    this.setState({ dislikeCount: this.state.dislikeCount - 1 });
+    fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let dislikes = this.state.dislikes;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === res.user) {
+            dislikes.splice(i, 1);
+          }
+        }
+        this.setState({
+          disliked: false,
+          dislikes: dislikes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  onHandleLike = e => {
+    const { productID, reviewID } = this.state;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to like the review");
+      return;
+    }
+    if (this.state.liked) {
+      this.unlike(productID, reviewID, jwt);
+    } else if (this.state.disliked) {
+      this.unDislike(productID, reviewID, jwt);
+      this.like(productID, reviewID, jwt);
+    } else {
+      this.like(productID, reviewID, jwt);
+    }
+  };
+  onHandleDislike = e => {
+    const { productID, reviewID } = this.state;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to dislike the review");
+      return;
+    }
+    if (this.state.disliked) {
+      this.unDislike(productID, reviewID, jwt);
+    } else if (this.state.liked) {
+      this.unlike(productID, reviewID, jwt);
+      this.dislike(productID, reviewID, jwt);
+    } else {
+      this.dislike(productID, reviewID, jwt);
+    }
+  };
+
+
+
   render() {
+    console.log('product',this.state.product)
     const { product } = this.state;
-    console.log(this.context.cart);
     if (!this.state.isLoaded) {
       return (
         <img
@@ -90,9 +244,11 @@ class ProductDetails extends React.Component {
               <div className="discription__wrappertop__wrapper__details__raiting">
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
                   <i className="fas fa-thumbs-up awesome" />
+                  <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score">222222</span>
                 </span>
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
                   <i className="fas fa-thumbs-down awesome" />
+                  <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score dislike">0</span>
                 </span>
               </div>
             </div>
