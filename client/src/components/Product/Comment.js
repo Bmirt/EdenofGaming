@@ -2,7 +2,6 @@ import React from "react";
 import Auth from "../utils/AuthMethods";
 import userContext from "../../context/user-context";
 import Reply from "./Reply";
-import Axios from "axios";
 export default class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -12,8 +11,6 @@ export default class Comment extends React.Component {
       dislikes: props.dislikes,
       liked: false,
       disliked: false,
-      likeCount: props.likes.length,
-      dislikeCount: props.dislikes.length,
       showReplays: false,
       replytext: ""
     };
@@ -22,21 +19,20 @@ export default class Comment extends React.Component {
   static contextType = userContext;
 
   componentDidMount() {
-    this.setState({ replies: this.state.replies.reverse() });
+    this.setState({ replies: this.props.replies.reverse() });
     let liked = false;
     let disliked = false;
     if (Auth.getCurrentUser()) {
-      for (let i = 0; i < this.props.likes.length; i++) {
-        if (this.state.likes[i].user === Auth.getCurrentUser().id) {
+      this.props.likes.forEach(item => {
+        if (item.user === Auth.getCurrentUser().id) {
           liked = true;
         }
-        if (this.state.dislikes.length !== 0) {
-          if (this.state.dislikes[i].user === Auth.getCurrentUser().id) {
-            disliked = true;
-          }
+      });
+      this.props.dislikes.forEach(item => {
+        if (item.user === Auth.getCurrentUser().id) {
+          disliked = true;
         }
-      }
-      console.log("dislikes arrrat", this.state.dislikes);
+      });
     }
     this.setState({ liked: liked, disliked: disliked });
   }
@@ -44,8 +40,93 @@ export default class Comment extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state.replytext);
   };
-  like = e => {
+  like = (productID, reviewID, jwt) => {
+    fetch(`/api/posts/like/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newLike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Likes = this.state.likes;
+        Likes.push(newLike);
+        this.setState({ liked: true, likes: Likes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unlike = (productID, reviewID, jwt) => {
+    fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let likes = this.state.likes;
+        for (let i = 0; i < likes.length; i++) {
+          if (likes[i].user === res.user) {
+            likes.splice(i, 1);
+          }
+        }
+        this.setState({
+          liked: false,
+          likes: likes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  dislike = (productID, reviewID, jwt) => {
+    fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newDislike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Dislikes = this.state.dislikes;
+        Dislikes.push(newDislike);
+        this.setState({ disliked: true, dislikes: Dislikes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unDislike = (productID, reviewID, jwt) => {
+    fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let dislikes = this.state.dislikes;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === res.user) {
+            dislikes.splice(i, 1);
+          }
+        }
+        this.setState({
+          disliked: false,
+          dislikes: dislikes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  onHandleLike = e => {
     const { productID, reviewID } = this.state;
     const jwt = Auth.getJWT();
     if (!jwt) {
@@ -53,37 +134,15 @@ export default class Comment extends React.Component {
       return;
     }
     if (this.state.liked) {
-      fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        liked: false,
-        likeCount: this.state.likeCount - 1
-      });
+      this.unlike(productID, reviewID, jwt);
+    } else if (this.state.disliked) {
+      this.unDislike(productID, reviewID, jwt);
+      this.like(productID, reviewID, jwt);
     } else {
-      if (this.state.disliked) {
-        this.dislike();
-        // this.setState({dislikeCount:this.state.dislikeCount-1})
-      }
-      fetch(`/api/posts/like/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({ liked: true, likeCount: this.state.likeCount + 1 });
+      this.like(productID, reviewID, jwt);
     }
   };
-  dislike = e => {
+  onHandleDislike = e => {
     const { productID, reviewID } = this.state;
     const jwt = Auth.getJWT();
     if (!jwt) {
@@ -91,46 +150,28 @@ export default class Comment extends React.Component {
       return;
     }
     if (this.state.disliked) {
-      fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        disliked: false,
-        dislikeCount: this.state.dislikeCount - 1
-      });
+      this.unDislike(productID, reviewID, jwt);
     } else if (this.state.liked) {
-      this.like();
+      this.unlike(productID, reviewID, jwt);
+      this.dislike(productID, reviewID, jwt);
     } else {
-      fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        disliked: true,
-        dislikeCount: this.state.dislikeCount + 1
-      });
+      this.dislike(productID, reviewID, jwt);
     }
   };
   showReplays = () => {
-    this.setState({ showReplays: true });
+    if (this.state.showReplays) {
+      this.setState({
+        showReplays: false
+      });
+    } else {
+      this.setState({ showReplays: true });
+    }
   };
 
   onHandleSubmit = e => {
     e.preventDefault();
     const jwt = Auth.getJWT();
     const { productID, reviewID } = this.state;
-    console.log(productID, reviewID, jwt);
     fetch(`/api/posts/comment/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -156,11 +197,10 @@ export default class Comment extends React.Component {
         );
       });
     this.setState({ replytext: "" });
-    document.querySelectorAll('textarea').forEach(item => item.value = "")
+    document.querySelectorAll("textarea").forEach(item => (item.value = ""));
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -176,96 +216,87 @@ export default class Comment extends React.Component {
         <p className="discription__wrappertop__down__comment--wrapper--result--comment">
           {this.props.text}
         </p>
-
-        <div style={{ height: "auto", width: "100%" }}>
-          <div style={{ width: "40%" }}>
-            <div style={{ float: "right", marginRight: "20px" }}>
-              <span
-                style={{
-                  fontSize: "20px",
-                  display: "inline-block",
-                  width: "20px",
-                  color: "#FFF"
-                }}
-              >
-                {this.state.likeCount}
-              </span>
-              <i
-                onClick={this.like}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "25px",
-                  marginRight: "10px",
-                  color: "#FFF"
-                }}
-                className="fas fa-thumbs-up"
-              />
-              <i
-                onClick={this.dislike}
-                style={{ cursor: "pointer", fontSize: "25px", color: "#FFF" }}
-                className="fas fa-thumbs-down"
-              />
-              <span style={{ fontSize: "20px", color: "#FFF" }}>
-                {this.state.dislikeCount}
-              </span>
-            </div>
-          </div>
-          {this.state.showReplays ? (
-            <div style={{ width: "60%" }}>
-              <div
-                style={{
-                  height: "auto",
-                  background: "#262526"
-                }}
-              >
-                {this.props.replies.map(item => (
-                  <Reply
-                    key={item._id}
-                    avatar={item.avatar}
-                    name={item.name}
-                    text={item.text}
-                  />
-                ))}
-                <div style={{ display: "flex" }}>
-                  <textarea
-                    className="textarea"
-                    onChange={this.onHandleChange}
-                    type="text"
-                    name="replytext"
-                    style={{
-                      height: "80px",
-                      width: "300px",
-                      borderRadius: "9px",
-                      resize: "none",
-                      outline: "none",
-                      padding: "6px 12px"
-                    }}
-                  />
-
-                  <button
-                    onClick={this.onHandleSubmit}
-                    type="submit"
-                    style={{
-                      background: "orange",
-                      border: "none",
-                      padding: "5px 10px",
-                      // height:"30px",
-                      alignSelf: "center",
-                      outline: "none",
-                      borderRadius: "8px"
-                    }}
-                  >
-                    Replay
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <span onClick={this.showReplays} style={{ cursor: "pointer" }}>
-              Replays
+        <div className="discription__wrappertop__down__comment--wrapper--result--rate">
+          <div
+            onClick={this.onHandleLike}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-angle-up awesome" />
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text">
+              {this.state.likes.length}
             </span>
-          )}
+          </div>
+          <div
+            onClick={this.onHandleDislike}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-angle-down awesome" />
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text">
+              {this.state.dislikes.length}
+            </span>
+          </div>
+          <div
+            onClick={this.showReplays}
+            className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper"
+          >
+            <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
+              <i className="fas fa-reply awesome" />
+              Replay
+            </button>
+            <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text" />
+          </div>
         </div>
+        {this.state.showReplays ? (
+          this.props.replies.length > 0 ? (
+            <>
+              {this.props.replies.map(item => (
+                <Reply
+                  key={item._id}
+                  avatar={item.avatar}
+                  name={item.name}
+                  text={item.text}
+                />
+              ))}
+              <form className="discription__wrappertop__down__comment--wrapper--result--inside ">
+                <textarea
+                  onChange={this.onHandleChange}
+                  name="replytext"
+                  id=""
+                  className="discription__wrappertop__down__comment--wrapper--result--inside--comment "
+                  placeholder="write comment"
+                />
+                <button
+                  onClick={this.onHandleSubmit}
+                  className="discription__wrappertop__down__comment--wrapper--result--inside--button "
+                >
+                  replay
+                </button>
+              </form>
+            </>
+          ) : (
+            <form className="discription__wrappertop__down__comment--wrapper--result--inside ">
+              <textarea
+                onChange={this.onHandleChange}
+                name="replytext"
+                id=""
+                className="discription__wrappertop__down__comment--wrapper--result--inside--comment "
+                placeholder="write comment"
+              />
+              <button
+                onClick={this.onHandleSubmit}
+                className="discription__wrappertop__down__comment--wrapper--result--inside--button "
+              >
+                replay
+              </button>
+            </form>
+          )
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

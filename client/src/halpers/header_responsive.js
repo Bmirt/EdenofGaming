@@ -1,5 +1,4 @@
 
-document.getElementById("button").addEventListener("click",left);
 let eat="burger";
 function left(){
     if(eat==="burger"){ 
@@ -20,20 +19,4 @@ function left(){
     }  
 }
 
-
-
-
-
-// var hamburgerButton = document.getElementById("button");
-// var mobileNav = document.getElementById("nav");
-
-// function openMobile() {
-//     mobileNav.classList.add('open');
-// }
-// function closeMobile() {
-//     mobileNav.classList.remove('open');
-// }
-
-// hamburgerButton.addEventListener('click', openMobile);
-// mobileNav.addEventListener('click', closeMobile);
-
+export default left;

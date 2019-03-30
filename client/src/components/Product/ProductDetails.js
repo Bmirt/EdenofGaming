@@ -6,14 +6,14 @@ import { Trailler } from "./Trailler";
 import { Iframe } from "./Iframe";
 import ShopContext from "../../context/shop-context";
 import Review from "./Review";
+import Auth from "../utils/AuthMethods";
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...props,
       product: null,
-      isLoaded: false
+      isLoaded: false,
     };
   }
 
@@ -26,20 +26,169 @@ class ProductDetails extends React.Component {
       .then(res => {
         this.setState({
           product: res.data,
-          isLoaded: true
+          isLoaded: true,
         });
       })
       .catch(err => this.setState({ isLoaded: true }));
   }
+  liked = () => {
+    if (this.state.product) {
+      const {likes} = this.state.product;
+      if (Auth.getCurrentUser()) {
+        const userID = Auth.getCurrentUser().id;
+        for (let i = 0; i < likes.length; i++) {
+          if (likes[i].user === userID) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+  disliked = () => {
+    if (this.state.product) {
+      const {dislikes} = this.state.product;
+      if (Auth.getCurrentUser()) {
+        const userID = Auth.getCurrentUser().id;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === userID) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+  onHandleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  like = (productID, jwt) => {
+    fetch(`/api/products/like/${productID}/`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newLike = {
+          _id: res._id,
+          user: Auth.getCurrentUser().id
+        };
+        const Likes = this.state.product.likes;
+        Likes.push(newLike);
+        this.setState({ liked: true, likes: Likes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unlike = (productID, jwt) => {
+    fetch(`/api/products/unlike/${productID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let likes = this.state.product.likes;
+        for (let i = 0; i < likes.length; i++) {
+          if (likes[i].user === Auth.getCurrentUser().id) {
+            likes.splice(i, 1);
+          }
+        }
+        this.setState({
+          liked: false,
+          likes: likes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  dislike = (productID, jwt) => {
+    fetch(`/api/products/dislike/${productID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newDislike = {
+          _id: res._id,
+          user: Auth.getCurrentUser().id
+        };
+        const Dislikes = this.state.product.dislikes;
+        Dislikes.push(newDislike);
+        this.setState({ disliked: true, dislikes: Dislikes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unDislike = (productID, jwt) => {
+    fetch(`/api/products/undislike/${productID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let dislikes = this.state.product.dislikes;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === Auth.getCurrentUser().id) {
+            dislikes.splice(i, 1);
+          }
+        }
+        this.setState({
+          disliked: false,
+          dislikes: dislikes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  onHandleLike = e => {
+    const { _id } = this.state.product;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to like the game");
+      return;
+    }
+    if (this.liked()) {
+      this.unlike(_id, jwt);
+    } else if (this.disliked()) {
+      this.unDislike(_id, jwt);
+      this.like(_id, jwt);
+    } else {
+      this.like(_id, jwt);
+    }
+  };
+  onHandleDislike = e => {
+    const { _id } = this.state.product;
+    const jwt = Auth.getJWT();
+    if (!jwt) {
+      this.context.message("Please log in to dislike the game");
+      return;
+    }
+    if (this.disliked()) {
+      this.unDislike(_id, jwt);
+    } else if (this.liked()) {
+      this.unlike(_id, jwt);
+      this.dislike(_id, jwt);
+    } else {
+      this.dislike(_id, jwt);
+    }
+  };
+
   render() {
     const { product } = this.state;
-    console.log(this.context.cart);
     if (!this.state.isLoaded) {
       return (
         <img
           style={{ width: "80px", height: "80px", margin: "100px 500px" }}
           src={spinner}
-          alt="spinner"
+          alt="spinners"
         />
       );
     }
@@ -89,10 +238,22 @@ class ProductDetails extends React.Component {
 
               <div className="discription__wrappertop__wrapper__details__raiting">
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
-                  <i className="fas fa-thumbs-up awesome" />
+                  <i
+                    onClick={this.onHandleLike}
+                    className="fas fa-thumbs-up awesome"
+                  />
+                  <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score">
+                    {this.state.product.likes.length}
+                  </span>
                 </span>
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
-                  <i className="fas fa-thumbs-down awesome" />
+                  <i
+                    onClick={this.onHandleDislike}
+                    className="fas fa-thumbs-down awesome"
+                  />
+                  <span className="discription__wrappertop__wrapper__details__raiting__thumbs--score dislike">
+                    {this.state.product.dislikes.length}
+                  </span>
                 </span>
               </div>
             </div>

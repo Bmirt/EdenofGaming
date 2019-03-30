@@ -1,5 +1,5 @@
 import React from "react";
-import chat from "../../final project/assets/js/chat";
+import chat from "../../halpers/chat";
 import Auth from "../utils/AuthMethods";
 
 class Chat extends React.Component {
@@ -14,7 +14,6 @@ class Chat extends React.Component {
           <nav className="chat__nav">
             <div
               onClick={() => {
-                console.log("chat on click");
                 chat();
               }}
               id="btn"

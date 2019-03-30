@@ -20,7 +20,8 @@ export default class Review extends React.Component {
 
   onHandleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      errors:{}
     });
   };
   componentDidMount() {
@@ -45,27 +46,30 @@ export default class Review extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          console.log("response to comment", res);
-          let reviews = this.state.reviews;
-          let newReview = {
-            _id: res._id,
-            likes: [],
-            dislikes: [],
-            comments: [],
-            date: Date.now(),
-            text: res.text,
-            avatar: this.context.user.avatar,
-            name: this.context.user.name,
-            user: this.context.user._id
-          };
-          reviews.push(newReview);
-          this.setState({
-            reviews: reviews,
-            hasReviews: true
-          });
+          if (res.user === undefined) {
+            this.setState({ errors: res });
+          } else {
+            let reviews = this.state.reviews;
+            let newReview = {
+              _id: res._id,
+              likes: [],
+              dislikes: [],
+              comments: [],
+              date: Date.now(),
+              text: res.text,
+              avatar: this.context.user.avatar,
+              name: this.context.user.name,
+              user: this.context.user._id
+            };
+            reviews.push(newReview);
+            this.setState({
+              reviews: reviews,
+              hasReviews: true,
+              review: ""
+            });
+          }
         })
         .catch(err => console.log(err));
-      //updating reviews state so it displays new review right away when user posts
 
       document.getElementById("reviewInput").value = "";
     } else {
@@ -73,7 +77,6 @@ export default class Review extends React.Component {
     }
   };
   render() {
-    console.log("review id", this.state.reviews);
     return (
       <UserContext.Consumer>
         {context => (
@@ -111,7 +114,7 @@ export default class Review extends React.Component {
                   onClick={this.onHandleSubmit}
                   className="discription__wrappertop__down__comment--wrapper--inside--button"
                 >
-                  post
+                  Write A Review
                 </button>
               </form>
               {this.state.hasReviews ? (
