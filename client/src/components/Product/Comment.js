@@ -22,21 +22,21 @@ export default class Comment extends React.Component {
   static contextType = userContext;
 
   componentDidMount() {
-    this.setState({ replies: this.state.replies.reverse() });
+    this.setState({ replies: this.props.replies.reverse() });
     let liked = false;
     let disliked = false;
     if (Auth.getCurrentUser()) {
-      for (let i = 0; i < this.props.likes.length; i++) {
-        if (this.state.likes[i].user === Auth.getCurrentUser().id) {
+      this.props.likes.forEach(item => {
+        if(item.user === Auth.getCurrentUser().id){
           liked = true;
         }
-        if (this.state.dislikes.length !== 0) {
-          if (this.state.dislikes[i].user === Auth.getCurrentUser().id) {
-            disliked = true;
-          }
+      });
+      this.props.dislikes.forEach(item => {
+        if(item.user === Auth.getCurrentUser().id){
+          disliked = true;
         }
-      }
-      console.log("dislikes arrrat", this.state.dislikes);
+      });
+      
     }
     this.setState({ liked: liked, disliked: disliked });
   }
@@ -45,7 +45,95 @@ export default class Comment extends React.Component {
       [e.target.name]: e.target.value
     });
   };
-  like = e => {
+  like = (productID, reviewID, jwt) => {
+    this.setState({ likeCount: this.state.likeCount + 1 });
+    fetch(`/api/posts/like/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newLike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Likes = this.state.likes;
+        Likes.push(newLike);
+        this.setState({ liked: true, likes: Likes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unlike = (productID, reviewID, jwt) => {
+    this.setState({ likeCount: this.state.likeCount - 1 });
+    fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let likes = this.state.likes;
+        for (let i = 0; i < likes.length; i++) {
+          if (likes[i].user === res.user) {
+            likes.splice(i, 1);
+          }
+        }
+        this.setState({
+          liked: false,
+          likes: likes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  dislike = (productID, reviewID, jwt) => {
+    this.setState({ dislikeCount: this.state.dislikeCount + 1 });
+    fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        const newDislike = {
+          _id: res._id,
+          user: res.user
+        };
+        const Dislikes = this.state.dislikes;
+        Dislikes.push(newDislike);
+        this.setState({ disliked: true, dislikes: Dislikes });
+      })
+      .catch(err => console.log("error", err));
+  };
+  unDislike = (productID, reviewID, jwt) => {
+    this.setState({ dislikeCount: this.state.dislikeCount - 1 });
+    fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        let dislikes = this.state.dislikes;
+        for (let i = 0; i < dislikes.length; i++) {
+          if (dislikes[i].user === res.user) {
+            dislikes.splice(i, 1);
+          }
+        }
+        this.setState({
+          disliked: false,
+          dislikes: dislikes
+        });
+      })
+      .catch(err => console.log("error", err));
+  };
+
+  onHandleLike = e => {
     const { productID, reviewID } = this.state;
     const jwt = Auth.getJWT();
     if (!jwt) {
@@ -53,37 +141,15 @@ export default class Comment extends React.Component {
       return;
     }
     if (this.state.liked) {
-      fetch(`/api/posts/unlike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        liked: false,
-        likeCount: this.state.likeCount - 1
-      });
+      this.unlike(productID, reviewID, jwt);
+    } else if (this.state.disliked) {
+      this.unDislike(productID, reviewID, jwt);
+      this.like(productID, reviewID, jwt);
     } else {
-      if (this.state.disliked) {
-        this.dislike();
-        // this.setState({dislikeCount:this.state.dislikeCount-1})
-      }
-      fetch(`/api/posts/like/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({ liked: true, likeCount: this.state.likeCount + 1 });
+      this.like(productID, reviewID, jwt);
     }
   };
-  dislike = e => {
+  onHandleDislike = e => {
     const { productID, reviewID } = this.state;
     const jwt = Auth.getJWT();
     if (!jwt) {
@@ -91,35 +157,12 @@ export default class Comment extends React.Component {
       return;
     }
     if (this.state.disliked) {
-      fetch(`/api/posts/undislike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        disliked: false,
-        dislikeCount: this.state.dislikeCount - 1
-      });
+      this.unDislike(productID, reviewID, jwt);
     } else if (this.state.liked) {
-      this.like();
+      this.unlike(productID, reviewID, jwt);
+      this.dislike(productID, reviewID, jwt);
     } else {
-      fetch(`/api/posts/dislike/${productID}/${reviewID}`, {
-        method: "POST",
-        headers: {
-          Authorization: jwt
-        }
-      })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log("error", err));
-      this.setState({
-        disliked: true,
-        dislikeCount: this.state.dislikeCount + 1
-      });
+      this.dislike(productID, reviewID, jwt);
     }
   };
   showReplays = () => {
@@ -130,7 +173,6 @@ export default class Comment extends React.Component {
     e.preventDefault();
     const jwt = Auth.getJWT();
     const { productID, reviewID } = this.state;
-    console.log(productID, reviewID, jwt);
     fetch(`/api/posts/comment/${productID}/${reviewID}`, {
       method: "POST",
       headers: {
@@ -156,11 +198,11 @@ export default class Comment extends React.Component {
         );
       });
     this.setState({ replytext: "" });
-    document.querySelectorAll('textarea').forEach(item => item.value = "")
+    document.querySelectorAll("textarea").forEach(item => (item.value = ""));
   };
 
   render() {
-    console.log(this.state);
+    console.log("state", this.state);
     return (
       <div className="discription__wrappertop__down__comment--wrapper--result">
         <div className="discription__wrappertop__down__comment--wrapper--result--profile">
@@ -191,7 +233,7 @@ export default class Comment extends React.Component {
                 {this.state.likeCount}
               </span>
               <i
-                onClick={this.like}
+                onClick={this.onHandleLike}
                 style={{
                   cursor: "pointer",
                   fontSize: "25px",
@@ -201,7 +243,7 @@ export default class Comment extends React.Component {
                 className="fas fa-thumbs-up"
               />
               <i
-                onClick={this.dislike}
+                onClick={this.onHandleDislike}
                 style={{ cursor: "pointer", fontSize: "25px", color: "#FFF" }}
                 className="fas fa-thumbs-down"
               />
