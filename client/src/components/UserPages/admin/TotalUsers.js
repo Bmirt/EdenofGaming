@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
 
-class Avarage extends React.Component {
+class TotalUsers extends React.Component {
   constructor() {
     super();
     this.state = {
-      age: [],
+      total: [],
       balance: "",
       errors: {}
     };
@@ -20,7 +20,7 @@ class Avarage extends React.Component {
       .get(`http://localhost:5000/api/profile/all`, config)
       .then(res => {
         this.setState({
-          age: res.data
+          total: res.data
         });
       })
 
@@ -31,18 +31,19 @@ class Avarage extends React.Component {
   render() {
    
     return (
-      <div >
-        <div className="admin__dash__info admin__dash__info--age">
+      <div>
+      <a href="#users"  data-toggle="tab" className="user-profile__link">
+        <div className="admin__dash__info admin__dash__info--total">
          
-            <p>users avarage age</p>
+            <p>total users</p>
             <i className="fas fa-chart-bar"></i>
 
-             <p>age: {this.state.age.map(home => <span>{home.age}</span>)}</p>
+             <p>total: {this.state.total.map((home) => <span>{home.length}</span>)}</p>
              
-        </div>
+        </div></a>
   </div>
     );
   }
 }
 
-export default Avarage;
+export default TotalUsers;

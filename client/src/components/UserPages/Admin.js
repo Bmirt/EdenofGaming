@@ -5,6 +5,7 @@ import UserContext from "../../context/user-context";
 import AddGames from "./admin/AddGame";
 import UserPanel from "./admin/UserPanel";
 import Avarage from "./admin/Avarage";
+import TotalUsers from "./admin/TotalUsers";
 
 class Admin extends React.Component {
   state = {
@@ -46,51 +47,51 @@ class Admin extends React.Component {
               </div>
               <div className="row">
                 <div className="col-sm-3">
-                  <ul className="list-group">
-                    <li className="list-group-item text-muted">
-                      New Activities <i className="fa fa-dashboard fa-1x" />
+                  <ul className="admin__list__group">
+                    <li className="admin__list__item text-muted">
+                      New Activities <i className="fa fa-dashboard" />
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>new Users</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      new Users
                       </span>{" "}
                       7098978
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>Messages</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      Messages
                       </span>{" "}
                       125
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>Likes</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      Likes
                       </span>{" "}
                       23
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>Dislikes</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      Dislikes
                       </span>{" "}
                       4
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>Comments</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      Comments
                       </span>{" "}
                       78
                     </li>
-                    <li className="list-group-item text-right">
-                      <span className="pull-left">
-                        <strong>Sold</strong>
+                    <li className="admin__list__item text-right">
+                      <span className="admin__list__span">
+                      Sold
                       </span>{" "}
                       28
                     </li>
                   </ul>
 
-                  <div className="panel panel-default">
-                    <div className="panel-heading"> Connect Social Media</div>
-                    <div className="panel-body">
+                  <div>
+                    <div className="panel-heading admin__list__item"> Connect Social Media</div>
+                    <div className="panel-body admin__list__item">
                       <div className="bottom">
                         <a
                           className="btn btn-primary btn-twitter btn-sm admin__game__social"
@@ -174,9 +175,11 @@ class Admin extends React.Component {
                   </ul>
 
                   <div className="tab-content">
-                    <div className="tab-pane active" id="home">
-                      <h3 className="header__bottom__nav--list">dashboard</h3>
-                     <Avarage />
+                    <div className="tab-pane active admin__dash" id="home">
+                      <div className="admin__dash">
+                        <Avarage />
+                        <TotalUsers />
+                      </div>
                     </div>
                     <div className="tab-pane" id="pages">
                       <h3 className="header__bottom__nav--list">

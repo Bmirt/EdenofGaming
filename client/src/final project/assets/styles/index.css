@@ -2663,6 +2663,28 @@ input[type="file"] {
   color: maroon;
 }
 
+.admin__list__group {
+  padding-left: 0;
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+
+.admin__list__item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  border: 1px solid #ddd;
+  background-color: #24942d33;
+  color: #aef7d9;
+}
+
+.admin__list__span {
+  float: left;
+  color: #67ff41;
+  font-weight: 300;
+}
+
 .admin__name {
   color: #f1f1f1;
   margin-bottom: 30px;
@@ -2716,6 +2738,30 @@ input[type="file"] {
   border-radius: 50%;
   margin-right: 5px;
   font-size: 18px;
+}
+
+.admin__dash {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.admin__dash__info {
+  width: 200px;
+  height: 100px;
+  margin: 20px 20px 20px 0;
+}
+
+.admin__dash__info--age {
+  background-color: #e9ec2e;
+}
+
+.admin__dash__info--total {
+  background-color: #2be9c0;
+  color: #0f0202;
 }
 
 .admin__dash__users {
