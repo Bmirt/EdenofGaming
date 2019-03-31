@@ -3,6 +3,7 @@ import ShopContext from "./shop-context";
 import UserContext from "./user-context";
 import Auth from "../components/utils/AuthMethods";
 import MessageBox from "../components/utils/MessageBox";
+import SearchBox from "../components/SearchBox";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {
@@ -10,26 +11,48 @@ class GlobalState extends React.Component {
     games: [],
     cart: [],
     MessageBoxIsOpen: false,
-    MessageBoxText: ""
+    MessageBoxText: "",
+    searchBoxVisible: false,
+    searchResult:null
   };
   componentDidMount() {
-    if(Auth.getCurrentUser()){
-      const jwt = Auth.getJWT();
-      fetch('/api/profile/products',{
-        headers:{
+    const jwt = Auth.getJWT();
+    if (jwt) {
+      Promise.all([
+        fetch("/api/profile/products", {
+          headers: {
             Authorization: jwt
-        }
-      }).then(res => res.json())
-      .then(res => this.setState({cart: res}))
-      .catch(err => console.log(err))
+          }
+        }),
+        fetch("/api/products")
+      ])
+        .then(([cart, games]) => {
+          return Promise.all([cart.json(), games.json()]);
+        })
+        .then(([cart, games]) => {
+          this.setState({ cart: cart, games: games });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+    fetch("/api/products")
+      .then(res => res.json())
+      .then(res => this.setState({ games: res }))
+      .catch(err => console.log(err));
+  }
+  searchBoxVisible=(visibility) =>{
     this.setState({
-      user: Auth.getCurrentUser(),
-      games: this.context.games,
-      // cart: this.context.cart,
-      MessageBoxIsOpen: false,
-      MessageBoxText: ""
+      searchBoxVisible: visibility
     });
+  }
+  search=(name)=>{
+    // for(let i = 0; i< this.state.games; i++){
+    //   if(this.state.games[i].name.includes(name)){
+    //     this.setState({searchResult:this.state.games[i]})
+    //   }
+    // }
+    this.setState({searchResult:name})
   }
   closeMessageBox = () => {
     this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
@@ -39,10 +62,12 @@ class GlobalState extends React.Component {
       MessageBoxIsOpen: true,
       MessageBoxText: messageText
     });
+    setTimeout(() => {
+      this.closeMessageBox();
+    }, 2000);
   };
 
   logout = () => {
-    alert("logout called")
     Auth.logout();
     this.setState({ user: null });
   };
@@ -51,31 +76,53 @@ class GlobalState extends React.Component {
       this.message("You need to be logged in");
       return;
     }
-    if (this.state.cart.includes(product)) {
-      this.message("Item is Already In The cart");
-      return;
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (this.state.cart[i].item === product._id) {
+        this.message("Item is Already In The cart");
+        return;
+      }
     }
-    const updatedCart = [...this.state.cart];
-    updatedCart.push(product);
-    this.message("Added To Cart")
-    setTimeout(() => {
-      this.setState({ cart: updatedCart,
-      user:Auth.getCurrentUser()
-      });
-      this.context.cart = updatedCart;
-    }, 100);
+    if (Auth.getCurrentUser()) {
+      const jwt = Auth.getJWT();
+      fetch(`/api/profile/product/${product._id}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          const updatedCart = [...this.state.cart];
+          const newItem = {
+            item: product._id,
+            price: product.price,
+            image: product.image,
+            name: product.name
+          };
+          this.message("Added To Cart");
+          updatedCart.push(newItem);
+          this.setState({ cart: updatedCart });
+        });
+    }
   };
   removeFromCart = productId => {
     const updatedCart = [...this.state.cart];
     const updatedItemIndex = updatedCart.findIndex(
-      item => item.id === productId
+      item => item.item === productId
     );
     updatedCart.splice(updatedItemIndex, 1);
-    setTimeout(() => {
-      this.setState({ cart: updatedCart });
-    }, 100);
+    const jwt = Auth.getJWT();
+    fetch(`/api/profile/product/${productId}`, {
+      method: "delete",
+      headers: {
+        Authorization: jwt
+      }
+    })
+      .then(res => res.json())
+      .then(res => this.setState({ cart: updatedCart }));
   };
   render() {
+    console.log("res",this.state.searchResult)
     return (
       <UserContext.Provider
         value={{
@@ -83,7 +130,9 @@ class GlobalState extends React.Component {
           updateUserState: this.updateUserState,
           updateAdminState: this.updateAdminState,
           logout: this.logout,
-          message: this.message
+          message: this.message,
+          searchBoxVisible : this.searchBoxVisible,
+          search: this.search
         }}
       >
         <ShopContext.Provider
@@ -93,9 +142,10 @@ class GlobalState extends React.Component {
             addToCart: this.addToCart,
             removeFromCart: this.removeFromCart,
             count: this.state.count,
-            message:this.message
+            message: this.message
           }}
         >
+          <SearchBox visible={this.state.searchBoxVisible} game={this.state.searchResult} />
           <MessageBox
             isOpen={this.state.MessageBoxIsOpen}
             close={this.closeMessageBox}

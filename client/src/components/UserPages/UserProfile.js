@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-// import classnames from "classnames";
+
+// import ReactFileReader from "react-file-reader";
 import UserContext from "../../context/user-context";
 
 class UserProfile extends React.Component {
@@ -13,34 +14,105 @@ class UserProfile extends React.Component {
       phoneNumber: "",
       bio: "",
       balance: "",
+      profileImage: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onPicture = this.onPicture.bind(this);
+  }
+
+  onPicture(event) {
+    let files = event.target.files;
+
+    let reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+
+    reader.onload = e => {
+      this.setState({
+        profileImage: e.target.result
+      });
+    };
+
+    // const fd = new FormData();
+    // fd.append(
+    //   "profileImage",
+    //   event.target.files[0],
+    //   event.target.files[0].name
+    // );
+    // THIS WORKED
+    // e.preventDefault();
+    // let files = e.target.files;
+    // let reader = new FileReader();
+    // reader.onload = e => {
+    //   console.log(e.target.result);
+    //   this.setState({ profileImage: e.target.result });
+    // };
+    // reader.readAsDataURL(files[0]);
+    // return new Promise((resolve, reject) => {
+    //   var fileReader = new FileReader();
+    //   // If error occurs, reject the promise
+    //   fileReader.onerror = () => {
+    //     reject("Err");
+    //   };
+    //   // Define an onload handler that's called when file loaded
+    //   fileReader.onload = () => {
+    //     // File data loaded, so proceed to call setState
+    //     if (fileReader.result != undefined) {
+    //       resolve(
+    //         this.setState({
+    //           profileImage: fileReader.result
+    //         }),
+    //         () => {}
+    //       );
+    //     } else {
+    //       reject("Err");
+    //     }
+    //   };
+    //   fileReader.readAsDataURL(inputFile);
+    // });
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   onSubmit(e) {
     e.preventDefault();
+    console.log(this.state.profileImage.split("data:image/jpeg;base64,")[1]);
+
+    // const newProfile = {
+    //   handle: this.state.handle,
+    //   age: this.state.age,
+    //   location: this.state.location,
+    //   phoneNumber: this.state.phoneNumber,
+    //   bio: this.state.bio,
+    //   balance: this.state.balance,
+    //   profileImage: this.state.profileImage
+    // };
+    // console.log("will it work?", fd);
+    var config = {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    };
     const newProfile = {
       handle: this.state.handle,
       age: this.state.age,
       location: this.state.location,
       phoneNumber: this.state.phoneNumber,
       bio: this.state.bio,
-      balance: this.state.balance
+      balance: this.state.balance,
+      profileImage: this.state.profileImage
     };
-    var config = {
-      headers: { Authorization: localStorage.getItem("token") }
-    };
+
     axios
-      .post("http://localhost:5000/api/profile", newProfile, config)
+      .post("/api/profile", newProfile, config)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         alert("Profile has been succesfully updated");
         window.location = "/";
+        // console.log(this.state.profileImage);
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
@@ -49,8 +121,7 @@ class UserProfile extends React.Component {
     const { errors } = this.state;
     return (
       <UserContext.Consumer>
-        {
-          (context)=>
+        {context => (
           <div>
             <div className="container bootstrap snippet">
               <div className="row">
@@ -67,11 +138,6 @@ class UserProfile extends React.Component {
                       src={context.user.avatar}
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
-                    />
-                    <h6>Upload a different photo...</h6>
-                    <input
-                      type="file"
-                      className="text-center center-block file-upload"
                     />
                   </div>
                   <br />
@@ -110,22 +176,21 @@ class UserProfile extends React.Component {
                     <div className="panel-heading">Social Media</div>
                     <div className="panel-body">
                       <div className="bottom">
-                      <a
+                        <a
                           className="btn btn-primary btn-twitter btn-sm admin__game__social"
                           href="https://twitter.com"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                             <i className="fab fa-twitter awesome twitter" />
+                          <i className="fab fa-twitter awesome twitter" />
                         </a>
                         <a
                           className="btn btn-danger btn-sm admin__game__social"
                           href="https://youtube.com"
                           target="_blank"
                           rel="noopener noreferrer"
-
                         >
-                            <i className="fab fa-youtube awesome youtube" />
+                          <i className="fab fa-youtube awesome youtube" />
                         </a>
                         <a
                           className="btn btn-primary btn-sm admin__game__social"
@@ -133,7 +198,7 @@ class UserProfile extends React.Component {
                           rel="noopener noreferrer"
                           href="https://facebook.com"
                         >
-                            <i className="fab fa-facebook-f awesome facebook" />
+                          <i className="fab fa-facebook-f awesome facebook" />
                         </a>
                         <a
                           className="btn btn-warning btn-sm admin__game__social"
@@ -141,8 +206,7 @@ class UserProfile extends React.Component {
                           rel="noopener noreferrer"
                           href="https://instagram.com"
                         >
-                            <i className="fab fa-instagram awesome instagram" />
-
+                          <i className="fab fa-instagram awesome instagram" />
                         </a>
                       </div>{" "}
                     </div>
@@ -170,6 +234,7 @@ class UserProfile extends React.Component {
                         onSubmit={this.onSubmit}
                         method="patch"
                         id="registrationForm"
+                        encType="multipart/form-data"
                       >
                         <div className="form-group">
                           <div className="col-xs-6">
@@ -274,8 +339,6 @@ class UserProfile extends React.Component {
                           </div>
                         </div>
 
-                        
-
                         <div className="form-group">
                           <div className="col-xs-6">
                             <label htmlFor="mobile">
@@ -295,7 +358,24 @@ class UserProfile extends React.Component {
                             />
                           </div>
                         </div>
-                        
+
+                        <div className="form-group">
+                          <div className="col-xs-6">
+                            <label htmlFor="mobile">
+                              <h6 className="uploadit">
+                                Upload a different photo... (max 10mb)
+                              </h6>
+                            </label>
+                            <input
+                              type="file"
+                              name="profileImage"
+                              className="text-center center-block file-upload"
+                              // value={this.state.profileImage}
+                              onChange={this.onPicture}
+                            />
+                          </div>
+                        </div>
+
                         <div className="form-group">
                           <div className="col-xs-12">
                             <br />
@@ -320,7 +400,7 @@ class UserProfile extends React.Component {
               </div>
             </div>
           </div>
-        }
+        )}
       </UserContext.Consumer>
     );
   }

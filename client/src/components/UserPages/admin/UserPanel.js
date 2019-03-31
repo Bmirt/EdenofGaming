@@ -5,7 +5,7 @@ class UserPanel extends React.Component {
   constructor() {
     super();
     this.state = {
-      age: [],
+      userList: [],
       balance: "",
       errors: {}
     };
@@ -20,7 +20,7 @@ class UserPanel extends React.Component {
       .get(`http://localhost:5000/api/profile/all`, config)
       .then(res => {
         this.setState({
-          age: res.data
+          userList: res.data
         });
       })
 
@@ -33,10 +33,36 @@ class UserPanel extends React.Component {
     
     return (
         <div>
-        <div className="admin__dash__age">
-            <p>users:</p>
-             <p>{this.state.age
-                    .map(item => <div><p>{item.user.name}</p><p>{item.balance}</p></div>)}</p>
+       
+        <div className="admin__dash__users">
+             <div>
+              <table className="admin__dash__users__table">
+                <tr className="admin__dash__users__table--tr">
+                  <th className="admin__dash__users__table--th">user</th>
+                  <th className="admin__dash__users__table--th">balance</th>
+                  <th className="admin__dash__users__table--th">location</th>
+                  <th className="admin__dash__users__table--th">phone number</th>
+
+                </tr>
+
+                  {this.state.userList
+                          .map(item => 
+                          <tr className="admin__dash__users__table--tr"><td className="admin__dash__users__table--td">
+                          <img
+                              src={item.user.avatar}
+                              alt="avatar"
+                              className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                            />
+                          <span className="admin__dash__users__table--span"> {item.user.name}</span></td>
+
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.balance}</span></td>
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.location}</span></td>
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.phoneNumber}</span></td>
+                          </tr>)}
+           
+                    </table>
+                    
+                  </div>
              
         </div>
   </div>

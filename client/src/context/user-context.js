@@ -5,4 +5,5 @@ export default React.createContext({
   updateUserState: user=>{},
   updateAdminState: adminStatus=>{},
   logout: ()=>{},
+  searchBoxShow:()=>{}
 });

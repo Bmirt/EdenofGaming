@@ -1,6 +1,8 @@
 import React from "react";
 import ShopContext from "../../context/shop-context";
 import { EmptyCart } from "./EmptyCart";
+import CartItem from "./CartItem";
+import shopContext from "../../context/shop-context";
 class Cart extends React.Component {
   render() {
     return (
@@ -20,24 +22,7 @@ class Cart extends React.Component {
                 </thead>
                 <tbody className="cart__wrapper">
                 {context.cart.map(item=>
-                  <tr key={item._id} className="cart__wrapper__content">
-                    <td className="cart__wrapper__content__inside product">
-                      {item.name}
-                    </td>
-                    <td className="cart__wrapper__content__inside platform">
-                      {item.platforms}
-                    </td>
-                    <td className="cart__wrapper__content__inside price">{item.price}$</td>
-                    <td style={{backgroundImage:`url(${item.image})`}} className="cart__wrapper__content__inside image"> </td>
-                    <td className="cart__wrapper__content__inside publisher">
-                      {item.developer}
-                    </td>
-                    <td className="cart__wrapper__content__inside delete">
-                      <button onClick={context.removeFromCart.bind(this, item._id)} className="cart__wrapper__content__inside--delete">
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
+                  <CartItem key={item.item} item={item}/>
                 )
                 }
                 </tbody>

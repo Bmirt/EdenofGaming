@@ -2656,6 +2656,14 @@ Label the data
   background-color: #178d44;
 }
 
+input[type="file"] {
+  color: maroon;
+}
+
+.uploadit {
+  color: maroon;
+}
+
 .admin__name {
   color: #f1f1f1;
   margin-bottom: 30px;
@@ -2711,9 +2719,45 @@ Label the data
   font-size: 18px;
 }
 
-.admin__dash__age {
+.admin__dash__users {
   width: 800px;
   height: auto;
-  background-color: #ffd000;
+  background-color: #d7f7c3;
+}
+
+.admin__dash__users__table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.admin__dash__users__table--td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.admin__dash__users__table--th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.admin__dash__users__table--tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin__dash__users__table--tr:hover {
+  background-color: #ddd;
+}
+
+.admin__dash__users__table--th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3f8812;
+  color: white;
+}
+
+.admin__dash__users__table--span {
+  font-size: 15px;
 }
 /*# sourceMappingURL=index.css.map */
