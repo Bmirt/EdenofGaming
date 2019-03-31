@@ -119,6 +119,19 @@ router.post(
         });
       }
     });
+    User.findOne({ _id: req.user.id }).then(user => {
+      console.log("amas velodi", user);
+      if (user) {
+        errors.email = "Email already exists";
+        return res.status(400).json(errors);
+      } else {
+        const avatar = gravatar.url(req.body.email, {
+          s: "200", // size
+          r: "pg", // rating
+          d: "mm" // default
+        });
+      }
+    });
   }
 );
 
