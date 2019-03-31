@@ -13,10 +13,20 @@ class GlobalState extends React.Component {
     MessageBoxText: ""
   };
   componentDidMount() {
+    if(Auth.getCurrentUser()){
+      const jwt = Auth.getJWT();
+      fetch('/api/profile/products',{
+        headers:{
+            Authorization: jwt
+        }
+      }).then(res => res.json())
+      .then(res => this.setState({cart: res}))
+      .catch(err => console.log(err))
+    }
     this.setState({
       user: Auth.getCurrentUser(),
       games: this.context.games,
-      cart: this.context.cart,
+      // cart: this.context.cart,
       MessageBoxIsOpen: false,
       MessageBoxText: ""
     });
