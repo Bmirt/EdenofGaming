@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+
+// import ReactFileReader from "react-file-reader";
 import UserContext from "../../context/user-context";
 
 class UserProfile extends React.Component {
@@ -12,32 +14,72 @@ class UserProfile extends React.Component {
       phoneNumber: "",
       bio: "",
       balance: "",
+      profileImage: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    // this.onPicture = this.onPicture.bind(this);
+  }
+
+  onPicture(e) {
+    e.preventDefault();
+    let files = e.target.files;
+    let reader = new FileReader();
+    reader.onload = e => {
+      console.log(e.target.result);
+      this.setState({ profileImage: e.target.result });
+    };
+    reader.readAsDataURL(files[0]);
+
+    // return new Promise((resolve, reject) => {
+    //   var fileReader = new FileReader();
+    //   // If error occurs, reject the promise
+    //   fileReader.onerror = () => {
+    //     reject("Err");
+    //   };
+    //   // Define an onload handler that's called when file loaded
+    //   fileReader.onload = () => {
+    //     // File data loaded, so proceed to call setState
+    //     if (fileReader.result != undefined) {
+    //       resolve(
+    //         this.setState({
+    //           profileImage: fileReader.result
+    //         }),
+    //         () => {}
+    //       );
+    //     } else {
+    //       reject("Err");
+    //     }
+    //   };
+    //   fileReader.readAsDataURL(inputFile);
+    // });
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   onSubmit(e) {
     e.preventDefault();
+
     const newProfile = {
       handle: this.state.handle,
       age: this.state.age,
       location: this.state.location,
       phoneNumber: this.state.phoneNumber,
       bio: this.state.bio,
-      balance: this.state.balance
+      balance: this.state.balance,
+      profileImage: this.state.profileImage
     };
+    // console.log("will it work?", fd);
     var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .post("http://localhost:5000/api/profile", newProfile, config)
+      .post("/api/profile", newProfile, config)
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         alert("Profile has been succesfully updated");
         window.location = "/";
       })
@@ -65,11 +107,6 @@ class UserProfile extends React.Component {
                       src={context.user.avatar}
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
-                    />
-                    <h6>Upload a different photo...</h6>
-                    <input
-                      type="file"
-                      className="text-center center-block file-upload"
                     />
                   </div>
                   <br />
@@ -286,6 +323,23 @@ class UserProfile extends React.Component {
                               title="Enter Balance"
                               value={this.state.balance}
                               onChange={this.onChange}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <div className="col-xs-6">
+                            <label htmlFor="mobile">
+                              <h6 className="uploadit">
+                                Upload a different photo... (max 10mb)
+                              </h6>
+                            </label>
+                            <input
+                              type="file"
+                              name="profileImage"
+                              className="text-center center-block file-upload"
+                              // value={this.state.profileImage}
+                              onChange={this.onPicture.bind(this)}
                             />
                           </div>
                         </div>
