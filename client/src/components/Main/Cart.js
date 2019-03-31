@@ -20,7 +20,7 @@ class Cart extends React.Component {
                 </thead>
                 <tbody className="cart__wrapper">
                 {context.cart.map(item=>
-                  <tr key={item._id} className="cart__wrapper__content">
+                  <tr key={item.item} className="cart__wrapper__content">
                     <td className="cart__wrapper__content__inside product">
                       {item.name}
                     </td>
@@ -33,7 +33,7 @@ class Cart extends React.Component {
                       {item.developer}
                     </td>
                     <td className="cart__wrapper__content__inside delete">
-                      <button onClick={context.removeFromCart.bind(this, item._id)} className="cart__wrapper__content__inside--delete">
+                      <button onClick={context.removeFromCart.bind(this, item.item)} className="cart__wrapper__content__inside--delete">
                         Remove
                       </button>
                     </td>

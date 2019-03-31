@@ -2655,6 +2655,14 @@ Label the data
   background-color: #178d44;
 }
 
+input[type="file"] {
+  color: maroon;
+}
+
+.uploadit {
+  color: maroon;
+}
+
 .admin__name {
   color: #f1f1f1;
   margin-bottom: 30px;

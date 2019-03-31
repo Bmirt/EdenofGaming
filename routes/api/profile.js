@@ -71,11 +71,10 @@ router.post(
     // }
 
     //Get fields
-    const profileFields = {
-      profileImage: req.file.path
-    };
+    const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
+    if (req.file.path) profileFields.profileImage = req.file.path;
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
     if (req.body.location) profileFields.location = req.body.location;
@@ -95,6 +94,18 @@ router.post(
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+    //Update user avatar
+    User.findOne({ _id: req.user.id }).then(user => {
+      console.log("amas velodi", user);
+      User.findOneAndUpdate(
+        { _id: req.user.id },
+        { $set: { avatar: profileFields.profileImage } },
+        { new: true },
+        (err, doc) => {
+          console.log(doc);
+        }
+      );
+    });
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -116,19 +127,6 @@ router.post(
 
           // Save Profile
           new Profile(profileFields).save().then(profile => res.json(profile));
-        });
-      }
-    });
-    User.findOne({ _id: req.user.id }).then(user => {
-      console.log("amas velodi", user);
-      if (user) {
-        errors.email = "Email already exists";
-        return res.status(400).json(errors);
-      } else {
-        const avatar = gravatar.url(req.body.email, {
-          s: "200", // size
-          r: "pg", // rating
-          d: "mm" // default
         });
       }
     });

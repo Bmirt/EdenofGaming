@@ -19,21 +19,6 @@ class UserProfile extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentWillMount() {
-    console.log("please work");
-    var config = {
-      headers: { Authorization: localStorage.getItem("token") }
-    };
-    axios
-      .get("api/profile", config)
-      .then(res => {
-        this.setState({
-          profileImage: res.data.profileImage
-        });
-        console.log(this.state);
-      })
-      .catch(err => this.setState({ errors: err.response.data }));
-  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -79,18 +64,9 @@ class UserProfile extends React.Component {
                 <div className="col-sm-3">
                   <div className="text-center">
                     <img
-                      src={
-                        this.state.profileImage
-                          ? this.state.profileImage
-                          : context.user.avatar
-                      }
+                      src={context.user.avatar}
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
-                    />
-                    <h6>Upload a different photo...</h6>
-                    <input
-                      type="file"
-                      className="text-center center-block file-upload"
                     />
                   </div>
                   <br />
@@ -185,7 +161,7 @@ class UserProfile extends React.Component {
                       <form
                         className="user-formm"
                         onSubmit={this.onSubmit}
-                        method="patch"
+                        method="post"
                         id="registrationForm"
                       >
                         <div className="form-group">
@@ -306,6 +282,23 @@ class UserProfile extends React.Component {
                               placeholder="Add Funds"
                               title="Enter Balance"
                               value={this.state.balance}
+                              onChange={this.onChange}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <div className="col-xs-6">
+                            <label htmlFor="mobile">
+                              <h6 className="uploadit">
+                                Upload a different photo... (max 10mb)
+                              </h6>
+                            </label>
+                            <input
+                              type="file"
+                              name="profileImage"
+                              className="text-center center-block file-upload"
+                              value={this.state.profileImage}
                               onChange={this.onChange}
                             />
                           </div>
