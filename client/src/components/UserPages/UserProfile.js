@@ -18,16 +18,18 @@ class UserProfile extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    // this.onPicture = this.onPicture.bind(this);
+    this.onPicture = this.onPicture.bind(this);
   }
 
   onPicture(e) {
     let files = e.target.files;
+
     let reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = e => {
-      console.log("img data ", e.target.result);
+      this.setState({ profileImage: e.target.result });
     };
+    console.log(reader);
   }
 
   onChange(e) {
@@ -36,8 +38,7 @@ class UserProfile extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // const fd = new FormData();
-    // fd.append("image", this.state.profileImage, this.state.profileImage.name);
+
     const newProfile = {
       handle: this.state.handle,
       age: this.state.age,
@@ -54,9 +55,9 @@ class UserProfile extends React.Component {
     axios
       .post("/api/profile", newProfile, config)
       .then(res => {
-        console.log(res.data);
-        alert("Profile has been succesfully updated");
-        window.location = "/";
+        console.log(res);
+        // alert("Profile has been succesfully updated");
+        // window.location = "/";
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
