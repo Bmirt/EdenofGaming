@@ -13,15 +13,17 @@ class GlobalState extends React.Component {
     MessageBoxText: ""
   };
   componentDidMount() {
-    if(Auth.getCurrentUser()){
+    if (Auth.getCurrentUser()) {
       const jwt = Auth.getJWT();
-      fetch('/api/profile/products',{
-        headers:{
-            Authorization: jwt
+      fetch("/api/profile/products", {
+        method: "GET",
+        headers: {
+          Authorization: jwt
         }
-      }).then(res => res.json())
-      .then(res => this.setState({cart: res}))
-      .catch(err => console.log(err))
+      })
+        .then(res => res.json())
+        .then(res => this.setState({ cart: res }))
+        .catch(err => console.log(err));
     }
     this.setState({
       user: Auth.getCurrentUser(),
@@ -42,30 +44,55 @@ class GlobalState extends React.Component {
   };
 
   logout = () => {
-    alert("logout called")
     Auth.logout();
     this.setState({ user: null });
   };
   addToCart = product => {
+    console.log("cart", this.state.cart);
     if (!Auth.getCurrentUser()) {
       this.message("You need to be logged in");
       return;
     }
-    if (this.state.cart.includes(product)) {
-      this.message("Item is Already In The cart");
-      return;
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (this.state.cart[i].item === product._id) {
+        this.message("Item is Already In The cart");
+        return;
+      }
     }
-    const updatedCart = [...this.state.cart];
-    updatedCart.push(product);
-    this.message("Added To Cart")
-    setTimeout(() => {
-      this.setState({ cart: updatedCart,
-      user:Auth.getCurrentUser()
-      });
-      this.context.cart = updatedCart;
-    }, 100);
+    if (Auth.getCurrentUser()) {
+      const jwt = Auth.getJWT();
+      fetch(`/api/profile/product/${product._id}`, {
+        method: "POST",
+        headers: {
+          Authorization: jwt
+        }
+      })
+        .then(res => res.json())
+        .then(res => {});
+      const updatedCart = [...this.state.cart];
+      const newItem = {
+        item: product._id,
+        price: product.price,
+        image: product.image,
+        name: product.name
+      };
+      updatedCart.push(newItem);
+      this.message("Added To Cart");
+      setTimeout(() => {
+        this.setState({ cart: updatedCart, user: Auth.getCurrentUser() });
+        this.context.cart = updatedCart;
+      }, 100);
+    }
   };
   removeFromCart = productId => {
+    console.log("productid ", productId);
+    const jwt = Auth.getJWT();
+    fetch(`/api/profile/product/${productId}`, {
+      method: "delete",
+      headers: {
+        Authorization: jwt
+      }
+    });
     const updatedCart = [...this.state.cart];
     const updatedItemIndex = updatedCart.findIndex(
       item => item.id === productId
@@ -93,7 +120,7 @@ class GlobalState extends React.Component {
             addToCart: this.addToCart,
             removeFromCart: this.removeFromCart,
             count: this.state.count,
-            message:this.message
+            message: this.message
           }}
         >
           <MessageBox
