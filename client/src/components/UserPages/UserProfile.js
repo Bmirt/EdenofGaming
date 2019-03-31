@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
       phoneNumber: "",
       bio: "",
       balance: "",
-      profileImage: "",
+      // profileImage: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
@@ -161,7 +161,7 @@ class UserProfile extends React.Component {
                       <form
                         className="user-formm"
                         onSubmit={this.onSubmit}
-                        method="post"
+                        method="patch"
                         id="registrationForm"
                       >
                         <div className="form-group">
@@ -287,7 +287,7 @@ class UserProfile extends React.Component {
                           </div>
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                           <div className="col-xs-6">
                             <label htmlFor="mobile">
                               <h6 className="uploadit">
@@ -302,7 +302,7 @@ class UserProfile extends React.Component {
                               onChange={this.onChange}
                             />
                           </div>
-                        </div>
+                        </div> */}
 
                         <div className="form-group">
                           <div className="col-xs-12">
