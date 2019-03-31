@@ -445,7 +445,19 @@ body {
   .header__bottom__navigation__list--item {
     position: absolute;
     right: 164px;
-    top: 0;
+    top: 0px;
+  }
+  .header__bottom__navigation__list--item.genres {
+    top: -70px;
+  }
+  .header__bottom__navigation__list--item.coming {
+    top: -140px;
+  }
+  .header__bottom__navigation__list--item.best {
+    top: -210px;
+  }
+  .header__bottom__navigation__list--item.mercendise {
+    top: -280px;
   }
   .header__bottom__burger {
     display: -webkit-box;
