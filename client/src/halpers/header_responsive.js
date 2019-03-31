@@ -3,10 +3,18 @@ let eat="burger";
 function left(){
     if(eat==="burger"){ 
     document.getElementById('nav').style.display="flex";
-    document.getElementById('a').style.transform="rotate(23deg)"
+    
+    let list = document.getElementsByClassName('header__bottom__navigation__list');
+    for(let i=0; i<list.length; i++) { 
+    list[i].style.margin='0';
+    
+
+}
+
+    document.getElementById('a').style.transform="rotate(22deg)"
     document.getElementById('b').style.display="none"
-    document.getElementById('c').style.transform="rotate(-23deg)"
-    document.getElementById("button").style.marginTop="10px";
+    document.getElementById('c').style.transform="rotate(-22deg)"
+    
     eat="koko";
     }
     else if(eat==="koko"){
@@ -14,9 +22,10 @@ function left(){
         document.getElementById('a').style.transform="rotate(0)"
         document.getElementById('b').style.display="block"
         document.getElementById('c').style.transform="rotate(0)"
-        document.getElementById("button").style.marginTop="0";
+        
         eat="burger";
     }  
 }
 
 export default left;
+
