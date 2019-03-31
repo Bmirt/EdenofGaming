@@ -61,7 +61,8 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
-    console.log(req.file);
+    // console.log(req.file);
+    console.log(req.body.profileImage);
     // const { errors, isValid } = validateProfileInput(req.body);
 
     //check validation

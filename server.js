@@ -18,7 +18,7 @@ app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "10mb" }));
 
 // DB config
 const db = require("./config/keys").mongoURI;
