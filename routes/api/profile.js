@@ -74,7 +74,9 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.file.path) profileFields.profileImage = req.file.path;
+    if (typeof req.file !== "undefined") {
+      profileFields.profileImage = req.file.path;
+    }
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
     if (req.body.location) profileFields.location = req.body.location;
@@ -96,15 +98,16 @@ router.post(
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
     //Update user avatar
     User.findOne({ _id: req.user.id }).then(user => {
-      console.log("amas velodi", user);
-      User.findOneAndUpdate(
-        { _id: req.user.id },
-        { $set: { avatar: profileFields.profileImage } },
-        { new: true },
-        (err, doc) => {
-          console.log(doc);
-        }
-      );
+      if (req.file) {
+        User.findOneAndUpdate(
+          { _id: req.user.id },
+          { $set: { avatar: profileFields.profileImage } },
+          { new: true },
+          (err, doc) => {
+            console.log(doc);
+          }
+        );
+      }
     });
 
     Profile.findOne({ user: req.user.id }).then(profile => {

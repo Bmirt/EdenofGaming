@@ -13,26 +13,41 @@ class UserProfile extends React.Component {
       phoneNumber: "",
       bio: "",
       balance: "",
-      // profileImage: "",
+      profileImage: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    // this.onPicture = this.onPicture.bind(this);
+  }
+
+  onPicture(e) {
+    let files = e.target.files;
+    let reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = e => {
+      console.log("img data ", e.target.result);
+    };
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   onSubmit(e) {
     e.preventDefault();
+    // const fd = new FormData();
+    // fd.append("image", this.state.profileImage, this.state.profileImage.name);
     const newProfile = {
       handle: this.state.handle,
       age: this.state.age,
       location: this.state.location,
       phoneNumber: this.state.phoneNumber,
       bio: this.state.bio,
-      balance: this.state.balance
+      balance: this.state.balance,
+      profileImage: this.state.profileImage
     };
+    // console.log("will it work?", fd);
     var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
@@ -287,7 +302,7 @@ class UserProfile extends React.Component {
                           </div>
                         </div>
 
-                        {/* <div className="form-group">
+                        <div className="form-group">
                           <div className="col-xs-6">
                             <label htmlFor="mobile">
                               <h6 className="uploadit">
@@ -299,10 +314,10 @@ class UserProfile extends React.Component {
                               name="profileImage"
                               className="text-center center-block file-upload"
                               value={this.state.profileImage}
-                              onChange={this.onChange}
+                              onChange={this.onPicture}
                             />
                           </div>
-                        </div> */}
+                        </div>
 
                         <div className="form-group">
                           <div className="col-xs-12">
