@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-// import classnames from "classnames";
+// import ReactFileReader from "react-file-reader";
 import UserContext from "../../context/user-context";
 
 class UserProfile extends React.Component {
@@ -18,18 +18,41 @@ class UserProfile extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onPicture = this.onPicture.bind(this);
+    // this.onPicture = this.onPicture.bind(this);
   }
 
   onPicture(e) {
+    e.preventDefault();
     let files = e.target.files;
-
     let reader = new FileReader();
-    reader.readAsDataURL(files[0]);
     reader.onload = e => {
+      console.log(e.target.result);
       this.setState({ profileImage: e.target.result });
     };
-    console.log(reader);
+    reader.readAsDataURL(files[0]);
+
+    // return new Promise((resolve, reject) => {
+    //   var fileReader = new FileReader();
+    //   // If error occurs, reject the promise
+    //   fileReader.onerror = () => {
+    //     reject("Err");
+    //   };
+    //   // Define an onload handler that's called when file loaded
+    //   fileReader.onload = () => {
+    //     // File data loaded, so proceed to call setState
+    //     if (fileReader.result != undefined) {
+    //       resolve(
+    //         this.setState({
+    //           profileImage: fileReader.result
+    //         }),
+    //         () => {}
+    //       );
+    //     } else {
+    //       reject("Err");
+    //     }
+    //   };
+    //   fileReader.readAsDataURL(inputFile);
+    // });
   }
 
   onChange(e) {
@@ -56,8 +79,8 @@ class UserProfile extends React.Component {
       .post("/api/profile", newProfile, config)
       .then(res => {
         console.log(res);
-        // alert("Profile has been succesfully updated");
-        // window.location = "/";
+        alert("Profile has been succesfully updated");
+        window.location = "/";
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
@@ -314,8 +337,8 @@ class UserProfile extends React.Component {
                               type="file"
                               name="profileImage"
                               className="text-center center-block file-upload"
-                              value={this.state.profileImage}
-                              onChange={this.onPicture}
+                              // value={this.state.profileImage}
+                              onChange={this.onPicture.bind(this)}
                             />
                           </div>
                         </div>
