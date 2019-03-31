@@ -13,26 +13,10 @@ class UserProfile extends React.Component {
       phoneNumber: "",
       bio: "",
       balance: "",
-      profileImage: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-  componentWillMount() {
-    console.log("please work");
-    var config = {
-      headers: { Authorization: localStorage.getItem("token") }
-    };
-    axios
-      .get("api/profile", config)
-      .then(res => {
-        this.setState({
-          profileImage: res.data.profileImage
-        });
-        console.log(this.state);
-      })
-      .catch(err => this.setState({ errors: err.response.data }));
   }
 
   onChange(e) {
@@ -52,7 +36,7 @@ class UserProfile extends React.Component {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .post("/api/profile", newProfile, config)
+      .post("http://localhost:5000/api/profile", newProfile, config)
       .then(res => {
         console.log(res.data);
         alert("Profile has been succesfully updated");
@@ -65,7 +49,8 @@ class UserProfile extends React.Component {
     const { errors } = this.state;
     return (
       <UserContext.Consumer>
-        {context => (
+        {
+          (context)=>
           <div>
             <div className="container bootstrap snippet">
               <div className="row">
@@ -79,11 +64,7 @@ class UserProfile extends React.Component {
                 <div className="col-sm-3">
                   <div className="text-center">
                     <img
-                      src={
-                        this.state.profileImage
-                          ? this.state.profileImage
-                          : context.user.avatar
-                      }
+                      src={context.user.avatar}
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
                     />
@@ -129,21 +110,22 @@ class UserProfile extends React.Component {
                     <div className="panel-heading">Social Media</div>
                     <div className="panel-body">
                       <div className="bottom">
-                        <a
+                      <a
                           className="btn btn-primary btn-twitter btn-sm admin__game__social"
                           href="https://twitter.com"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <i className="fab fa-twitter awesome twitter" />
+                             <i className="fab fa-twitter awesome twitter" />
                         </a>
                         <a
                           className="btn btn-danger btn-sm admin__game__social"
                           href="https://youtube.com"
                           target="_blank"
                           rel="noopener noreferrer"
+
                         >
-                          <i className="fab fa-youtube awesome youtube" />
+                            <i className="fab fa-youtube awesome youtube" />
                         </a>
                         <a
                           className="btn btn-primary btn-sm admin__game__social"
@@ -151,7 +133,7 @@ class UserProfile extends React.Component {
                           rel="noopener noreferrer"
                           href="https://facebook.com"
                         >
-                          <i className="fab fa-facebook-f awesome facebook" />
+                            <i className="fab fa-facebook-f awesome facebook" />
                         </a>
                         <a
                           className="btn btn-warning btn-sm admin__game__social"
@@ -159,7 +141,8 @@ class UserProfile extends React.Component {
                           rel="noopener noreferrer"
                           href="https://instagram.com"
                         >
-                          <i className="fab fa-instagram awesome instagram" />
+                            <i className="fab fa-instagram awesome instagram" />
+
                         </a>
                       </div>{" "}
                     </div>
@@ -291,6 +274,8 @@ class UserProfile extends React.Component {
                           </div>
                         </div>
 
+                        
+
                         <div className="form-group">
                           <div className="col-xs-6">
                             <label htmlFor="mobile">
@@ -310,7 +295,7 @@ class UserProfile extends React.Component {
                             />
                           </div>
                         </div>
-
+                        
                         <div className="form-group">
                           <div className="col-xs-12">
                             <br />
@@ -335,7 +320,7 @@ class UserProfile extends React.Component {
               </div>
             </div>
           </div>
-        )}
+        }
       </UserContext.Consumer>
     );
   }
