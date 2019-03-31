@@ -99,10 +99,12 @@ router.post(
       console.log("amas velodi", user);
       User.findOneAndUpdate(
         { _id: req.user.id },
-        { $set: { avatar: req.file.path } },
-        { new: true }
+        { $set: { avatar: profileFields.profileImage } },
+        { new: true },
+        (err, doc) => {
+          console.log(doc);
+        }
       );
-      console.log("lodinis shemdeg", user);
     });
 
     Profile.findOne({ user: req.user.id }).then(profile => {
