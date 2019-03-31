@@ -278,12 +278,33 @@
         &:last-child{
             border-radius:  0 ;
         }  
+       
 }
+
+
+
+    
      .header__bottom__navigation__list--item{
         position: absolute;   
-        right: 164px;
-        top:0;
+         right: 164px;
+         top:0px;
+         
      }
+     .header__bottom__navigation__list--item.genres{
+          top:-70px;
+     }
+     .header__bottom__navigation__list--item.coming{
+        top:-140px;
+   }
+   .header__bottom__navigation__list--item.best{
+    top:-210px;
+}
+.header__bottom__navigation__list--item.mercendise{
+    top:-280px;
+}
+     
+   
+    
         .header__bottom__burger{
         //  z-index: 9999;
          display: flex;  
