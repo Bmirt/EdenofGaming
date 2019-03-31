@@ -2,7 +2,35 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
 
+const fileFilter = (req, file, cb) => {
+  // accept a file
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  }
+  // reject a file
+  else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    // Max filesize is 10mbs
+    fileSize: 1024 * 1024 * 10
+  },
+  fileFilter: fileFilter
+});
 // load validation
 const validateProfileInput = require("../../validation/profile");
 const validateExperienceInput = require("../../validation/experience");
@@ -31,17 +59,21 @@ router.get("/test", (req, res) =>
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
+  upload.single("profileImage"),
   (req, res) => {
-    const { errors, isValid } = validateProfileInput(req.body);
+    console.log(req.file);
+    // const { errors, isValid } = validateProfileInput(req.body);
 
     //check validation
-    if (!isValid) {
-      //return any errors with 400 status
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   //return any errors with 400 status
+    //   return res.status(400).json(errors);
+    // }
 
     //Get fields
-    const profileFields = {};
+    const profileFields = {
+      profileImage: req.file.path
+    };
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.age) profileFields.age = req.body.age;
@@ -306,7 +338,7 @@ router.delete(
   }
 );
 
-// @route  POST api/profile/productid
+// @route  POST api/profile/product/productid
 // @desc   Add cart item to profile
 // @access Private
 router.post(
@@ -329,7 +361,7 @@ router.post(
   }
 );
 
-// @route  DELETE api/profile/experience/:edu_id
+// @route  DELETE api/profile/product/productid
 // @desc   Delete item from profile cart
 // @access Private
 router.delete(
@@ -360,6 +392,21 @@ router.delete(
         console.log(err.stack);
         res.status(404).json(err);
       });
+  }
+);
+
+// @route  GET api/profile/products
+// @desc   Add cart item to profile
+// @access Private
+router.get(
+  "/products",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      Product.findById(req.params.product_id).then(product => {
+        return res.json(profile.cart);
+      });
+    });
   }
 );
 
