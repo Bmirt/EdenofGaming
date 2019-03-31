@@ -11,6 +11,8 @@ const products = require("./routes/api/products");
 
 const app = express();
 
+app.use("/uploads", express.static("uploads"));
+
 // cors middleware
 app.use(cors());
 
