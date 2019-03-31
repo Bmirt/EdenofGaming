@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Product from "../Product/Product";
 import spinner from "../../final project/spinner.gif";
 import ShopContext from '../../context/shop-context';
@@ -7,22 +6,10 @@ import ShopContext from '../../context/shop-context';
 class Games extends React.Component {
   static contextType = ShopContext;
   state = {
-    isLoaded: false
+    isLoaded: true
   };
-  componentDidMount() {
-    axios
-      .get("/api/products")
-      .then(res => {
-        this.context.games = res.data;
-        this.setState({
-          isLoaded: true
-        });
-      })
-      .catch(err => console.log(err));
-  }
 
   render() {
-
     const games = this.context.games;
     if (!this.state.isLoaded) {
       return (
