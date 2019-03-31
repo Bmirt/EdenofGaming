@@ -34,6 +34,8 @@ class Avarage extends React.Component {
         <div>
         <div className="admin__dash__age">
             <p>users avarage age</p>
+            <i className="fas fa-chart-bar"></i>
+
              <p>age: {this.state.age.map(home => <span>{home.age}</span>)}</p>
              
         </div>

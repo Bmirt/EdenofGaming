@@ -33,20 +33,36 @@ class UserPanel extends React.Component {
     
     return (
         <div>
-        <div className="admin__dash__age">
-            <p>users:</p>
-             <div>{this.state.userList
-                    .map(item => 
-                    <div>
-                    <img
-                        src={item.user.avatar}
-                        alt="avatar"
-                        className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
-                      />
-                    <span>{item.user.name}</span>
-                    <span>balance:{item.balance}</span>
-                    <hr />
-                    </div>)}</div>
+       
+        <div className="admin__dash__users">
+             <div>
+              <table className="admin__dash__users__table">
+                <tr className="admin__dash__users__table--tr">
+                  <th className="admin__dash__users__table--th">user</th>
+                  <th className="admin__dash__users__table--th">balance</th>
+                  <th className="admin__dash__users__table--th">location</th>
+                  <th className="admin__dash__users__table--th">phone number</th>
+
+                </tr>
+
+                  {this.state.userList
+                          .map(item => 
+                          <tr className="admin__dash__users__table--tr"><td className="admin__dash__users__table--td">
+                          <img
+                              src={item.user.avatar}
+                              alt="avatar"
+                              className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                            />
+                          <span className="admin__dash__users__table--span"> {item.user.name}</span></td>
+
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.balance}</span></td>
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.location}</span></td>
+                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.phoneNumber}</span></td>
+                          </tr>)}
+           
+                    </table>
+                    
+                  </div>
              
         </div>
   </div>
