@@ -9,7 +9,6 @@ td{
     &__header{
           height: 50px;
           background-color: #20201e; 
-        //   text-align: center;
           font-size: 2rem;
           color:#ececec;
           text-transform: capitalize;
@@ -44,7 +43,7 @@ td{
             }
           }
           &__inside.image{
-             width: 300px;
+             width: 250px;
              height: 300px;
              background-image: url("https://i.pinimg.com/originals/6f/9d/26/6f9d26f313e51dc347b0cea00c4c6078.jpg");
              background-position: center ;
@@ -54,7 +53,6 @@ td{
       }
     }
 }
-
 .emptycart{
     padding: 1em;
     width: 100%;
@@ -67,9 +65,7 @@ td{
         color: #ce4747;
         font-weight: bold;
         text-transform: capitalize;
-        font-family: 'Pacifico', cursive;
-
-        
+        font-family: 'Pacifico', cursive;  
     }
     &__image{
          background-image: url("../images/sad.gif");
@@ -79,7 +75,6 @@ td{
          background-repeat: no-repeat;
 }
 }
-
 
 @media(max-width: 1024px){
 table, thead, tbody, th, td, tr { 

@@ -19,19 +19,36 @@ class UserProfile extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    // this.onPicture = this.onPicture.bind(this);
+    this.onPicture = this.onPicture.bind(this);
   }
 
-  onPicture(e) {
-    e.preventDefault();
-    let files = e.target.files;
+  onPicture(event) {
+    let files = event.target.files;
+
     let reader = new FileReader();
-    reader.onload = e => {
-      console.log(e.target.result);
-      this.setState({ profileImage: e.target.result });
-    };
     reader.readAsDataURL(files[0]);
 
+    reader.onload = e => {
+      this.setState({
+        profileImage: e.target.result
+      });
+    };
+
+    // const fd = new FormData();
+    // fd.append(
+    //   "profileImage",
+    //   event.target.files[0],
+    //   event.target.files[0].name
+    // );
+    // THIS WORKED
+    // e.preventDefault();
+    // let files = e.target.files;
+    // let reader = new FileReader();
+    // reader.onload = e => {
+    //   console.log(e.target.result);
+    //   this.setState({ profileImage: e.target.result });
+    // };
+    // reader.readAsDataURL(files[0]);
     // return new Promise((resolve, reject) => {
     //   var fileReader = new FileReader();
     //   // If error occurs, reject the promise
@@ -62,7 +79,23 @@ class UserProfile extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log(this.state.profileImage.split("data:image/jpeg;base64,")[1]);
 
+    // const newProfile = {
+    //   handle: this.state.handle,
+    //   age: this.state.age,
+    //   location: this.state.location,
+    //   phoneNumber: this.state.phoneNumber,
+    //   bio: this.state.bio,
+    //   balance: this.state.balance,
+    //   profileImage: this.state.profileImage
+    // };
+    // console.log("will it work?", fd);
+    var config = {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    };
     const newProfile = {
       handle: this.state.handle,
       age: this.state.age,
@@ -72,16 +105,14 @@ class UserProfile extends React.Component {
       balance: this.state.balance,
       profileImage: this.state.profileImage
     };
-    // console.log("will it work?", fd);
-    var config = {
-      headers: { Authorization: localStorage.getItem("token") }
-    };
+
     axios
       .post("/api/profile", newProfile, config)
       .then(res => {
-        console.log(res);
+        // console.log(res.data);
         alert("Profile has been succesfully updated");
         window.location = "/";
+        // console.log(this.state.profileImage);
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
@@ -203,6 +234,7 @@ class UserProfile extends React.Component {
                         onSubmit={this.onSubmit}
                         method="patch"
                         id="registrationForm"
+                        encType="multipart/form-data"
                       >
                         <div className="form-group">
                           <div className="col-xs-6">
@@ -339,7 +371,7 @@ class UserProfile extends React.Component {
                               name="profileImage"
                               className="text-center center-block file-upload"
                               // value={this.state.profileImage}
-                              onChange={this.onPicture.bind(this)}
+                              onChange={this.onPicture}
                             />
                           </div>
                         </div>

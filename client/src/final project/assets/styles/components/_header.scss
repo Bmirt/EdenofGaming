@@ -1,5 +1,5 @@
 .header{
-    @include size(100%,250px,#222);
+    @include size(100%,247px,#222);
     @include flex(space-between,center);
     flex-direction: column;
     &__top{
@@ -260,15 +260,17 @@
     .header__bottom{
         position: relative;     
     }
-     .header__bottom__navigation{
+     .header__bottom__navigation {
       width: auto;
       height: auto;
       position: absolute;
       right:0;
         flex-direction: column;
-        display: none;
         transition:1s opacity 0.5s ease-out;
+        display: none;
+        
      }
+   
      .header__bottom__navigation__list{
          position: relative;
          background-color: #222;
@@ -306,7 +308,7 @@
    
     
         .header__bottom__burger{
-        //  z-index: 9999;
+         z-index: 9999;
          display: flex;  
          flex-direction: column; 
          align-items: center;  

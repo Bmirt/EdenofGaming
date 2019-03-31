@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const multer = require("multer");
+const fs = require("fs");
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./uploads/");
@@ -61,9 +62,38 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
+<<<<<<< HEAD
     // console.log(req.file);
     console.log(req.body.profileImage);
     // const { errors, isValid } = validateProfileInput(req.body);
+=======
+    console.log(req.user.name);
+    console.log("this is req.file", req.file);
+
+    function decodeBase64Image(dataString) {
+      var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+
+      if (matches.length !== 3) {
+        return new Error("Invalid input string");
+      }
+
+      response.type = matches[1];
+      response.data = new Buffer.from(matches[2], "base64");
+
+      return response;
+    }
+
+    var imageBuffer = decodeBase64Image(req.body.profileImage);
+    console.log(imageBuffer);
+    // console.log(req.body.profileImage);
+    // var image = req.body.profileImage.split("data:image/jpeg;base64,")[1];
+    var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
+    // var bitmap = new Buffer.from(image, "base64");
+    console.log(req.user.name);
+
+    fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
+>>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
 
     //check validation
     // if (!isValid) {
@@ -75,6 +105,12 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
+<<<<<<< HEAD
+=======
+    // if (typeof req.file !== "undefined") {
+    //   profileFields.profileImage = req.file.path;
+    // }
+>>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
     if (typeof req.file !== "undefined") {
       profileFields.profileImage = req.file.path;
     }
