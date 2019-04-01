@@ -47,7 +47,8 @@ class UserPanel extends React.Component {
 
                   {this.state.userList
                           .map(item => 
-                          <tr className="admin__dash__users__table--tr"><td className="admin__dash__users__table--td">
+                          <tr key={item.user.name} className="admin__dash__users__table--tr">
+                          <td className="admin__dash__users__table--td">
                           <img
                               src={item.user.avatar}
                               alt="avatar"

@@ -20,16 +20,19 @@ class TotalUsers extends React.Component {
       .get(`http://localhost:5000/api/profile/all`, config)
       .then(res => {
         this.setState({
-          total: res.data
+          total: res.data.filter((item) => item._id)
         });
       })
 
       .catch(err => this.setState({ isLoaded: true }));
   }
 
+  some() {
+    
+  }
+
 
   render() {
-   
     return (
       <div>
       <a href="#users"  data-toggle="tab" className="user-profile__link">
@@ -38,7 +41,7 @@ class TotalUsers extends React.Component {
             <p>total users</p>
             <i className="fas fa-chart-bar"></i>
 
-             <p>total: {this.state.total.map((home) => <span>{home.length}</span>)}</p>
+             <p>total: {this.state.total.length}</p>
              
         </div></a>
   </div>

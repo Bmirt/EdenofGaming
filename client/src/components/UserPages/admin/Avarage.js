@@ -20,13 +20,22 @@ class Avarage extends React.Component {
       .get(`http://localhost:5000/api/profile/all`, config)
       .then(res => {
         this.setState({
-          age: res.data
+          age: res.data.map(item => item.age)
         });
       })
 
       .catch(err => this.setState({ isLoaded: true }));
   }
 
+
+  mean(numbers) {
+    var total = 0,
+        i;
+    for (i = 0; i < numbers.length; i += 1) {
+        total += numbers[i];
+    }
+    return total / numbers.length;
+}
 
   render() {
    
@@ -37,7 +46,7 @@ class Avarage extends React.Component {
             <p>users avarage age</p>
             <i className="fas fa-chart-bar"></i>
 
-             <p>age: {this.state.age.map(home => <span>{home.age}</span>)}</p>
+             <p>age: {Math.round(this.mean(this.state.age))}</p>
              
         </div>
   </div>
