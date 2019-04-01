@@ -62,8 +62,8 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
-    console.log(req.user.name);
-    console.log("this is req.file", req.file);
+    // console.log(req.user.name);
+    // console.log("this is req.file", req.file);
 
     function decodeBase64Image(dataString) {
       var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -85,9 +85,10 @@ router.post(
     // var image = req.body.profileImage.split("data:image/jpeg;base64,")[1];
     var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
     // var bitmap = new Buffer.from(image, "base64");
-    console.log(req.user.name);
-
+    console.log("this is imagename", imageName);
+    // console.log("this is profile image", req.body.profileImage);
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
+    // console.log("this is x", x.name);
 
     //check validation
     // if (!isValid) {
@@ -102,8 +103,8 @@ router.post(
     // if (typeof req.file !== "undefined") {
     //   profileFields.profileImage = req.file.path;
     // }
-    if (typeof req.file !== "undefined") {
-      profileFields.profileImage = req.file.path;
+    if (typeof req.body.profileImage !== "undefined") {
+      profileFields.profileImage = imageName;
     }
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
@@ -116,7 +117,7 @@ router.post(
     if (typeof req.body.skills !== "undefined") {
       profileFields.skills = req.body.skills.split(",");
     }
-
+    console.log("this is in profilefields", profileFields.profileImage);
     // social
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
@@ -126,7 +127,7 @@ router.post(
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
     //Update user avatar
     User.findOne({ _id: req.user.id }).then(user => {
-      if (req.file) {
+      if (profileFields.profileImage) {
         User.findOneAndUpdate(
           { _id: req.user.id },
           { $set: { avatar: profileFields.profileImage } },
