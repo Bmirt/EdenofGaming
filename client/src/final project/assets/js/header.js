@@ -1,33 +1,40 @@
+let list = document.getElementsByClassName(
+    "header__bottom__navigation__list"
+  );
+  for (let i = 0; i < list.length; i++) {
+    list[i].style.margin = "0";
+  }
 
-document.getElementById("button").addEventListener("click",left);
-let eat="burger";
-function left(){
-    if(eat==="burger"){ 
-    //document.getElementById('nav').style.display="flex";
-    document.getElementById('a').style.transform="rotate(23deg)"
-    document.getElementById('b').style.display="none"
-    document.getElementById('c').style.transform="rotate(-23deg)"
-   
-    eat="koko";
-    }
-    else if(eat==="koko"){
-        //document.getElementById('nav').style.display="none";
-        document.getElementById('a').style.transform="rotate(0)"
-        document.getElementById('b').style.display="block"
-        document.getElementById('c').style.transform="rotate(0)"
-        document.getElementById("button").style.marginTop="0";
-        eat="burger";
-    }  
-}
-// document.getElementById("button").addEventListener("click",left);
 
-// $(document).ready(function(){
-//     $("#button").click(function(){
-//         $("#nav").toggle("400ms");
-//     });
-//     $(window).resize(function(){
-//         if($(window).width()>800){
-//              $('#nav').removeAttr('style');
-//     }
-// });
-// });
+ $(document).ready(function(){
+     $("#button").click(function(){
+         $("#nav").toggle("400ms");
+        
+     });
+    });
+     $(window).resize(function(){
+        if($(window).width()>800){
+             $('#nav').removeAttr('style');        
+   }
+});
+    //  $(".header__bottom__navigation__list ").click(function(){
+    //     // $(".header__bottom__navigation__list--item").toggle("400ms");
+    //      $('.header__bottom__navigation__list--item', this).toggle("200ms");  
+    // });
+  
+ 
+
+ $(function() {
+    $('.header__bottom__navigation__list').click(function() {
+      $('.header__bottom__navigation__list--item').hide("300ms");
+      $('#list' + $(this).attr('target')).show("300ms");
+    });
+  });
+
+
+  let mouse_is_inside = false;
+  $("body").mouseup(function(){ 
+    if(!mouse_is_inside) $('.header__bottom__navigation__list--item').hide("300ms");
+});
+
+
