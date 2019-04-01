@@ -13,6 +13,7 @@ const productSchema = mongoose.Schema({
   developer: String,
   release: String,
   platforms: String,
+  cdkey: String,
   price: {
     type: Number,
     required: true

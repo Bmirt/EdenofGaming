@@ -30,6 +30,7 @@ router.post("/", (req, res, next) => {
     release: req.body.release,
     platforms: req.body.platforms,
     price: req.body.price,
+    cdkey: req.body.cdkey,
     description: req.body.description
   });
   product
