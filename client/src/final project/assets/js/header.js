@@ -21,13 +21,13 @@ function left(){
 }
 // document.getElementById("button").addEventListener("click",left);
 
-$(document).ready(function(){
-    $("#button").click(function(){
-        $("#nav").toggle("400ms");
-    });
-    $(window).resize(function(){
-        if($(window).width()>800){
-             $('#nav').removeAttr('style');
-    }
-});
-});
+// $(document).ready(function(){
+//     $("#button").click(function(){
+//         $("#nav").toggle("400ms");
+//     });
+//     $(window).resize(function(){
+//         if($(window).width()>800){
+//              $('#nav').removeAttr('style');
+//     }
+// });
+// });
