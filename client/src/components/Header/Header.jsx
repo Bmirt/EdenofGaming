@@ -80,10 +80,10 @@ class Header extends React.Component {
             </section>
 
             <section className="header__bottom">
-              <div class="header__bottom__burger" onClick={headerResponsive}>
-                <div class="header__bottom__burger__line" id="a" />
-                <div class="header__bottom__burger__line" id="b" />
-                <div class="header__bottom__burger__line" id="c" />
+              <div className="header__bottom__burger" onClick={headerResponsive}>
+                <div className="header__bottom__burger__line" id="a" />
+                <div className="header__bottom__burger__line" id="b" />
+                <div className="header__bottom__burger__line" id="c" />
               </div>
               <nav className="header__bottom__navigation" id="nav">
                 <NavigationItem title="Platforms">
