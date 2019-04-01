@@ -8,6 +8,8 @@ class UpdateGame extends React.Component {
         super();
         this.state = {
             name: "",
+            propName: "",
+            value: "",
           errors: {}
         };
         this.onChange = this.onChange.bind(this);
@@ -19,15 +21,16 @@ class UpdateGame extends React.Component {
       }
       onSubmit(e) {
         e.preventDefault();
-        const deleteId = {
-            name: this.state.name,         
-        };
-       console.log(deleteId)
+        const newInfo =[ {
+            propName: this.state.propName,
+            value: this.state.value
+        }];
+       console.log(newInfo)
         axios
-          .delete(`http://localhost:5000/api/products/${this.state.name}`, )
+          .patch(`http://localhost:5000/api/products/${this.state.name}`, newInfo )
           .then(res => {
             console.log(res.data);
-            alert("product has been succesfully deleted");
+            alert("product has been succesfully updated");
             window.location = "/";
           })
           .catch(err => this.setState({ errors: err.response.data }));
@@ -68,6 +71,46 @@ class UpdateGame extends React.Component {
                                   onChange={this.onChange}
                                 />
                                 
+                              </div>
+                            </div>
+
+                            <div className="form-group">
+                              <div className="col-xs-6">
+                                <label htmlFor="propName">
+                                  <h4 className="user-profile__input-title">
+                                    propName
+                                  </h4>
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control user-profile__input"
+                                  name="propName"
+                                  id="propName"
+                                  placeholder="game propName"
+                                  title="propName"
+                                  value={this.state.propName}
+                                  onChange={this.onChange}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="form-group">
+                              <div className="col-xs-6">
+                                <label htmlFor="value">
+                                  <h4 className="user-profile__input-title">
+                                    value
+                                  </h4>
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control user-profile__input"
+                                  name="value"
+                                  id="value"
+                                  placeholder="value"
+                                  title="value"
+                                  value={this.state.value}
+                                  onChange={this.onChange}
+                                />
                               </div>
                             </div>
                            
