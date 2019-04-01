@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
-import userContext from "../../context/user-context";
-
-// import ReactFileReader from "react-file-reader";
+import Auth from "../utils/AuthMethods";
 import UserContext from "../../context/user-context";
 
 class UserProfile extends React.Component {
@@ -22,7 +20,7 @@ class UserProfile extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onPicture = this.onPicture.bind(this);
   }
-  static contextType = userContext;
+  static contextType = UserContext;
   onPicture(event) {
     let files = event.target.files;
 
@@ -34,44 +32,6 @@ class UserProfile extends React.Component {
         profileImage: e.target.result
       });
     };
-
-    // const fd = new FormData();
-    // fd.append(
-    //   "profileImage",
-    //   event.target.files[0],
-    //   event.target.files[0].name
-    // );
-    // THIS WORKED
-    // e.preventDefault();
-    // let files = e.target.files;
-    // let reader = new FileReader();
-    // reader.onload = e => {
-    //   console.log(e.target.result);
-    //   this.setState({ profileImage: e.target.result });
-    // };
-    // reader.readAsDataURL(files[0]);
-    // return new Promise((resolve, reject) => {
-    //   var fileReader = new FileReader();
-    //   // If error occurs, reject the promise
-    //   fileReader.onerror = () => {
-    //     reject("Err");
-    //   };
-    //   // Define an onload handler that's called when file loaded
-    //   fileReader.onload = () => {
-    //     // File data loaded, so proceed to call setState
-    //     if (fileReader.result != undefined) {
-    //       resolve(
-    //         this.setState({
-    //           profileImage: fileReader.result
-    //         }),
-    //         () => {}
-    //       );
-    //     } else {
-    //       reject("Err");
-    //     }
-    //   };
-    //   fileReader.readAsDataURL(inputFile);
-    // });
   }
 
   onChange(e) {
@@ -80,18 +40,7 @@ class UserProfile extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state.profileImage.split("data:image/jpeg;base64,")[1]);
 
-    // const newProfile = {
-    //   handle: this.state.handle,
-    //   age: this.state.age,
-    //   location: this.state.location,
-    //   phoneNumber: this.state.phoneNumber,
-    //   bio: this.state.bio,
-    //   balance: this.state.balance,
-    //   profileImage: this.state.profileImage
-    // };
-    // console.log("will it work?", fd);
     var config = {
       headers: {
         Authorization: localStorage.getItem("token")
@@ -112,8 +61,14 @@ class UserProfile extends React.Component {
       .then(res => {
         // this.context.message("You have changed profile succesfully");
         // this.props.history.replace("/");
-        // axios.get("/api/profile", config)
-        alert("success");
+        axios.get("/api/profile", config).then(res => {
+          // let user = Auth.getCurrentUser();
+          this.context.user.avatar = res.data.profileImage;
+          window.location = "/";
+          alert("success");
+          // console.log("current user", this.context.user);
+          // console.log("res data", res.data);
+        });
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
