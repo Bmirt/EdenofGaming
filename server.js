@@ -11,10 +11,12 @@ const products = require("./routes/api/products");
 
 const app = express();
 
-app.disable("view cache");
-app.set("etag", false);
-
-app.use("/uploads", express.static("uploads"));
+app.use(
+  "/uploads",
+  express.static("uploads", {
+    etag: false
+  })
+);
 
 // let nocache = (req, res, next) => {
 //   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
@@ -22,8 +24,6 @@ app.use("/uploads", express.static("uploads"));
 //   res.header("Pragma", "no-cache");
 //   next();
 // };
-app.use("/uploads", express.static("uploads"));
-
 // cors middleware
 app.use(cors());
 

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const multer = require("multer");
 const fs = require("fs");
+const onHeaders = require("on-headers");
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./uploads/");
@@ -125,6 +126,7 @@ router.post(
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+
     //Update user avatar
     User.findOne({ _id: req.user.id }).then(user => {
       if (profileFields.profileImage) {
