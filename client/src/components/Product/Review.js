@@ -21,7 +21,7 @@ export default class Review extends React.Component {
   onHandleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
-      errors:{}
+      errors: {}
     });
   };
   componentDidMount() {
@@ -108,6 +108,7 @@ export default class Review extends React.Component {
                 {this.state.errors && (
                   <div style={{ color: "red", fontWeight: "bold" }}>
                     {this.state.errors.text}
+                    {this.state.errors.alreadyreviewed}
                   </div>
                 )}
                 <button

@@ -52,8 +52,19 @@ router.post(
     }
 
     Product.findById(req.params.product_id)
-
       .then(product => {
+        // console.log("this is product we are reviewing", product.reviews);
+        // console.log("random review", product.reviews[0].user.toString());
+        // console.log("user id", req.user.id);
+        if (
+          product.reviews.filter(
+            review => review.user.toString() === req.user.id
+          )
+        ) {
+          return res
+            .status(400)
+            .json({ alreadyreviewed: "You have already reviewed this item" });
+        }
         const newPost = {
           _id: new mongoose.Types.ObjectId(),
           text: req.body.text,
