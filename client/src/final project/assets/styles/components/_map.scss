@@ -25,12 +25,11 @@ height: auto;
         width: auto;
         height:259px; 
         @include font(2rem ,#fff);
-        color:#fff;
         align-self: center;
+        margin: 0.5em 0 0;
         &__wrapper{
            width: auto;
            height:60px; 
-           line-height: 6rem;
             .awesome{
             font-size: 2.7rem;
            }
@@ -69,6 +68,7 @@ height: auto;
    }
    .map__content__wrapper__information{
       height: 172px;
+      margin-top:0;
    }
 }
 @media(max-width:600px){

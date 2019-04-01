@@ -1506,16 +1506,15 @@ body {
   height: 259px;
   font-size: 2rem;
   color: #fff;
-  color: #fff;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  margin: 0.5em 0 0;
 }
 
 .map__content__wrapper__information__wrapper {
   width: auto;
   height: 60px;
-  line-height: 6rem;
 }
 
 .map__content__wrapper__information__wrapper .awesome {
@@ -1567,6 +1566,7 @@ body {
   }
   .map__content__wrapper__information {
     height: 172px;
+    margin-top: 0;
   }
 }
 
@@ -1988,7 +1988,6 @@ Label the data
   font-size: 1.4rem;
   color: #fff;
   line-height: 1.6rem;
-  font-size: 1.4rem;
   letter-spacing: 1px;
   position: relative;
 }
@@ -2074,9 +2073,6 @@ Label the data
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: relative;
@@ -2092,13 +2088,14 @@ Label the data
   border: none;
   outline: none;
   border-radius: 5px;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #fff;
   text-transform: uppercase;
   position: absolute;
   right: 8px;
   -webkit-box-shadow: inset 0 1px 7px #000;
           box-shadow: inset 0 1px 7px #000;
+  font-weight: 600;
 }
 
 .discription__wrappertop__down__comment--wrapper--inside--profile {
@@ -2151,6 +2148,7 @@ Label the data
   display: block;
   background-color: #18181a;
   background-color: #222;
+  margin-left: 0.5em;
   color: #fff;
   font-weight: 600;
   font-size: 1.6rem;
@@ -2210,6 +2208,7 @@ Label the data
   display: -ms-flexbox;
   display: flex;
   border-radius: 8px 8px 0 0;
+  word-break: break-all;
 }
 
 .discription__wrappertop__down__comment--wrapper--result--inside {
@@ -2237,7 +2236,7 @@ Label the data
 }
 
 .discription__wrappertop__down__comment--wrapper--result--inside--button {
-  margin: 0.5em 0;
+  margin: 0.5em;
   width: 95px;
   height: 35px;
   background: -webkit-gradient(linear, left top, right top, from(#5e5c5f), to(#414040));
@@ -2245,11 +2244,12 @@ Label the data
   border: none;
   outline: none;
   border-radius: 5px;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #fff;
   text-transform: uppercase;
   -webkit-box-shadow: inset 0 1px 7px #000;
           box-shadow: inset 0 1px 7px #000;
+  font-weight: 600;
 }
 
 .discription__wrappertop__down__comment--wrapper--result--inside--comment {
@@ -2348,7 +2348,7 @@ Label the data
 }
 
 .discription__wrappertop__down__comment--wrapper--result--rate {
-  width: 330px;
+  width: 319px;
   height: 35px;
   background-color: #e6e3e3d7 !important;
   display: -webkit-box;
@@ -2365,7 +2365,7 @@ Label the data
 
 .discription__wrappertop__down__comment--wrapper--result--rate--wrapper {
   height: 35px;
-  width: 25%;
+  width: 23.5%;
   color: #fff;
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -2387,7 +2387,6 @@ Label the data
 
 .discription__wrappertop__down__comment--wrapper--result--rate--wrapper:last-child .discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs {
   color: #2653b4;
-  font-size: 1.4rem;
   font-weight: 600;
   cursor: pointer;
 }
@@ -2568,7 +2567,7 @@ Label the data
     width: 200px;
     height: 100px;
     text-align: center;
-    position: relative;
+    position: absolute;
     height: auto;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2577,6 +2576,7 @@ Label the data
         -ms-flex-align: center;
             align-items: center;
     left: 15px;
+    top: 150px;
   }
   .discription__wrappertop__down__comment--wrapper--inside--profile--name {
     font-size: 1.4rem;
@@ -2600,10 +2600,10 @@ Label the data
     width: 90px;
   }
   .discription__wrappertop__down__comment--wrapper--result--replay {
-    width: 330px;
+    width: 319px;
   }
   .discription__wrappertop__down__comment--wrapper--result--inside--comment {
-    width: 330px;
+    width: 319px;
   }
 }
 

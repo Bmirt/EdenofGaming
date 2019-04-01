@@ -182,7 +182,6 @@
                 font-size: 1.4rem;
                 color:#fff;
                 line-height: 1.6rem;
-                font-size: 1.4rem;
                 letter-spacing: 1px; 
                 position: relative; 
                 &::before{
@@ -244,12 +243,13 @@
                     padding: 1.5em;
                     border-radius: 8px 8px 0 0;
                      background-color: #222;
+                     
                     &--inside{
                         width: auto;
                         min-height: 190px;
                         font-size: 1.8rem;
                         display: flex;
-                        justify-content: space-between;
+                        // justify-content: space-between;
                         flex-wrap: wrap;
                         position: relative;
                         
@@ -261,12 +261,13 @@
                             border:none;
                             outline:none;
                             border-radius: 5px;
-                            font-size: 1.8rem;
+                            font-size: 1.5rem;
                             color:#fff;
                             text-transform: uppercase;
                             position: absolute;
                             right: 8px;
                             box-shadow: inset 0 1px 7px #000;
+                            font-weight: 600;
                             
                          }
                         &--profile{
@@ -313,7 +314,7 @@
                              display: block;
                             background-color: #18181a;
                             background-color: #222;
-
+                            margin-left: 0.5em;
                             // box-shadow:inset 0px 3px 8px #222;
                             // box-shadow: 0 0 5px rgba(0,0,0,.05), 2px 2px 5px rgba(0,0,0,.1);
                              color:#fff;
@@ -344,6 +345,7 @@
                         flex-direction: column;
                         display: flex;
                         border-radius:8px 8px 0 0;
+                        word-break: break-all;
                         &--inside{
                             width: auto;
                             height: auto;
@@ -355,17 +357,18 @@
                             flex-wrap: wrap;
                             align-items: flex-end;
                             &--button{
-                                margin:0.5em 0;
+                                margin:0.5em;
                                 width: 95px;
                                 height: 35px;
                                 background: linear-gradient(to right, #5e5c5f, #414040);
                                 border:none;
                                 outline:none;
                                 border-radius: 5px;
-                                font-size: 1.8rem;
+                                font-size: 1.5rem;
                                 color:#fff;
                                 text-transform: uppercase;
-                                box-shadow: inset 0 1px 7px #000;                            
+                                box-shadow: inset 0 1px 7px #000;  
+                                font-weight: 600;                          
                              }
                             &--comment{
                                 width:400px;
@@ -431,7 +434,7 @@
                             color:#000;       
                         }
                         &--rate{
-                            width: 330px;
+                            width: 319px;
                             height: 35px;
                             background-color: #e6e3e3d7!important;
                             display: flex;
@@ -441,23 +444,27 @@
                             &--wrapper{
                                 // background-color: blue;
                                 height: 35px;
-                                width: 25%;
+                                width: 23.5%;
+                                // margin-right: 1.4em;
                                 color:#fff;
                                 align-self: flex-end;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
                                 font-size: 1.15rem;
+
                                 
                                 &:hover,&:hover .awesome{
                                     color:#000;
-                                }                            
+                                }  
+                                                      
                                 &:last-child &--thumbs{
                                     color:#2653b4;
-                                    font-size: 1.4rem;
                                     font-weight: 600;
                                     cursor: pointer;
+                                  
                                 }
+                               
                                 
                                 &--thumbs{
                                   border:none;
@@ -617,11 +624,12 @@
         width: 200px;
         height: 100px;
         text-align: center;
-        position: relative;
+        position: absolute;
         height: auto;
         display: flex;
         align-items: center;
         left:15px;
+        top:150px;
         
         &--name{
          font-size:1.4rem;
@@ -647,10 +655,10 @@
          width: 90px;
     }
     .discription__wrappertop__down__comment--wrapper--result--replay{
-        width: 330px;
+        width: 319px;
     }
     .discription__wrappertop__down__comment--wrapper--result--inside--comment{
-           width: 330px;
+           width: 319px;
     }
 }
 
