@@ -125,7 +125,18 @@ class GlobalState extends React.Component {
       .then(res => res.json())
       .then(res => this.setState({ cart: updatedCart }));
   };
+  getCartTotal=()=>{
+    let sum = 0;
+    for(let i = 0; i < this.state.cart.length;i++){
+      sum += Number(this.state.cart[i].price);
+    }
+    return sum;
+  }
   render() {
+    if(this.state.cart.length>0){
+    console.log(this.getCartTotal())
+
+    }
     return (
       <UserContext.Provider
         value={{
@@ -145,7 +156,8 @@ class GlobalState extends React.Component {
             addToCart: this.addToCart,
             removeFromCart: this.removeFromCart,
             count: this.state.count,
-            message: this.message
+            message: this.message,
+            getCartTotal: this.getCartTotal
           }}
         >
           <SearchBox
