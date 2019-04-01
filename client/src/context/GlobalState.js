@@ -4,6 +4,7 @@ import UserContext from "./user-context";
 import Auth from "../components/utils/AuthMethods";
 import MessageBox from "../components/utils/MessageBox";
 import SearchBox from "../components/SearchBox";
+import { Router } from "react-router-dom";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {
@@ -13,7 +14,7 @@ class GlobalState extends React.Component {
     MessageBoxIsOpen: false,
     MessageBoxText: "",
     searchBoxVisible: false,
-    searchResult:null
+    searchResult: []
   };
   componentDidMount() {
     const jwt = Auth.getJWT();
@@ -41,18 +42,21 @@ class GlobalState extends React.Component {
       .then(res => this.setState({ games: res }))
       .catch(err => console.log(err));
   }
-  searchBoxVisible=(visibility) =>{
+  searchBoxVisible = visibility => {
     this.setState({
       searchBoxVisible: visibility
     });
-  }
-  search=(name)=>{
-    // for(let i = 0; i< this.state.games; i++){
-    //   if(this.state.games[i].name.includes(name)){
-    //     this.setState({searchResult:this.state.games[i]})
-    //   }
-    // }
-    this.setState({searchResult:name})
+  };
+  search = name => {
+    console.log("searc")
+    let res = [];
+    res = this.state.games.filter((value)=>  value.name.toUpperCase().includes(name.toUpperCase()));
+    this.setState({ searchResult: res });
+  };
+  closeSearchBox=()=>{
+    this.setState({
+      searchBoxVisible:false
+    })
   }
   closeMessageBox = () => {
     this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
@@ -72,7 +76,6 @@ class GlobalState extends React.Component {
     this.setState({ user: null });
   };
   addToCart = product => {
-    console.log("cart", this.state.cart);
     if (!Auth.getCurrentUser()) {
       this.message("You need to be logged in");
       return;
@@ -123,7 +126,6 @@ class GlobalState extends React.Component {
       .then(res => this.setState({ cart: updatedCart }));
   };
   render() {
-    console.log("res",this.state.searchResult)
     return (
       <UserContext.Provider
         value={{
@@ -132,7 +134,7 @@ class GlobalState extends React.Component {
           updateAdminState: this.updateAdminState,
           logout: this.logout,
           message: this.message,
-          searchBoxVisible : this.searchBoxVisible,
+          searchBoxVisible: this.searchBoxVisible,
           search: this.search
         }}
       >
@@ -146,7 +148,12 @@ class GlobalState extends React.Component {
             message: this.message
           }}
         >
-          <SearchBox visible={this.state.searchBoxVisible} game={this.state.searchResult} />
+          <SearchBox
+            visible={this.state.searchBoxVisible}
+            games={this.state.searchResult}
+            close={this.closeSearchBox}
+          />
+
           <MessageBox
             isOpen={this.state.MessageBoxIsOpen}
             close={this.closeMessageBox}

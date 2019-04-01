@@ -16,7 +16,6 @@ class Search extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div id="z" className="header__top__wrapper__search">
         <input
