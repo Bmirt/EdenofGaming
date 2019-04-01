@@ -8,6 +8,7 @@ import Avarage from "./admin/Avarage";
 import TotalUsers from "./admin/TotalUsers";
 import DeleteGame from "./admin/DeleteGame";
 import GamePanel from "./admin/GamePanel";
+import UpdateGame from "./admin/UpdateGame";
 
 class Admin extends React.Component {
   state = {
@@ -183,6 +184,16 @@ class Admin extends React.Component {
                       </a>
                     </li>
 
+                    <li>
+                      <a
+                        data-toggle="tab"
+                        className="user-profile__link"
+                        href="#updateGame"
+                      >
+                        update Game
+                      </a>
+                    </li>
+
                     
                     
                   </ul>
@@ -205,6 +216,12 @@ class Admin extends React.Component {
                         Delete games
                       </h3>
                       <DeleteGame />
+                    </div>
+                    <div className="tab-pane" id="updateGame">
+                      <h3 className="header__bottom__nav--list">
+                        Update games
+                      </h3>
+                      <UpdateGame />
                     </div>
                     <div className="tab-pane" id="games">
                       <h3 className="header__bottom__nav--list">
