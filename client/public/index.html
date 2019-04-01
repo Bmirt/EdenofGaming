@@ -57,5 +57,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- <script src="../src/final project/assets/js/chat.js"></script> -->
+    <script>
+      $(document).ready(function() {
+        $("#button").click(function() {
+          $("#nav").toggle("400ms");
+        });
+        $(window).resize(function() {
+          if ($(window).width() > 800) {
+            $("#nav").removeAttr("style");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

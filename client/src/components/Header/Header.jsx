@@ -80,7 +80,7 @@ class Header extends React.Component {
             </section>
 
             <section className="header__bottom">
-              <div className="header__bottom__burger" onClick={headerResponsive}>
+              <div className="header__bottom__burger" onClick={headerResponsive} id="button">
                 <div className="header__bottom__burger__line" id="a" />
                 <div className="header__bottom__burger__line" id="b" />
                 <div className="header__bottom__burger__line" id="c" />
