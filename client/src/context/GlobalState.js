@@ -48,9 +48,8 @@ class GlobalState extends React.Component {
     });
   };
   search = name => {
-    console.log("searc")
     let res = [];
-    res = this.state.games.filter((value)=>  value.name.toUpperCase().includes(name.toUpperCase()));
+    res = this.state.games.filter(value=>  value.name.toUpperCase().includes(name.toUpperCase()));
     this.setState({ searchResult: res });
   };
   closeSearchBox=()=>{

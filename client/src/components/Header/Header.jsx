@@ -88,8 +88,8 @@ class Header extends React.Component {
               <nav className="header__bottom__navigation" id="nav">
                 <NavigationItem title="Platforms">
                   <SubNavigationItem title="PC" />
-                  <SubNavigationItem title="PLAYSTATION 4" />
-                  <SubNavigationItem title="XBOX 1" />
+                  <SubNavigationItem title="PS4" />
+                  <SubNavigationItem title="Xbox One" />
                   <SubNavigationItem title="3DS" />
                   <SubNavigationItem title="PS VITA" />
                 </NavigationItem>

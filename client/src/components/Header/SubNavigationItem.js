@@ -6,7 +6,7 @@ class SubNavigationItem extends React.Component {
     return (
       <React.Fragment>
         <Link
-          to="#"
+          to={`/products/${this.props.title}`}
           className="header__bottom__navigation__list--item--link"
           style={{ textDecoration: "none" }}
         >

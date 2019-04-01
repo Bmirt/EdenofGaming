@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 class Product extends React.Component {
   render() {
     const {id,image, platform, price, name} = this.props;
-    const link = `/products/${id}`;
+    const link = `/product/${id}`;
     return (
       <React.Fragment>
         <Link to={link}  className="main__middle__wrapper__container">
