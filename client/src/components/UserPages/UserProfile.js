@@ -112,6 +112,8 @@ class UserProfile extends React.Component {
       .then(res => {
         // this.context.message("You have changed profile succesfully");
         // this.props.history.replace("/");
+        // axios.get("/api/profile", config)
+        alert("success");
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
