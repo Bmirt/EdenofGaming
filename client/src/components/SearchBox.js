@@ -23,7 +23,7 @@ export default class SearchBox extends React.Component {
               style={{ margin: "5px", background: "gray", cursor: "pointer" }}
               key={item._id}
               onClick={() => {
-                window.location = `/products/${item._id}`;
+                window.location = `/product/${item._id}`;
               }}
             >
               <img src={item.image} width="80px" height="80px" />

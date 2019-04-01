@@ -3,25 +3,44 @@ import spinner from "../../final project/spinner.gif";
 import Product from "./Product";
 
 class ProductsPage extends React.Component {
-  state = {
-    filtered: [],
-    isLoaded: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      filtered: [],
+      isLoaded: false,
+      id: this.props.match.params.id
+    };
+  }
 
-  componentDidMount() {
+  initComponent() {
     fetch("/api/products")
       .then(res => res.json())
       .then(res =>
         this.setState({
           isLoaded: true,
-          filtered: res.filter(value =>
-            value.platforms
-              .toUpperCase()
-              .includes(this.props.match.params.id.toUpperCase())
+          filtered: res.filter(
+            value =>
+              value.platforms
+                .toUpperCase()
+                .includes(this.state.id.toUpperCase()) ||
+              value.genre.toUpperCase().includes(this.state.id.toUpperCase())
           )
         })
       )
       .catch(err => console.log(err));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isLoaded: false,
+      filter: [],
+      id: nextProps.match.params.id
+    });
+    this.initComponent();
+  }
+
+  componentDidMount() {
+    this.initComponent();
   }
 
   render() {
@@ -35,7 +54,7 @@ class ProductsPage extends React.Component {
       );
     }
     return (
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", width:"100%" }}>
         {this.state.filtered.length > 0 ? (
           <section className="main__middle">
             <div className="main__middle__wrapper">
@@ -52,7 +71,7 @@ class ProductsPage extends React.Component {
             </div>
           </section>
         ) : (
-          <div />
+          <h1 style={{textAlign:"center", color:'#FFF',width:"100%", margin:"150px 0"}}>No Products Found</h1>
         )}
       </div>
     );
