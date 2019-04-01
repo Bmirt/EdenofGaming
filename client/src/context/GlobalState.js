@@ -40,10 +40,6 @@ class GlobalState extends React.Component {
       .then(res => res.json())
       .then(res => this.setState({ games: res }))
       .catch(err => console.log(err));
-<<<<<<< HEAD
-  }
-
-=======
   }
   searchBoxVisible=(visibility) =>{
     this.setState({
@@ -58,7 +54,6 @@ class GlobalState extends React.Component {
     // }
     this.setState({searchResult:name})
   }
->>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
   closeMessageBox = () => {
     this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
   };
@@ -67,13 +62,9 @@ class GlobalState extends React.Component {
       MessageBoxIsOpen: true,
       MessageBoxText: messageText
     });
-<<<<<<< HEAD
-    setTimeout(()=>{this.closeMessageBox()},2000)
-=======
     setTimeout(() => {
       this.closeMessageBox();
     }, 2000);
->>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
   };
 
   logout = () => {
@@ -101,22 +92,6 @@ class GlobalState extends React.Component {
         }
       })
         .then(res => res.json())
-<<<<<<< HEAD
-        .then(res => {});
-      const updatedCart = [...this.state.cart];
-      const newItem = {
-        item: product._id,
-        price: product.price,
-        image: product.image,
-        name: product.name
-      };
-      updatedCart.push(newItem);
-      this.message("Added To Cart");
-      setTimeout(() => {
-        this.setState({ cart: updatedCart, user: Auth.getCurrentUser() });
-        this.context.cart = updatedCart;
-      }, 100);
-=======
         .then(res => {
           const updatedCart = [...this.state.cart];
           const newItem = {
@@ -129,7 +104,6 @@ class GlobalState extends React.Component {
           updatedCart.push(newItem);
           this.setState({ cart: updatedCart });
         });
->>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
     }
   };
   removeFromCart = productId => {
