@@ -62,11 +62,6 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
-<<<<<<< HEAD
-    // console.log(req.file);
-    console.log(req.body.profileImage);
-    // const { errors, isValid } = validateProfileInput(req.body);
-=======
     console.log(req.user.name);
     console.log("this is req.file", req.file);
 
@@ -93,7 +88,6 @@ router.post(
     console.log(req.user.name);
 
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
->>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
 
     //check validation
     // if (!isValid) {
@@ -105,12 +99,9 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
-<<<<<<< HEAD
-=======
     // if (typeof req.file !== "undefined") {
     //   profileFields.profileImage = req.file.path;
     // }
->>>>>>> dc1f926876ed84d73b81576ee0b43a20d09f5666
     if (typeof req.file !== "undefined") {
       profileFields.profileImage = req.file.path;
     }
