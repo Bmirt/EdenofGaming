@@ -455,4 +455,56 @@ router.get(
   }
 );
 
+// @route  POST api/profile/customersupport
+// @desc   send inbox message to admin
+// @access Private
+router.post(
+  "/customersupport",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ _id: req.user.id }).then(profile => {
+      User.findOne({ isAdmin: true }).then(user => {
+        const newMessage = {
+          user: req.user.id,
+          name: req.user.name,
+          image: req.user.avatar,
+          msg: req.body.msg
+        };
+        //Add to inbox array
+        user.inbox.unshift(newMessage);
+        user.save().then(user => res.json(user));
+      });
+    });
+  }
+);
+
+// @route  POST api/profile/customersupport
+// @desc   send inbox message to admin
+// @access Private
+router.post(
+  "/privatemessage/:user_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("hello");
+    User.findOne({ _id: req.user.id }).then(profile => {
+      User.findOne({ isAdmin: true }).then(user => {
+        const newMessage = {
+          user: req.user.id,
+          name: req.user.name,
+          image: req.user.avatar,
+          msg: req.body.msg
+        };
+        //Add to inbox array
+        if (newMessage.msg.length < 5) {
+          return res.status(400).json({
+            messageisrequired: "message should be at least 5 letters long"
+          });
+        }
+        user.inbox.unshift(newMessage);
+        user.save().then(user => res.json(user));
+      });
+    });
+  }
+);
+
 module.exports = router;
