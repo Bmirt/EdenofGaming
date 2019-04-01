@@ -18,6 +18,7 @@
         "components/_discription.scss",
         "components/_userprofile.scss",
         "components/_admin.scss",
+        "components/_individualprofile.scss",
         "utilites/_index.scss"
     ],
     "names": [],
