@@ -6,6 +6,8 @@ import AddGames from "./admin/AddGame";
 import UserPanel from "./admin/UserPanel";
 import Avarage from "./admin/Avarage";
 import TotalUsers from "./admin/TotalUsers";
+import DeleteGame from "./admin/DeleteGame";
+import GamePanel from "./admin/GamePanel";
 
 class Admin extends React.Component {
   state = {
@@ -157,6 +159,15 @@ class Admin extends React.Component {
                       <a
                         data-toggle="tab"
                         className="user-profile__link"
+                        href="#gamelist"
+                      >
+                        game list
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        data-toggle="tab"
+                        className="user-profile__link"
                         href="#games"
                       >
                         Add Games
@@ -166,11 +177,13 @@ class Admin extends React.Component {
                       <a
                         data-toggle="tab"
                         className="user-profile__link"
-                        href="#pages"
+                        href="#deleteGame"
                       >
-                        Pages
+                        delete Game
                       </a>
                     </li>
+
+                    
                     
                   </ul>
 
@@ -181,10 +194,17 @@ class Admin extends React.Component {
                         <TotalUsers />
                       </div>
                     </div>
-                    <div className="tab-pane" id="pages">
+                    <div className="tab-pane" id="gamelist">
                       <h3 className="header__bottom__nav--list">
-                        Pages information
+                        game list
                       </h3>
+                      <GamePanel />
+                    </div>
+                    <div className="tab-pane" id="deleteGame">
+                      <h3 className="header__bottom__nav--list">
+                        Delete games
+                      </h3>
+                      <DeleteGame />
                     </div>
                     <div className="tab-pane" id="games">
                       <h3 className="header__bottom__nav--list">
