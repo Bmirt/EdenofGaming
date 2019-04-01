@@ -1,83 +1,118 @@
 .admin {
-    &__name{   
-        color: #f1f1f1;
-        margin-bottom: 30px;
-        display: flex;
-        justify-content: space-between;
+	&__list {
+		 &__group {
+				padding-left: 0;
+				margin-bottom: 20px;
+				border-radius: 2px;
+		 }
+		 &__item {
+				position: relative;
+				display: block;
+				padding: 10px 15px;
+				margin-bottom: -1px;
+				border: 1px solid #ddd;
+				background-color: #24942d33;
+				color: #aef7d9;
+		 }
+		 &__span {
+				float: left;
+				color: #67ff41;
+				font-weight: 300;
+		 }
+	}
+	 &__name{   
+			 color: #f1f1f1;
+			 margin-bottom: 30px;
+			 display: flex;
+			 justify-content: space-between;
 
-        &--title {
-           margin-left: 40px;
-        }
-     }
-    &__game {
-       &__form {
-          display: flex;
-          flex-direction: column;
-       }
-       &__button {
-         height: 50px;
-         font-size: 1.8rem;
-         color: #fff;
-         border-radius: 4px;
-         border: none;
-         outline: none;
-         font-weight: 600;
-         cursor: pointer;
-         -webkit-align-self: center;
-         align-self: center;
-         font-family: "Baloo Chettan", cursive;
-         margin: 2.3em 0;
-         letter-spacing: 1px;
-         text-transform: uppercase;
-       }
+			 &--title {
+					margin-left: 40px;
+			 }
+		}
+	 &__game {
+			&__form {
+				 display: flex;
+				 flex-direction: column;
+			}
+			&__button {
+				height: 50px;
+				font-size: 1.8rem;
+				color: #fff;
+				border-radius: 4px;
+				border: none;
+				outline: none;
+				font-weight: 600;
+				cursor: pointer;
+				-webkit-align-self: center;
+				align-self: center;
+				font-family: "Baloo Chettan", cursive;
+				margin: 2.3em 0;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+			}
 
-       &__social {
-         width: 40px;
-         height: 40px;
-         justify-content: center;
-         border-radius: 50%;
-         margin-right: 5px;
-         font-size: 18px;
-    
-       }   
-       
-      
-    } 
-    &__dash {
+			&__social {
+				width: 40px;
+				height: 40px;
+				justify-content: center;
+				border-radius: 50%;
+				margin-right: 5px;
+				font-size: 18px;
+	 
+			}   
+			
+		 
+	 } 
+	 &__dash {
+			display: flex;
+			justify-content: flex-start;
+			&__info {
+					 width: 200px;
+					 height: 100px;
+					 margin: 20px 20px 20px 0;
+					 &--age {
+								background-color: #e9ec2e;
+					 }
+					 &--total {
+							background-color: #2be9c0;
+							color: #0f0202;
+				 }
+			}
 
-      &__users {
-         width: 800px;
-         height: auto;
-         background-color: #d7f7c3;
-      &__table {
-         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-         border-collapse: collapse;
-         width: 100%;
-         &--td {
-           border: 1px solid #ddd;
-           padding: 8px;
-         }
-         &--th {
-           border: 1px solid #ddd;
-           padding: 8px;
-         }
-         
-         &--tr:nth-child(even){background-color: #f2f2f2;}
-         
-         &--tr:hover {background-color: #ddd;}
-         
-         &--th {
-           padding-top: 12px;
-           padding-bottom: 12px;
-           text-align: left;
-           background-color: #3f8812;
-           color: white;
-         }
-         &--span {
-            font-size: 15px;
-         }
-       }
-   
-      }
-     }
+		 &__users {
+				width: 800px;
+				height: auto;
+				background-color: #d7f7c3;
+					&__table {
+							font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+							border-collapse: collapse;
+							width: 100%;
+							&--td {
+							border: 1px solid #ddd;
+							padding: 8px;
+							}
+							&--th {
+							border: 1px solid #ddd;
+							padding: 8px;
+							}
+							
+							&--tr:nth-child(even){background-color: #f2f2f2;}
+							
+							&--tr:hover {background-color: #ddd;}
+							
+							&--th {
+							padding-top: 12px;
+							padding-bottom: 12px;
+							text-align: left;
+							background-color: #3f8812;
+							color: white;
+							}
+							&--span {
+								 font-size: 15px;
+							}
+			}
+	
+		 }
+		}
 }

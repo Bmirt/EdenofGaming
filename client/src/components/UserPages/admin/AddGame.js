@@ -15,6 +15,7 @@ class AddGames extends React.Component {
             reliase: "",
             platforms: "",
             price: "",
+            cdkey: "",
             trailer: "",
             description: "",
           errors: {}
@@ -38,6 +39,7 @@ class AddGames extends React.Component {
             reliase: this.state.reliase,
             platforms: this.state.platforms,
             price: this.state.price,
+            cdkey: this.state.cdkey,
             description: this.state.description,
         };
        
@@ -221,6 +223,26 @@ class AddGames extends React.Component {
                                   placeholder="price"
                                   title="price"
                                   value={this.state.price}
+                                  onChange={this.onChange}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="form-group">
+                              <div className="col-xs-6">
+                                <label htmlFor="cdkey">
+                                  <h4 className="user-profile__input-title">
+                                    cdkey
+                                  </h4>
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control user-profile__input"
+                                  name="cdkey"
+                                  id="cdkey"
+                                  placeholder="cdkey"
+                                  title="cdkey"
+                                  value={this.state.cdkey}
                                   onChange={this.onChange}
                                 />
                               </div>
