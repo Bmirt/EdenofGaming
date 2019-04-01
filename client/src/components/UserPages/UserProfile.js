@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import userContext from "../../context/user-context";
 
 // import ReactFileReader from "react-file-reader";
 import UserContext from "../../context/user-context";
@@ -21,7 +22,7 @@ class UserProfile extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onPicture = this.onPicture.bind(this);
   }
-
+  static contextType = userContext;
   onPicture(event) {
     let files = event.target.files;
 
@@ -109,10 +110,8 @@ class UserProfile extends React.Component {
     axios
       .post("/api/profile", newProfile, config)
       .then(res => {
-        // console.log(res.data);
-        alert("Profile has been succesfully updated");
-        window.location = "/";
-        // console.log(this.state.profileImage);
+        // this.context.message("You have changed profile succesfully");
+        // this.props.history.replace("/");
       })
       .catch(err => this.setState({ errors: err.response.data }));
   }
@@ -135,7 +134,7 @@ class UserProfile extends React.Component {
                 <div className="col-sm-3">
                   <div className="text-center">
                     <img
-                      src={context.user.avatar}
+                      src={context.user.avatar + "?rev=" + new Date().getTime()}
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
                     />
