@@ -95,11 +95,7 @@ class UserProfile extends React.Component {
                 <div className="col-sm-3">
                   <div className="text-center">
                     <img
-<<<<<<< HEAD
-                      src={context.user.avatar + "?rev" + new Date.getTime()}
-=======
                       src={context.user.avatar}
->>>>>>> 1b6dbdb185ddd50e3308f5e580b6faef5eda85d1
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
                     />
