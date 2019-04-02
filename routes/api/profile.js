@@ -504,6 +504,25 @@ router.post(
   }
 );
 
+// @route  GET api/profile/customersupport
+// @desc   get your messages
+// @access Private
+router.get(
+  "/privatemessage",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ _id: req.user.id }).then(user => {
+      if (user.inbox.length > 0) {
+        res.status(400).json(user.inbox);
+      } else {
+        res
+          .status(400)
+          .json({ nomessages: "There are no private messages for you" });
+      }
+    });
+  }
+);
+
 // @route  POST api/profile/changename/user_id
 // @desc   Create or edit user profile
 // @access Private

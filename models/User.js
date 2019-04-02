@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false
   },
-  inbox: [{}],
+  inbox: [],
   date: {
     type: Date,
     default: Date.now
