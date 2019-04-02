@@ -3,7 +3,7 @@ import axios from "axios";
 import Auth from "../utils/AuthMethods";
 import UserContext from "../../context/user-context";
 
-class UserProfile extends React.Component {
+class Messages extends React.Component {
   constructor() {
     super();
     this.state = {
