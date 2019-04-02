@@ -504,4 +504,27 @@ router.post(
   }
 );
 
+// @route  POST api/profile/changename/user_id
+// @desc   Create or edit user profile
+// @access Private
+router.post(
+  "/changename/:user_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    if (req.body.name.length < 4) {
+      res.json({ nameerror: "new name must be at least 4 characters long" });
+    }
+    User.findOne({ _id: req.user.id }).then(user => {
+      if (user.isAdmin === true) {
+        User.findOne({ _id: req.params.user_id }).then(user2 => {
+          user2.name = req.body.name;
+          user2.save().then(user => res.json(user));
+        });
+      } else {
+        return res.status(400).json({ notadmin: "user is not admin" });
+      }
+    });
+  }
+);
+
 module.exports = router;
