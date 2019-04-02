@@ -384,7 +384,9 @@ router.post(
           item: req.params.product_id,
           price: product.price,
           image: product.image,
-          name: product.name
+          name: product.name,
+          publisher: product.developer,
+          platform: product.platforms
         };
         //Add to exp array
         profile.cart.unshift(newItem);
