@@ -7,7 +7,6 @@ class IndividualProfile extends React.Component {
   constructor() {
     super();
     this.state = {
-      gameList: [],
       profile: []
     };
   }
@@ -17,22 +16,14 @@ class IndividualProfile extends React.Component {
     var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
-    axios
-      .get(`/api/products`, config)
-      .then(res => {
-        this.setState({
-          gameList: res.data
-        });
-      })
-      .catch(err => this.setState({ isLoaded: true }));
 
     axios
       .get(`/api/profile`, config)
       .then(res => {
+        console.log(res.data);
         this.setState({
           profile: res.data
         });
-        console.log(this.state.profile);
       })
       .catch(err => this.setState({ isLoaded: true }));
   }
@@ -49,32 +40,29 @@ class IndividualProfile extends React.Component {
     };
     return (
       <React.Fragment>
-        <div class="container emp-profile">
+        <div className="container emp-profile">
           <form method="post">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="profile-img">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                    alt=""
-                  />
-                  <div class="file btn btn-lg btn-primary">
+            <div className="row">
+              <div className="col-md-4">
+                <div className="profile-img">
+                  <img src={this.state.profile.profileImage} alt="avatar" />
+                  <div className="file btn btn-lg btn-primary">
                     Change Photo
                     <input type="file" name="file" />
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="profile-head">
+              <div className="col-md-6">
+                <div className="profile-head">
                   <h5>Kshiti Ghelani</h5>
                   <h6>Web Developer and Designer</h6>
-                  <p class="proile-rating">
+                  <p className="proile-rating">
                     RANKINGS : <span>8/10</span>
                   </p>
-                  <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
+                  <ul className="nav nav-tabs" id="myTab" role="tablist">
+                    <li className="nav-item">
                       <a
-                        class="nav-link active"
+                        className="nav-link active"
                         id="home-tab"
                         data-toggle="tab"
                         href="#home"
@@ -85,9 +73,9 @@ class IndividualProfile extends React.Component {
                         About
                       </a>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <a
-                        class="nav-link"
+                        className="nav-link"
                         id="profile-tab"
                         data-toggle="tab"
                         href="#profile"
@@ -101,18 +89,18 @@ class IndividualProfile extends React.Component {
                   </ul>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div className="col-md-2">
                 <input
                   type="submit"
-                  class="profile-edit-btn"
+                  className="profile-edit-btn"
                   name="btnAddMore"
                   value="Edit Profile"
                 />
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="profile-work">
+            <div className="row">
+              <div className="col-md-4">
+                <div className="profile-work">
                   <p>WORK LINK</p>
                   <a href="">Website Link</a>
                   <br />
@@ -132,103 +120,103 @@ class IndividualProfile extends React.Component {
                   <br />
                 </div>
               </div>
-              <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
+              <div className="col-md-8">
+                <div className="tab-content profile-tab" id="myTabContent">
                   <div
-                    class="tab-pane fade show active"
+                    className="tab-pane fade show active"
                     id="home"
                     role="tabpanel"
                     aria-labelledby="home-tab"
                   >
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>User Id</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>Kshiti123</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Name</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>Kshiti Ghelani</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Email</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>kshitighelani@gmail.com</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Phone</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>123 456 7890</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Profession</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>Web Developer and Designer</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="tab-pane fade"
+                    className="tab-pane fade"
                     id="profile"
                     role="tabpanel"
                     aria-labelledby="profile-tab"
                   >
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Experience</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>Expert</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Hourly Rate</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>10$/hr</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Total Projects</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>230</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>English Level</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>Expert</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
+                    <div className="row">
+                      <div className="col-md-6">
                         <label>Availability</label>
                       </div>
-                      <div class="col-md-6">
+                      <div className="col-md-6">
                         <p>6 months</p>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
+                    <div className="row">
+                      <div className="col-md-12">
                         <label>Your Bio</label>
                         <br />
                         <p>Your detail description</p>
@@ -247,29 +235,29 @@ class IndividualProfile extends React.Component {
 
 {
   /* <div>
-  <div className="user__cdkey">
+  <div classNameName="user__cdkey">
     <div>
-      <table className="user__cdkey__table">
+      <table classNameName="user__cdkey__table">
         <thead>
-          <tr className="user__cdkey__table--tr">
-            <th className="user__cdkey__table--th">Game Name</th>
-            <th className="user__cdkey__table--th">cd-key</th>
+          <tr classNameName="user__cdkey__table--tr">
+            <th classNameName="user__cdkey__table--th">Game Name</th>
+            <th classNameName="user__cdkey__table--th">cd-key</th>
           </tr>
         </thead>
         <tbody>
           {this.state.gameList.map(item => (
-            <tr key={item._id} className="user__cdkey__table--tr">
-              <td className="user__cdkey__table--td">
+            <tr key={item._id} classNameName="user__cdkey__table--tr">
+              <td classNameName="user__cdkey__table--td">
                 <img
                   src={item.image}
                   alt="avatar"
-                  className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                  classNameName="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
                 />
-                <span className="user__cdkey__table--span"> {item.name}</span>
+                <span classNameName="user__cdkey__table--span"> {item.name}</span>
               </td>
 
-              <td className="user__cdkey__table--td">
-                <span className="user__cdkey__table--span">{item.cdkey}</span>
+              <td classNameName="user__cdkey__table--td">
+                <span classNameName="user__cdkey__table--span">{item.cdkey}</span>
               </td>
             </tr>
           ))}

@@ -87,7 +87,7 @@ export default class Review extends React.Component {
                   <img
                     src={
                       context.user
-                        ? context.user.avatar + "?rev=" + new Date().getTime()
+                        ? context.user.avatar
                         : "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
                     }
                     alt=""
