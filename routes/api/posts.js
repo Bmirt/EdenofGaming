@@ -56,27 +56,37 @@ router.post(
         // console.log("this is product we are reviewing", product.reviews);
         // console.log("random review", product.reviews[0].user.toString());
         // console.log("user id", req.user.id);
-        if (product.reviews.length === 0) {
-          const newPost = {
-            _id: new mongoose.Types.ObjectId(),
-            text: req.body.text,
-            name: req.user.name,
-            avatar: req.user.avatar,
-            user: req.user.id
-          };
+        // if (product.reviews.length === 0) {
+        //   const newPost = {
+        //     _id: new mongoose.Types.ObjectId(),
+        //     text: req.body.text,
+        //     name: req.user.name,
+        //     avatar: req.user.avatar,
+        //     user: req.user.id
+        //   };
 
-          //Add to comments array
-          product.reviews.unshift(newPost);
+        //   //Add to comments array
+        //   product.reviews.unshift(newPost);
 
-          // Save
-          product.save();
-          return res.json(newPost);
+        //   // Save
+        //   product.save();
+        //   return res.json(newPost);
+        // }
+        // console.log(reviews);
+
+        function isReviewed(review) {
+          return review.user.toString() === req.user.id.toString();
         }
-        if (
-          product.reviews.filter(
-            review => review.user.toString() === req.user.id
-          )
-        ) {
+        var filtered = product.reviews.filter(isReviewed);
+        console.log(filtered.length);
+        // product.reviews.filter(review => {
+        //   console.log(review);
+        // console.log(req.user.id);
+        // review.user == req.user.id;
+        // });
+        if (filtered.length > 0) {
+          // console.log("this is review user", review.user);
+          // console.log("this is id", req.user.id);
           return res
             .status(400)
             .json({ alreadyreviewed: "You have already reviewed this item" });
