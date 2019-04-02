@@ -39,9 +39,9 @@ class Cart extends React.Component {
                       {context.getCartTotal().toFixed(2)}$
                     </td>
                     <td colSpan="2" style={{ textAlign: "center" }}>
-                      <Link to={"/purchases"} onClick={context.purchase} className="cart__wrapper__content__inside--delete">
+                      <button onClick={context.purchase} className="cart__wrapper__content__inside--delete">
                         Buy
-                      </Link>
+                      </button>
                     </td>
                   </tr>
                 </tbody>

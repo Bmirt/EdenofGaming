@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Auth from "../utils/AuthMethods";
 
 class Purchases extends React.Component {
@@ -13,29 +12,43 @@ class Purchases extends React.Component {
     fetch(url, {
       method: "GET",
       headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: jwt
       }
     })
       .then(res => res.json())
-      .then(res => this.setState({ purchases: res }));
+      .then(res => this.setState({ purchases: res }))
+      .catch(err => console.log(err));
   }
   render() {
     console.log(this.state);
     return (
       <React.Fragment>
         <div>
-          <h1 style={{ textAlign: "center", margin: "10px 0" }}>
+          <h2 style={{ textAlign: "center", margin: "10px 0" }}>
             Your Bought Products
-          </h1>
-          <div style={{display:"flex", justifyContent:"space-around", flexWrap:"wrap"}}>
+          </h2>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap"
+            }}
+          >
             {this.state.purchases.map(Element => (
               <div
                 key={Element[0].item}
-                style={{ textAlign: "center", margin: "10px 0", width:"200px" }}
+                style={{
+                  textAlign: "center",
+                  margin: "10px 0",
+                  width: "200px"
+                }}
               >
                 <img src={Element[0].image} width="200xp" height="250px" />
-                <h3>Name: {Element[0].name}</h3>
-                <h3>Price: {Element[0].price}$</h3>
+                <h4>Name: {Element[0].name}</h4>
+                <h4>Price: {Element[0].price}$</h4>
+                <h4>Kye: {Element[0].cdkey}</h4>
               </div>
             ))}
           </div>

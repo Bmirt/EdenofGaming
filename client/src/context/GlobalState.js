@@ -85,8 +85,10 @@ class GlobalState extends React.Component {
     let curr = games[0];
     let diff = Math.abs(Number(cart[0].price) - Number(curr.price));
     for (var val = 0; val < games.length; val++) {
-      let newdiff = Math.abs(Number(cart[cart.length-1].price) - Number(games[val].price));
-      if (newdiff < diff && !this.cartContains(cart,games[val]._id)){
+      let newdiff = Math.abs(
+        Number(cart[cart.length - 1].price) - Number(games[val].price)
+      );
+      if (newdiff < diff && !this.cartContains(cart, games[val]._id)) {
         diff = newdiff;
         curr = games[val];
       }
@@ -95,10 +97,9 @@ class GlobalState extends React.Component {
       suggestedItem: curr
     });
   };
-  cartContains(cart,id){
-    for(let i = 0; i< cart.length; i++){
-      if(cart[i].item === id)
-        return true;
+  cartContains(cart, id) {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].item === id) return true;
     }
     return false;
   }
@@ -158,22 +159,24 @@ class GlobalState extends React.Component {
       .then(res => res.json())
       .then(res => this.setState({ cart: updatedCart }));
   };
-  purchase = () =>{
+  purchase = () => {
     const jwt = Auth.getJWT();
-    fetch('api/profile/purchases',{
-      method:"post",
-      headers:{
-        'Content-Type': "application/json",
-        'Authorization': jwt
+    fetch("api/profile/purchases", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: jwt
       },
       body: JSON.stringify(this.state.cart)
     })
-    .then(res => res.json())
-    .then(res=>{ this.setState({cart: []})
-    this.message("Purchase Successful")
-  })
-    .catch(err => console.log(err))
-  }
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ cart: [] });
+        this.message("Purchase Successful");
+        window.location = "/purchases";
+      })
+      .catch(err => console.log(err));
+  };
   getCartTotal = () => {
     let sum = 0;
     for (let i = 0; i < this.state.cart.length; i++) {
