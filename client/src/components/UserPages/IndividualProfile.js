@@ -30,14 +30,23 @@ class IndividualProfile extends React.Component {
       .get(`/api/profile`, config)
       .then(res => {
         this.setState({
-          gameList: res.data
+          profile: res.data
         });
+        console.log(this.state.profile);
       })
       .catch(err => this.setState({ isLoaded: true }));
   }
 
   render() {
     const { errors } = this.state;
+    var styles = {
+      position: "relative"
+    };
+    var styles2 = {
+      position: "absolute",
+      top: 0,
+      left: 0
+    };
     return (
       <React.Fragment>
         <div class="container emp-profile">
@@ -231,46 +240,44 @@ class IndividualProfile extends React.Component {
             </div>
           </form>
         </div>
-        {/* <div>
-          <div className="user__cdkey">
-            <div>
-              <table className="user__cdkey__table">
-                <thead>
-                  <tr className="user__cdkey__table--tr">
-                    <th className="user__cdkey__table--th">Game Name</th>
-                    <th className="user__cdkey__table--th">cd-key</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.gameList.map(item => (
-                    <tr key={item._id} className="user__cdkey__table--tr">
-                      <td className="user__cdkey__table--td">
-                        <img
-                          src={item.image}
-                          alt="avatar"
-                          className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
-                        />
-                        <span className="user__cdkey__table--span">
-                          {" "}
-                          {item.name}
-                        </span>
-                      </td>
-
-                      <td className="user__cdkey__table--td">
-                        <span className="user__cdkey__table--span">
-                          {item.cdkey}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div> */}
       </React.Fragment>
     );
   }
+}
+
+{
+  /* <div>
+  <div className="user__cdkey">
+    <div>
+      <table className="user__cdkey__table">
+        <thead>
+          <tr className="user__cdkey__table--tr">
+            <th className="user__cdkey__table--th">Game Name</th>
+            <th className="user__cdkey__table--th">cd-key</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.gameList.map(item => (
+            <tr key={item._id} className="user__cdkey__table--tr">
+              <td className="user__cdkey__table--td">
+                <img
+                  src={item.image}
+                  alt="avatar"
+                  className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                />
+                <span className="user__cdkey__table--span"> {item.name}</span>
+              </td>
+
+              <td className="user__cdkey__table--td">
+                <span className="user__cdkey__table--span">{item.cdkey}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>; */
 }
 
 export default IndividualProfile;

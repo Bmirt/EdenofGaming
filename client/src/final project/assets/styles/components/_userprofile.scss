@@ -11,12 +11,6 @@
   &__link {
     color: #00ffff;
   }
-  &__input {
-    background-color: #f1f1f1;
-  }
-  &__input-title {
-    color: aliceblue;
-  }
 
   &__btn {
     width: 100%;
@@ -37,10 +31,6 @@
       background-color: #178d44;
     }
   }
-}
-
-input[type="file"] {
-  color: maroon;
 }
 
 .uploadit {

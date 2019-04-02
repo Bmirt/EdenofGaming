@@ -33,7 +33,8 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
-  cart: [{}],
+  cart: [],
+  purchases: [],
   githubusername: {
     type: String
   },
