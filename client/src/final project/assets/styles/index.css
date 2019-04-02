@@ -2862,4 +2862,48 @@ input[type="file"] {
 .admin__dash__users__table--span {
   font-size: 15px;
 }
+
+.user__cdkey {
+  width: 800px;
+  height: auto;
+  background-color: #d7f7c3;
+  margin: 50px auto;
+}
+
+.user__cdkey__table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user__cdkey__table--td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user__cdkey__table--th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user__cdkey__table--tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user__cdkey__table--tr:hover {
+  background-color: #ddd;
+}
+
+.user__cdkey__table--th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3f8812;
+  color: white;
+  font-size: 20px;
+}
+
+.user__cdkey__table--span {
+  font-size: 15px;
+}
 /*# sourceMappingURL=index.css.map */

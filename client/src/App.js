@@ -15,6 +15,7 @@ import Admin from "./components/UserPages/Admin";
 import Cart from "./components/Main/Cart";
 import GlobalState from "./context/GlobalState";
 import ProductsPage from "./components/Product/ProductsPage";
+import UserCDkey from "./components/UserPages/Cd-key";
 class App extends Component {
   render() {
     return (
@@ -44,7 +45,7 @@ class App extends Component {
                 </ProtectedRoute>
               )}
             />
-
+            <UserCDkey path="/cdkey" />
             <Route
               path="/admin"
               component={() => (
