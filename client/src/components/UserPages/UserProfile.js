@@ -40,10 +40,10 @@ class UserProfile extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    const jwt = Auth.getJWT();
     var config = {
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: jwt
       }
     };
     const newProfile = {
@@ -63,8 +63,9 @@ class UserProfile extends React.Component {
         // this.props.history.replace("/");
         axios.get("/api/profile", config).then(res => {
           // let user = Auth.getCurrentUser();
-          this.context.user.avatar = res.data.profileImage;
-          window.location = "/";
+          this.context.updateUserAvatar(res.data.profileImage);
+          console.log(res.data)
+          // window.location = "/";
           alert("success");
           // console.log("current user", this.context.user);
           // console.log("res data", res.data);

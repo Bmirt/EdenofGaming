@@ -4,13 +4,13 @@ import UserContext from "./user-context";
 import Auth from "../components/utils/AuthMethods";
 import MessageBox from "../components/utils/MessageBox";
 import SearchBox from "../components/SearchBox";
-import { Router } from "react-router-dom";
 class GlobalState extends React.Component {
   static contextType = ShopContext;
   state = {
     user: Auth.getCurrentUser(),
     games: [],
     cart: [],
+    suggestedItems: null,
     MessageBoxIsOpen: false,
     MessageBoxText: "",
     searchBoxVisible: false,
@@ -32,6 +32,7 @@ class GlobalState extends React.Component {
         })
         .then(([cart, games]) => {
           this.setState({ cart: cart, games: games });
+          this.suggetsItem();
         })
         .catch(err => {
           console.log(err);
@@ -49,14 +50,24 @@ class GlobalState extends React.Component {
   };
   search = name => {
     let res = [];
-    res = this.state.games.filter(value=>  value.name.toUpperCase().includes(name.toUpperCase()));
+    res = this.state.games.filter(value =>
+      value.name.toUpperCase().includes(name.toUpperCase())
+    );
     this.setState({ searchResult: res });
   };
-  closeSearchBox=()=>{
+  closeSearchBox = () => {
     this.setState({
-      searchBoxVisible:false
-    })
-  }
+      searchBoxVisible: false
+    });
+  };
+  updateUserAvatar = avatar => {
+    this.setState({
+      user: {
+        name: this.state.user.name,
+        avatar: avatar
+      }
+    });
+  };
   closeMessageBox = () => {
     this.setState({ MessageBoxIsOpen: false, MessageBoxText: " " });
   };
@@ -69,7 +80,28 @@ class GlobalState extends React.Component {
       this.closeMessageBox();
     }, 2000);
   };
-
+  suggetsItem = () => {
+    const { cart, games } = this.state;
+    let curr = games[0];
+    let diff = Math.abs(Number(cart[0].price) - Number(curr.price));
+    for (var val = 0; val < games.length; val++) {
+      let newdiff = Math.abs(Number(cart[cart.length-1].price) - Number(games[val].price));
+      if (newdiff < diff && !this.cartContains(cart,games[val]._id)){
+        diff = newdiff;
+        curr = games[val];
+      }
+    }
+    this.setState({
+      suggestedItem: curr
+    });
+  };
+  cartContains(cart,id){
+    for(let i = 0; i< cart.length; i++){
+      if(cart[i].item === id)
+        return true;
+    }
+    return false;
+  }
   logout = () => {
     Auth.logout();
     this.setState({ user: null });
@@ -100,11 +132,13 @@ class GlobalState extends React.Component {
             item: product._id,
             price: product.price,
             image: product.image,
-            name: product.name
+            name: product.name,
+            genre: product.genre
           };
           this.message("Added To Cart");
           updatedCart.push(newItem);
           this.setState({ cart: updatedCart });
+          this.suggetsItem();
         });
     }
   };
@@ -124,28 +158,23 @@ class GlobalState extends React.Component {
       .then(res => res.json())
       .then(res => this.setState({ cart: updatedCart }));
   };
-  getCartTotal=()=>{
+  getCartTotal = () => {
     let sum = 0;
-    for(let i = 0; i < this.state.cart.length;i++){
+    for (let i = 0; i < this.state.cart.length; i++) {
       sum += Number(this.state.cart[i].price);
     }
     return sum;
-  }
+  };
   render() {
-    if(this.state.cart.length>0){
-    console.log(this.getCartTotal())
-
-    }
     return (
       <UserContext.Provider
         value={{
           user: this.state.user,
-          updateUserState: this.updateUserState,
-          updateAdminState: this.updateAdminState,
           logout: this.logout,
           message: this.message,
           searchBoxVisible: this.searchBoxVisible,
-          search: this.search
+          search: this.search,
+          updateUserAvatar: this.updateUserAvatar
         }}
       >
         <ShopContext.Provider
@@ -156,7 +185,8 @@ class GlobalState extends React.Component {
             removeFromCart: this.removeFromCart,
             count: this.state.count,
             message: this.message,
-            getCartTotal: this.getCartTotal
+            getCartTotal: this.getCartTotal,
+            suggestedItem: this.state.suggestedItem
           }}
         >
           <SearchBox
