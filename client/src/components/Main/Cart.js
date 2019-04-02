@@ -3,6 +3,7 @@ import ShopContext from "../../context/shop-context";
 import { EmptyCart } from "./EmptyCart";
 import CartItem from "./CartItem";
 import Product from "../Product/Product";
+import {Link} from "react-router-dom"
 class Cart extends React.Component {
   static contextType = ShopContext;
   componentDidMount() {}
@@ -38,9 +39,9 @@ class Cart extends React.Component {
                       {context.getCartTotal().toFixed(2)}$
                     </td>
                     <td colSpan="2" style={{ textAlign: "center" }}>
-                      <button onClick={context.purchase} className="cart__wrapper__content__inside--delete">
+                      <Link to={"/purchases"} onClick={context.purchase} className="cart__wrapper__content__inside--delete">
                         Buy
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 </tbody>

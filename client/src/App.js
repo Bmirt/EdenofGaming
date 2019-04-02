@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/UserPages/Register";
 import IndividualProfile from "./components/UserPages/IndividualProfile";
 import Main from "./components/Main/Main";
+import Messages from "./components/Main/Messages";
 import UserProfile from "./components/UserPages/UserProfile";
 import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
@@ -16,6 +17,7 @@ import Cart from "./components/Main/Cart";
 import GlobalState from "./context/GlobalState";
 import ProductsPage from "./components/Product/ProductsPage";
 import UserCDkey from "./components/UserPages/Cd-key";
+import Purchases from "./components/UserPages/Purchases";
 class App extends Component {
   render() {
     return (
@@ -42,6 +44,17 @@ class App extends Component {
               component={() => (
                 <ProtectedRoute>
                   <UserProfile />
+                </ProtectedRoute>
+              )}
+            />
+            <Route exact path="/purchases" component={Purchases} />
+
+            <Route
+              exact
+              path="/messages"
+              component={() => (
+                <ProtectedRoute>
+                  <Messages />
                 </ProtectedRoute>
               )}
             />

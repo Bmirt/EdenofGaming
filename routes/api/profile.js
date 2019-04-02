@@ -81,7 +81,10 @@ router.post(
     var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
     console.log("this is imagename", imageName);
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-
+    var toBeSaved = imageName
+      .split(".")
+      .slice(1)
+      .join(".");
     //Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
@@ -90,7 +93,7 @@ router.post(
     //   profileFields.profileImage = req.file.path;
     // }
     if (typeof req.body.profileImage !== "undefined") {
-      profileFields.profileImage = imageName;
+      profileFields.profileImage = toBeSaved;
     }
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
@@ -381,7 +384,10 @@ router.post(
           item: req.params.product_id,
           price: product.price,
           image: product.image,
-          name: product.name
+          name: product.name,
+          publisher: product.developer,
+          platform: product.platforms,
+          cdkey: product.cdkey
         };
         //Add to exp array
         profile.cart.unshift(newItem);
@@ -463,7 +469,7 @@ router.post(
         }
         //Add to inbox array
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(user));
+        user.save().then(user => res.json(newMessage));
       });
     });
   }
@@ -498,7 +504,7 @@ router.post(
           });
         }
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(user));
+        user.save().then(user => res.json(newMessage));
       });
     });
   }
@@ -513,7 +519,7 @@ router.get(
   (req, res) => {
     User.findOne({ _id: req.user.id }).then(user => {
       if (user.inbox.length > 0) {
-        res.status(400).json(user.inbox);
+        res.status(200).json(user.inbox);
       } else {
         return res
           .status(400)
@@ -540,7 +546,7 @@ router.post(
           user2.save().then(user => res.json(user));
         });
       } else {
-        return res.status(400).json({ notadmin: "user is not admin" });
+        return res.status(404).json({ notadmin: "user is not admin" });
       }
     });
   }
@@ -566,7 +572,7 @@ router.post(
         profile.save().then(profile => res.json(profile));
       } else {
         return res
-          .status(400)
+          .status(404)
           .json({ noitems: "sorry you have no items on cart to buy" });
       }
     });
@@ -582,10 +588,10 @@ router.get(
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile.purchases.length > 0) {
-        return res.status(400).json(profile.purchases);
+        return res.status(200).json(profile.purchases);
       } else {
         return res
-          .status(400)
+          .status(404)
           .json({ noitems: "sorry you have bought no items" });
       }
     });
