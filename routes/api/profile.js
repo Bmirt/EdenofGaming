@@ -63,9 +63,6 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
-    // console.log(req.user.name);
-    // console.log("this is req.file", req.file);
-
     function decodeBase64Image(dataString) {
       var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};
@@ -81,21 +78,9 @@ router.post(
     }
 
     var imageBuffer = decodeBase64Image(req.body.profileImage);
-    console.log(imageBuffer);
-    // console.log(req.body.profileImage);
-    // var image = req.body.profileImage.split("data:image/jpeg;base64,")[1];
     var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
-    // var bitmap = new Buffer.from(image, "base64");
     console.log("this is imagename", imageName);
-    // console.log("this is profile image", req.body.profileImage);
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-    // console.log("this is x", x.name);
-
-    //check validation
-    // if (!isValid) {
-    //   //return any errors with 400 status
-    //   return res.status(400).json(errors);
-    // }
 
     //Get fields
     const profileFields = {};
