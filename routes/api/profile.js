@@ -386,7 +386,8 @@ router.post(
           image: product.image,
           name: product.name,
           publisher: product.developer,
-          platform: product.platforms
+          platform: product.platforms,
+          cdkey: product.cdkey
         };
         //Add to exp array
         profile.cart.unshift(newItem);
