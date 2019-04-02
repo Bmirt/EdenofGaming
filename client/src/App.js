@@ -17,6 +17,7 @@ import Cart from "./components/Main/Cart";
 import GlobalState from "./context/GlobalState";
 import ProductsPage from "./components/Product/ProductsPage";
 import UserCDkey from "./components/UserPages/Cd-key";
+import Purchases from "./components/UserPages/Purchases";
 class App extends Component {
   render() {
     return (
@@ -46,6 +47,7 @@ class App extends Component {
                 </ProtectedRoute>
               )}
             />
+            <Route exact path="/purchases" component={Purchases} />
 
             <Route
               exact
