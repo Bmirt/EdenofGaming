@@ -515,7 +515,7 @@ router.get(
       if (user.inbox.length > 0) {
         res.status(400).json(user.inbox);
       } else {
-        res
+        return res
           .status(400)
           .json({ nomessages: "There are no private messages for you" });
       }
@@ -541,6 +541,52 @@ router.post(
         });
       } else {
         return res.status(400).json({ notadmin: "user is not admin" });
+      }
+    });
+  }
+);
+
+// @route  POST api/profile/purchases
+// @desc   Add cart item to profile
+// @access Private
+router.post(
+  "/purchases",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      if (profile.cart.length > 0) {
+        let newPurchases = [];
+        profile.cart.map(product => {
+          let removeIndex = 0;
+          newPurchases.unshift(product);
+          removeIndex++;
+        });
+        profile.cart = [];
+        profile.purchases.unshift(newPurchases);
+        profile.save().then(profile => res.json(profile));
+      } else {
+        return res
+          .status(400)
+          .json({ noitems: "sorry you have no items on cart to buy" });
+      }
+    });
+  }
+);
+
+// @route  GET api/profile/purchases
+// @desc   Add cart item to profile
+// @access Private
+router.get(
+  "/purchases",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      if (profile.purchases.length > 0) {
+        return res.status(400).json(profile.purchases);
+      } else {
+        return res
+          .status(400)
+          .json({ noitems: "sorry you have bought no items" });
       }
     });
   }
