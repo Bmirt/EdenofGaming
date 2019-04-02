@@ -141,6 +141,9 @@
 							border: 1px solid #ddd;
 							padding: 8px;
 							}
+							&--tr {
+								height: 57px;
+							}
 							
 							&--tr:nth-child(even){background-color: #f2f2f2;}
 							
@@ -161,3 +164,20 @@
 		 }
 		}
 }
+
+.cartShow {
+    display: none;
+}
+
+.hover__span__cart {
+	cursor: pointer;
+}
+    
+.hover__span__cart:hover + .cartShow {
+	display: block;
+	position: absolute;
+  	bottom: 58px;
+	width: 274px;
+	height: auto;
+	background-color: #0cc29a;
+} 
