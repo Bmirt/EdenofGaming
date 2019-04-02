@@ -2871,6 +2871,10 @@ Label the data
   padding: 8px;
 }
 
+.admin__dash__users__table--tr {
+  height: 57px;
+}
+
 .admin__dash__users__table--tr:nth-child(even) {
   background-color: #f2f2f2;
 }
@@ -2889,6 +2893,23 @@ Label the data
 
 .admin__dash__users__table--span {
   font-size: 15px;
+}
+
+.cartShow {
+  display: none;
+}
+
+.hover__span__cart {
+  cursor: pointer;
+}
+
+.hover__span__cart:hover + .cartShow {
+  display: block;
+  position: absolute;
+  bottom: 58px;
+  width: 274px;
+  height: auto;
+  background-color: #0cc29a;
 }
 
 .emp-profile {
