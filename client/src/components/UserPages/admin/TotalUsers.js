@@ -38,11 +38,11 @@ class TotalUsers extends React.Component {
       <a href="#users"  data-toggle="tab" className="user-profile__link">
         <div className="admin__dash__info admin__dash__info--total">
          
-            <p>total users</p>
-            <i className="fas fa-chart-bar"></i>
-
-             <p>total: {this.state.total.length}</p>
-             
+            <p className="admin__dash__info--total--p">total users:</p>
+            <div className="admin__dash__info--total--div">
+               <i className="fas fa-chart-bar admin__dash__info--total--awesome"></i>
+               <p className="admin__dash__info--total--span"> {this.state.total.length}</p>
+             </div>
         </div></a>
   </div>
     );

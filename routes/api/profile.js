@@ -63,9 +63,6 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
-    // console.log(req.user.name);
-    // console.log("this is req.file", req.file);
-
     function decodeBase64Image(dataString) {
       var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};
@@ -81,21 +78,9 @@ router.post(
     }
 
     var imageBuffer = decodeBase64Image(req.body.profileImage);
-    console.log(imageBuffer);
-    // console.log(req.body.profileImage);
-    // var image = req.body.profileImage.split("data:image/jpeg;base64,")[1];
     var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
-    // var bitmap = new Buffer.from(image, "base64");
     console.log("this is imagename", imageName);
-    // console.log("this is profile image", req.body.profileImage);
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-    // console.log("this is x", x.name);
-
-    //check validation
-    // if (!isValid) {
-    //   //return any errors with 400 status
-    //   return res.status(400).json(errors);
-    // }
 
     //Get fields
     const profileFields = {};
@@ -451,6 +436,112 @@ router.get(
       Product.findById(req.params.product_id).then(product => {
         return res.json(profile.cart);
       });
+    });
+  }
+);
+
+// @route  POST api/profile/customersupport
+// @desc   send inbox message to admin
+// @access Private
+router.post(
+  "/customersupport",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ _id: req.user.id }).then(profile => {
+      User.findOne({ isAdmin: true }).then(user => {
+        const newMessage = {
+          user: req.user.id,
+          name: req.user.name,
+          image: req.user.avatar,
+          msg: req.body.msg
+        };
+
+        if (newMessage.msg.length < 5) {
+          return res.status(400).json({
+            messageisrequired: "message should be at least 5 letters long"
+          });
+        }
+        //Add to inbox array
+        user.inbox.unshift(newMessage);
+        user.save().then(user => res.json(user));
+      });
+    });
+  }
+);
+
+// @route  POST api/profile/customersupport
+// @desc   send inbox message to admin
+// @access Private
+router.post(
+  "/privatemessage/:user_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("hello");
+    User.findOne({ _id: req.user.id }).then(profile => {
+      User.findOne({ _id: req.params.user_id }).then(user => {
+        if (req.user.id === req.params.user_id) {
+          return res.status(400).json({
+            messageerror: "You can't message yourself"
+          });
+        }
+        const newMessage = {
+          user: req.user.id,
+          name: req.user.name,
+          image: req.user.avatar,
+          msg: req.body.msg
+        };
+        console.log;
+        //Add to inbox array
+        if (newMessage.msg.length < 5) {
+          return res.status(400).json({
+            messageisrequired: "message should be at least 5 letters long"
+          });
+        }
+        user.inbox.unshift(newMessage);
+        user.save().then(user => res.json(user));
+      });
+    });
+  }
+);
+
+// @route  GET api/profile/customersupport
+// @desc   get your messages
+// @access Private
+router.get(
+  "/privatemessage",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ _id: req.user.id }).then(user => {
+      if (user.inbox.length > 0) {
+        res.status(400).json(user.inbox);
+      } else {
+        res
+          .status(400)
+          .json({ nomessages: "There are no private messages for you" });
+      }
+    });
+  }
+);
+
+// @route  POST api/profile/changename/user_id
+// @desc   Create or edit user profile
+// @access Private
+router.post(
+  "/changename/:user_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    if (req.body.name.length < 4) {
+      res.json({ nameerror: "new name must be at least 4 characters long" });
+    }
+    User.findOne({ _id: req.user.id }).then(user => {
+      if (user.isAdmin === true) {
+        User.findOne({ _id: req.params.user_id }).then(user2 => {
+          user2.name = req.body.name;
+          user2.save().then(user => res.json(user));
+        });
+      } else {
+        return res.status(400).json({ notadmin: "user is not admin" });
+      }
     });
   }
 );

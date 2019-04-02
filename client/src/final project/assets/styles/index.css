@@ -2747,15 +2747,75 @@ input[type="file"] {
   width: 200px;
   height: 100px;
   margin: 20px 20px 20px 0;
+  padding: 16px;
 }
 
 .admin__dash__info--age {
-  background-color: #e9ec2e;
+  background-color: #fbff00b8;
+}
+
+.admin__dash__info--age--div {
+  width: 150px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.admin__dash__info--age--awesome {
+  color: #2be9c0;
+  font-size: 47px;
+}
+
+.admin__dash__info--age--span {
+  color: #670808;
+  font-size: 30px;
+  margin-left: 60px;
+  font-weight: 700;
+}
+
+.admin__dash__info--age--p {
+  margin: 0;
+  color: #670808;
+  font-size: 15px;
+  text-align: right;
 }
 
 .admin__dash__info--total {
-  background-color: #2be9c0;
-  color: #0f0202;
+  background-color: #18f9c8;
+}
+
+.admin__dash__info--total--div {
+  width: 150px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.admin__dash__info--total--awesome {
+  color: #670808;
+  font-size: 47px;
+}
+
+.admin__dash__info--total--span {
+  color: #ff2929;
+  font-size: 30px;
+  margin-left: 60px;
+  font-weight: 700;
+}
+
+.admin__dash__info--total--p {
+  margin: 0;
+  color: #670808;
+  font-size: 15px;
+  text-align: right;
 }
 
 .admin__dash__users {
@@ -2797,6 +2857,50 @@ input[type="file"] {
 }
 
 .admin__dash__users__table--span {
+  font-size: 15px;
+}
+
+.user__cdkey {
+  width: 800px;
+  height: auto;
+  background-color: #d7f7c3;
+  margin: 50px auto;
+}
+
+.user__cdkey__table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user__cdkey__table--td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user__cdkey__table--th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user__cdkey__table--tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user__cdkey__table--tr:hover {
+  background-color: #ddd;
+}
+
+.user__cdkey__table--th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3f8812;
+  color: white;
+  font-size: 20px;
+}
+
+.user__cdkey__table--span {
   font-size: 15px;
 }
 /*# sourceMappingURL=index.css.map */

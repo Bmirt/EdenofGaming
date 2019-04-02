@@ -43,11 +43,11 @@ class Avarage extends React.Component {
       <div >
         <div className="admin__dash__info admin__dash__info--age">
          
-            <p>users avarage age</p>
-            <i className="fas fa-chart-bar"></i>
-
-             <p>age: {Math.round(this.mean(this.state.age))}</p>
-             
+            <p className="admin__dash__info--age--p">users avarage age:</p>
+            <div className="admin__dash__info--age--div">
+                <i className="fas fa-chart-bar admin__dash__info--age--awesome"></i>
+                <p className="admin__dash__info--age--span">{Math.round(this.mean(this.state.age))}</p>
+             </div>
         </div>
   </div>
     );

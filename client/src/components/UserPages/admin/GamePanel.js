@@ -35,13 +35,15 @@ class GamePanel extends React.Component {
         <div className="admin__dash__users">
              <div>
               <table className="admin__dash__users__table">
+              <thead>
                 <tr className="admin__dash__users__table--tr">
                   <th className="admin__dash__users__table--th">Games</th>
                   <th className="admin__dash__users__table--th">price</th>
                   <th className="admin__dash__users__table--th">id</th>
 
                 </tr>
-
+              </thead>
+              <tbody>
                   {this.state.gameList
                           .map(item => 
                           <tr key={item._id} className="admin__dash__users__table--tr">
@@ -56,7 +58,7 @@ class GamePanel extends React.Component {
                           <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.price}</span></td>
                           <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item._id}</span></td>
                           </tr>)}
-           
+              </tbody>
                     </table>
                     
                   </div>
