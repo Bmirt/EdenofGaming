@@ -38,7 +38,7 @@ class Cart extends React.Component {
                       {context.getCartTotal().toFixed(2)}$
                     </td>
                     <td colSpan="2" style={{ textAlign: "center" }}>
-                      <button className="cart__wrapper__content__inside--delete">
+                      <button onClick={context.purchase} className="cart__wrapper__content__inside--delete">
                         Buy
                       </button>
                     </td>
