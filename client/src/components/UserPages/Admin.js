@@ -9,6 +9,7 @@ import TotalUsers from "./admin/TotalUsers";
 import DeleteGame from "./admin/DeleteGame";
 import GamePanel from "./admin/GamePanel";
 import UpdateGame from "./admin/UpdateGame";
+import UpdateUserName from "./admin/UpdateUserName";
 
 class Admin extends React.Component {
   state = {
@@ -160,6 +161,15 @@ class Admin extends React.Component {
                       <a
                         data-toggle="tab"
                         className="user-profile__link"
+                        href="#deleteGame"
+                      >
+                        edit username
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        data-toggle="tab"
+                        className="user-profile__link"
                         href="#gamelist"
                       >
                         game list
@@ -174,15 +184,7 @@ class Admin extends React.Component {
                         Add Games
                       </a>
                     </li>
-                    <li>
-                      <a
-                        data-toggle="tab"
-                        className="user-profile__link"
-                        href="#deleteGame"
-                      >
-                        delete Game
-                      </a>
-                    </li>
+                   
 
                     <li>
                       <a
@@ -190,7 +192,7 @@ class Admin extends React.Component {
                         className="user-profile__link"
                         href="#updateGame"
                       >
-                        update Game
+                        update/delete Game
                       </a>
                     </li>
 
@@ -203,6 +205,7 @@ class Admin extends React.Component {
                       <div className="admin__dash">
                         <Avarage />
                         <TotalUsers />
+                        
                       </div>
                     </div>
                     <div className="tab-pane" id="gamelist">
@@ -213,15 +216,19 @@ class Admin extends React.Component {
                     </div>
                     <div className="tab-pane" id="deleteGame">
                       <h3 className="header__bottom__nav--list">
-                        Delete games
+                        update user name
                       </h3>
-                      <DeleteGame />
+                      <UpdateUserName />
                     </div>
                     <div className="tab-pane" id="updateGame">
                       <h3 className="header__bottom__nav--list">
                         Update games
                       </h3>
                       <UpdateGame />
+                      <h3 className="header__bottom__nav--list">
+                        delete games
+                      </h3>
+                      <DeleteGame />
                     </div>
                     <div className="tab-pane" id="games">
                       <h3 className="header__bottom__nav--list">
