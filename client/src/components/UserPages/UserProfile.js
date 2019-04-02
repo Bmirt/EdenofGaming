@@ -75,6 +75,9 @@ class UserProfile extends React.Component {
 
   render() {
     const { errors } = this.state;
+    var styles = {
+      opacity: 0
+    };
     return (
       <UserContext.Consumer>
         {context => (
@@ -322,13 +325,16 @@ class UserProfile extends React.Component {
                                 Upload a different photo... (max 10mb)
                               </h6>
                             </label>
-                            <input
-                              type="file"
-                              name="profileImage"
-                              className="text-center center-block file-upload"
-                              // value={this.state.profileImage}
-                              onChange={this.onPicture}
-                            />
+                            <div className="file btn btn-primary">
+                              Upload a photo
+                              <input
+                                style={styles}
+                                type="file"
+                                name="profileImage"
+                                // value={this.state.profileImage}
+                                onChange={this.onPicture}
+                              />
+                            </div>
                           </div>
                         </div>
 

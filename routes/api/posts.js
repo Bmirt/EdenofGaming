@@ -56,6 +56,22 @@ router.post(
         // console.log("this is product we are reviewing", product.reviews);
         // console.log("random review", product.reviews[0].user.toString());
         // console.log("user id", req.user.id);
+        if (product.reviews.length === 0) {
+          const newPost = {
+            _id: new mongoose.Types.ObjectId(),
+            text: req.body.text,
+            name: req.user.name,
+            avatar: req.user.avatar,
+            user: req.user.id
+          };
+
+          //Add to comments array
+          product.reviews.unshift(newPost);
+
+          // Save
+          product.save();
+          return res.json(newPost);
+        }
         if (
           product.reviews.filter(
             review => review.user.toString() === req.user.id
