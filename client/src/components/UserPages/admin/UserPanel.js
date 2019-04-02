@@ -13,7 +13,7 @@ class UserPanel extends React.Component {
 
   componentDidMount() {
     window.scroll(0, 0);
-     var config = {
+    var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
@@ -27,50 +27,69 @@ class UserPanel extends React.Component {
       .catch(err => this.setState({ isLoaded: true }));
   }
 
-
   render() {
-   
-    
     return (
-        <div>
-       
+      <div>
         <div className="admin__dash__users">
-             <div>
-              <table className="admin__dash__users__table">
+          <div>
+            <table className="admin__dash__users__table">
               <thead>
                 <tr className="admin__dash__users__table--tr">
                   <th className="admin__dash__users__table--th">user</th>
                   <th className="admin__dash__users__table--th">balance</th>
                   <th className="admin__dash__users__table--th">location</th>
-                  <th className="admin__dash__users__table--th">phone number</th>
-
+                  <th className="admin__dash__users__table--th">
+                    phone number
+                  </th>
+                  <th className="admin__dash__users__table--th">User ID</th>
                 </tr>
               </thead>
 
               <tbody>
+                {this.state.userList.map(item => (
+                  <tr
+                    key={item.user.name}
+                    className="admin__dash__users__table--tr"
+                  >
+                    <td className="admin__dash__users__table--td">
+                      <img
+                        src={item.user.avatar}
+                        alt="avatar"
+                        className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                      />
+                      <span className="admin__dash__users__table--span">
+                        {" "}
+                        {item.user.name}
+                      </span>
+                    </td>
 
-                  {this.state.userList
-                          .map(item => 
-                          <tr key={item.user.name} className="admin__dash__users__table--tr">
-                          <td className="admin__dash__users__table--td">
-                          <img
-                              src={item.user.avatar}
-                              alt="avatar"
-                              className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
-                            />
-                          <span className="admin__dash__users__table--span"> {item.user.name}</span></td>
-
-                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.balance}</span></td>
-                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.location}</span></td>
-                          <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.phoneNumber}</span></td>
-                          </tr>)}
-                </tbody>
-                    </table>
-                    
-                  </div>
-             
+                    <td className="admin__dash__users__table--td">
+                      <span className="admin__dash__users__table--span">
+                        {item.balance}
+                      </span>
+                    </td>
+                    <td className="admin__dash__users__table--td">
+                      <span className="admin__dash__users__table--span">
+                        {item.location}
+                      </span>
+                    </td>
+                    <td className="admin__dash__users__table--td">
+                      <span className="admin__dash__users__table--span">
+                        {item.phoneNumber}
+                      </span>
+                    </td>
+                    <td className="admin__dash__users__table--td">
+                      <span className="admin__dash__users__table--span">
+                        {item.user._id}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-  </div>
+      </div>
     );
   }
 }
