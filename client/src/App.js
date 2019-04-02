@@ -45,7 +45,18 @@ class App extends Component {
                 </ProtectedRoute>
               )}
             />
-            <UserCDkey path="/cdkey" />
+
+            <Route
+              exact
+              path="/cdkey"
+              component={() => (
+                <ProtectedRoute>
+                  <UserCDkey exact path="/cdkey" />
+                </ProtectedRoute>
+              )}
+            />
+
+            {/* <UserCDkey exact path="/cdkey" /> */}
             <Route
               path="/admin"
               component={() => (
