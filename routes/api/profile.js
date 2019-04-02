@@ -81,7 +81,10 @@ router.post(
     var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
     console.log("this is imagename", imageName);
     fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-
+    var toBeSaved = imageName
+      .split(".")
+      .slice(1)
+      .join(".");
     //Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
@@ -90,7 +93,7 @@ router.post(
     //   profileFields.profileImage = req.file.path;
     // }
     if (typeof req.body.profileImage !== "undefined") {
-      profileFields.profileImage = imageName;
+      profileFields.profileImage = toBeSaved;
     }
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
@@ -463,7 +466,7 @@ router.post(
         }
         //Add to inbox array
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(user));
+        user.save().then(user => res.json(newMessage));
       });
     });
   }
@@ -498,7 +501,7 @@ router.post(
           });
         }
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(user));
+        user.save().then(user => res.json(newMessage));
       });
     });
   }

@@ -158,6 +158,22 @@ class GlobalState extends React.Component {
       .then(res => res.json())
       .then(res => this.setState({ cart: updatedCart }));
   };
+  purchase = () =>{
+    const jwt = Auth.getJWT();
+    fetch('api/profile/purchases',{
+      method:"post",
+      headers:{
+        'Content-Type': "application/json",
+        'Authorization': jwt
+      },
+      body: JSON.stringify(this.state.cart)
+    })
+    .then(res => res.json())
+    .then(res=>{ this.setState({cart: []})
+    this.message("Purchase Successful")
+  })
+    .catch(err => console.log(err))
+  }
   getCartTotal = () => {
     let sum = 0;
     for (let i = 0; i < this.state.cart.length; i++) {
@@ -186,7 +202,8 @@ class GlobalState extends React.Component {
             count: this.state.count,
             message: this.message,
             getCartTotal: this.getCartTotal,
-            suggestedItem: this.state.suggestedItem
+            suggestedItem: this.state.suggestedItem,
+            purchase: this.purchase
           }}
         >
           <SearchBox

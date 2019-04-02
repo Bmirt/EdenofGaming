@@ -64,7 +64,7 @@ class UserProfile extends React.Component {
         axios.get("/api/profile", config).then(res => {
           // let user = Auth.getCurrentUser();
           this.context.updateUserAvatar(res.data.profileImage);
-          console.log(res.data)
+          console.log(res.data);
           // window.location = "/";
           alert("success");
           // console.log("current user", this.context.user);
