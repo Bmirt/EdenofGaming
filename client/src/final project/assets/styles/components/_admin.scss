@@ -71,12 +71,57 @@
 					 width: 200px;
 					 height: 100px;
 					 margin: 20px 20px 20px 0;
+					 padding: 16px;
 					 &--age {
-								background-color: #e9ec2e;
+								background-color: #fbff00b8;
+								&--div {
+									width: 150px;
+									height: 60px;
+									display: flex;
+									justify-content: flex-start;
+								}
+								&--awesome {
+									color: #2be9c0;
+									font-size: 47px;
+								}
+								&--span {
+									color: #670808;
+									font-size: 30px;
+									margin-left: 60px;
+									font-weight: 700;
+								}
+								&--p {
+									margin: 0;
+									color: #670808;
+									font-size: 15px;
+									text-align: right;
+								}
 					 }
 					 &--total {
-							background-color: #2be9c0;
-							color: #0f0202;
+							background-color: #18f9c8;
+				
+							&--div {
+								width: 150px;
+								height: 60px;
+								display: flex;
+								justify-content: flex-start;
+							}
+							&--awesome {
+								color: #670808;
+								font-size: 47px;
+							}
+							&--span {
+								color: #ff2929;
+								font-size: 30px;
+								margin-left: 60px;
+								font-weight: 700;
+							}
+							&--p {
+								margin: 0;
+								color: #670808;
+								font-size: 15px;
+								text-align: right;
+							}
 				 }
 			}
 

@@ -37,6 +37,7 @@ class UserPanel extends React.Component {
         <div className="admin__dash__users">
              <div>
               <table className="admin__dash__users__table">
+              <thead>
                 <tr className="admin__dash__users__table--tr">
                   <th className="admin__dash__users__table--th">user</th>
                   <th className="admin__dash__users__table--th">balance</th>
@@ -44,6 +45,9 @@ class UserPanel extends React.Component {
                   <th className="admin__dash__users__table--th">phone number</th>
 
                 </tr>
+              </thead>
+
+              <tbody>
 
                   {this.state.userList
                           .map(item => 
@@ -60,7 +64,7 @@ class UserPanel extends React.Component {
                           <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.location}</span></td>
                           <td className="admin__dash__users__table--td"><span className="admin__dash__users__table--span">{item.phoneNumber}</span></td>
                           </tr>)}
-           
+                </tbody>
                     </table>
                     
                   </div>
