@@ -470,6 +470,12 @@ router.post(
           image: req.user.avatar,
           msg: req.body.msg
         };
+
+        if (newMessage.msg.length < 5) {
+          return res.status(400).json({
+            messageisrequired: "message should be at least 5 letters long"
+          });
+        }
         //Add to inbox array
         user.inbox.unshift(newMessage);
         user.save().then(user => res.json(user));
@@ -487,13 +493,19 @@ router.post(
   (req, res) => {
     console.log("hello");
     User.findOne({ _id: req.user.id }).then(profile => {
-      User.findOne({ isAdmin: true }).then(user => {
+      User.findOne({ _id: req.params.user_id }).then(user => {
+        if (req.user.id === req.params.user_id) {
+          return res.status(400).json({
+            messageerror: "You can't message yourself"
+          });
+        }
         const newMessage = {
           user: req.user.id,
           name: req.user.name,
           image: req.user.avatar,
           msg: req.body.msg
         };
+        console.log;
         //Add to inbox array
         if (newMessage.msg.length < 5) {
           return res.status(400).json({
