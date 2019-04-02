@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/UserPages/Register";
 import IndividualProfile from "./components/UserPages/IndividualProfile";
 import Main from "./components/Main/Main";
+import Messages from "./components/Main/Messages";
 import UserProfile from "./components/UserPages/UserProfile";
 import Footer from "./components/Footer/Footer";
 import ProtectedRoute from "./components/utils/ProtectedRoute";
@@ -42,6 +43,16 @@ class App extends Component {
               component={() => (
                 <ProtectedRoute>
                   <UserProfile />
+                </ProtectedRoute>
+              )}
+            />
+
+            <Route
+              exact
+              path="/messages"
+              component={() => (
+                <ProtectedRoute>
+                  <Messages />
                 </ProtectedRoute>
               )}
             />
