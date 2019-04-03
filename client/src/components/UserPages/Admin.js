@@ -10,6 +10,8 @@ import DeleteGame from "./admin/DeleteGame";
 import GamePanel from "./admin/GamePanel";
 import UpdateGame from "./admin/UpdateGame";
 import UpdateUserName from "./admin/UpdateUserName";
+import AdminMessage from "./admin/AdminMessage";
+import ReplyMessage from "./admin/ReplyMessage";
 
 class Admin extends React.Component {
   state = {
@@ -196,9 +198,31 @@ class Admin extends React.Component {
                       </a>
                     </li>
 
+                    <li>
+                      <a
+                        data-toggle="tab"
+                        className="user-profile__link"
+                        href="#messages"
+                      >
+                         Messages
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        data-toggle="tab"
+                        className="user-profile__link"
+                        href="#replymessages"
+                      >
+                         Reply
+                      </a>
+                    </li>
+
+
                     
                     
                   </ul>
+
+                  
 
                   <div className="tab-content">
                     <div className="tab-pane active admin__dash" id="home">
@@ -207,6 +231,18 @@ class Admin extends React.Component {
                         <TotalUsers />
                         
                       </div>
+                    </div>
+                    <div className="tab-pane" id="messages">
+                      <h3 className="header__bottom__nav--list">
+                        Messages
+                      </h3>
+                      <AdminMessage />
+                    </div>
+                    <div className="tab-pane" id="replymessages">
+                      <h3 className="header__bottom__nav--list">
+                        Reply Messages
+                      </h3>
+                      <ReplyMessage />
                     </div>
                     <div className="tab-pane" id="gamelist">
                       <h3 className="header__bottom__nav--list">
