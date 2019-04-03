@@ -231,9 +231,7 @@ class ProductDetails extends React.Component {
               >
                 <i className="fas fa-shopping-cart awesome" /> Add To Cart
               </div>
-              <div className="discription__wrappertop__wrapper__details__buy">
-                <i className="fas fa-money-bill-alt awesome" /> Buy{" "}
-              </div>
+              
 
               <div className="discription__wrappertop__wrapper__details__raiting">
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
