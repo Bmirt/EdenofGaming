@@ -2960,10 +2960,14 @@ Label the data
 .hover__span__cart:hover + .cartShow {
   display: block;
   position: absolute;
-  bottom: 58px;
+  right: 10px;
   width: 274px;
   height: auto;
   background-color: #0cc29a;
+}
+
+.container {
+  width: 1310px;
 }
 
 .emp-profile {
