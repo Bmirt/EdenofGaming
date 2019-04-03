@@ -381,22 +381,28 @@ router.post(
   "/product/:product_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Product.findById(req.params.product_id).then(product => {
-        const newItem = {
-          item: req.params.product_id,
-          price: product.price,
-          image: product.image,
-          name: product.name,
-          publisher: product.developer,
-          platform: product.platforms,
-          cdkey: product.cdkey
-        };
-        //Add to exp array
-        profile.cart.unshift(newItem);
-        profile.save().then(profile => res.json(profile));
-      });
-    });
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        Product.findById(req.params.product_id).then(product => {
+          const newItem = {
+            item: req.params.product_id,
+            price: product.price,
+            image: product.image,
+            name: product.name,
+            publisher: product.developer,
+            platform: product.platforms,
+            cdkey: product.cdkey
+          };
+          //Add to exp array
+          profile.cart.unshift(newItem);
+          profile.save().then(profile => res.json(profile));
+        });
+      })
+      .catch(err =>
+        res
+          .status(404)
+          .json({ profilenotfound: "please set up user profile first" })
+      );
   }
 );
 

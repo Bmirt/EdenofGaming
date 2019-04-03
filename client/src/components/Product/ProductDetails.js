@@ -13,6 +13,7 @@ class ProductDetails extends React.Component {
     this.state = {
       product: null,
       isLoaded: false,
+      profile: null
     };
   }
 
@@ -20,19 +21,35 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     window.scroll(0, 0);
+    const jwt = Auth.getJWT();
+    var config = {
+      headers: {
+        Authorization: jwt
+      }
+    };
     axios
       .get(`http://localhost:5000/api/products/${this.props.match.params.id}`)
       .then(res => {
         this.setState({
           product: res.data,
-          isLoaded: true,
+          isLoaded: true
         });
       })
       .catch(err => this.setState({ isLoaded: true }));
+    axios
+      .get("http://localhost:5000/api/profile", config)
+      .then(res => {
+        this.setState({
+          profile: res.data
+        });
+      })
+      .catch(err => {
+        // console.log(err);
+      });
   }
   liked = () => {
     if (this.state.product) {
-      const {likes} = this.state.product;
+      const { likes } = this.state.product;
       if (Auth.getCurrentUser()) {
         const userID = Auth.getCurrentUser().id;
         for (let i = 0; i < likes.length; i++) {
@@ -46,7 +63,7 @@ class ProductDetails extends React.Component {
   };
   disliked = () => {
     if (this.state.product) {
-      const {dislikes} = this.state.product;
+      const { dislikes } = this.state.product;
       if (Auth.getCurrentUser()) {
         const userID = Auth.getCurrentUser().id;
         for (let i = 0; i < dislikes.length; i++) {
@@ -181,6 +198,21 @@ class ProductDetails extends React.Component {
   };
 
   render() {
+    console.log(this.state.profile);
+    let carting = () => {
+      if (this.state.profile === null) {
+        return alert(
+          "You have to setup a profile in order to add items to cart"
+        );
+      } else {
+        console.log("i am here");
+        return this.context.addToCart.bind(this, product);
+      }
+    };
+    console.log("this is carting", carting);
+    let carting2 = () => {
+      alert("You have to setup a profile in order to add items to cart");
+    };
     const { product } = this.state;
     if (!this.state.isLoaded) {
       return (
@@ -223,15 +255,32 @@ class ProductDetails extends React.Component {
               <div className="discription__wrappertop__wrapper__details__price">
                 ${product.price}
               </div>
+              {this.state.profile && (
+                <div
+                  onClick={this.context.addToCart.bind(this, product)}
+                  style={{ cursor: "pointer", fontFamily: "Orbitron" }}
+                  className="discription__wrappertop__wrapper__details__buy cart"
+                >
+                  Add to cart
+                </div>
+              )}
 
-              <div
-                onClick={this.context.addToCart.bind(this, product)}
+              {this.state.profile === null && (
+                <div
+                  onClick={carting2}
+                  style={{ cursor: "pointer", fontFamily: "Orbitron" }}
+                  className="discription__wrappertop__wrapper__details__buy cart"
+                >
+                  Add to cart
+                </div>
+              )}
+              {/* <div
+                onClick={carting}
                 style={{ cursor: "pointer", fontFamily: "Orbitron" }}
                 className="discription__wrappertop__wrapper__details__buy cart"
-              >
+              > 
                 <i className="fas fa-shopping-cart awesome" /> Add To Cart
-              </div>
-              
+              </div> */}
 
               <div className="discription__wrappertop__wrapper__details__raiting">
                 <span className="discription__wrappertop__wrapper__details__raiting__thumbs">
