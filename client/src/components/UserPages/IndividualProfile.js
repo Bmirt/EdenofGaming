@@ -11,7 +11,7 @@ class IndividualProfile extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     window.scroll(0, 0);
     var config = {
       headers: { Authorization: localStorage.getItem("token") }
@@ -45,8 +45,11 @@ class IndividualProfile extends React.Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="individ__img-container">
-                  <img className="individ__profile-image" src={this.state.profile.profileImage} alt="avatar" />
-                  
+                  <img
+                    className="individ__profile-image"
+                    src={this.state.profile.profileImage}
+                    alt="avatar"
+                  />
                 </div>
               </div>
               <div className="col-md-6">
@@ -54,7 +57,10 @@ class IndividualProfile extends React.Component {
                   <h3 className="individ__name">{this.state.profile.handle}</h3>
                   <p className="individ__member">Eden Of Gaming member</p>
                   <p className="individ__balance">
-                    BALANCE : <span className="individ__balance--num">{this.state.profile.balance}</span>
+                    BALANCE :{" "}
+                    <span className="individ__balance--num">
+                      {this.state.profile.balance}
+                    </span>
                   </p>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
@@ -70,78 +76,60 @@ class IndividualProfile extends React.Component {
                         About
                       </a>
                     </li>
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        id="profile-tab"
-                        data-toggle="tab"
-                        href="#profile"
-                        role="tab"
-                        aria-controls="profile"
-                        aria-selected="false"
-                      >
-                        Timeline
-                      </a>
-                    </li>
                   </ul>
                 </div>
               </div>
-              <a href="http://localhost:3000/userprofile">
-              <div className="col-md-2">
-                <input
-                  type="submit"
-                  className="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                />
-              </div>
+              <a href="/userprofile">
+                <div className="col-md-2">
+                  <input
+                    className="profile-edit-btn"
+                    name="btnAddMore"
+                    value="Edit Profile"
+                  />
+                </div>
               </a>
             </div>
             <div className="row">
               <div className="col-md-4">
-  
-       
-                  <div className="individ__paneli panel-default">
-                    <div className="panel-heading">Social Media</div>
-                    <div className="panel-body">
-                      <div className="bottom">
-                        <a
-                          className="btn btn-primary btn-twitter btn-sm admin__game__social"
-                          href="https://twitter.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fab fa-twitter awesome twitter" />
-                        </a>
-                        <a
-                          className="btn btn-danger btn-sm admin__game__social"
-                          href="https://youtube.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fab fa-youtube awesome youtube" />
-                        </a>
-                        <a
-                          className="btn btn-primary btn-sm admin__game__social"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://facebook.com"
-                        >
-                          <i className="fab fa-facebook-f awesome facebook" />
-                        </a>
-                        <a
-                          className="btn btn-warning btn-sm admin__game__social"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://instagram.com"
-                        >
-                          <i className="fab fa-instagram awesome instagram" />
-                        </a>
-                      </div>{" "}
-                    </div>
+                <div className="individ__paneli panel-default">
+                  <div className="panel-heading">Social Media</div>
+                  <div className="panel-body">
+                    <div className="bottom">
+                      <a
+                        className="btn btn-primary btn-twitter btn-sm admin__game__social"
+                        href="https://twitter.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fab fa-twitter awesome twitter" />
+                      </a>
+                      <a
+                        className="btn btn-danger btn-sm admin__game__social"
+                        href="https://youtube.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fab fa-youtube awesome youtube" />
+                      </a>
+                      <a
+                        className="btn btn-primary btn-sm admin__game__social"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://facebook.com"
+                      >
+                        <i className="fab fa-facebook-f awesome facebook" />
+                      </a>
+                      <a
+                        className="btn btn-warning btn-sm admin__game__social"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://instagram.com"
+                      >
+                        <i className="fab fa-instagram awesome instagram" />
+                      </a>
+                    </div>{" "}
                   </div>
-
-
+                </div>
               </div>
               <div className="col-md-8">
                 <div className="tab-content profile-tabb" id="myTabContent">
@@ -164,7 +152,9 @@ class IndividualProfile extends React.Component {
                         <label className="individ__label">Name</label>
                       </div>
                       <div className="col-md-6">
-                        <p className="individ__p">{this.state.profile.handle}</p>
+                        <p className="individ__p">
+                          {this.state.profile.handle}
+                        </p>
                       </div>
                     </div>
                     <div className="row">
@@ -180,7 +170,9 @@ class IndividualProfile extends React.Component {
                         <label className="individ__label">Phone</label>
                       </div>
                       <div className="col-md-6">
-                        <p className="individ__p">{this.state.profile.phoneNumber}</p>
+                        <p className="individ__p">
+                          {this.state.profile.phoneNumber}
+                        </p>
                       </div>
                     </div>
                     <div className="row">
@@ -188,7 +180,9 @@ class IndividualProfile extends React.Component {
                         <label className="individ__label">location</label>
                       </div>
                       <div className="col-md-6">
-                        <p className="individ__p">{this.state.profile.location}</p>
+                        <p className="individ__p">
+                          {this.state.profile.location}
+                        </p>
                       </div>
                     </div>
                     <div className="row">
@@ -213,10 +207,52 @@ class IndividualProfile extends React.Component {
                     id="profile"
                     role="tabpanel"
                     aria-labelledby="profile-tab"
-                  >
-                    
-                  </div>
+                  />
                 </div>
+                {/* <div>
+                  <div classNameName="user__cdkey">
+                    <div>
+                      <table classNameName="user__cdkey__table">
+                        <thead>
+                          <tr classNameName="user__cdkey__table--tr">
+                            <th classNameName="user__cdkey__table--th">
+                              Game Name
+                            </th>
+                            <th classNameName="user__cdkey__table--th">
+                              cd-key
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {this.state.profile.cart.map(item => (
+                            <tr
+                              key={item._id}
+                              classNameName="user__cdkey__table--tr"
+                            >
+                              <td classNameName="user__cdkey__table--td">
+                                <img
+                                  src={item.image}
+                                  alt="avatar"
+                                  classNameName="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                                />
+                                <span classNameName="user__cdkey__table--span">
+                                  {" "}
+                                  {item.name}
+                                </span>
+                              </td>
+
+                              <td classNameName="user__cdkey__table--td">
+                                <span classNameName="user__cdkey__table--span">
+                                  {item.cdkey}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> */}
+                {/* </div> */}
               </div>
             </div>
           </form>
@@ -224,41 +260,6 @@ class IndividualProfile extends React.Component {
       </React.Fragment>
     );
   }
-}
-
-{
-  /* <div>
-  <div classNameName="user__cdkey">
-    <div>
-      <table classNameName="user__cdkey__table">
-        <thead>
-          <tr classNameName="user__cdkey__table--tr">
-            <th classNameName="user__cdkey__table--th">Game Name</th>
-            <th classNameName="user__cdkey__table--th">cd-key</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.gameList.map(item => (
-            <tr key={item._id} classNameName="user__cdkey__table--tr">
-              <td classNameName="user__cdkey__table--td">
-                <img
-                  src={item.image}
-                  alt="avatar"
-                  classNameName="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
-                />
-                <span classNameName="user__cdkey__table--span"> {item.name}</span>
-              </td>
-
-              <td classNameName="user__cdkey__table--td">
-                <span classNameName="user__cdkey__table--span">{item.cdkey}</span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>; */
 }
 
 export default IndividualProfile;

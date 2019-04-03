@@ -64,38 +64,40 @@ router.post(
   upload.single("profileImage"),
   (req, res) => {
     const errors = {};
-    function decodeBase64Image(dataString) {
-      var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-        response = {};
+    const profileFields = {};
 
-      if (matches.length !== 3) {
-        return new Error("Invalid input string");
+    if (req.body.profileImage.length > 0) {
+      function decodeBase64Image(dataString) {
+        var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+          response = {};
+
+        if (matches.length !== 3) {
+          return new Error("Invalid input string");
+        }
+
+        response.type = matches[1];
+        response.data = new Buffer.from(matches[2], "base64");
+
+        return response;
       }
 
-      response.type = matches[1];
-      response.data = new Buffer.from(matches[2], "base64");
-
-      return response;
+      var imageBuffer = decodeBase64Image(req.body.profileImage);
+      var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
+      console.log("this is imagename", imageName);
+      fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
+      var toBeSaved = imageName
+        .split(".")
+        .slice(1)
+        .join(".");
+      profileFields.profileImage = toBeSaved;
     }
-
-    var imageBuffer = decodeBase64Image(req.body.profileImage);
-    var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
-    console.log("this is imagename", imageName);
-    fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-    var toBeSaved = imageName
-      .split(".")
-      .slice(1)
-      .join(".");
     //Get fields
-    const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     // if (typeof req.file !== "undefined") {
     //   profileFields.profileImage = req.file.path;
     // }
-    if (typeof req.body.profileImage !== "undefined") {
-      profileFields.profileImage = toBeSaved;
-    }
+
     if (req.body.age) profileFields.age = req.body.age;
     if (req.body.balance) profileFields.balance = req.body.balance;
     if (req.body.location) profileFields.location = req.body.location;
