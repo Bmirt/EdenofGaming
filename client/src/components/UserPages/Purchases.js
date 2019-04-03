@@ -49,7 +49,9 @@ class Purchases extends React.Component {
                 <img src={Element[0].image} width="200xp" height="250px" />
                 <h4>Name: {Element[0].name}</h4>
                 <h4>Price: {Element[0].price}$</h4>
+
                 <h4>Kye: {Element[0].cdkey}</h4>
+
               </div>
             ))}
           </div>
