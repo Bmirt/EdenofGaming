@@ -56,22 +56,20 @@ class UserProfile extends React.Component {
       profileImage: this.state.profileImage
     };
 
-    axios
-      .post("/api/profile", newProfile, config)
-      .then(res => {
-        // this.context.message("You have changed profile succesfully");
-        // this.props.history.replace("/");
-        axios.get("/api/profile", config).then(res => {
-          // let user = Auth.getCurrentUser();
-          this.context.updateUserAvatar(res.data.profileImage);
-          console.log(res.data);
-          // window.location = "/";
-          alert("success");
-          // console.log("current user", this.context.user);
-          // console.log("res data", res.data);
-        });
-      })
-      .catch(err => this.setState({ errors: err.response.data }));
+    axios.post("/api/profile", newProfile, config).then(res => {
+      // this.context.message("You have changed profile succesfully");
+      // this.props.history.replace("/");
+      axios.get("/api/profile", config).then(res => {
+        // let user = Auth.getCurrentUser();
+        this.context.updateUserAvatar(res.data.profileImage);
+        console.log(res.data);
+        // window.location = "/";
+        alert("success");
+        // console.log("current user", this.context.user);
+        // console.log("res data", res.data);
+      });
+    });
+    // .catch(err => this.setState({ errors: err.response.data }));
   }
 
   render() {

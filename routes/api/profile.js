@@ -63,6 +63,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   upload.single("profileImage"),
   (req, res) => {
+    const errors = {};
     function decodeBase64Image(dataString) {
       var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};
@@ -142,10 +143,10 @@ router.post(
 
         // check if handle exists
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
-          if (profile) {
-            errors.handle = "That handle already exists";
-            res.status(400).json(errors);
-          }
+          // if (profile) {
+          //   errors.handle = "That handle already exists";
+          //   res.status(400).json(errors);
+          // }
 
           // Save Profile
           new Profile(profileFields).save().then(profile => res.json(profile));
