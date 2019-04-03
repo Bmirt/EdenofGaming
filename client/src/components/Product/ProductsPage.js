@@ -1,6 +1,7 @@
 import React from "react";
 import spinner from "../../final project/spinner.gif";
 import Product from "./Product";
+import { Spinner } from "../Spinner";
 
 class ProductsPage extends React.Component {
   constructor(props) {
@@ -46,11 +47,7 @@ class ProductsPage extends React.Component {
   render() {
     if (!this.state.isLoaded) {
       return (
-        <img
-          style={{ width: "80px", height: "80px", margin: "100px 500px" }}
-          src={spinner}
-          alt="spinner"
-        />
+        <Spinner/>
       );
     }
     return (

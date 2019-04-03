@@ -47,7 +47,15 @@ class App extends Component {
                 </ProtectedRoute>
               )}
             />
-            <Route exact path="/purchases" component={Purchases} />
+            <Route
+              exact
+              path="/purchases"
+              component={() => (
+                <ProtectedRoute>
+                  <Purchases />
+                </ProtectedRoute>
+              )}
+            />
 
             <Route
               exact

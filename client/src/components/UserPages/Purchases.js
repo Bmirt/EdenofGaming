@@ -1,5 +1,6 @@
 import React from "react";
 import Auth from "../utils/AuthMethods";
+import { Spinner } from "../Spinner";
 
 class Purchases extends React.Component {
   state = {
@@ -18,11 +19,13 @@ class Purchases extends React.Component {
       }
     })
       .then(res => res.json())
-      .then(res => this.setState({ purchases: res }))
+      .then(res => this.setState({ purchases: res, isLoaded: true }))
       .catch(err => console.log(err));
   }
   render() {
-    console.log(this.state);
+    if (!this.state.isLoaded) {
+      return <Spinner />;
+    }
     return (
       <React.Fragment>
         <div>
@@ -45,13 +48,11 @@ class Purchases extends React.Component {
                   width: "200px"
                 }}
               >
-
                 <img src={Element[0].image} width="200xp" height="250px" />
                 <h4>Name: {Element[0].name}</h4>
                 <h4>Price: {Element[0].price}$</h4>
 
                 <h4>Kye: {Element[0].cdkey}</h4>
-
               </div>
             ))}
           </div>
@@ -60,5 +61,5 @@ class Purchases extends React.Component {
     );
   }
 }
-// 
+//
 export default Purchases;

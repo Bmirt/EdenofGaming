@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import AuthMethods from "./AuthMethods";
 import Axios from "axios";
+import { Spinner } from "../Spinner";
 class ProtectedRoute extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,7 @@ class ProtectedRoute extends React.Component {
   render() {
     if (this.state.user === undefined) {
       return (
-        <div>
-          <h1>Loading...</h1>
-        </div>
+        <Spinner/>
       );
     } else {
       return <React.Fragment>{this.props.children}</React.Fragment>;

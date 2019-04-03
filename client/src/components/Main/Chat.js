@@ -27,7 +27,7 @@ class Chat extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        this.setState({ recievedMessages: res });
+        this.setState({ recievedMessages: res.reverse() });
       })
       .catch(err => console.log(err));
   }
