@@ -1,6 +1,6 @@
 import React from "react";
 import shopContext from "../../context/shop-context";
-
+// 
 class CartItem extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,7 @@ class CartItem extends React.Component {
         >
           {" "}
         </td>
+
         <td className="cart__wrapper__content__inside publisher">
           {this.props.item.publisher}
         </td>

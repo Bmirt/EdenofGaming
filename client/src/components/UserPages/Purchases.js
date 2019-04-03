@@ -45,6 +45,7 @@ class Purchases extends React.Component {
                   width: "200px"
                 }}
               >
+
                 <img src={Element[0].image} width="200xp" height="250px" />
                 <h4>Name: {Element[0].name}</h4>
                 <h4>Price: {Element[0].price}$</h4>
@@ -57,5 +58,5 @@ class Purchases extends React.Component {
     );
   }
 }
-
+// 
 export default Purchases;
