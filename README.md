@@ -1,8 +1,37 @@
-# EdenofGaming
-Welcome to Online games e-commerce project
+# Eden of Gaming
+Welcome to Online games e-commerce shop done for Techub DC as a final project
+# What have we done
+ * We have built an online-games ecommerce website where games are delivered instantly via cd-key format.
+ * We initially wanted to make it social network + e-commerce mix but because of lack of time we couldn't make it happen but backend part of it is done
+ * Security - in the picture below you can see that even the admin of the database can't see user's password backend developer has used bcrypt and her salt built generated hashes in order to prevent rainbow attacks from outside as well and the salt can't really be encrypted 
+* <img src="secure.png">
+* User register validation is secured from back-end
+* User login validation is secured from back-end as well and whenever user logs in he gets a Web-token active for 48hours
+* Protected routes as well public ones
+* Games can be filtered by category and platform
+* User can create public profile
+* Application has it's own local profile pictures folder - /uploads, individual picture is saved in MongoDB database
+* <b>Powerful Shopping Cart - User will be proposed similar item on checkout based on it's genre</b>
+* <b>Instant product delivery - Game's cdkey will be delivered instantly upon purchase</b>
+* Customer support - any user can message the admin for support
+## Admin Features
+* to login as admin use "email: admin@admin.com, password: admin123",
+* Admin sees total users and their average age
+* Admin can change any user's name
+* Admin can add games and delete them
+* Admin can change game's image/trailer/description/price etc.
+* Admin can reply to user's correspondence or can start one
+
+# Team Members
+* Tornike Gagadze     - Front-end   - React.js
+* Boris Mirtskhulava  - Backend     - Node.js and MongoDB
+* Vakho Naroushvili   - Initially Backend and than Front-end - React.js
+* Irakli Akhobadze    - Markup      - HTML/CSS/SCSS
+   
+
 ## How to open
 
-you can donwload our project from this page by clicking "Clone or download" button
+you can download our project from this page by clicking "Clone or download" button
 
 # Install Packages
 
@@ -84,8 +113,3 @@ first start may take few minutes
     "validator": "^10.11.0"
 }
 ```
-# Team Members
-* Tornike Gagadze - Front-end
-* Boris Mirtskhulava - Backend
-* Vakho Naroushvili - Initially Backend and than Front-end
-* Irakli Akhobadze - Markup
