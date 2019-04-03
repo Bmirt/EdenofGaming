@@ -63,8 +63,7 @@ class UserProfile extends React.Component {
         // let user = Auth.getCurrentUser();
         this.context.updateUserAvatar(res.data.profileImage);
         console.log(res.data);
-        // window.location = "/";
-        alert("success");
+        this.context.message("Update Succesful")
         // console.log("current user", this.context.user);
         // console.log("res data", res.data);
       });

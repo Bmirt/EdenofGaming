@@ -22,14 +22,14 @@ class Footer extends React.Component {
             </div>
             <div className="footer__wrapper__item  middle">
               Special Thanks To{" "}
-              <Link
-                to="http://techub.ge/"
+              <a
+                href="http://techub.ge/"
                 target="_blank"
                 className="techub"
                 style={{ textDecoration: "none" }}
               >
                 Techub
-              </Link>
+              </a>
             </div>
             <div className="footer__wrapper__item ">
               <h2 className="footer__wrapper__item__text"> Follow Us</h2>

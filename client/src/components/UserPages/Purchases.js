@@ -28,7 +28,7 @@ class Purchases extends React.Component {
     }
     return (
       <React.Fragment>
-        <div>
+        <div style={{color:"#FFF"}}>
           <h2 style={{ textAlign: "center", margin: "10px 0" }}>
             Your Bought Products
           </h2>

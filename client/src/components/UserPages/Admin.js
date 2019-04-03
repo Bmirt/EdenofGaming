@@ -38,7 +38,7 @@ class Admin extends React.Component {
     return (
       <UserContext.Consumer>
         {context => (
-          <div>
+          <div style={{color:"#fff"}}>
             <div className="container bootstrap snippet">
               <div className="row">
                 <div className="col-sm-10">

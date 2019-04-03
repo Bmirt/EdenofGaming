@@ -10,7 +10,7 @@ class IndividualProfile extends React.Component {
       profile: []
     };
   }
-
+  static contextType = userContext;
   componentWillMount() {
     window.scroll(0, 0);
     var config = {
@@ -79,15 +79,11 @@ class IndividualProfile extends React.Component {
                   </ul>
                 </div>
               </div>
-              <a href="/userprofile">
+              <Link to="/userprofile">
                 <div className="col-md-2">
-                  <input
-                    className="profile-edit-btn"
-                    name="btnAddMore"
-                    value="Edit Profile"
-                  />
+                  <span name="btnAddMore" className="profile-edit-btn">Edit Profile</span>
                 </div>
-              </a>
+              </Link>
             </div>
             <div className="row">
               <div className="col-md-4">
@@ -162,7 +158,7 @@ class IndividualProfile extends React.Component {
                         <label className="individ__label">Email</label>
                       </div>
                       <div className="col-md-6">
-                        <p className="individ__p">kshitighelani@gmail.com</p>
+                        <p className="individ__p">{this.context.user.email}</p>
                       </div>
                     </div>
                     <div className="row">

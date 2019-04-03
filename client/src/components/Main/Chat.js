@@ -83,7 +83,7 @@ class Chat extends React.Component {
             <div className="chat__nav__main">
               {this.state.recievedMessages.length > 0 ? (
                 this.state.recievedMessages.map(item => (
-                  <div className="chat__nav__main__wrapper wrapperadmin">
+                  <div className="chat__nav__main__wrapper wrapperadmin" key={item.msg}>
                     <img
                       src={item.image}
                       alt=""

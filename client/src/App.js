@@ -32,12 +32,17 @@ class App extends Component {
 
             <Route exact path="/product/:id" component={ProductDetails} />
             <Route exact path="/products/:id" component={ProductsPage} />
+            
+
             <Route
               exact
-              path="/IndividualProfile"
-              component={IndividualProfile}
+              path="/individualprofile"
+              component={() => (
+                <ProtectedRoute>
+                  <IndividualProfile />
+                </ProtectedRoute>
+              )}
             />
-
             <Route
               exact
               path="/userprofile"

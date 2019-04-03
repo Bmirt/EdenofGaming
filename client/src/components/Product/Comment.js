@@ -245,7 +245,7 @@ export default class Comment extends React.Component {
           >
             <button className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs">
               <i className="fas fa-reply awesome" />
-              Replay
+              Reply
             </button>
             <span className="discription__wrappertop__down__comment--wrapper--result--rate--wrapper--thumbs--text" />
           </div>
