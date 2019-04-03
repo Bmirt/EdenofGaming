@@ -5,6 +5,7 @@ Welcome to Online games e-commerce shop done for Techub DC as a final project
  * We initially wanted to make it social network + e-commerce mix but because of lack of time we couldn't make it happen but backend part of it is done
  * Security - in the picture below you can see that even the admin of the database can't see user's password backend developer has used bcrypt and her salt built generated hashes in order to prevent rainbow attacks from outside as well and the salt can't really be encrypted 
 * <img src="secure.png">
+* Site uses gravatar which means your globally recognized avatar (if you have any) will be set as your default avatar
 * User register validation is secured from back-end
 * User login validation is secured from back-end as well and whenever user logs in he gets a Web-token active for 48hours
 * Protected routes as well public ones
