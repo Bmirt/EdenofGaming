@@ -77,6 +77,9 @@ class UserProfile extends React.Component {
     var styles = {
       opacity: 0
     };
+    var styles2 = {
+      width: "100%"
+    };
     return (
       <UserContext.Consumer>
         {context => (
@@ -324,7 +327,10 @@ class UserProfile extends React.Component {
                                 Upload a different photo... (max 10mb)
                               </h6>
                             </label>
-                            <div className="file btn btn-primary">
+                            <div
+                              style={styles2}
+                              className="file btn btn-primary"
+                            >
                               Upload a photo
                               <input
                                 style={styles}
@@ -346,15 +352,18 @@ class UserProfile extends React.Component {
                             >
                               <i className="glyphicon glyphicon-ok-sign" /> Save
                             </button>
-                            <button
-                              className="btn btn-lg  user-profile__btn"
-                              type="reset"
-                            >
-                              <i className="glyphicon glyphicon-repeat" /> Reset
-                            </button>
                           </div>
                         </div>
                       </form>
+                      <a href="/individualprofile">
+                        <button
+                          style={styles2}
+                          className="btn btn-lg  user-profile__btn"
+                        >
+                          <i className="glyphicon glyphicon-repeat" /> Go to my
+                          Profile
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
