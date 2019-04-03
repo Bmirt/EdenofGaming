@@ -18,6 +18,7 @@ Welcome to Online games e-commerce shop done for Techub DC as a final project
 * to login as admin use "email: admin@admin.com, password: admin123",
 * Admin sees total users and their average age
 * Admin can change any user's name
+* Admin can see user's cart items if there are any
 * Admin can add games and delete them
 * Admin can change game's image/trailer/description/price etc.
 * Admin can reply to user's correspondence or can start one
