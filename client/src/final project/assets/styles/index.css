@@ -2688,6 +2688,60 @@ Label the data
   color: maroon;
 }
 
+.individ__profile-image {
+  width: 40%;
+  height: 89%;
+  margin-left: 16%;
+}
+
+.individ__img-container {
+  vertical-align: middle;
+}
+
+.individ__paneli {
+  width: 70%;
+}
+
+.individ__p {
+  font-weight: 200;
+  color: #e2f0ff;
+  font-size: 16px;
+}
+
+.individ__label {
+  font-weight: 200;
+  color: #84d2de;
+  font-size: 16px;
+}
+
+.individ__name {
+  font-size: 26px;
+  color: #e2ff41;
+}
+
+.individ__member {
+  font-size: 12px;
+  color: #84d2de;
+}
+
+.individ__balance {
+  font-size: 18px;
+  color: #84d2de;
+  margin-bottom: 5%;
+}
+
+.individ__balance--num {
+  color: #e2f0ff;
+}
+
+.individ__container {
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #3a564da1;
+}
+
 .admin__list__group {
   padding-left: 0;
   margin-bottom: 20px;
