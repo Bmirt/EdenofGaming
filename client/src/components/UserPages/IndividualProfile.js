@@ -40,24 +40,21 @@ class IndividualProfile extends React.Component {
     };
     return (
       <React.Fragment>
-        <div className="container emp-profile">
+        <div className="container individ__container">
           <form method="post">
             <div className="row">
               <div className="col-md-4">
-                <div className="profile-img">
-                  <img src={this.state.profile.profileImage} alt="avatar" />
-                  <div className="file btn btn-lg btn-primary">
-                    Change Photo
-                    <input type="file" name="file" />
-                  </div>
+                <div className="individ__img-container">
+                  <img className="individ__profile-image" src={this.state.profile.profileImage} alt="avatar" />
+                  
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="profile-head">
-                  <h5>Kshiti Ghelani</h5>
-                  <h6>Web Developer and Designer</h6>
-                  <p className="proile-rating">
-                    RANKINGS : <span>8/10</span>
+                  <h3 className="individ__name">{this.state.profile.handle}</h3>
+                  <p className="individ__member">Eden Of Gaming member</p>
+                  <p className="individ__balance">
+                    BALANCE : <span className="individ__balance--num">{this.state.profile.balance}</span>
                   </p>
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item">
@@ -89,6 +86,7 @@ class IndividualProfile extends React.Component {
                   </ul>
                 </div>
               </div>
+              <a href="http://localhost:3000/userprofile">
               <div className="col-md-2">
                 <input
                   type="submit"
@@ -97,31 +95,56 @@ class IndividualProfile extends React.Component {
                   value="Edit Profile"
                 />
               </div>
+              </a>
             </div>
             <div className="row">
               <div className="col-md-4">
-                <div className="profile-work">
-                  <p>WORK LINK</p>
-                  <a href="">Website Link</a>
-                  <br />
-                  <a href="">Bootsnipp Profile</a>
-                  <br />
-                  <a href="">Bootply Profile</a>
-                  <p>SKILLS</p>
-                  <a href="">Web Designer</a>
-                  <br />
-                  <a href="">Web Developer</a>
-                  <br />
-                  <a href="">WordPress</a>
-                  <br />
-                  <a href="">WooCommerce</a>
-                  <br />
-                  <a href="">PHP, .Net</a>
-                  <br />
-                </div>
+  
+       
+                  <div className="individ__paneli panel-default">
+                    <div className="panel-heading">Social Media</div>
+                    <div className="panel-body">
+                      <div className="bottom">
+                        <a
+                          className="btn btn-primary btn-twitter btn-sm admin__game__social"
+                          href="https://twitter.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fab fa-twitter awesome twitter" />
+                        </a>
+                        <a
+                          className="btn btn-danger btn-sm admin__game__social"
+                          href="https://youtube.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fab fa-youtube awesome youtube" />
+                        </a>
+                        <a
+                          className="btn btn-primary btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://facebook.com"
+                        >
+                          <i className="fab fa-facebook-f awesome facebook" />
+                        </a>
+                        <a
+                          className="btn btn-warning btn-sm admin__game__social"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://instagram.com"
+                        >
+                          <i className="fab fa-instagram awesome instagram" />
+                        </a>
+                      </div>{" "}
+                    </div>
+                  </div>
+
+
               </div>
               <div className="col-md-8">
-                <div className="tab-content profile-tab" id="myTabContent">
+                <div className="tab-content profile-tabb" id="myTabContent">
                   <div
                     className="tab-pane fade show active"
                     id="home"
@@ -130,42 +153,58 @@ class IndividualProfile extends React.Component {
                   >
                     <div className="row">
                       <div className="col-md-6">
-                        <label>User Id</label>
+                        <label className="individ__label">User Id</label>
                       </div>
                       <div className="col-md-6">
-                        <p>Kshiti123</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Kshiti Ghelani</p>
+                        <p className="individ__p">{this.state.profile._id}</p>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-6">
-                        <label>Email</label>
+                        <label className="individ__label">Name</label>
                       </div>
                       <div className="col-md-6">
-                        <p>kshitighelani@gmail.com</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Phone</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>123 456 7890</p>
+                        <p className="individ__p">{this.state.profile.handle}</p>
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-md-6">
-                        <label>Profession</label>
+                        <label className="individ__label">Email</label>
                       </div>
                       <div className="col-md-6">
-                        <p>Web Developer and Designer</p>
+                        <p className="individ__p">kshitighelani@gmail.com</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label className="individ__label">Phone</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="individ__p">{this.state.profile.phoneNumber}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label className="individ__label">location</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="individ__p">{this.state.profile.location}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label className="individ__label">age</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="individ__p">{this.state.profile.age}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label className="individ__label">bio</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="individ__p">{this.state.profile.bio}</p>
                       </div>
                     </div>
                   </div>
@@ -175,53 +214,7 @@ class IndividualProfile extends React.Component {
                     role="tabpanel"
                     aria-labelledby="profile-tab"
                   >
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Experience</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Expert</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Hourly Rate</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>10$/hr</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Total Projects</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>230</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>English Level</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Expert</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Availability</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>6 months</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <label>Your Bio</label>
-                        <br />
-                        <p>Your detail description</p>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
