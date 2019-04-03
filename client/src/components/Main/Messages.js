@@ -7,14 +7,7 @@ class Messages extends React.Component {
   constructor() {
     super();
     this.state = {
-      handle: "",
-      age: "",
-      location: "",
-      phoneNumber: "",
-      bio: "",
-      balance: "",
-      profileImage: "",
-      errors: {}
+      isLoaded: true
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -46,18 +39,9 @@ class Messages extends React.Component {
         Authorization: jwt
       }
     };
-    const newProfile = {
-      handle: this.state.handle,
-      age: this.state.age,
-      location: this.state.location,
-      phoneNumber: this.state.phoneNumber,
-      bio: this.state.bio,
-      balance: this.state.balance,
-      profileImage: this.state.profileImage
-    };
 
     axios
-      .post("/api/profile", newProfile, config)
+      .post("/api/profile", config)
       .then(res => {
         // this.context.message("You have changed profile succesfully");
         // this.props.history.replace("/");

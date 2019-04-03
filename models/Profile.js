@@ -9,12 +9,10 @@ const ProfileSchema = new Schema({
   },
   handle: {
     type: String,
-    required: true,
     max: 40
   },
   age: {
-    type: Number,
-    required: true
+    type: Number
   },
   profileImage: {
     type: String
@@ -26,12 +24,10 @@ const ProfileSchema = new Schema({
     type: String
   },
   phoneNumber: {
-    type: String,
-    required: true
+    type: String
   },
   bio: {
-    type: String,
-    required: true
+    type: String
   },
   cart: [],
   purchases: [],
