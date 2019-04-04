@@ -84,9 +84,9 @@ class UpdateUserName extends React.Component {
                                   type="text"
                                   name="name"
                                   id="game_name"
-                                  placeholder="game id"
+                                  placeholder="new name"
                                   className="form-control user-profile__input "
-                                  title="enter game id"
+                                  title="enter new name"
                                   value={this.state.name}
                                   onChange={this.onChange}
                                 />

@@ -66,8 +66,8 @@ class ReplyMessage
                                   className="form-control user-profile__input"
                                   name="value"
                                   id="value"
-                                  placeholder="value"
-                                  title="value"
+                                  placeholder="user id"
+                                  title="enter user id"
                                   value={this.state.value}
                                   onChange={this.onChange}
                                 />
@@ -85,9 +85,9 @@ class ReplyMessage
                                   type="text"
                                   name="name"
                                   id="game_name"
-                                  placeholder="game id"
+                                  placeholder="message"
                                   className="form-control user-profile__input "
-                                  title="enter game id"
+                                  title="enter message here"
                                   value={this.state.name}
                                   onChange={this.onChange}
                                 />
