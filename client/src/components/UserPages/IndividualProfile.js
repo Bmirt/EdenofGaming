@@ -39,15 +39,16 @@ class IndividualProfile extends React.Component {
       left: 0
     };
     return (
-      <React.Fragment>
-        <div className="container individ__container">
+      <userContext.Consumer>
+      {/* <React.Fragment> */}
+        {context => (<div className="container individ__container">
           <form method="post">
             <div className="row">
               <div className="col-md-4">
                 <div className="individ__img-container">
                   <img
                     className="individ__profile-image"
-                    src={this.state.profile.profileImage}
+                    src={this.state.profile.profileImage ? this.state.profile.profileImage : context.user.avatar}
                     alt="avatar"
                   />
                 </div>
@@ -72,8 +73,9 @@ class IndividualProfile extends React.Component {
                         role="tab"
                         aria-controls="home"
                         aria-selected="true"
+                        aria-expanded="true"
                       >
-                        About
+                        Show More
                       </a>
                     </li>
                   </ul>
@@ -253,7 +255,9 @@ class IndividualProfile extends React.Component {
             </div>
           </form>
         </div>
-      </React.Fragment>
+        )}
+      {/* </React.Fragment> */}
+      </userContext.Consumer>
     );
   }
 }
