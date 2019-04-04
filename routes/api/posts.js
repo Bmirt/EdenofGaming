@@ -45,11 +45,35 @@ router.post(
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
 
-    // Check Validation
+    
+
+    // Profile.findOne({user: req.user.id})
+    //     .then(profile => {
+    //       console.log('THIS IS PROFILE PURCHASES', profile.purchases)
+    //       if(profile.purchases) {
+           
+    //         function isPurchased(purchase) {
+    //           console.log(purchase)
+              
+    //           return purchase.filter(item => item.item == req.params.product_id)
+    //         }
+    //         var filtered2 = profile.purchases.filter(isPurchased)
+            
+    //         if (filtered2.length == 0) {
+    //           console.log('WHAT IN THE GODS HOLY NAME IS HAPPENING', filtered2.length)
+    //           return res.status(400).json({notpurchased: "You haven't purchased this item"})
+    //         }
+    //       }
+         
+          
+    //     })
+
+        // Check Validation
     if (!isValid) {
       // if any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
+
 
     Product.findById(req.params.product_id)
       .then(product => {
@@ -73,6 +97,8 @@ router.post(
         //   return res.json(newPost);
         // }
         // console.log(reviews);
+        
+        
 
         function isReviewed(review) {
           return review.user.toString() === req.user.id.toString();
