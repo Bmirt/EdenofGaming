@@ -1805,7 +1805,8 @@ Label the data
       -ms-flex-pack: center;
           justify-content: center;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
+  background-position: fixed;
   position: relative;
   background-repeat: no-repeat;
 }

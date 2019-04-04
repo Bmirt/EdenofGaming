@@ -5,7 +5,8 @@
     display: flex;
     justify-content:center;
     background-position: center;
-    background-size: 100%;
+    background-size: cover; 
+    background-position:fixed; 
     position: relative;  
     background-repeat:no-repeat;
     &::after{
@@ -14,6 +15,7 @@
         height: 100%;
         position: absolute;
         background-color: #1e1e1ee8;
+        
     }   
      &__wrappertop{
         width: 1280px;
@@ -545,6 +547,7 @@
          }
     }    
 }
+
 @media(max-width:800px){
     .discription{
          background-image: none!important;
