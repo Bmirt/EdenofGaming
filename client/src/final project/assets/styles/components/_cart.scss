@@ -2,30 +2,6 @@ td{
     border:4px solid #202020e6 ;
 }
 
-tbody>tr:last-of-type{
-    background-color: #222;
-}
-tbody>tr:last-of-type>td:nth-of-type(2){
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 3rem;
-    color: #ce4747; 
-    text-align: end;
-    border-right:none;
-}
-tbody>tr:last-of-type>td:nth-of-type(3){
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 3rem;
-    color: #ce4747;
-    text-align: start;
-    border-left:none;
-}
-tbody>tr:last-of-type>td:nth-of-type(4)>button{   
-    background-color: #8a1d1d; 
-    margin-bottom: 0.4em;
-    
-}
 
 .cart{   
     margin: 0 auto;
@@ -117,39 +93,41 @@ tbody>tr:last-of-type>td:nth-of-type(4)>button{
 }
 
 .cart__wrapper__content__inside.totalprice{
-    border:none;
+   
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 3rem;
-    color: #ce4747;
+    font-size: 2.8rem;
+    color: #fff;
     text-align: end;
     background-color: #20201e;
+    	
 }
- .cart__wrapper__content__inside.totalprice.second{
-     text-align: start;
-   
-    
+ .cart__wrapper__content__inside.totalprice.third{
+     text-align:start; 
  }
+ .buy__wrapper{
+     background-color: #20201e;
+ }
+ .cart__wrapper__content__inside--delete.buy{
+     background-color: #e0e8ee;
+   
+ }
+
 @media(max-width: 1024px){
 table, thead, tbody, th, td, tr { 
     display: block; 
 }
-tbody>tr:last-of-type>td:nth-of-type(2){  
-    text-align: center;
-    border:none;
-    font-size: 2.3rem;
+.buy__wrapper{
+    background-color: #0c0909;
+    border: none;
+  
 }
-tbody>tr:last-of-type>td:nth-of-type(3){   
-    text-align: center; 
-    border:none; 
-    font-size: 2.3rem; 
+.cart__wrapper__content__inside.totalprice{
+     border:none;   	
 }
-tbody>tr:last-of-type>td:nth-of-type(4){  
-    border:none;  
+.cart__wrapper__content__inside.totalprice.third{
+    text-align: center;  	
 }
-tbody>tr:last-of-type>td:nth-of-type(1):before{content:""};
-tbody>tr:last-of-type>td:nth-of-type(2):before{content:""};   
-tbody>tr:last-of-type>td:nth-of-type(3):before{content:""};   
 
 .cart {
     width: 100%;
@@ -158,9 +136,7 @@ tbody>tr:last-of-type>td:nth-of-type(3):before{content:""};
     height: 0;
     }
 }
-.cart__wrapper__content:nth-child(n+2){
-    margin-top:4.6em;
-}
+
 /* Hide table headers (but not display: none;, for accessibility) */
 thead tr { 
     position: absolute;

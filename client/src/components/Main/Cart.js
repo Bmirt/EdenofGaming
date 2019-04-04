@@ -29,21 +29,21 @@ class Cart extends React.Component {
                     <CartItem key={item.item} item={item} />
                   ))}
                   <tr>
-                  <td className="cart__wrapper__content__inside price">
+                  <td className="cart__wrapper__content__inside totalprice">
                      
                     </td>
-                    <td className="cart__wrapper__content__inside price">
-                      Total Price:
+                    <td className="cart__wrapper__content__inside totalprice ">
+                      Total Price :
                     </td>
                     
                     <td
-                      className="cart__wrapper__content__inside price"
+                      className="cart__wrapper__content__inside totalprice third"
                       //  colSpan="2"
                     >
                       {context.getCartTotal().toFixed(2)}$
                     </td>
-                    <td colSpan="2" style={{ textAlign: "center" }}>
-                      <button onClick={context.purchase} className="cart__wrapper__content__inside--delete">
+                    <td  style={{ textAlign: "center" }} className="buy__wrapper">
+                      <button onClick={context.purchase} className="cart__wrapper__content__inside--delete buy">
                         Buy
                       </button>
                     </td>
