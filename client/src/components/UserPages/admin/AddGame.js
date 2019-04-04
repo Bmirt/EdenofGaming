@@ -36,7 +36,7 @@ class AddGames extends React.Component {
             image2: this.state.image2,
             genre: this.state.genre,
             trailer: this.state.trailer,
-            reliase: this.state.reliase,
+            release: this.state.reliase,
             platforms: this.state.platforms,
             price: this.state.price,
             cdkey: this.state.cdkey,
@@ -172,7 +172,7 @@ class AddGames extends React.Component {
                               <div className="col-xs-6">
                                 <label htmlFor="reliase">
                                   <h4 className="user-profile__input-title">
-                                    reliase
+                                    release
                                   </h4>
                                 </label>
                                 <input
@@ -180,8 +180,8 @@ class AddGames extends React.Component {
                                   className="form-control user-profile__input"
                                   name="reliase"
                                   id="reliase"
-                                  placeholder="game reliase"
-                                  title="reliase"
+                                  placeholder="release date"
+                                  title="release"
                                   value={this.state.reliase}
                                   onChange={this.onChange}
                                 />
