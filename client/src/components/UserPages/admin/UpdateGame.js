@@ -123,7 +123,7 @@ class UpdateGame extends React.Component {
                                   className="btn btn-lg btn-success admin__game__button user-profile__btn__color"
                                   type="submit"
                                 >
-                                  <i className="glyphicon glyphicon-ok-sign" /> add game
+                                  <i className="glyphicon glyphicon-ok-sign" /> update game
                                 </button>
                                 
                               </div>
