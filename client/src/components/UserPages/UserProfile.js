@@ -14,7 +14,8 @@ class UserProfile extends React.Component {
       bio: "",
       balance: "",
       profileImage: "",
-      errors: {}
+      errors: {},
+      profile: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,6 +33,21 @@ class UserProfile extends React.Component {
         profileImage: e.target.result
       });
     };
+  }
+
+  componentDidMount() {
+    window.scroll(0, 0);
+    const jwt = Auth.getJWT();
+    var config = {
+      headers: {
+        Authorization: jwt
+      }
+    };
+    axios.get("http://localhost:5000/api/profile", config).then(res => {
+      this.setState({
+        profile: res.data.profileImage
+      });
+    });
   }
 
   onChange(e) {
@@ -61,9 +77,10 @@ class UserProfile extends React.Component {
       // this.props.history.replace("/");
       axios.get("/api/profile", config).then(res => {
         // let user = Auth.getCurrentUser();
-        this.context.updateUserAvatar(res.data.profileImage);
+        // this.context.updateUserAvatar(res.data.profileImage);
         console.log(res.data);
-        this.context.message("Update Succesful")
+        this.context.message("Update Succesful");
+        window.location = "/individualprofile";
         // console.log("current user", this.context.user);
         // console.log("res data", res.data);
       });
@@ -95,7 +112,11 @@ class UserProfile extends React.Component {
                 <div className="col-sm-3">
                   <div className="text-center">
                     <img
-                      src={context.user.avatar}
+                      src={
+                        this.state.profile
+                          ? this.state.profile
+                          : context.user.avatar
+                      }
                       className="avatar img-circle img-thumbnail"
                       alt="avatar"
                     />

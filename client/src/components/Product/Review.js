@@ -13,7 +13,8 @@ export default class Review extends React.Component {
       review: "",
       reviews: [],
       hasReviews: false,
-      errors: {}
+      errors: {},
+      profileImage: ""
     };
   }
   static contextType = userContext;
@@ -25,6 +26,19 @@ export default class Review extends React.Component {
     });
   };
   componentDidMount() {
+    const jwt = Auth.getJWT();
+    var config = {
+      headers: {
+        Authorization: jwt
+      }
+    };
+
+    axios.get("http://localhost:5000/api/profile", config).then(res => {
+      this.setState({
+        profileImage: res.data.profileImage
+      });
+    });
+
     axios.get(`/api/posts/${this.state.productID}`).then(res => {
       if (res.data.length > 0)
         this.setState({ reviews: res.data.reverse(), hasReviews: true });
@@ -86,9 +100,9 @@ export default class Review extends React.Component {
                 <div className="discription__wrappertop__down__comment--wrapper--inside--profile">
                   <img
                     src={
-                      context.user
-                        ? context.user.avatar
-                        : "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
+                      this.state.profileImage
+                        ? this.state.profileImage
+                        : context.user.avatar
                     }
                     alt=""
                     className="discription__wrappertop__down__comment--wrapper--inside--profile--image"

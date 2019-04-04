@@ -211,7 +211,12 @@ class ProductDetails extends React.Component {
     };
     console.log("this is carting", carting);
     let carting2 = () => {
-      alert("You have to setup a profile in order to add items to cart");
+      this.context.message(
+        "You have to setup a profile in order to add items to cart"
+      );
+      setTimeout(() => {
+        window.location = "/userprofile";
+      }, 3000);
     };
     const { product } = this.state;
     if (!this.state.isLoaded) {
