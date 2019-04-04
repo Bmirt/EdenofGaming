@@ -41,7 +41,7 @@ class AdminMessage extends React.Component {
               </thead>
               <tbody>
                 {this.state.message.map(item => (
-                  <tr key={item._id} className="user__cdkey__table--tr">
+                  <tr key={item.msg} className="user__cdkey__table--tr">
                     <td className="user__cdkey__table--td">
                       <img
                         src={item.image}
