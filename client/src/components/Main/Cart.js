@@ -29,12 +29,16 @@ class Cart extends React.Component {
                     <CartItem key={item.item} item={item} />
                   ))}
                   <tr>
-                    <td className="cart__wrapper__content__inside price">
-                      Total Price
+                  <td className="cart__wrapper__content__inside price">
+                     
                     </td>
+                    <td className="cart__wrapper__content__inside price">
+                      Total Price:
+                    </td>
+                    
                     <td
                       className="cart__wrapper__content__inside price"
-                      colSpan="3"
+                      //  colSpan="2"
                     >
                       {context.getCartTotal().toFixed(2)}$
                     </td>
