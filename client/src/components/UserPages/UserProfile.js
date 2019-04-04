@@ -356,6 +356,7 @@ class UserProfile extends React.Component {
                                 style={styles}
                                 type="file"
                                 name="profileImage"
+                                accept="image/x-png,image/gif,image/jpeg"
                                 // value={this.state.profileImage}
                                 onChange={this.onPicture}
                               />
