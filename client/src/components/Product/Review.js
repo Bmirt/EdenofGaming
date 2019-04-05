@@ -102,7 +102,7 @@ export default class Review extends React.Component {
                     src={
                       this.state.profileImage
                         ? this.state.profileImage
-                        : context.user.avatar
+                        : "http://www.gravatar.com/avatar/795b9e490f1f0afc2a45e138a2239e6a?s=200&r=pg&d=mm"
                     }
                     alt=""
                     className="discription__wrappertop__down__comment--wrapper--inside--profile--image"
