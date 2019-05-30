@@ -17,7 +17,7 @@ class UserPanel extends React.Component {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .get(`http://localhost:5000/api/profile/all`, config)
+      .get(`/api/profile/all`, config)
       .then(res => {
         this.setState({
           userList: res.data
@@ -38,7 +38,9 @@ class UserPanel extends React.Component {
                   <th className="admin__dash__users__table--th">user</th>
                   <th className="admin__dash__users__table--th">balance</th>
                   <th className="admin__dash__users__table--th">location</th>
-                  <th className="admin__dash__users__table--th">hover to show</th>
+                  <th className="admin__dash__users__table--th">
+                    hover to show
+                  </th>
 
                   <th className="admin__dash__users__table--th">
                     phone number
@@ -79,29 +81,32 @@ class UserPanel extends React.Component {
                       <span className="admin__dash__users__table--span hover__span__cart">
                         user cart
                       </span>
-                      <div className="cartShow">{item.cart.map(i => <tr
-                              key={i.name}
-                              className="admin__dash__users__table--tr"
+                      <div className="cartShow">
+                        {item.cart.map(i => (
+                          <tr
+                            key={i.name}
+                            className="admin__dash__users__table--tr"
                           >
-                              <td className="admin__dash__users__table--td">
+                            <td className="admin__dash__users__table--td">
                               <img
-                                  src={i.image}
-                                  alt="avatar"
-                                  className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
+                                src={i.image}
+                                alt="avatar"
+                                className="discription__wrappertop__down__comment--wrapper--result--replay--profile--image"
                               />
                               <span className="admin__dash__users__table--span">
-                                  {" "}
-                                  {i.name}
+                                {" "}
+                                {i.name}
                               </span>
-                              </td> 
-                              <td className="admin__dash__users__table--td">
+                            </td>
+                            <td className="admin__dash__users__table--td">
                               <span className="admin__dash__users__table--span">
                                 {i.price}
                               </span>
                             </td>
-                      </tr>)}
-                         </div>
-                      </td>
+                          </tr>
+                        ))}
+                      </div>
+                    </td>
                     <td className="admin__dash__users__table--td">
                       <span className="admin__dash__users__table--span">
                         {item.phoneNumber}

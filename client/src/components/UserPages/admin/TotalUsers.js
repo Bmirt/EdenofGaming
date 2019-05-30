@@ -13,38 +13,38 @@ class TotalUsers extends React.Component {
 
   componentDidMount() {
     window.scroll(0, 0);
-     var config = {
+    var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .get(`http://localhost:5000/api/profile/all`, config)
+      .get(`/api/profile/all`, config)
       .then(res => {
         this.setState({
-          total: res.data.filter((item) => item._id)
+          total: res.data.filter(item => item._id)
         });
       })
 
       .catch(err => this.setState({ isLoaded: true }));
   }
 
-  some() {
-    
-  }
-
+  some() {}
 
   render() {
     return (
       <div>
-      <a href="#users"  data-toggle="tab" className="user-profile__link">
-        <div className="admin__dash__info admin__dash__info--total">
-         
+        <a href="#users" data-toggle="tab" className="user-profile__link">
+          <div className="admin__dash__info admin__dash__info--total">
             <p className="admin__dash__info--total--p">total users:</p>
             <div className="admin__dash__info--total--div">
-               <i className="fas fa-chart-bar admin__dash__info--total--awesome"></i>
-               <p className="admin__dash__info--total--span"> {this.state.total.length}</p>
-             </div>
-        </div></a>
-  </div>
+              <i className="fas fa-chart-bar admin__dash__info--total--awesome" />
+              <p className="admin__dash__info--total--span">
+                {" "}
+                {this.state.total.length}
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     );
   }
 }

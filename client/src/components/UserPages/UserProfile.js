@@ -43,7 +43,7 @@ class UserProfile extends React.Component {
         Authorization: jwt
       }
     };
-    axios.get("http://localhost:5000/api/profile", config).then(res => {
+    axios.get("/api/profile", config).then(res => {
       this.setState({
         profile: res.data.profileImage
       });

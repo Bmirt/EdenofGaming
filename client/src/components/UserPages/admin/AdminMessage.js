@@ -15,7 +15,7 @@ class AdminMessage extends React.Component {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .get(`http://localhost:5000/api/profile/privatemessage`, config)
+      .get(`/api/profile/privatemessage`, config)
       .then(res => {
         this.setState({
           message: res.data
@@ -36,7 +36,6 @@ class AdminMessage extends React.Component {
                   <th className="user__cdkey__table--th">User name</th>
                   <th className="user__cdkey__table--th">message</th>
                   <th className="user__cdkey__table--th">id</th>
-
                 </tr>
               </thead>
               <tbody>

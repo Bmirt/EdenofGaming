@@ -13,11 +13,11 @@ class Avarage extends React.Component {
 
   componentDidMount() {
     window.scroll(0, 0);
-     var config = {
+    var config = {
       headers: { Authorization: localStorage.getItem("token") }
     };
     axios
-      .get(`http://localhost:5000/api/profile/all`, config)
+      .get(`/api/profile/all`, config)
       .then(res => {
         this.setState({
           age: res.data.map(item => item.age)
@@ -27,29 +27,28 @@ class Avarage extends React.Component {
       .catch(err => this.setState({ isLoaded: true }));
   }
 
-
   mean(numbers) {
     var total = 0,
-        i;
+      i;
     for (i = 0; i < numbers.length; i += 1) {
-        total += numbers[i];
+      total += numbers[i];
     }
     return total / numbers.length;
-}
+  }
 
   render() {
-   
     return (
-      <div >
+      <div>
         <div className="admin__dash__info admin__dash__info--age">
-         
-            <p className="admin__dash__info--age--p">users avarage age:</p>
-            <div className="admin__dash__info--age--div">
-                <i className="fas fa-chart-bar admin__dash__info--age--awesome"></i>
-                <p className="admin__dash__info--age--span">{Math.round(this.mean(this.state.age))}</p>
-             </div>
+          <p className="admin__dash__info--age--p">users avarage age:</p>
+          <div className="admin__dash__info--age--div">
+            <i className="fas fa-chart-bar admin__dash__info--age--awesome" />
+            <p className="admin__dash__info--age--span">
+              {Math.round(this.mean(this.state.age))}
+            </p>
+          </div>
         </div>
-  </div>
+      </div>
     );
   }
 }
