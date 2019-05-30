@@ -10,7 +10,7 @@ class CartIcon extends React.Component {
         {context => (
           <div className="header__top__wrapper--user--basket">
             <img
-              src="https://es.toppng.com/public/uploads/preview/shopping-cart-11530997198v4d0ouzc1u.png"
+              src="https://cdn4.iconfinder.com/data/icons/shopping-in-color/64/shopping-in-color-05-512.png"
               className="header__top__wrapper--user--basket--image"
               alt="Cart"
             />

@@ -28,7 +28,7 @@ class ProductDetails extends React.Component {
       }
     };
     axios
-      .get(`http://localhost:5000/api/products/${this.props.match.params.id}`)
+      .get(`/api/products/${this.props.match.params.id}`)
       .then(res => {
         this.setState({
           product: res.data,
@@ -37,7 +37,7 @@ class ProductDetails extends React.Component {
       })
       .catch(err => this.setState({ isLoaded: true }));
     axios
-      .get("http://localhost:5000/api/profile", config)
+      .get("/api/profile", config)
       .then(res => {
         this.setState({
           profile: res.data

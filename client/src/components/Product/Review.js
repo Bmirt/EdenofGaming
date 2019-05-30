@@ -33,7 +33,7 @@ export default class Review extends React.Component {
       }
     };
 
-    axios.get("http://localhost:5000/api/profile", config).then(res => {
+    axios.get("/api/profile", config).then(res => {
       this.setState({
         profileImage: res.data.profileImage
       });
