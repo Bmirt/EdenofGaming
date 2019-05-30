@@ -8,11 +8,12 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+    
   },
   "engines": {
-        "node": "8.9.2"
+        "node": "v10.15.3"
    },
   "author": "Boris Mirtskhulava",
   "license": "MIT",
