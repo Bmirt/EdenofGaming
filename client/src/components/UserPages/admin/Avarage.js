@@ -7,31 +7,34 @@ class Avarage extends React.Component {
     this.state = {
       age: [],
       balance: "",
-      errors: {}
+      errors: {},
     };
   }
 
   componentDidMount() {
     window.scroll(0, 0);
     var config = {
-      headers: { Authorization: localStorage.getItem("token") }
+      headers: { Authorization: localStorage.getItem("token") },
     };
     axios
       .get(`/api/profile/all`, config)
-      .then(res => {
+      .then((res) => {
         this.setState({
-          age: res.data.map(item => item.age)
+          age: res.data.map((item) => item.age),
         });
       })
 
-      .catch(err => this.setState({ isLoaded: true }));
+      .catch((err) => this.setState({ isLoaded: true }));
   }
 
   mean(numbers) {
+    console.log(numbers);
     var total = 0,
       i;
     for (i = 0; i < numbers.length; i += 1) {
-      total += numbers[i];
+      if (typeof numbers[i] === "number") {
+        total += numbers[i];
+      }
     }
     return total / numbers.length;
   }

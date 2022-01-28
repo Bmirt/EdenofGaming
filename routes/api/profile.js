@@ -6,12 +6,12 @@ const multer = require("multer");
 const fs = require("fs");
 const onHeaders = require("on-headers");
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "./uploads/");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
-  }
+  },
 });
 
 const fileFilter = (req, file, cb) => {
@@ -29,9 +29,9 @@ const upload = multer({
   storage: storage,
   limits: {
     // Max filesize is 10mbs
-    fileSize: 1024 * 1024 * 10
+    fileSize: 1024 * 1024 * 10,
   },
-  fileFilter: fileFilter
+  fileFilter: fileFilter,
 });
 // load validation
 const validateProfileInput = require("../../validation/profile");
@@ -51,7 +51,7 @@ const Product = require("../../models/product");
 
 router.get("/test", (req, res) =>
   res.json({
-    msg: "Profile Works"
+    msg: "Profile Works",
   })
 );
 
@@ -84,11 +84,8 @@ router.post(
       var imageBuffer = decodeBase64Image(req.body.profileImage);
       var imageName = "./uploads/" + Date.now() + req.user.name + ".jpg";
       console.log("this is imagename", imageName);
-      fs.writeFileSync(imageName, imageBuffer.data, function(err) {});
-      var toBeSaved = imageName
-        .split(".")
-        .slice(1)
-        .join(".");
+      fs.writeFileSync(imageName, imageBuffer.data, function (err) {});
+      var toBeSaved = imageName.split(".").slice(1).join(".");
       profileFields.profileImage = toBeSaved;
     }
     //Get fields
@@ -119,7 +116,7 @@ router.post(
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
     //Update user avatar
-    User.findOne({ _id: req.user.id }).then(user => {
+    User.findOne({ _id: req.user.id }).then((user) => {
       if (profileFields.profileImage) {
         User.findOneAndUpdate(
           { _id: req.user.id },
@@ -132,26 +129,28 @@ router.post(
       }
     });
 
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
       if (profile) {
         //Update
         Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }
-        ).then(profile => res.json(profile));
+        ).then((profile) => res.json(profile));
       } else {
         // create
 
         // check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then(profile => {
+        Profile.findOne({ handle: profileFields.handle }).then((profile) => {
           // if (profile) {
           //   errors.handle = "That handle already exists";
           //   res.status(400).json(errors);
           // }
 
           // Save Profile
-          new Profile(profileFields).save().then(profile => res.json(profile));
+          new Profile(profileFields)
+            .save()
+            .then((profile) => res.json(profile));
         });
       }
     });
@@ -165,7 +164,7 @@ router.get("/all", (req, res) => {
   const errors = {};
   Profile.find()
     .populate("user", ["name", "avatar"])
-    .then(profiles => {
+    .then((profiles) => {
       if (!profiles) {
         errors.noprofile = "there are no profiles";
         return res.status(404).json(errors);
@@ -173,7 +172,7 @@ router.get("/all", (req, res) => {
 
       res.json(profiles);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(404).json({ profile: "there are no profiles" });
     });
 });
@@ -186,7 +185,7 @@ router.get("/handle/:handle", (req, res) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
-    .then(profile => {
+    .then((profile) => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";
         res.status(404).json(errors);
@@ -194,7 +193,7 @@ router.get("/handle/:handle", (req, res) => {
 
       res.json(profile);
     })
-    .catch(err => res.status(404).json(err));
+    .catch((err) => res.status(404).json(err));
 });
 
 // @route  GET api/profile/user/:user_id
@@ -205,7 +204,7 @@ router.get("/user/:user_id", (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })
     .populate("user", ["name", "avatar"])
-    .then(profile => {
+    .then((profile) => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";
         res.status(404).json(errors);
@@ -213,7 +212,7 @@ router.get("/user/:user_id", (req, res) => {
 
       res.json(profile);
     })
-    .catch(err =>
+    .catch((err) =>
       res.status(404).json({ profile: "There is no profile for this user" })
     );
 });
@@ -228,14 +227,14 @@ router.get(
     const errors = {};
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
-      .then(profile => {
+      .then((profile) => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
           return res.status(404).json(errors);
         }
         res.json(profile);
       })
-      .catch(err => res.status(404).json(err));
+      .catch((err) => res.status(404).json(err));
   }
 );
 
@@ -253,7 +252,7 @@ router.post(
       //return any errors with 400 status
       return res.status(400).json(errors);
     }
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
       const newExp = {
         title: req.body.title,
         company: req.body.company,
@@ -261,12 +260,12 @@ router.post(
         from: req.body.from,
         to: req.body.to,
         current: req.body.current,
-        description: req.body.description
+        description: req.body.description,
       };
 
       //Add to exp array
       profile.experience.unshift(newExp);
-      profile.save().then(profile => res.json(profile));
+      profile.save().then((profile) => res.json(profile));
     });
   }
 );
@@ -285,7 +284,7 @@ router.post(
       //return any errors with 400 status
       return res.status(400).json(errors);
     }
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
       const newEdu = {
         school: req.body.school,
         degree: req.body.degree,
@@ -293,12 +292,12 @@ router.post(
         from: req.body.from,
         to: req.body.to,
         current: req.body.current,
-        description: req.body.description
+        description: req.body.description,
       };
 
       //Add to exp array
       profile.education.unshift(newEdu);
-      profile.save().then(profile => res.json(profile));
+      profile.save().then((profile) => res.json(profile));
     });
   }
 );
@@ -311,10 +310,10 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
+      .then((profile) => {
         //Get remove index
         const removeIndex = profile.experience
-          .map(item => item.id)
+          .map((item) => item.id)
           .indexOf(req.params.exp_id);
 
         // Splice out of array
@@ -325,9 +324,9 @@ router.delete(
         }
 
         //save
-        profile.save().then(profile => res.json(profile));
+        profile.save().then((profile) => res.json(profile));
       })
-      .catch(err => res.status(404).json(err));
+      .catch((err) => res.status(404).json(err));
   }
 );
 
@@ -339,10 +338,10 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
+      .then((profile) => {
         //Get remove index
         const removeIndex = profile.education
-          .map(item => item.id)
+          .map((item) => item.id)
           .indexOf(req.params.edu_id);
 
         // Splice out of array
@@ -352,9 +351,9 @@ router.delete(
           return res.status(404).json({ error: "Education not found" });
         }
         //save
-        profile.save().then(profile => res.json(profile));
+        profile.save().then((profile) => res.json(profile));
       })
-      .catch(err => res.status(404).json(err));
+      .catch((err) => res.status(404).json(err));
   }
 );
 
@@ -382,8 +381,8 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        Product.findById(req.params.product_id).then(product => {
+      .then((profile) => {
+        Product.findById(req.params.product_id).then((product) => {
           const newItem = {
             item: req.params.product_id,
             price: product.price,
@@ -391,14 +390,14 @@ router.post(
             name: product.name,
             publisher: product.developer,
             platform: product.platforms,
-            cdkey: product.cdkey
+            cdkey: product.cdkey,
           };
           //Add to exp array
           profile.cart.unshift(newItem);
-          profile.save().then(profile => res.json(profile));
+          profile.save().then((profile) => res.json(profile));
         });
       })
-      .catch(err =>
+      .catch((err) =>
         res
           .status(404)
           .json({ profilenotfound: "please set up user profile first" })
@@ -414,8 +413,8 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        Product.findById(req.params.product_id).then(product => {
+      .then((profile) => {
+        Product.findById(req.params.product_id).then((product) => {
           var ourProduct;
           for (var i = 0; i < profile.cart.length; i++) {
             if (profile.cart[i].item === req.params.product_id) {
@@ -430,10 +429,10 @@ router.delete(
             return res.status(404).json({ error: "cart item not found" });
           }
           //save
-          profile.save().then(profile => res.json(profile));
+          profile.save().then((profile) => res.json(profile));
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.stack);
         res.status(404).json(err);
       });
@@ -447,8 +446,11 @@ router.get(
   "/products",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Product.findById(req.params.product_id).then(product => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
+      if (!profile) {
+        return;
+      }
+      Product.findById(req.params.product_id).then((product) => {
         return res.json(profile.cart);
       });
     });
@@ -462,23 +464,23 @@ router.post(
   "/customersupport",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    User.findOne({ _id: req.user.id }).then(profile => {
-      User.findOne({ isAdmin: true }).then(user => {
+    User.findOne({ _id: req.user.id }).then((profile) => {
+      User.findOne({ isAdmin: true }).then((user) => {
         const newMessage = {
           user: req.user.id,
           name: req.user.name,
           image: req.user.avatar,
-          msg: req.body.msg
+          msg: req.body.msg,
         };
 
         if (newMessage.msg.length < 5) {
           return res.status(400).json({
-            messageisrequired: "message should be at least 5 letters long"
+            messageisrequired: "message should be at least 5 letters long",
           });
         }
         //Add to inbox array
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(newMessage));
+        user.save().then((user) => res.json(newMessage));
       });
     });
   }
@@ -492,28 +494,28 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log("hello");
-    User.findOne({ _id: req.user.id }).then(profile => {
-      User.findOne({ _id: req.params.user_id }).then(user => {
+    User.findOne({ _id: req.user.id }).then((profile) => {
+      User.findOne({ _id: req.params.user_id }).then((user) => {
         if (req.user.id === req.params.user_id) {
           return res.status(400).json({
-            messageerror: "You can't message yourself"
+            messageerror: "You can't message yourself",
           });
         }
         const newMessage = {
           user: req.user.id,
           name: req.user.name,
           image: req.user.avatar,
-          msg: req.body.msg
+          msg: req.body.msg,
         };
         console.log;
         //Add to inbox array
         if (newMessage.msg.length < 5) {
           return res.status(400).json({
-            messageisrequired: "message should be at least 5 letters long"
+            messageisrequired: "message should be at least 5 letters long",
           });
         }
         user.inbox.unshift(newMessage);
-        user.save().then(user => res.json(newMessage));
+        user.save().then((user) => res.json(newMessage));
       });
     });
   }
@@ -526,7 +528,7 @@ router.get(
   "/privatemessage",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    User.findOne({ _id: req.user.id }).then(user => {
+    User.findOne({ _id: req.user.id }).then((user) => {
       if (user.inbox.length > 0) {
         res.status(200).json(user.inbox);
       } else {
@@ -548,11 +550,11 @@ router.post(
     if (req.body.name.length < 4) {
       res.json({ nameerror: "new name must be at least 4 characters long" });
     }
-    User.findOne({ _id: req.user.id }).then(user => {
+    User.findOne({ _id: req.user.id }).then((user) => {
       if (user.isAdmin === true) {
-        User.findOne({ _id: req.params.user_id }).then(user2 => {
+        User.findOne({ _id: req.params.user_id }).then((user2) => {
           user2.name = req.body.name;
-          user2.save().then(user => res.json(user));
+          user2.save().then((user) => res.json(user));
         });
       } else {
         return res.status(404).json({ notadmin: "user is not admin" });
@@ -568,17 +570,17 @@ router.post(
   "/purchases",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
       if (profile.cart.length > 0) {
         let newPurchases = [];
-        profile.cart.map(product => {
+        profile.cart.map((product) => {
           let removeIndex = 0;
           newPurchases.unshift(product);
           removeIndex++;
         });
         profile.cart = [];
         profile.purchases.unshift(newPurchases);
-        profile.save().then(profile => res.json(profile));
+        profile.save().then((profile) => res.json(profile));
       } else {
         return res
           .status(404)
@@ -595,7 +597,7 @@ router.get(
   "/purchases",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
       if (profile.purchases.length > 0) {
         return res.status(200).json(profile.purchases);
       } else {

@@ -20,17 +20,6 @@ class Footer extends React.Component {
                 Location
               </Link>
             </div>
-            <div className="footer__wrapper__item  middle">
-              Special Thanks To{" "}
-              <a
-                href="http://techub.ge/"
-                target="_blank"
-                className="techub"
-                style={{ textDecoration: "none" }}
-              >
-                Techub
-              </a>
-            </div>
             <div className="footer__wrapper__item ">
               <h2 className="footer__wrapper__item__text"> Follow Us</h2>
               <div className="footer__wrapper__item__wrapper ">
